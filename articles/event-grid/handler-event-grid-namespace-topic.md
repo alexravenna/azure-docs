@@ -16,11 +16,11 @@ This article describes how to forward events from event subscriptions created in
 
 ## Overview
 
-Namespace topic as a destination in Event Grid basic event subscriptions that helps you to transition to Event Grid namespaces without modifying your existing workflow.
+A namespace topic is a destination in Event Grid basic event subscriptions that helps you to transition to Event Grid namespaces without modifying your existing workflow.
 
 :::image type="content" source="media/handler-event-grid-namespace-topic/namespace-topic-handler-destination.png" alt-text="Image that shows events forwarded from Event Grid basic to Event Grid namespace topic." border="false" lightbox="media/handler-event-grid-namespace-topic/namespace-topic-handler-destination.png":::
 
-Event Grid namespaces provides new, and interesting capabilities that you might be interested to use in your solutions. If you're currently using Event Grid basic resources like topics, system topics, domains, and partner topics you only need to create a new event subscription in your current topic and select Event Grid namespace topic as a handler destination.
+Event Grid namespaces provide new and interesting capabilities that you might be interested to use in your solutions. If you're currently using Event Grid basic resources like topics, system topics, domains, and partner topics you only need to create a new event subscription in your current topic and select Event Grid namespace topic as a handler destination.
 
 ## How to forward events to a new Event Grid namespace
 
