@@ -26,8 +26,8 @@ This table contains the information for which Redis version are available in eac
 
 | Tier                         |        Available Redis version       |
 |:------------------------------------------------- |:------------------------------------:|
-| Memory Optimized, Balanced, Compute Optimized     |   Redis 7.4 (Preview) |
-| Flash Optimized | Redis 7.4 (preview)  |
+| Memory Optimized, Balanced, Compute Optimized     |   Redis 7.4 |
+| Flash Optimized | Redis 7.4  |
 
 ## How to upgrade
 
