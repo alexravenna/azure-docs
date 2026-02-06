@@ -42,9 +42,6 @@ Before creating an SMB volume, you need to create an Active Directory connection
 
     :::image type="content" source="../media/azure-netapp-files/azure-netapp-files-new-volume.png" alt-text="Screenshot of create new volume interface." lightbox="../media/azure-netapp-files/azure-netapp-files-new-volume.png":::
 
->[!NOTE]
->By default, large files are supported for all existing and new volumes.
-
 3. In the Create a Volume window, select **Create** and provide information for the following fields under the Basics tab:   
     * **Volume name**      
         Specify the name for the volume that you are creating.   

@@ -69,9 +69,6 @@ To create NFS volumes, see [Create an NFS volume](azure-netapp-files-create-volu
 
     ![Navigate to Volumes](./media/shared/azure-netapp-files-navigate-to-volumes.png) 
 
->[!NOTE]
->By default, large files are supported for all existing and new volumes.
-
 2.	In the Create a Volume window, select **Create**, and provide information for the following fields under the Basics tab:   
     * **Volume name**      
         Specify the name for the volume that you are creating.   
