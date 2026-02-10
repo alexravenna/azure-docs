@@ -19,9 +19,9 @@ Azure NetApp Files is updated regularly. This article provides a summary about t
 
 ## April 2026
 
-* [Large files support for Azure NetApp Files](azure-netapp-files-understand-storage-hierarchy.md) is now generally available (GA)
+* [Azure NetApp Files now supports files up to 64TiB on regular Azure NetApp Files volumes](azure-netapp-files-resource-limits.md) is now generally available (GA)
 
-    Azure NetApp Files support file sizes up to 64 TiB on newly created regular ANF volumes. This change does not have an impact on the volume size for regular Azure NetApp Files volumes. This enhancement enables Azure VMware Solution (AVS) migrations with large virtual machine disks and files, and Oracle database migration with large database files.
+   To allow seamless migration and operation of virtual machines or databases with large files, regular volumes in Azure NetApp Files now support files up to 64 TiB. This enhancement enables database workloads with larger files and virtual machine migrations from on-premises to Azure with large virtual machine disk files in Azure VMware Solution. This change is rolled out to all Azure regions where Azure NetApp Files is available.
 
 ## January 2026
 
