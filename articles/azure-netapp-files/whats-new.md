@@ -17,6 +17,12 @@ ms.author: anfdocs
 
 Azure NetApp Files is updated regularly. This article provides a summary about the latest new features and enhancements.
 
+## April 2026
+
+* [Large files support for Azure NetApp Files](azure-netapp-files-understand-storage-hierarchy.md) is now generally available (GA)
+
+    Azure NetApp Files support file sizes up to 64 TiB on newly created regular ANF volumes. This change does not have an impact on the volume size for regular Azure NetApp Files volumes. This enhancement enables Azure VMware Solution (AVS) migrations with large virtual machine disks and files, and Oracle database migration with large database files.
+
 ## January 2026
 
 * [Elastic zone-redundant storage service level](elastic-zone-redundant-concept.md) (preview)
