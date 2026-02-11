@@ -117,7 +117,7 @@ The resource providers for database services are:
 
 | Resource provider namespace | Azure service |
 | --------------------------- | ------------- |
-| Microsoft.Cache | [Azure Cache for Redis](../../azure-cache-for-redis/index.yml) |
+| Microsoft.Cache | [Azure Managed Redis](../../redis/index.yml) and [Azure Cache for Redis](../../azure-cache-for-redis/index.yml) |
 | Microsoft.DBforMariaDB | [AzureÂ DatabaseÂ forÂ MariaDB](/azure/mariadb/) |
 | Microsoft.DBforMySQL | [AzureÂ DatabaseÂ forÂ MySQL](/azure/mysql/) |
 | Microsoft.DBforPostgreSQL | [AzureÂ DatabaseÂ forÂ PostgreSQL](/azure/postgresql/) |
