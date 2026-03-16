@@ -15,7 +15,7 @@ ms.custom:
 
 # Import an A2A agent API (preview)
 
-[!INCLUDE [api-management-availability-premium-dev-standard-basic-premiumv2-standardv2=basicv2](../../includes/api-management-availability-premium-dev-standard-basic-premiumv2-standardv2=basicv2.md)]
+[!INCLUDE [api-management-availability-premium-dev-standard-basic-premiumv2-standardv2=basicv2](../../includes/api-management-availability-premium-dev-standard-basic-premiumv2-standardv2-basicv2.md)]
 
 API Management supports managing AI agent APIs compatible with the [Agent2Agent (A2A) protocol specification](https://a2a-protocol.org/dev/specification/). The A2A protocol is an open client-server standard that enables different AI agent systems to communicate and work together using a shared interaction model. With the A2A agent API support in API Management, you can manage and govern agent APIs alongside other API types, including AI model APIs, Model Context Protocol (MCP) tools, and traditional APIs such as REST, SOAP, and GraphQL.  
 
