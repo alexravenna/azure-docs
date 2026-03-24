@@ -39,6 +39,9 @@ items:
       href: storage-tasks/storage-task-operations.md
   - name: Storage task assignment
     items:
+    - name: Mock runs for storage task assignments
+      href: ./storage-tasks/storage-task-mock-run.md
+      displayName: Mock runs
     - name: Storage task assignment
       href: storage-tasks/storage-task-assignment.md
     - name: Azure roles for assignments
