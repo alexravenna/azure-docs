@@ -15,24 +15,14 @@ ms.subservice: mock run
 
 ### Introduction
 
-A mock run lets you simulate the execution of a storage task assignment without actually performing any operations on your blobs. When you create a mock run, Azure Storage Actions scans and evaluates your blobs against the task conditions exactly as it would during a real run, but no operations are executed. Instead, a detailed report is generated showing which blobs matched the conditions and what operations _would have been_ performed.
-
-Mock runs are useful when you want to:
-
-*   **Preview the impact** of a task before running it at scale, especially when operations are irreversible (such as delete or immutability policy).
-*   **Validate conditions** on the full set of blobs in your account, not just a small preview sample.
-*   **Generate audit-ready reports** showing which blobs would be affected, without making any changes.
-*   **Estimate cost** by understanding how many blobs would be targeted and how many operations would be invoked.
-
-> [!NOTE]  
-> A mock run scans and evaluates all blobs in scope, just like a real run. The only difference is that no operations are performed on the blobs. Because no operations are executed, mock runs are typically faster than real runs.
+This article shows you how to create a mock run for a storage task assignment. A mock run simulates task execution — scanning and evaluating blobs against your conditions — without performing any operations. For a conceptual overview of mock runs, see [Mock runs for storage task assignments](storage-task-mock-run).
 
 ### Prerequisites
 
-Before you create a mock run, make sure you have the following:
+Before you create a mock run, ensure you have the following:
 
 *   A storage task with at least one condition and one operation defined. See [Create a storage task](storage-task-quickstart-portal).
-*   The managed identity associated with the storage task must have the appropriate role (such as **Storage Blob Data Reader** or **Storage Blob Data Owner**) on the target storage account. Although no operations are performed, the identity still needs read access to scan and evaluate blobs.
+*   The managed identity associated with the storage task must have the appropriate role (such as **Storage Blob Data Reader** or **Storage Blob Data Owner**) on the target storage account.
 *   If the target storage account has network restrictions, ensure that the **Allow trusted Microsoft services** option is enabled.
 
 ### Create a mock run in the Azure portal
@@ -68,84 +58,31 @@ Before you create a mock run, make sure you have the following:
 
 ### Monitor a mock run
 
-After a mock run is enabled, you can monitor its progress the same way you monitor a real task run.
-
-> [!NOTE]  
-> Only one run (mock or real) can execute on a storage account at a time. If a real run or another mock run is already in progress, the new mock run is queued until the current run completes.
+After a mock run is enabled, you can monitor its progress the same way you monitor a real task run. For information about mock run states and what to expect, see [Mock run lifecycle and states](storage-task-mock-run#mock-run-lifecycle-and-states).
 
 ### View mock run reports
 
-When a mock run finishes, a detailed report is written to the report export container you specified during assignment creation. The report lists every blob that was scanned, whether it matched the conditions, and what operation _would have been_ performed.
+When a mock run finishes, a detailed report is available in the report export container. For information about report format, columns, and the summary JSON, see [Mock run reports](storage-task-mock-run#mock-run-reports).
 
-**Report columns:**
+To download the report:
 
-| Column | Description |
-| --- | --- |
-| **Container** | The container where the blob resides. |
-| **Blob** | The name of the blob. |
-| **Operation to be performed** | The simulated operation, prefixed with `(mock)` — for example, `(mock) DeleteBlob` or `(mock) SetBlobImmutability`. |
-| **Matched condition block** | Which condition block the blob matched (for example, `IF` or `ELSE`). |
+1.  Navigate to the assignment in the Azure portal.
+2.  Select **Go to mock run report** (or navigate to the report export container directly).
+3.  Download the CSV file.
 
-**Example CSV output:**
+### Transition to a real run
 
-| Container | Blob | Operation to be performed | Matched condition block |
-| --- | --- | --- | --- |
-| testContainer1 | output1.log | (mock) DeleteBlob | IF |
-| testContainer2 | output2.log | (mock) DeleteBlob | IF |
-| testContainer1 | financials1.csv | (mock) SetBlobImmutability | ELSE |
-| testContainer2 | financials2.csv | (mock) SetBlobImmutability | ELSE |
-
-A **summary JSON** file is also generated alongside the report, containing aggregate metrics:
-
-```
-{
-  "completionTime": "2024-10-21T17:46:59",
-  "destination": "taskoutput",
-  "endpoint": "https://contoso1storage1.blob.core.windows.net",
-  "fileFormat": "csv",
-  "fileSchema": [
-    "Container",
-    "Blob",
-    "Operation to be performed",
-    "Result",
-    "Matched condition block"
-  ],
-  "files": [
-    "<link to the reporting file>"
-  ],
-  "objectsListed": 1100,
-  "objectsToBeOperated": 240,
-  "operationType": "BlobOperation",
-  "runId": "mockrun-assignment-2024-10-21T17:30:13.9121342Z",
-  "startTime": "2024-10-21T17:37:12",
-  "status": "succeeded"
-}
-```
-
-### Transition from mock run to real run
-
-After reviewing the mock run report and confirming the results are as expected, you can transition the assignment to a real run:
+After reviewing the mock run report, you can transition the assignment to a real run:
 
 1.  Navigate to the assignment in the Azure portal.
 2.  Edit the assignment and change the trigger type from **Mock run** to **Run once** or **Recurring**.
 3.  Save the updated assignment.
 
 > [!IMPORTANT]  
-> A completed mock run cannot be restarted. To run another mock simulation, you must create a new assignment or duplicate the existing one.
+> A completed mock run cannot be restarted. To run another mock simulation, create a new assignment or duplicate the existing one.
 
-### Pricing
+### See also
 
-Mock runs are billed similarly to real task assignment runs, with one key difference: **no charge is applied for the operations meter**, since no operations are actually performed on blobs.
-
-| Billing meter | Applies to mock runs? |
-| --- | --- |
-| Task execution instance (per run) | ✅ Yes |
-| Objects targeted (per million objects scanned) | ✅ Yes |
-| Operations performed (per million operations) | ❌ No (always $0) |
-
-Standard Blob Storage API costs for listing and reading blob properties during the scan still apply.
-
-> [!TIP]  
-> Because mock runs exclude the operations meter charge, they are significantly cheaper than real runs — making them a cost-effective way to validate your task configuration before committing to a full execution.
-
----
+*   [Mock runs for storage task assignments](storage-task-mock-run)
+*   [Create and manage a storage task assignment](storage-task-assignment-create)
+*   [Analyze storage task runs](storage-task-runs)
