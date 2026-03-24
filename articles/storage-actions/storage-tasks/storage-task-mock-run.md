@@ -46,7 +46,7 @@ Both mock runs and the condition preview feature help you validate task conditio
 | --- | --- | --- |
 | **Scope** | Limited sample (up to 5,000 blobs) | Full-scale — all blobs in the assignment scope |
 | **Operations shown** | No | Yes — shows which operations would be performed |
-| **Report generated** | No | Yes — downloadable CSV or Parquet report |
+| **Report generated** | No | Yes — downloadable CSV report |
 | **Execution model** | Synchronous, immediate results | Asynchronous, runs like a real assignment |
 | **Billing** | No charge | Charged for task execution instance and objects scanned (no operations charge) |
 | **Use case** | Quick spot-check while authoring conditions | Full validation before production execution |
@@ -78,7 +78,7 @@ This ensures stability and prevents resource contention on the target storage ac
 
 ### Mock run reports
 
-When a mock run finishes, a detailed report is written to the report export container specified during assignment creation. Reports are available in **CSV** and **Parquet** formats.
+When a mock run finishes, a detailed report is written to the report export container specified during assignment creation. Reports are available in **CSV** formats.
 
 **Report columns:**
 
