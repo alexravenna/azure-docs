@@ -123,6 +123,28 @@ When rehydrating archived blobs, there's no option to choose a priority. The blo
 
 Task assignment runs can take around 20 minutes to change status to `In Progress` after being queued. Until then, no updates appear. This delay is expected and there is no workaround to shorten it.
 
+## Mock run limitations
+
+### Only one run (mock or real) can execute per storage account at a time
+
+If a real task run or another mock run is already in progress on the target storage account, a newly enabled mock run is queued until the current run completes. This is the same concurrency behavior as real task runs.
+
+### Completed mock runs cannot be restarted
+
+Once a mock run finishes, it cannot be restarted. To run another mock simulation with the same configuration, create a new assignment or duplicate the existing one.
+
+### Mock run assignments cannot be created on enabled task assignments
+
+You cannot create a mock run on a task assignment that is already enabled. Disable the assignment first, or create a new assignment with the mock run trigger type.
+
+### Mock run reports do not include operation results
+
+Because no operations are performed during a mock run, the report does not include operation success/failure details. The report shows what operations _would have been_ performed and which condition block each blob matched.
+
+### Delay in mock run start
+
+Like real task assignment runs, mock runs can take around 20 minutes to transition from queued to in-progress status. This delay is expected behavior.
+
 
 ## See Also
 
