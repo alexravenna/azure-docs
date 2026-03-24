@@ -42,7 +42,8 @@ Before you create a mock run, ensure you have the following:
     *   Select **Mock run** as the run type.
     *   Set the **Start from** date and time.
     *   Optionally configure a **Max duration** for the run.
-8.  In the **Report** section, select the **Report export container** where the mock run report will be stored. Optionally, set a report prefix path and report format (CSV or Parquet).
+1. In the **Report** section, select the **Report export container** where the mock run report will be stored.
+
 9.  Select **Add** to create the assignment.
 10.  After the assignment appears in the **Assignments** page, select the checkbox next to it and select **Enable** to schedule the mock run.
 
