@@ -3,14 +3,14 @@
 # For more information, see https://learn.microsoft.com/en-us/help/platform/learn-editor-add-metadata
 # For valid values of ms.service, ms.prod, and ms.topic, see https://learn.microsoft.com/en-us/help/platform/metadata-taxonomies
 
-title:       # Add a title for the browser tab
-description: # Add a meaningful description for search results
-author:      sshankMSFT # GitHub alias
+title: Create and use a mock run
+description: Learn how to create a mock run to simulate a storage task assignment without performing any operations on your blobs.
+author: Shashank Kumar Shankar
 ms.author:   shashankar # Microsoft alias
-ms.service:  # Add the ms.service or ms.prod value
-# ms.prod:   # To use ms.prod, uncomment it and delete ms.service
-ms.topic:    # Add the ms.topic value
-ms.date:     03/24/2026
+ms.service: azure-storage-actions
+ms.topic: feature-guide
+ms.date: 04/12/2026
+ms.subservice: mock run
 ---
 
 ### Introduction
