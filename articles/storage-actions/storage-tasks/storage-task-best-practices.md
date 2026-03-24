@@ -60,6 +60,28 @@ The condition preview feature also appears in the **Add Assignment** pane. Befor
 > [!div class="mx-imgBorder"]
 > ![Screenshot of the add assignment pane.](../media/storage-tasks/storage-task-best-practices/add-assignment-pane.png)
 
+### Use mock runs to validate before executing at scale
+
+Before enabling a task assignment that targets a large number of blobs, consider running a **mock run** first. While the condition preview feature is useful for spot-checking your conditions against a small sample, a mock run provides a full-scale simulation across all blobs in scope.
+
+A mock run:
+
+*   Scans and evaluates every blob that matches your prefix filters — not just a limited sample.
+*   Generates a detailed report listing each blob that matched the conditions and what operations would have been performed.
+*   Does not modify any data, making it safe to use in production storage accounts.
+*   Is billed at a lower cost than real runs because no operations are performed (the operations meter is excluded).
+
+This is especially important when your task includes irreversible operations such as `DeleteBlob` or `SetBlobImmutabilityPolicy`. Running a mock run first helps prevent unintended data loss or compliance policy misconfiguration.
+
+**Recommended workflow:**
+
+1.  Design and preview your conditions using the condition preview feature in the portal.
+2.  Create a mock run assignment to validate the conditions against the full blob set.
+3.  Review the mock run report to confirm the correct blobs would be targeted.
+4.  If results are satisfactory, transition the mock run assignment to a real run (run once or recurring), or create a new real run assignment.
+
+For step-by-step instructions, see [Create and use a mock run](storage-task-mock-run).
+
 ## Scale and performance
 
 Enable storage tasks one at a time. Apply techniques to optimize conditions and task assignment scheduling. 
