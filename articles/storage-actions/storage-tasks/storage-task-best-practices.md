@@ -69,9 +69,8 @@ A mock run:
 *   Scans and evaluates every blob that matches your prefix filters — not just a limited sample.
 *   Generates a detailed report listing each blob that matched the conditions and what operations would have been performed.
 *   Does not modify any data, making it safe to use in production storage accounts.
-*   Is billed at a lower cost than real runs because no operations are performed (the operations meter is excluded).
 
-This is especially important when your task includes irreversible operations such as `DeleteBlob` or `SetBlobImmutabilityPolicy`. Running a mock run first helps prevent unintended data loss or compliance policy misconfiguration.
+This is especially important when your task includes irreversible operations. Running a mock run first helps prevent unintended misconfigurations.
 
 **Recommended workflow:**
 
