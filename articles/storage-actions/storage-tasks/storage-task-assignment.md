@@ -63,7 +63,7 @@ Mock runs follow the same lifecycle as run-once assignments:
 *   While in progress, you can only disable the assignment to stop the run.
 *   After completion, you can transition the assignment to a run-once or recurring run, but you cannot restart the mock run.
 
-For step-by-step instructions on creating a mock run, see [Create and use a mock run](storage-task-mock-run).
+For step-by-step instructions on creating a mock run, see [Create and use a mock run](storage-task-mock-run.md).
 
 ## See also
 
