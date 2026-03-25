@@ -87,7 +87,7 @@ In the **Trigger details** section, select how you'd like this task to run. You 
 
 *   **Run once**: Execute the task a single time.
 *   **Recurring**: Run the task on a recurring schedule. Choose a start and end time and specify the number of days between each run.
-*   **Mock run**: Simulate the task execution without performing any operations on blobs. A mock run scans and evaluates blobs against the task conditions and produces a detailed report showing which blobs matched and what operations would have been performed. No data is modified. For more information, see [Create and use a mock run](storage-task-mock-run).
+*   **Mock run**: Simulate the task execution without performing any operations on blobs. A mock run scans and evaluates blobs against the task conditions and produces a detailed report showing which blobs matched and what operations would have been performed. No data is modified. For more information, see [Create and use a mock run](storage-task-mock-run.md).
 
 For all run types, specify where you'd like to store the execution reports.
 
