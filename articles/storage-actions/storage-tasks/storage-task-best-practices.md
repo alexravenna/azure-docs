@@ -79,7 +79,7 @@ This is especially important when your task includes irreversible operations. Ru
 3.  Review the mock run report to confirm the correct blobs would be targeted.
 4.  If results are satisfactory, transition the mock run assignment to a real run (run once or recurring), or create a new real run assignment.
 
-For step-by-step instructions, see [Create and use a mock run](storage-task-mock-run).
+For step-by-step instructions, see [Create and use a mock run](storage-task-mock-run.md).
 
 ## Scale and performance
 
