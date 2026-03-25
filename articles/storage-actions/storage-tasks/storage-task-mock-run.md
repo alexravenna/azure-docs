@@ -5,7 +5,7 @@
 
 title: Mock runs for storage task assignments
 description: Learn about mock runs — a way to simulate storage task assignment execution without performing any operations on your blobs.
-author: Shashank Kumar Shankar
+author: sshankMSFT
 ms.author:   shashankar # Microsoft alias
 ms.service: azure-storage-actions
 ms.topic: concept-article
