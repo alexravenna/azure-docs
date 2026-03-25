@@ -5,12 +5,11 @@
 
 title: Create and use a mock run
 description: Learn how to create a mock run to simulate a storage task assignment without performing any operations on your blobs.
-author: Shashank Kumar Shankar
+author: sshankMSFT
 ms.author:   shashankar # Microsoft alias
 ms.service: azure-storage-actions
 ms.topic: feature-guide
 ms.date: 04/12/2026
-ms.subservice: mock run
 ---
 
 # Create a mock run
