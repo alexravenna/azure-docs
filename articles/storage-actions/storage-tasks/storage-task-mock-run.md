@@ -57,12 +57,6 @@ Use condition preview while composing your task conditions, then use a mock run 
 
 Mock runs follow the same lifecycle as run-once assignments.
 
-**Editability by state:**
-
-*   **Before execution (enabled, not yet run):** All assignment properties are fully editable (subscription, account, prefixes, start time, etc.).
-*   **In-progress:** You can only disable the assignment to stop the mock run.
-*   **Finished:** The assignment can only be transitioned to a run-once or recurring run. All other updates are blocked.
-
 > [!IMPORTANT]  
 > A completed mock run cannot be restarted. To run another mock simulation with the same configuration, you must create a new assignment or duplicate the existing one.
 
@@ -169,7 +163,7 @@ If the target storage account has network restrictions, ensure that the **Allow 
 
 ### See also
 
-*   [Create and use a mock run](storage-task-mock-run-create)
-*   [Storage task assignment](storage-task-assignment)
-*   [Storage task runs](storage-task-runs)
-*   [Best practices for storage tasks](storage-task-best-practices)
+*   [Create and use a mock run](storage-task-mock-run-create.md)
+*   [Storage task assignment](storage-task-assignment.md)
+*   [Storage task runs](storage-task-runs.md)
+*   [Best practices for storage tasks](storage-task-best-practices.md)
