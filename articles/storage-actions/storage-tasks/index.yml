@@ -68,7 +68,7 @@ landingContent:
           - text: Create and manage a storage task assignment
             url: storage-task-assignment-create.md
           - text: Create and use a mock run
-            url: create-storage-task-mock-run.md
+            url: ./storage-task-mock-run/create-storage-task-mock-run.md
       - linkListType: concept
         links:
           - text: Storage task assignment
