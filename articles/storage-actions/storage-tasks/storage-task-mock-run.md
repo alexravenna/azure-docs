@@ -163,7 +163,7 @@ If the target storage account has network restrictions, ensure that the **Allow 
 
 ### See also
 
-*   [Create and use a mock run](storage-task-mock-run/create-storage-task-mock-run.md)
+*   [Create and use a mock run](storage-task-mock-run-create.md)
 *   [Storage task assignment](storage-task-assignment.md)
 *   [Storage task runs](storage-task-runs.md)
 *   [Best practices for storage tasks](storage-task-best-practices.md)
