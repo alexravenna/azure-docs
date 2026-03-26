@@ -60,7 +60,7 @@ items:
   - name: Create and manage an assignment
     href: storage-tasks/storage-task-assignment-create.md
   - name: Create and use a mock run
-    href: ./storage-tasks/storage-task-mock-run/storage-task-mock-run.md
+    href: storage-tasks/storage-task-mock-run/create-storage-task-mock-run.md
     displayName: Mock run
   - name: Monitor storage tasks
     href: storage-tasks/monitor-storage-tasks.md
