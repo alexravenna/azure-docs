@@ -14,13 +14,13 @@ ms.date: 04/12/2026
 
 # Create a mock run
 
-This article shows you how to create a mock run for a storage task assignment. A mock run simulates task execution - scanning and evaluating blobs against your conditions - without performing any operations. For a conceptual overview of mock runs, see [Mock runs for storage task assignments](../storage-task-mock-run.md).
+This article shows you how to create a mock run for a storage task assignment. A mock run simulates task execution - scanning and evaluating blobs against your conditions - without performing any operations. For a conceptual overview of mock runs, see [Mock runs for storage task assignments](storage-task-mock-run.md).
 
 ## Prerequisites
 
 Before you create a mock run, ensure you have the following items:
 
-*   A storage task with at least one condition and one operation defined. See [Create a storage task](../storage-task-quickstart-portal.md).
+*   A storage task with at least one condition and one operation defined. See [Create a storage task](storage-task-quickstart-portal.md).
 *   The managed identity associated with the storage task has the appropriate role, such as **Storage Blob Data Reader** or **Storage Blob Data Owner**, on the target storage account.
 *   If the target storage account has network restrictions, ensure that the **Allow trusted Microsoft services** option is enabled.
 
@@ -58,11 +58,11 @@ Before you create a mock run, ensure you have the following items:
 
 ### Monitor a mock run
 
-After you enable a mock run, monitor its progress the same way you monitor a real task run. For information about mock run states and what to expect, see [Mock run lifecycle and states](../storage-task-mock-run.md#mock-run-lifecycle-and-states).
+After you enable a mock run, monitor its progress the same way you monitor a real task run. For information about mock run states and what to expect, see [Mock run lifecycle and states](storage-task-mock-run.md#mock-run-lifecycle-and-states).
 
 #### View mock run reports
 
-When a mock run finishes, you can find a detailed report in the report export container. For information about report format, columns, and the summary JSON, see [Mock run reports](../storage-task-mock-run.md#mock-run-reports).
+When a mock run finishes, you can find a detailed report in the report export container. For information about report format, columns, and the summary JSON, see [Mock run reports](storage-task-mock-run.md#mock-run-reports).
 
 To download the report:
 
@@ -83,6 +83,6 @@ After reviewing the mock run report, you can transition the assignment to a real
 
 ### See also
 
-*   [Mock runs for storage task assignments](../storage-task-mock-run.md)
-*   [Create and manage a storage task assignment](../storage-task-assignment-create.md)
-*   [Analyze storage task runs](../storage-task-runs.md)
+*   [Mock runs for storage task assignments](storage-task-mock-run.md)
+*   [Create and manage a storage task assignment](storage-task-assignment-create.md)
+*   [Analyze storage task runs](storage-task-runs.md)
