@@ -320,7 +320,7 @@ Selectors can be utilized when creating any of the below consumers -
 
 ### Scheduled messages (delivery delay)
 
-JMS 2.0 supports scheduling a message for future delivery using the `setDeliveryDelay` method on a `MessageProducer` or `JMSProducer`. The delay value is specified in milliseconds. When set, the message is accepted by Service Bus but only becomes visible to consumers after the delay period elapses.
+JMS 2.0 supports scheduling a message for future delivery using the `setDeliveryDelay` method on a `MessageProducer` or `JMSProducer`. When set, the message is accepted by Service Bus but only becomes visible to consumers after the delay period elapses.
 
 > [!NOTE]
 > Scheduled messages require **Azure Service Bus Premium tier**.
