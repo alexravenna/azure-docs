@@ -318,6 +318,32 @@ Selectors can be utilized when creating any of the below consumers -
 > [!NOTE]
 > Service Bus selectors don't support "LIKE" and "BETWEEN" SQL keywords.
 
+### Scheduled messages (delivery delay)
+
+JMS 2.0 supports scheduling a message for future delivery using the `setDeliveryDelay` method on a `MessageProducer` or `JMSProducer`. The delay value is specified in milliseconds. When set, the message is accepted by Service Bus but only becomes visible to consumers after the delay period elapses.
+
+> [!NOTE]
+> Scheduled messages require **Azure Service Bus Premium tier**.
+
+**Example — sending with a 30-second delivery delay:**
+
+```java
+MessageProducer producer = session.createProducer(queue);
+
+// Send an immediate message (no delay)
+producer.send(session.createTextMessage("Immediate message"));
+
+// Schedule a message for delivery 30 seconds from now
+producer.setDeliveryDelay(30_000);
+producer.send(session.createTextMessage("Scheduled message"));
+```
+
+Under the hood, `setDeliveryDelay` maps to the Service Bus **scheduled enqueue time** property. The broker stores the message and makes it available for consumption only after the specified delay.
+
+To reset the producer back to immediate delivery, call `setDeliveryDelay(0)`.
+
+For a complete working sample that sends both an immediate and a scheduled message and then receives them with timestamps, see [QueueScheduledSend.java](https://github.com/Azure/azure-servicebus-jms-samples/blob/sample/scheduled-messages/src/main/java/com/microsoft/azure/samples/QueueScheduledSend.java) in the azure-servicebus-jms-samples repository.
+
 ## AMQP disposition and Service Bus operation mapping
 
 Here's how an AMQP disposition translates to a Service Bus operation:
