@@ -338,7 +338,7 @@ When using `ServiceBusJmsConnectionFactory` in Spring Boot or other frameworks t
 
 #### Spring Cloud Azure defaults
 
-If you use `spring-cloud-azure-starter-servicebus-jms` (version 5.22+), the starter applies this factory separation by default:
+If you use `spring-cloud-azure-starter-servicebus-jms` (version 6.2.0+), the starter applies this factory separation by default:
 
 | `spring.jms.servicebus.pool.enabled` | `spring.jms.cache.enabled` | Sender factory | Listener factory |
 |:------|:------|:------|:------|
@@ -347,7 +347,7 @@ If you use `spring-cloud-azure-starter-servicebus-jms` (version 5.22+), the star
 | *(not set)* | `false` | `ServiceBusJmsConnectionFactory` | `ServiceBusJmsConnectionFactory` |
 | `true` | *(not set)* | `JmsPoolConnectionFactory` | `JmsPoolConnectionFactory` |
 
-On older versions (pre-5.22), both senders and listeners used `ServiceBusJmsConnectionFactory` by default, which causes senders to create a new connection per send.
+On older versions (pre-6.2.0), both senders and listeners used `ServiceBusJmsConnectionFactory` by default, which causes senders to create a new connection per send.
 
 #### Token expiry and reconnection
 
