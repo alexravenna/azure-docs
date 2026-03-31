@@ -326,7 +326,7 @@ When using `ServiceBusJmsConnectionFactory` in Spring Boot or other frameworks t
 
 | Role | Connection factory | Why |
 |------|-------------------|-----|
-| **Senders** (`JmsTemplate`) | `CachingConnectionFactory` wrapping `ServiceBusJmsConnectionFactory` | `JmsTemplate` creates and closes a connection per send by default. `CachingConnectionFactory` maintains a single AMQP connection and caches sessions, avoiding connection churn and the broker's 256 AMQP link limit. |
+| **Senders** (`JmsTemplate`) | `CachingConnectionFactory` wrapping `ServiceBusJmsConnectionFactory` | `JmsTemplate` creates and closes a connection per send by default. `CachingConnectionFactory` maintains a single AMQP connection and caches sessions, avoiding connection churn that can exhaust broker resources under load. |
 | **Listeners** (`@JmsListener`, `DefaultMessageListenerContainer`) | Raw `ServiceBusJmsConnectionFactory` (unwrapped) | Each listener container gets its own AMQP connection with independent lifecycle. If a connection fails (token expiry, gateway upgrade, network blip), only that listener is affected, and Spring recreates the connection automatically. |
 
 #### What to avoid for listeners
