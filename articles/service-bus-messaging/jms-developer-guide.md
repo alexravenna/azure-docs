@@ -320,7 +320,7 @@ Selectors can be utilized when creating any of the below consumers -
 
 ### Connection factory selection and resilience
 
-When using `ServiceBusJmsConnectionFactory` in Spring Boot or other frameworks that manage JMS connections, choose the right connection factory wrapper for **senders** and **listeners**. Using the wrong wrapper is the most common cause of JMS listeners going silent and not recovering.
+When using `ServiceBusJmsConnectionFactory` in Spring Boot or other frameworks that manage JMS connections, choose the right connection factory wrapper for **senders** and **listeners** to ensure reliable operation.
 
 #### Recommended configuration
 
