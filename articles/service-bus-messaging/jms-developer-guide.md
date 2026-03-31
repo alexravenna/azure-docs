@@ -349,10 +349,6 @@ If you use `spring-cloud-azure-starter-servicebus-jms` (version 6.2.0+), the sta
 
 On older versions (pre-6.2.0), both senders and listeners used `ServiceBusJmsConnectionFactory` by default, which causes senders to create a new connection per send.
 
-#### Token expiry and reconnection
-
-Azure Service Bus uses Microsoft Entra tokens that expire periodically. On Windows, tokens expire at approximately 1 hour; on Linux with Managed Identity, tokens can last up to 24 hours. When a token expires, the broker closes the AMQP connection. With the recommended configuration (raw factory for listeners), Spring's `DefaultMessageListenerContainer` detects the closed connection and reconnects automatically. The factory's built-in reconnect settings (unlimited retries with exponential backoff) handle the reconnection transparently.
-
 #### Adding an exception listener
 
 Without an exception listener, connection drops are completely silent. Add a `jakarta.jms.ExceptionListener` to both sender and listener factories for observability:
