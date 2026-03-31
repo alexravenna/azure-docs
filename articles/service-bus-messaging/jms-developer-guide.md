@@ -326,7 +326,7 @@ JMS 2.0 supports scheduling a message for future delivery using the `setDelivery
 MessageProducer producer = session.createProducer(queue);
 
 // Schedule a message for delivery 30 seconds from now
-producer.setDeliveryDelay(30_000);
+producer.setDeliveryDelay(30000);
 producer.send(session.createTextMessage("Scheduled message"));
 ```
 
