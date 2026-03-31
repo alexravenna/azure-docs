@@ -318,6 +318,55 @@ Selectors can be utilized when creating any of the below consumers -
 > [!NOTE]
 > Service Bus selectors don't support "LIKE" and "BETWEEN" SQL keywords.
 
+### Connection factory selection and resilience
+
+When using `ServiceBusJmsConnectionFactory` in Spring Boot or other frameworks that manage JMS connections, choose the right connection factory wrapper for **senders** and **listeners**. Using the wrong wrapper is the most common cause of JMS listeners going silent and not recovering.
+
+#### Recommended configuration
+
+| Role | Connection factory | Why |
+|------|-------------------|-----|
+| **Senders** (`JmsTemplate`) | `CachingConnectionFactory` wrapping `ServiceBusJmsConnectionFactory` | `JmsTemplate` creates and closes a connection per send by default. `CachingConnectionFactory` maintains a single AMQP connection and caches sessions, avoiding connection churn and the broker's 256 AMQP link limit. |
+| **Listeners** (`@JmsListener`, `DefaultMessageListenerContainer`) | Raw `ServiceBusJmsConnectionFactory` (unwrapped) | Each listener container gets its own AMQP connection with independent lifecycle. When a connection fails — token expiry, gateway upgrade, network blip — only that listener is affected, and Spring recreates the connection automatically. |
+
+#### What to avoid for listeners
+
+> [!WARNING]
+> **Never use `SingleConnectionFactory` with listener containers.** It forces all listeners to share a single JMS connection. When that connection enters a CLOSED state after token expiry, listener threads block indefinitely in `createSession()` with no exception surfaced to Spring's recovery mechanism. All listeners become unresponsive with no automatic recovery — the application must be restarted.
+
+`CachingConnectionFactory` on listener containers can also cause issues because cached sessions may reference a stale underlying connection. For listeners, the raw factory ensures each container can create a fresh connection independently.
+
+#### Spring Cloud Azure defaults
+
+If you use `spring-cloud-azure-starter-servicebus-jms` (version 5.22+), the starter applies this factory separation by default:
+
+| `spring.jms.servicebus.pool.enabled` | `spring.jms.cache.enabled` | Sender factory | Listener factory |
+|:------|:------|:------|:------|
+| *(not set)* | *(not set)* | `CachingConnectionFactory` | `ServiceBusJmsConnectionFactory` |
+| *(not set)* | `true` | `CachingConnectionFactory` | `CachingConnectionFactory` |
+| *(not set)* | `false` | `ServiceBusJmsConnectionFactory` | `ServiceBusJmsConnectionFactory` |
+| `true` | *(not set)* | `JmsPoolConnectionFactory` | `JmsPoolConnectionFactory` |
+
+On older versions (pre-5.22), both senders and listeners used `ServiceBusJmsConnectionFactory` by default, which causes senders to create a new connection per send.
+
+#### Token expiry and reconnection
+
+Azure Service Bus uses Microsoft Entra tokens that expire periodically — approximately 1 hour on Windows and up to 24 hours on Linux with Managed Identity. When a token expires, the broker closes the AMQP connection. With the recommended configuration (raw factory for listeners), Spring's `DefaultMessageListenerContainer` detects the closed connection and reconnects automatically. The factory's built-in reconnect settings (unlimited retries with exponential backoff) handle the reconnection transparently.
+
+#### Adding an exception listener
+
+Without an exception listener, connection drops are completely silent. Add a `jakarta.jms.ExceptionListener` to both sender and listener factories for observability:
+
+```java
+connection.setExceptionListener(exception -> {
+    log.error("JMS connection error: {}", exception.getMessage(), exception);
+});
+```
+
+In Spring Boot, set the exception listener on the `CachingConnectionFactory` (for senders) and the `DefaultJmsListenerContainerFactory` (for listeners).
+
+For a complete working sample showing all of these patterns, see the [Spring Boot JMS Resilience sample](https://github.com/Azure/azure-servicebus-jms-samples/tree/sample/spring-boot-resilience/spring-boot-resilience) in the azure-servicebus-jms-samples repository.
+
 ## AMQP disposition and Service Bus operation mapping
 
 Here's how an AMQP disposition translates to a Service Bus operation:
