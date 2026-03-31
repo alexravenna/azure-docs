@@ -327,7 +327,7 @@ When using `ServiceBusJmsConnectionFactory` in Spring Boot or other frameworks t
 | Role | Connection factory | Why |
 |------|-------------------|-----|
 | **Senders** (`JmsTemplate`) | `CachingConnectionFactory` wrapping `ServiceBusJmsConnectionFactory` | `JmsTemplate` creates and closes a connection per send by default. `CachingConnectionFactory` maintains a single AMQP connection and caches sessions, avoiding connection churn and the broker's 256 AMQP link limit. |
-| **Listeners** (`@JmsListener`, `DefaultMessageListenerContainer`) | Raw `ServiceBusJmsConnectionFactory` (unwrapped) | Each listener container gets its own AMQP connection with independent lifecycle. When a connection fails — token expiry, gateway upgrade, network blip — only that listener is affected, and Spring recreates the connection automatically. |
+| **Listeners** (`@JmsListener`, `DefaultMessageListenerContainer`) | Raw `ServiceBusJmsConnectionFactory` (unwrapped) | Each listener container gets its own AMQP connection with independent lifecycle. If a connection fails (token expiry, gateway upgrade, network blip), only that listener is affected, and Spring recreates the connection automatically. |
 
 #### What to avoid for listeners
 
@@ -351,7 +351,7 @@ On older versions (pre-6.2.0), both senders and listeners used `ServiceBusJmsCon
 
 #### Token expiry and reconnection
 
-Azure Service Bus uses Microsoft Entra tokens that expire periodically — approximately 1 hour on Windows and up to 24 hours on Linux with Managed Identity. When a token expires, the broker closes the AMQP connection. With the recommended configuration (raw factory for listeners), Spring's `DefaultMessageListenerContainer` detects the closed connection and reconnects automatically. The factory's built-in reconnect settings (unlimited retries with exponential backoff) handle the reconnection transparently.
+Azure Service Bus uses Microsoft Entra tokens that expire periodically. On Windows, tokens expire at approximately 1 hour; on Linux with Managed Identity, tokens can last up to 24 hours. When a token expires, the broker closes the AMQP connection. With the recommended configuration (raw factory for listeners), Spring's `DefaultMessageListenerContainer` detects the closed connection and reconnects automatically. The factory's built-in reconnect settings (unlimited retries with exponential backoff) handle the reconnection transparently.
 
 #### Adding an exception listener
 
