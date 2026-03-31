@@ -332,7 +332,7 @@ When using `ServiceBusJmsConnectionFactory` in Spring Boot or other frameworks t
 #### What to avoid for listeners
 
 > [!WARNING]
-> **Never use `SingleConnectionFactory` with listener containers.** It forces all listeners to share a single JMS connection. When that connection enters a CLOSED state after token expiry, listener threads block indefinitely in `createSession()` with no exception surfaced to Spring's recovery mechanism. All listeners become unresponsive with no automatic recovery — the application must be restarted.
+> **Never use `SingleConnectionFactory` with listener containers.** It forces all listeners to share a single JMS connection. If that connection is disrupted for any reason, all listeners lose connectivity simultaneously and cannot recover independently. Use the raw `ServiceBusJmsConnectionFactory` so each listener container manages its own connection.
 
 `CachingConnectionFactory` on listener containers can also cause issues because cached sessions may reference a stale underlying connection. For listeners, the raw factory ensures each container can create a fresh connection independently.
 
