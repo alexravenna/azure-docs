@@ -322,6 +322,9 @@ Selectors can be utilized when creating any of the below consumers -
 
 Every queue and topic subscription in Azure Service Bus has an associated [dead letter queue (DLQ)](service-bus-dead-letter-queues.md). Messages that can't be delivered or processed are automatically moved to the DLQ — for example, when a message exceeds the maximum delivery count or its time-to-live (TTL) expires.
 
+> [!IMPORTANT]
+> For TTL-expired messages to be moved to the DLQ, the queue or subscription must have **dead-lettering on message expiration** enabled. Without this setting, expired messages are silently discarded. See [Enable dead lettering for a queue or subscription](enable-dead-letter.md) for configuration steps.
+
 In JMS, you access the DLQ as a separate destination by constructing the full path and creating a `JmsQueue` with it. No special API is required.
 
 **Queue DLQ path format:**
