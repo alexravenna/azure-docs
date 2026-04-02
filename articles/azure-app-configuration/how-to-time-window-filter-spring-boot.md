@@ -21,6 +21,7 @@ In this guide, you use the time window filter to enable a feature on a schedule 
 - An App Configuration store. [Create an App Configuration store](./quickstart-azure-app-configuration-create.md#create-an-app-configuration-store).
 - A supported [Java Development Kit SDK](/java/azure/jdk) with version 17.
 - [Apache Maven](https://maven.apache.org/download.cgi) version 3.0 or above.
+- [Add a time window filter to the feature flag](./howto-timewindow-filter.md)
 
 ## Add a feature flag
 
