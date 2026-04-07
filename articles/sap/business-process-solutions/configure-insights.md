@@ -1,18 +1,18 @@
 ---
 title: Configure Insights in Business Process Solutions
-description: Learn how to configure insights in Business Process Solutions, including setting up semantic models, deploying Power BI report templates, and establishing connections to refresh reports and models.
+description: Learn how to configure insights in Business Process Solutions by deploying Power BI reports and semantic models for your business data.
 author: mohitmakhija1
 ms.service: sap-on-azure
 ms.subservice: center-sap-solutions
 ms.topic: how-to
-ms.date: 11/07/2025
+ms.date: 04/07/2026
 ms.author: momakhij
 ---
 
 # Configure insights in Business Process Solutions
 
 Insights in Business Process Solutions are [Business Templates](business-templates.md), such as Power BI reports and semantic models, designed to help you quickly start analyzing your data. You can explore available templates on the [Business Templates](business-templates.md) page.
-This article explains how to configure Insights and establish connections to refresh reports and models.
+This article explains how to deploy insights. For post-deployment tasks, such as importing lakehouse views, resetting delta table checkpoints, and setting up semantic model refresh connections, see [Post-processing in Business Process Solutions](post-processing.md).
 
 ## Deploy Power BI Report
 
@@ -82,39 +82,6 @@ Once the deployment completes, you can see the report in your workspace and in t
 > [!NOTE]
 > Power BI Report deployment automatically deploys the semantic model. You don't need to deploy the semantic model separately.
 
-## Connection for Semantic Model Refreshes
-
-> [!NOTE]
-> Refresh the semantic model only after data is available in the gold lakehouse.
-
-To refresh the semantic model, we need to set up a connection in fabric, else we won't be able to automatically refresh the reports via pipelines. To set up the connection, follow the steps:
-
-1. Open the Semantic Model item, Click on **File**, and then select **Settings** button.
-   :::image type="content" source="./media/configure-insights/model-settings.png" alt-text="Screenshot showing how to open the semantic model settings." lightbox="./media/configure-insights/model-settings.png":::
-2. Open the **Gateway and cloud connections** and under cloud connections, click on Create a connection.
-3. Now, Enter a unique name for your connection, multiple reports can use this connection. Select Authentication method as OAuth 2.0.
-   :::image type="content" source="./media/configure-insights/lakehouse-connection.png" alt-text="Screenshot showing how to create a Microsoft Fabric lakehouse connection." lightbox="./media/configure-insights/lakehouse-connection.png":::
-4. Now, click on **Edit credentials** and provide the credentials. Click on **Create**.
-5. Once connection is created, navigate back to the semantic model and associate the connection.
-   :::image type="content" source="./media/configure-insights/associate-connection.png" alt-text="Screenshot showing how to associate a connection to the semantic model." lightbox="./media/configure-insights/associate-connection.png":::
-6. Once done, try to refresh the semantic model and check if it completes successfully.
-
-If you encounter problems with model refresh, check our [troubleshooting page](troubleshooting.md).
-
-## Import Lakehouse Views
-
-> [!NOTE]
-> This step is optional. Run this notebook only after data is available in the gold lakehouse.
-
-Some Insights require additional transformations delivered through SQL views on top of the lakehouse. To deploy these views, run the provided notebook from your workspace:
-
-1. Navigate to your workspace.
-2. Open the notebook **bps_gold_view_creation**.
-   :::image type="content" source="./media/configure-insights/gold-view-notebook.png" alt-text="Screenshot showing how to open the bps_gold_view_creation notebook." lightbox="./media/configure-insights/gold-view-notebook.png":::
-3. Click on the **Run All** button.
-   :::image type="content" source="./media/configure-insights/run-gold-view-notebook.png" alt-text="Screenshot showing how to run the bps_gold_view_creation notebook." lightbox="./media/configure-insights/run-gold-view-notebook.png":::
-4. Once the notebook run is finished, you should see the sql views in your gold lakehouse.
-
 ## Summary
 
-In this article, we described the steps required to configure Insights in Business Process Solutions. You learned how to deploy Power BI reports and semantic models, set up connections for refreshing reports and models, and deploy lakehouse views. Now you can start exploring the reports and models to gain insights from your data.
+In this article, you learned how to deploy Power BI reports and semantic models in Business Process Solutions. For post-deployment tasks, such as importing lakehouse views, resetting delta table checkpoints, and setting up semantic model refresh connections, see [Post-processing in Business Process Solutions](post-processing.md).
