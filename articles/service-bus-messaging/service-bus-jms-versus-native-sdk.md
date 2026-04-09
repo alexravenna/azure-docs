@@ -10,12 +10,12 @@ ms.custom:
 
 # Choose between JMS and the native SDK for Azure Service Bus
 
-We provide two Java client libraries for Azure Service Bus:
+Azure Service Bus provides two Java client libraries:
 
 - **[azure-servicebus-jms](https://github.com/azure/azure-servicebus-jms)** - a JMS 2.0 provider built on Apache Qpid JMS, enabling standard JMS API access to Service Bus.
 - **[azure-messaging-servicebus](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/servicebus/azure-messaging-servicebus)** - the native Azure SDK client with full access to Service Bus features.
 
-Both libraries connect to Service Bus over AMQP 1.0 and support Microsoft Entra ID authentication. They differ in feature coverage, tier requirements, and programming model. Choosing the wrong one leads to rework, meaning customers discover limitations only after they've built their app. This guide helps you pick the right library before you start.
+Both libraries connect to Service Bus over AMQP 1.0 and support Microsoft Entra ID authentication. They differ in feature coverage, tier requirements, and programming model. Choosing the wrong library leads to rework, meaning you discover limitations only after you build your app. This guide helps you pick the right library before you start.
 
 ## When to use JMS
 
@@ -34,25 +34,25 @@ Use `azure-servicebus-jms` when:
 
 ## When to use the native SDK
 
-Use `azure-messaging-servicebus` when:
+Use `azure-messaging-servicebus` when you need:
 
 - **Full feature access.** The native SDK exposes every Service Bus capability: sessions (FIFO ordering), scheduled messages, message deferral, dead-lettering with custom reason and description, batch operations, transactions across entities, and sequence number-based receive. No abstraction layer sits between your code and the service.
 
 - **Sessions (FIFO processing).** The JMS API doesn't support receiving messages from session-enabled queues or topics. If your workload requires ordered processing per session, the native SDK is the only option.
 
-- **AMQP over WebSocket.** The native SDK supports WebSocket transport (port 443), which is essential when AMQP port 5671 is blocked by firewalls or corporate proxies. The JMS library doesn't expose this capability.
+- **AMQP over WebSocket.** The native SDK supports WebSocket transport (port 443), which is essential when firewalls or corporate proxies block AMQP port 5671. The JMS library doesn't expose this capability.
 
 - **Standard tier.** The native SDK works identically on both Standard and Premium tiers. Customers on Standard tier get the same feature set without tier restrictions.
 
 - **Async or reactive patterns.** The native SDK provides true nonblocking reactive streams (Project Reactor `Mono`/`Flux`). JMS supports callback-based async receive via `MessageListener`, but the underlying threading model is blocking. For workloads that need backpressure or reactive composition, the native SDK is the better fit.
 
-- **Fine-grained control.** The native SDK gives full control over prefetch counts, connection management, batching, and lock renewal, allowing customers to tune performance for their specific workloads. The JMS library wraps these behind the JMS abstraction with limited tuning.
+- **Fine-grained control.** The native SDK gives full control over prefetch counts, connection management, batching, and lock renewal, so you can tune performance for your specific workloads. The JMS library wraps these features behind the JMS abstraction with limited tuning.
 
 - **New projects with no JMS dependency.** When there's no existing JMS codebase to preserve, the native SDK is the better default. It has broader feature support and closer alignment with the service.
 
 ## Feature comparison
 
-The following table compares what each library can and can't do:
+The following table compares the capabilities of each library:
 
 | Feature | JMS (`azure-servicebus-jms`) | Native SDK (`azure-messaging-servicebus`) |
 |---|---|---|
@@ -84,15 +84,15 @@ The following sections explain the most impactful differences in the table.
 
 #### Sessions
 
-The JMS API can't receive messages from session-enabled queues or topics - the [JMS developer guide](jms-developer-guide.md) documents this explicitly. There is no workaround. If your workload needs FIFO ordering via sessions, use the native SDK.
+The JMS API can't receive messages from session-enabled queues or topics - the [JMS developer guide](jms-developer-guide.md) documents this explicitly. There's no workaround. If your workload needs FIFO ordering through sessions, use the native SDK.
 
 #### Dead-lettering
 
-JMS can dead-letter messages via the AMQP `REJECTED` disposition, but the JMS API provides no way to set a custom dead-letter reason or description. The native SDK's `deadLetter` method lets you specify both, meaning customers can classify and triage dead-lettered messages without guessing why they failed.
+JMS can dead-letter messages through the AMQP `REJECTED` disposition, but the JMS API provides no way to set a custom dead-letter reason or description. The native SDK's `deadLetter` method lets you specify both, so you can classify and triage dead-lettered messages without guessing why they failed.
 
 #### Message deferral
 
-The underlying AMQP protocol maps `MODIFIED_FAILED_UNDELIVERABLE` to `Defer()`, so messages can be deferred through the JMS library's AMQP layer. However, there's no programmatic JMS API to defer or receive deferred messages by sequence number. This makes deferral impractical for most real workloads.
+The underlying AMQP protocol maps `MODIFIED_FAILED_UNDELIVERABLE` to `Defer()`, so you can defer messages through the JMS library's AMQP layer. However, there's no programmatic JMS API to defer or receive deferred messages by sequence number. This limitation makes deferral impractical for most real workloads.
 
 #### WebSocket transport
 
@@ -102,11 +102,11 @@ The JMS library's connection factory builds `amqps://` URIs (AMQP over TLS on po
 
 ### ActiveMQ to Service Bus
 
-**Use JMS.** This is the easiest migration path. Your existing JMS code stays mostly unchanged - replace the ActiveMQ connection factory with `ServiceBusJmsConnectionFactory`, update the connection string, and test.
+**Use JMS.** This approach provides the easiest migration path. Your existing JMS code stays mostly unchanged - replace the ActiveMQ connection factory with `ServiceBusJmsConnectionFactory`, update the connection string, and test.
 
 For a step-by-step guide, see [Migrate from ActiveMQ to Azure Service Bus](migrate-jms-activemq-to-servicebus.md).
 
-Evaluate whether any features your ActiveMQ workload uses are unsupported in our JMS library (see the comparison table). If your app relies on sessions, WebSocket transport, or batch receive, you'll need to migrate those components to the native SDK.
+Evaluate whether any features your ActiveMQ workload uses are unsupported in the JMS library (see the comparison table). If your app relies on sessions, WebSocket transport, or batch receive, migrate those components to the native SDK.
 
 ### IBM MQ to Service Bus
 
@@ -122,11 +122,11 @@ Evaluate whether any features your ActiveMQ workload uses are unsupported in our
 
 Review these limitations before choosing the JMS library. Each one has caused customers to switch to the native SDK mid-project.
 
-1. **No session support.** The JMS API can't receive from session-enabled entities. This is the most common source of rework - customers choose JMS, build their workload, then discover they need FIFO ordering and have to switch to the native SDK.
+1. **No session support.** The JMS API can't receive from session-enabled entities. This limitation is the most common source of rework - customers choose JMS, build their workload, then discover they need FIFO ordering and have to switch to the native SDK.
 
 1. **No WebSocket transport.** The library hardcodes `amqps://` (AMQP over TLS on port 5671). If your network blocks that port, you can't use the JMS library.
 
-1. **No dead-letter with reason.** When the JMS library dead-letters a message via the AMQP `REJECTED` disposition, it can't attach a custom reason or description. This makes dead-letter queue triage harder.
+1. **No dead-letter with reason.** When the JMS library dead-letters a message via the AMQP `REJECTED` disposition, it can't attach a custom reason or description. This limitation makes dead-letter queue triage harder.
 
 1. **Premium tier required for JMS 2.0.** Standard tier only supports JMS 1.1 with a reduced feature set. If cost is a concern and you don't need Premium, the native SDK works fully on Standard tier.
 
