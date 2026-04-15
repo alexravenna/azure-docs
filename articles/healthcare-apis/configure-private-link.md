@@ -1,14 +1,14 @@
 ---
-title: Configure Azure Private Link for secure Azure Health Data Services access
-description: Securely configure Azure Private Link for Azure Health Data Services FHIR and DICOM on a private virtual network. Follow this guide to protect your data and get started.
+title: Secure Azure Health Data Services with Private Link
+description: Azure Health Data Services Private Link configuration made easy. Learn how to set up secure FHIR and DICOM access on your private virtual network.
+#customer intent: As a healthcare IT professional, I want to configure private endpoints for my Azure Health Data Services workspace so that I can restrict data access to authorized virtual networks.
 services: healthcare-apis
 author: EXPEkesheth
 ms.service: azure-health-data-services
 ms.subservice: fhir
 ms.topic: tutorial
-ms.date: 04/08/2026
+ms.date: 04/14/2026
 ms.author: kesheth
-ms.reviewer: v-catheribun
 ms.custom: sfi-image-nochange
 ---
 
@@ -17,6 +17,17 @@ ms.custom: sfi-image-nochange
 Azure Private Link enables secure access to Azure Health Data Services over a private endpoint in your virtual network. This article explains how to configure Private Link for FHIR and DICOM services, helping you protect sensitive health data by restricting access to a private IP address.
 
 By using Private Link, you can access your services securely from your virtual network as a first-party service without going through a public Domain Name System (DNS). This article describes how to create, test, and manage your private endpoint for Azure Health Data Services.
+
+In this tutorial, you:
+
+> [!div class="checklist"]
+> * Create a virtual network and subnet for Private Link
+> * Create a private endpoint for your Azure Health Data Services workspace
+> * Review and manage your private endpoint configuration in the Azure portal
+> * Add a DNS record for the Private DNS Zone for new services created after the private endpoint
+> * Test connectivity to Azure Health Data Services over the private endpoint
+
+
 
 >[!NOTE]
 > You can't move Private Link or Azure Health Data Services from one resource group or subscription to another once Private Link is enabled. To make a move, delete the Private Link first, and then move Azure Health Data Services. Create a new Private Link after the move is complete. Next, assess potential security ramifications before deleting the Private Link.
@@ -27,9 +38,10 @@ By using Private Link, you can access your services securely from your virtual n
 
 Before you create a private endpoint, create the following Azure resources:
 
-- **Resource Group** – The Azure resource group that contains the virtual network and private endpoint.
-- **Workspace** – The logical container for FHIR&reg; and DICOM&reg; service instances.
-- **FHIR or DICOM service** – The Azure Health Data Services resource that you want to connect to over the private endpoint. This resource isn't required to create the private endpoint, but is required to test the private endpoint connectivity.
+- [An active Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
+- **Resource Group** – The Azure resource group that contains the workspace, virtual network, and private endpoint.
+- [Workspace deployed in the Azure Health Data Services](../healthcare-apis-quickstart.md):  You need the workspace to create the private endpoint. You create the private endpoint at the workspace level, and it applies to all services within the workspace. 
+- [FHIR service deployed in the workspace](../fhir/fhir-portal-quickstart.md) or [DICOM service deployed in the workspace](../dicom/deploy-dicom-services-in-azure.md): The Azure Health Data Services resource that you want to connect to over the private endpoint. You don't need this resource to create the private endpoint, but you need it to test the private endpoint connectivity.
 - To create a virtual network, you need to have an RBAC role for the resource group, such as **Owner**, **Contributor**, or **Network Contributor**. If you don't have permissions, contact your administrator.
 - To create a private endpoint, you need to have an RBAC role for the workspace or the resource group where the workspace is located, such as **Owner**, **Contributor**, or **Healthcare APIs Contributor**. If you don't have permissions, contact your administrator.
 
@@ -51,7 +63,7 @@ To create a virtual network and subnet, follow these steps:
 
     :::image type="content" source="media/private-link/create-vnet-basics-tab.png" alt-text="Screenshot of the Create virtual network Basics tab." lightbox="media/private-link/create-vnet-basics-tab.png":::
 
-1. On the **IP Addresses** tab, enter an address space for the virtual network. 
+1. On the **IP Addresses** tab, enter an address space for the virtual network or accept the default values.
 1. Create a subnet for the private endpoint by selecting **+ Add subnet**. 
 
     :::image type="content" source="media/private-link/create-vnet-ip-addresses-tab.png" alt-text="Screenshot of the Create virtual network IP Addresses tab." lightbox="media/private-link/create-vnet-ip-addresses-tab.png":::
