@@ -111,7 +111,7 @@ DNS must be scoped carefully. Improper zone ownership can break resolution for o
 
 ### Critical DNS design guidance
 
-`azure-api.net` is a publicly owned Azure domain used by multiple Azure services.
+`azure-api.net` is a publicly owned Azure domain used by multiple Azure and Microsoft services.
 
 Creating a Private DNS zone or authoritative forward lookup zone for the apex domain (`azure-api.net`) is not supported and can introduce unintended resolution failures.
 
