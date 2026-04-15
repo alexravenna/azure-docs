@@ -103,17 +103,17 @@ If you don't want to access the API Management service with the default host nam
 
 :::image type="content" source="media/api-management-using-with-internal-vnet/api-management-custom-domain-name.png" alt-text="Set up custom domain name":::
 
-## DNS configuration for internal VNet scenarios
+## DNS configuration for internal Virtual Network scenarios
 
-When API Management is deployed in internal VNet mode, inbound access depends on customer‑managed DNS. The API Management service responds **only** to requests addressed to its configured host names and does not listen directly on its private IP address.
+When API Management is deployed in internal VNet mode, inbound access depends on customer‑managed DNS. The API Management service responds only to requests addressed to its configured host names and does not listen directly on its private IP address.
 
-**DNS must be scoped carefully. Improper zone ownership can break resolution for other Azure services.**
+DNS must be scoped carefully. Improper zone ownership can break resolution for other Azure services.
 
 ### Critical DNS design guidance
 
-`azure-api.net` is a **publicly owned Azure domain** used by multiple Azure services.
+`azure-api.net` is a publicly owned Azure domain used by multiple Azure services.
 
-Creating a **Private DNS zone or authoritative forward lookup zone for the apex domain (`azure-api.net`) is not supported** and can introduce unintended resolution failures.
+Creating a Private DNS zone or authoritative forward lookup zone for the apex domain (`azure-api.net`) is not supported and can introduce unintended resolution failures.
 
 If a Private DNS zone is created for `azure-api.net`:
 
@@ -126,13 +126,13 @@ If a Private DNS zone is created for `azure-api.net`:
 
 ### Recommended DNS approach
 
-DNS configuration should be limited to **only the exact host names required for the API Management instance**.
+DNS configuration should be limited to the exact host names required for the API Management instance.
 
 Recommended approaches:
 
-- Create **DNS records for the full FQDNs only**, pointing directly to the API Management private virtual IP
-- If using Azure Private DNS, create a zone **scoped to the specific service FQDN**, not the apex public domain
-- Alternatively, use an existing corporate DNS forward lookup zone and define **explicit A records** for each endpoint
+- Create DNS records for the full FQDNs only, pointing directly to the API Management private virtual IP
+- If using Azure Private DNS, create a zone scoped to the specific service FQDN, not the apex public domain
+- Alternatively, use an existing corporate DNS forward lookup zone and define explicit A records for each endpoint
 
 Examples of valid scoping:
 
@@ -142,7 +142,7 @@ Examples of valid scoping:
 - `contosointernalvnet.management.azure-api.net`
 - `contosointernalvnet.scm.azure-api.net`
 
-**Do not create a Private DNS Zone or Forward Lookup Zone for `azure-api.net`.**
+**Do not create a Private DNS zone or forward lookup zone for `azure-api.net`.**
 
 ### DNS records for default host names
 
