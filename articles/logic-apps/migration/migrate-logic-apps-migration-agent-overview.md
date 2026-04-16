@@ -1,5 +1,5 @@
 ---
-title: Migration Agent for Integration Platforms
+title: Migration from Other Integration Platforms
 titleSuffix: Azure Logic Apps
 description: Learn about automating migration from BizTalk Server, MuleSoft, and other integration platforms to Azure Logic Apps by using the Migration Agent extension in Visual Studio Code.
 services: azure-logic-apps
@@ -11,9 +11,10 @@ ms.topic: overview
 ai-usage: ai-assisted
 ms.update-cycle: 180-days
 ms.date: 04/21/2026
+# Customer intent: Learn how the Migration Agent in Visual Studio Code helps automate migration from other enterprise integration platforms, such as BizTalk Server, Mulesoft, and others, to Azure Logic Apps.
 ---
 
-# Migration Agent for enterprise integration platforms to Azure Logic Apps
+# Migration from enterprise integration platforms to Azure Logic Apps
 
 This article describes the Logic Apps Migration Agent, which is an AI-powered VS Code extension that delivers end-to-end support for migrating enterprise integration solutions to Azure Logic Apps Standard.
 
