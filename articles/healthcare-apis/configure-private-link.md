@@ -40,15 +40,15 @@ Before you create a private endpoint, create the following Azure resources:
 
 - [An active Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - **Resource Group** – The Azure resource group that contains the workspace, virtual network, and private endpoint.
-- [Workspace deployed in the Azure Health Data Services](../healthcare-apis-quickstart.md):  You need the workspace to create the private endpoint. You create the private endpoint at the workspace level, and it applies to all services within the workspace. 
-- [FHIR service deployed in the workspace](../fhir/fhir-portal-quickstart.md) or [DICOM service deployed in the workspace](../dicom/deploy-dicom-services-in-azure.md): The Azure Health Data Services resource that you want to connect to over the private endpoint. You don't need this resource to create the private endpoint, but you need it to test the private endpoint connectivity.
+- [Workspace deployed in the Azure Health Data Services](healthcare-apis-quickstart.md):  You need the workspace to create the private endpoint. You create the private endpoint at the workspace level, and it applies to all services within the workspace. 
+- [FHIR service deployed in the workspace](fhir/fhir-portal-quickstart.md) or [DICOM service deployed in the workspace](dicom/deploy-dicom-services-in-azure.md): The Azure Health Data Services resource that you want to connect to over the private endpoint. You don't need this resource to create the private endpoint, but you need it to test the private endpoint connectivity.
 - To create a virtual network, you need to have an RBAC role for the resource group, such as **Owner**, **Contributor**, or **Network Contributor**. If you don't have permissions, contact your administrator.
 - To create a private endpoint, you need to have an RBAC role for the workspace or the resource group where the workspace is located, such as **Owner**, **Contributor**, or **Healthcare APIs Contributor**. If you don't have permissions, contact your administrator.
 
 
 ## Create a virtual network and subnet
 
-Create virtual networks at the resource group level. When you create a virtual network, create a dedicated subnet for the private endpoint. This subnet is required as part of the private endpoint creation process. You can create extra subnets for your client services that connect to Azure Health Data Services over the private endpoint.
+If you don't already have a virtual network, create one at the resource group level. When you create a virtual network, create a dedicated subnet for the private endpoint. This subnet is required as part of the private endpoint creation process. 
 
 When you create the subnet for the private endpoint, don't enable any service endpoints on that subnet. Service endpoints aren't compatible with private endpoints and can cause connectivity problems.
 
