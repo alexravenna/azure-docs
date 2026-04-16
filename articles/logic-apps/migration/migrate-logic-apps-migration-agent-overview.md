@@ -14,9 +14,13 @@ ms.date: 04/21/2026
 # Customer intent: As a developer who works with enterprise integration platforms, such as BizTalk Server, Mulesoft, or others, I want to learn how to automate solution migration to Standard workflows in Azure Logic Apps by using the Migration Agent extension in Visual Studio Code.
 ---
 
-# Migration from enterprise integration platforms to Azure Logic Apps
+# Migration from enterprise integration platforms to Azure Logic Apps (preview)
 
 [!INCLUDE [logic-apps-sku-standard](../includes/logic-apps-sku-standard.md)]
+
+> [!NOTE]
+>
+> This preview feature is subject to the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 If your organization uses integration platforms like BizTalk Server, MuleSoft Anypoint, or other middleware, modernizing or migrating these workloads by moving to the cloud can prove complex and challenging. A typical migration involves the following tasks:
 
@@ -30,97 +34,105 @@ To guide you through this process, use the Azure Logic Apps Migration Agent in V
 
 This article provides an overview about the migration agent, the extension's key capabilities, supported source platforms, and the guided 5-stage migration workflow.
 
-## Supported source and target platforms
+## Supported source platforms and target environments
 
-The following table lists the source integration platforms that the migration agent currently supports:
+The migration agent currently supports the following source integration platforms:
 
-| Source | Status | Parser |
-|--------|--------|--------|
-| BizTalk Server (2016, 2020) | Fully implemented | Built-in |
+| Source platform | Status | Parser |
+|-----------------|--------|--------|
+| BizTalk Server (2016, 2020) | Fully completed | Built-in |
 | MuleSoft Anypoint (Mule 3, Mule 4) | In progress, not yet available | Built-in (stub) |
 
-The Migration Agent is an open-source, extensible project. To add support for a new platform, contribute a built-in parser or create an external parser extension. For more information, see [Add a custom parser for a new platform](migrate-logic-apps-migration-agent-custom-parsers.md).
+Migration Agent is an open-source, extensible project. To add support for a new platform, contribute a built-in parser or create an external parser extension. For more information, see [Add a custom parser for a new platform](migrate-logic-apps-migration-agent-custom-parsers.md).
 
-The following table lists the target platforms and hosting options that the migration agent current supports for generating Standard workflows:
+The migration agent currently generates Standard workflows for the following target deployment environments and hosting options:
 
-| Target | Hosting option |
-|--------|----------------|
+| Target environment | Hosting option |
+|--------------------|----------------|
 | Single-tenant Azure Logic Apps | Workflow Service Plan |
-| Your own partially-connected, on-premises infrastructure | Hybrid |
+| Your own partially connected, on-premises infrastructure | Hybrid |
 
 For more information, see [Differences between Standard and Consumption logic apps](../single-tenant-overview-compare.md).
 
-## Key capabilities at a glance
+## Key capabilities
 
-- **Multi-platform support**: Built-in parsers for BizTalk and MuleSoft, plus an extensible parser plugin system for partner platforms.
-- **5-stage guided workflow**: A structured migration process from Discovery through Deployment, with progress tracking and visualization at each stage.
-- **AI-powered analysis and conversion**: Three specialized Copilot agents (`@migration-analyser`, `@migration-planner`, `@migration-converter`) that analyze, plan, and convert your integration artifacts.
-- **Built-in parsers**: TypeScript-based parsers for BizTalk orchestrations, maps, schemas, pipelines, and bindings.
-- **Flow visualization**: Interactive architecture diagrams, message flows, gap analysis, and dependency tracking.
-- **Azure deployment**: Direct deployment configuration from within VS Code.
+The migration agent includes the following core capabilities:
+
+| Capability | Description |
+|------------|-------------|
+| Multi-platform support | Built-in parsers for BizTalk and MuleSoft, plus an extensible parser plug-in system for partner platforms. |
+| 5-stage guided workflow | A structured migration process from discovery to deployment, including progress tracking and visualization at each stage. |
+| AI-powered analysis and conversion | Specialized Copilot agents that analyze, plan, and convert your integration artifacts: <br><br>- `@migration-analyser` <br>- `@migration-planner` <br>- `@migration-converter` |
+| Built-in parsers | TypeScript-based parsers for BizTalk orchestrations, maps, schemas, pipelines, and bindings. |
+| Flow visualization | Interactive architecture diagrams, message flows, gap analysis, and dependency tracking. |
+| Azure deployment | Direct deployment configuration from inside Visual Studio Code. |
 
 ## Migration stages
 
-The extension guides you through a 5-stage migration workflow:
+The migration agent guides you through the following 5-stage migration workflow:
 
 :::image type="content" source="./media/migrate-logic-apps-migration-agent/migration-stages.png" alt-text="Diagram that shows the five migration stages: Discovery, Planning, Conversion, Validation, and Deployment.":::
 
-| Stage | Description |
-|---|---|
-| **Discovery** | Find and catalog all integration artifacts from the source platform. The extension auto-detects the platform, scans files, and builds an artifact inventory and dependency graph. |
-| **Planning** | Analyze complexity, plan the migration roadmap, and map source patterns to Logic Apps patterns. The extension generates per-flow migration plans with action mappings, gap analysis, and effort estimates. |
-| **Conversion** | Transform source artifacts into Logic Apps Standard workflows, connections, and supporting files. The extension executes task plans generated during planning. |
+| Stage | Purpose |
+|-------|---------|
+| **Discovery** | Find and catalog integration artifacts on the source platform. <br><br>The agent automatically detects the platform, scans files, and builds an artifact inventory and dependency graph. |
+| **Planning** | Analyze complexity, plan the migration roadmap, and map source patterns to Logic Apps patterns. <br><br>The agent generates migration plans for each flow with action mappings, gap analysis, and effort estimates. |
+| **Conversion** | Transform source artifacts into Standard workflows, connections, and supporting files for Azure Logic Apps. <br><br>The agent executes the task plans generated during the planning stage. |
 | **Validation** | Test generated workflows and validate behavior against source specifications. |
-| **Deployment** | Deploy generated Logic Apps artifacts to Azure. |
+| **Deployment** | Deploy generated artifacts for Azure Logic Apps to Azure. |
 
 ## AI agents
 
-The Logic Apps Migration Agent provisions three GitHub Copilot agents into your workspace:
+In your Visual Studio Code project workspace, the migration agent sets up and works with the following GitHub Copilot agents:
 
-| Agent | Purpose |
-|---|---|
-| `@migration-analyser` | Analyzes discovered artifacts, detects flow groups, and generates architecture visualizations. |
-| `@migration-planner` | Creates per-flow migration plans with action mappings and gap analysis. |
-| `@migration-converter` | Executes conversion tasks to generate Logic Apps workflows and connections. |
+| Agent | Task |
+|-------|------|
+| `@migration-analyser` | Analyze discovered artifacts, detects flow groups, and generates architecture visualizations. |
+| `@migration-planner` | Create migration plans for each flow with action mappings and gap analysis. |
+| `@migration-converter` | Run conversion tasks that generate Standard workflows and connections for Azure Logic Apps. |
 
-These agents use **25 Language Model tools** registered with VS Code to read artifacts, store results, and manage the migration workflow.
+These agents work with *25 language model tools* registered in Visual Studio Code to read artifacts, store results, and manage the migration workflow.
 
 ## Flow visualization
 
-The Flow Visualizer provides an interactive webview for exploring your integration architecture, including the following views:
+Explore your integration architecture through an interactive browser by using the flow visualizer, which includes the following views:
 
-| View | Description |
-|---|---|
-| **Architecture diagram** | System architecture diagram with all artifacts and connections, rendered as Mermaid diagrams. |
-| **Message flow** | Per-artifact message flow from trigger to completion. |
-| **Components** | Component inventory with details such as adapters, endpoints, and pipelines. |
-| **Gap analysis** | Features that have no direct Logic Apps equivalent, with suggested resolutions. |
-| **Patterns** | Detected integration patterns such as publish/subscribe, request-reply, and batch processing. |
+| View | Shows |
+|------|-------|
+| Architecture diagram | System architecture diagram with all artifacts and connections, rendered as a [Mermaid diagram](https://mermaid.ai/open-source). |
+| Message flow | Per-artifact message flows from trigger to completion. |
+| Components | Components inventory with details such as adapters, endpoints, and pipelines. |
+| Gap analysis | Summary about features without a direct equivalent in Azure Logic Apps, including suggested resolutions. |
+| Patterns | Detected integration patterns such as publish-subscribe, request-reply, and batch processing. |
 
 ## Prerequisites
 
+To run Azure Logic Apps Migration Agent in Visual Studio Code, you need the following requirements:
+
 | Requirement | Purpose |
-|---|---|
-| VS Code 1.85.0 or later | Runtime host |
-| [Azure Logic Apps (Standard)](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurelogicapps) extension | Required extension dependency |
-| [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) extension | Local functions runtime and development tasks |
-| GitHub Copilot subscription | AI-powered analysis, planning, and conversion |
+|-------------|---------|
+| [Azure subscription - Get a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) | Deployment to Azure (Stage 5) |
+| [Azure CLI](/cli/azure/install-azure-cli) | Azure resource provisioning and deployment |
+| [Visual Studio Code 1.85.0 or later](https://code.visualstudio.com/download) | Runtime host |
+| [Azure Logic Apps (Standard) extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurelogicapps) | Required extension dependency |
+| [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) | Local functions runtime and development tasks |
+| [GitHub Copilot subscription](https://github.com/features/copilot/plans) | AI-powered analysis, planning, and conversion |
 | [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) | Local connector resource deployment for testing |
-| Azure CLI | Azure resource provisioning and deployment |
-| Azure subscription | Deployment to Azure (Stage 5) |
 
 ## Extension settings
 
-Configure the extension in VS Code at **Settings** > **Extensions** > **Logic Apps Migration Agent**:
+The Azure Logic Apps Migration Agent extension for Visual Studio Code provides the following settings that you can update:
 
 | Setting | Description | Default |
-|---|---|---|
-| `logicAppsMigrationAgent.deploymentModel` | Target deployment model for Logic Apps Standard | `workflow-service-plan` |
-| `logicAppsMigrationAgent.azure.subscriptionId` | Azure subscription ID for deployment | (empty) |
-| `logicAppsMigrationAgent.azure.resourceGroup` | Azure resource group for provisioning and testing | `integration-migration-tool-test-rg` |
-| `logicAppsMigrationAgent.azure.location` | Azure region for provisioning resources | `i.e. eastus` |
+|---------|-------------|---------|
+| `logicAppsMigrationAgent.deploymentModel` | The target deployment model for Azure Logic Apps (Standard) | `workflow-service-plan` |
+| `logicAppsMigrationAgent.azure.subscriptionId` | The Azure subscription ID for deployment | (empty) |
+| `logicAppsMigrationAgent.azure.resourceGroup` | The Azure resource group for provisioning and testing | `integration-migration-tool-test-rg` |
+| `logicAppsMigrationAgent.azure.location` | The Azure region for provisioning resources | For example, `eastus` |
+
+To view these settings, from the **File** menu, go to **Preferences** > **Settings** > **Extensions** > **Logic Apps Migration Agent**.
 
 ## Next steps
 
-- [Quickstart: Migrate an integration project using the Logic Apps Migration Agent](migrate-logic-apps-migration-agent-quickstart.md)
-- [Add a custom parser for a new platform](migrate-logic-apps-migration-agent-custom-parsers.md)
+> [!div class="nextstepaction"]
+> [Quickstart: Migrate an integration project using the Logic Apps Migration Agent](migrate-logic-apps-migration-agent-quickstart.md)
