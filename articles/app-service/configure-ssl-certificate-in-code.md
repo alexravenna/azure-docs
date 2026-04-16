@@ -38,9 +38,7 @@ When you let App Service manage your TLS certificates, you can maintain the cert
 
 1. Select **Bring your own certificates (.pfx)** or **Public key certificates (.cer)**.
 
-1. Find the certificate that you want to use and copy the thumbprint.
-
-:::image type="content" source="media/configure-ssl-certificate/create-free-cert-finished.png" alt-text="Screenshot that shows the certificates and their status.":::
+1. Find the certificate that you want to use, and copy the thumbprint.
 
 ## Make the certificate accessible
 
@@ -138,7 +136,7 @@ var cert = X509CertificateLoader.LoadCertificateFromFile("~/<relative-path-to-ce
 ```
 To see how to load a TLS certificate from a file in Node.js, PHP, Python, or Java, see the documentation for the respective language or web platform.
 
-## Load certificates in Linux or Windows containers
+## Load certificates in Linux/Windows containers
 
 The `WEBSITE_LOAD_CERTIFICATES` app setting makes the specified certificates accessible to your Windows or Linux custom containers (including built-in Linux containers) as files. The files are found under the following directories:
 
