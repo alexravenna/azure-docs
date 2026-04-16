@@ -155,7 +155,7 @@ You can choose whether to have the private endpoint automatically integrate with
 
 Go to the **Review + create** tab and review your configuration. If everything looks correct, select **Create** to create the private endpoint.
 
-### Create the private endpoint from the workspace Networking tab
+### Create the private endpoint from the workspace networking tab
 
 To create a private endpoint from the workspace Networking tab, follow these steps:
 1. In the Azure portal, go to your workspace.
@@ -180,19 +180,7 @@ If you need to support multiple virtual networks, you must create separate DNS z
 
 Select **DNS Management** > **Recordsets** to view DNS records for that zone. You see the A record for each service with the private IP address assigned to that service.
 
-
-You can add new Azure Private DNS zones and DNS records to support more services or custom domain names. To add a new Azure Private DNS zone, enter **Private DNS zones** in the portal search box and select **+ Create**. From here, follow the prompts to create the new DNS zone and link it to your virtual network.
-
-When you add new services to the workspace, add new DNS records to your DNS server or Azure Private DNS Zone for those services. 
-
-To add a new DNS record to an Azure Private DNS Zone, follow these steps:
-
-1. Select the private DNS zone and then select **Recordsets** and **+ Add**. 
-1. For the **Name**, enter the name of the service as it appears in the audience for FHIR or the service URL for DICOM. For example, `workspace-fhir2.fhir` or `workspace-dicom2.dicom`.
-1. For the record type, select **A**. 
-1. Set the **TTL** or leave as default. Record sets with a lower TTL have more frequent DNS lookups, which can help with faster failover if there's an issue, but can also increase latency and DNS query costs. Consider your application's needs when setting the TTL value. 
-1. For the **IP address**, enter the private IP address for that service from the DNS configuration page.
-1. Select **Add** to add the record set.
+A new DNS record is automatically created in the appropfor each new service created in the workspace after the private endpoint is created. 
 
 ## Test private endpoint
 
