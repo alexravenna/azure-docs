@@ -158,7 +158,7 @@ The service principal app ID or assignee value is the application (client) ID fo
 
 | Resource provider | Service principal app ID | Key Vault secret permissions | Key Vault certificate permissions |
 |--|--|--|--|
-| Microsoft Azure App Service or `Microsoft.Web` | - `abfa0a7c-a6b6-4736-8310-5855508787cd` for Azure Cloud Services <br><br>- `6a02c803-dafd-4136-b4c3-5a6f318b4714` for Azure Cloud Services for Government | Get | Get |
+| Azure App Service or `Microsoft.Web` | - `abfa0a7c-a6b6-4736-8310-5855508787cd` for Azure Cloud Services <br><br>- `6a02c803-dafd-4136-b4c3-5a6f318b4714` for Azure Cloud Services for Government | Get | Get |
 
 The service principal app ID or assignee value is the ID for the App Service resource provider. To learn how to authorize Key Vault permissions for the App Service resource provider by using an access policy, see [Assign a Key Vault access policy](/azure/key-vault/general/assign-access-policy?tabs=azure-portal).
 
@@ -278,9 +278,9 @@ You're now ready to upload the certificate to App Service.
 
 1. Select your App Service app.
 
-1. Under **Settings** on the sidebar menu, select **Certificates** > **Bring your own certificates (.pfx)** > **Upload certificate (.pfx)**.
+1. Under **Settings** on the sidebar menu, select **Certificates** > **Bring your own certificates (.pfx)** > **Add certificate**.
 
-    :::image type="content" source="media/configure-ssl-certificate/upload-private-cert.png" alt-text="Screenshot that shows the app management page with Certificates, Bring your own certificates, and Upload certificate .pfx selected.":::
+    :::image type="content" source="media/configure-ssl-certificate/upload-private-cert.png" alt-text="Screenshot that shows the app management page with Certificates, Bring your own certificates, and Add certificate selected.":::
 
 1. To help you upload the .pfx certificate, use the following table:
 
@@ -302,9 +302,9 @@ You're now ready to upload the certificate to App Service.
 
 Public certificates are supported in the *.cer* format.
 
-After you upload a public certificate to an app, it's accessible only by the app to which it's uploaded. Public certificates must be uploaded to each individual web app that needs access. For scenarios specific to App Service Environment, refer to [the documentation for certificates and App Service Environment](../app-service/environment/overview-certificates.md).
->
-> You can upload up to 1,000 public certificates per App Service plan.
+After you upload a public certificate to an app, it's accessible only by the app to which it's uploaded. Public certificates must be uploaded to each individual web app that needs access. For scenarios specific to App Service Environment, see [Certificates and the App Service Environment](../app-service/environment/overview-certificates.md).
+
+You can upload up to 1,000 public certificates per App Service plan.
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
