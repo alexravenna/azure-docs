@@ -1,7 +1,7 @@
 ---
 title: Migration from Other Integration Platforms
 titleSuffix: Azure Logic Apps
-description: Learn about automating migration from BizTalk Server, MuleSoft, and other integration platforms to Azure Logic Apps by using the Migration Agent extension in Visual Studio Code.
+description: Learn about automating migration to Standard workflows in Azure Logic Apps from BizTalk Server, MuleSoft, and other integration platforms by using the Migration Agent extension in Visual Studio Code.
 services: azure-logic-apps
 ms.suite: integration
 author: haroldcampos
@@ -11,36 +11,44 @@ ms.topic: overview
 ai-usage: ai-assisted
 ms.update-cycle: 180-days
 ms.date: 04/21/2026
-# Customer intent: Learn how the Migration Agent in Visual Studio Code helps automate migration from other enterprise integration platforms, such as BizTalk Server, Mulesoft, and others, to Azure Logic Apps.
+# Customer intent: As a developer who works with enterprise integration platforms, such as BizTalk Server, Mulesoft, or others, I want to learn how to automate solution migration to Standard workflows in Azure Logic Apps by using the Migration Agent extension in Visual Studio Code.
 ---
 
 # Migration from enterprise integration platforms to Azure Logic Apps
 
-This article describes the Logic Apps Migration Agent, which is an AI-powered VS Code extension that delivers end-to-end support for migrating enterprise integration solutions to Azure Logic Apps Standard.
+[!INCLUDE [logic-apps-sku-standard](../includes/logic-apps-sku-standard.md)]
 
-Enterprises often rely on legacy integration platforms such as BizTalk Server, MuleSoft Anypoint, and other middleware to connect their systems, applications, and data. Modernizing these integration workloads to the cloud involves:
+If your organization uses integration platforms like BizTalk Server, MuleSoft Anypoint, or other middleware, modernizing or migrating these workloads by moving to the cloud can prove complex and challenging. A typical migration involves the following tasks:
 
-- Discovering and cataloging all integration artifacts from the source platform
-- Analyzing complexity and planning the migration roadmap
-- Converting source artifacts into Azure Logic Apps Standard workflows
-- Validating generated workflows against source specifications
-- Deploying the migrated solution to Azure
+- Discover and catalog integration artifacts in the source platform.
+- Analyze complexity and plan a migration roadmap.
+- Convert source artifacts into Standard workflows for Azure Logic Apps.
+- Validate generated workflows against source specifications.
+- Deploy the migrated solution to Azure.
 
-Built on **GitHub Copilot** and the **VS Code Language Model API**, the Logic Apps Migration Agent provides a structured 5-stage migration workflow with AI-powered analysis and conversion. The extension uses specialized Copilot agents and built-in parsers to automate the migration process while keeping you in control at every step.
+To guide you through this process, use the Azure Logic Apps Migration Agent in Visual Studio Code. This AI-powered extension automates migration for your enterprise integration solutions to Standard workflows in Azure Logic Apps. The migration agent walks you through a structured 5-stage migration workflow. Built on GitHub Copilot and the Visual Studio Code Language Model API, the extension works with specialized Copilot agents and built-in parsers, while you stay in control at every step.
 
-## Supported source platforms
+This article provides an overview about the migration agent, the extension's key capabilities, supported source platforms, and the guided 5-stage migration workflow.
 
-| Platform | Status | Parser |
-|---|---|---|
-| **BizTalk Server** (2016, 2020) | Fully implemented | Built-in |
-| **MuleSoft Anypoint** (Mule 3, Mule 4) | In progress | Built-in (stub) |
+## Supported source and target platforms
 
-The Logic Apps Migration Agent is an open-source, extensible project. To add support for a new platform, you can contribute a built-in parser or create an external parser extension. For more information, see [Add a custom parser for a new platform](migrate-logic-apps-migration-agent-custom-parsers.md).
+The following table lists the source integration platforms that the migration agent currently supports:
 
-## Target platform
+| Source | Status | Parser |
+|--------|--------|--------|
+| BizTalk Server (2016, 2020) | Fully implemented | Built-in |
+| MuleSoft Anypoint (Mule 3, Mule 4) | In progress, not yet available | Built-in (stub) |
 
-- **Azure Logic Apps Standard** (Azure)
-- **Azure Logic Apps Standard** (On-premises - Hybrid deployment model)
+The Migration Agent is an open-source, extensible project. To add support for a new platform, contribute a built-in parser or create an external parser extension. For more information, see [Add a custom parser for a new platform](migrate-logic-apps-migration-agent-custom-parsers.md).
+
+The following table lists the target platforms and hosting options that the migration agent current supports for generating Standard workflows:
+
+| Target | Hosting option |
+|--------|----------------|
+| Single-tenant Azure Logic Apps | Workflow Service Plan |
+| Your own partially-connected, on-premises infrastructure | Hybrid |
+
+For more information, see [Differences between Standard and Consumption logic apps](../single-tenant-overview-compare.md).
 
 ## Key capabilities at a glance
 
