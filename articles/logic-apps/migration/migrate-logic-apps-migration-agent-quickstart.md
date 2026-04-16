@@ -1,33 +1,52 @@
 ---
-title: "Quickstart: Migrate Integration workloads using the Logic Apps Migration Agent"
-titleSuffix: Azure
-description: Learn how to migrate a BizTalk or MuleSoft integration project to Azure Logic Apps Standard using the Logic Apps Migration Agent in VS Code.
-author: haroldcampos
+title: Quickstart - Migrate Workloads from Integration Platforms
+titleSuffix: Azure Logic Apps
+description: Migrate BizTalk Server or MuleSoft integration projects to Standard workflows in Azure Logic Apps by using the migration agent in Visual Studio Code.
+services: azure-logic-apps
+ms.suite: integration
 author: haroldcampos
 ms.author: hcampos
-ms.reviewer: estfan
-ms.topic: overview
-ms.date: 04/06/2026
+ms.reviewers: estfan, azla
+ms.topic: how-to
+ai-usage: ai-assisted
+ms.update-cycle: 180-days
+ms.date: 04/21/2026
+# Customer intent: As a developer who works with enterprise integration platforms, such as BizTalk Server, Mulesoft, or others, I want to learn how to quickly automate the migration process for my integration project to Standard workflows in Azure Logic Apps by using the Migration Agent extension in Visual Studio Code.
 ---
 
-# Quickstart: Migrate integration workloads using the Logic Apps Migration Agent
+# Quickstart: Migrate integration projects to Standard workflows in Azure Logic Apps (preview)
 
-This quickstart shows you how to use the Logic Apps Migration Agent to migrate an integration workload from BizTalk Server to Azure Logic Apps Standard. You install the extension, open your source project, and walk through all five migration stages: Discovery, Planning, Conversion, Validation, and Deployment.
+[!INCLUDE [logic-apps-sku-standard](../includes/logic-apps-sku-standard.md)]
+
+> [!NOTE]
+>
+> This preview feature is subject to the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+
+When your team needs to migrate workloads from legacy platforms like BizTalk Server to the cloud, you'll likely find the process complex, time-consuming, and challenging. To help simplify and ease this task, the Azure Logic Apps Migration Agent in Visual Studio Code automates this process through five guided stages.
+
+: Discovery, Planning, Conversion, Validation, and Deployment. In this quickstart, you install the extension, open your source project, and walk through each stage to migrate a BizTalk Server workload to Standard workflows in Azure Logic Apps.
+
+This quickstart shows how to migrate an integration workload from BizTalk Server to Standard workflows in Azure Logic Apps by using the Azure Logic Apps Migration Agent in Visual Studio Code. You learn how to install the extension, open your source project, and walk through all the migration stages: Discovery, Planning, Conversion, Validation, and Deployment.
+
+For more information, see [Azure Logic Apps Migration Agent](migrate-logic-apps-migration-agent-overview.md).
 
 ## Prerequisites
 
-Before you begin, make sure you have the following resources:
+Before you start, meet the following requirements:
 
-- VS Code 1.85.0 or later
-- [Azure Logic Apps (Standard)](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurelogicapps) extension installed in VS Code
-- [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) extension installed in VS Code
-- An active GitHub Copilot subscription
-- [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) installed and running
-- Azure CLI installed
-- An Azure subscription
-- A BizTalk Server project folder (`.btproj`, `.odx`, `.btm`, `.xsd`, `.btp` files) or a MuleSoft Anypoint project folder
+| Requirement | Purpose |
+|-------------|---------|
+| [Azure subscription - Get a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) | Deployment to Azure (Stage 5) |
+| [Azure CLI](/cli/azure/install-azure-cli) | Azure resource provisioning and deployment |
+| [Visual Studio Code 1.85.0 or later](https://code.visualstudio.com/download) | Runtime host |
+| [Azure Logic Apps Migration Agent extension]() | Required extension with migration agent |
+| [Azure Logic Apps (Standard) extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurelogicapps) | Required extension dependency |
+| [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) | Local functions runtime and development tasks |
+| [GitHub Copilot subscription](https://github.com/features/copilot/plans) | AI-powered analysis, planning, and conversion |
+| [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) | Local connector resource deployment for testing |
+| Project folder for BizTalk Server or MuleSoft Anypoint | Project folder with source artifacts and files. For example, a BizTalk project folder includes `.btproj`, `.odx`, `.btm`, `.xsd`, and `.btp` files. |
 
-## Install the extension
+### 1: Install the Migration Agent extension
 
 1. Open VS Code. While not required, we recommend you to open VSCode from where all your integration project directories exist. For instance **C:\Migration>code .** 
 
@@ -38,7 +57,6 @@ Before you begin, make sure you have the following resources:
 1. Search for **Logic Apps Migration Agent**.
 
    :::image type="content" source="./media/migrate-logic-apps-migration-agent/logic-apps-migration-search.png" alt-text="Screenshot that shows the Logic Apps Migration Agent icon in the VS Code Activity Bar.":::
- 
 
 1. Select **Install**.
 
@@ -178,12 +196,10 @@ The extension uses the Azure CLI to provision the required infrastructure and de
 
 :::image type="content" source="./media/migrate-logic-apps-migration-agent/deployment-stage-final.png" alt-text="Screenshot that shows the end to end testing with deployment in target environment.":::
 
-
 ## Reset the migration
 
 If you need to start over, open the Command Palette (**Ctrl+Shift+P**) and run **Logic Apps Migration Agent: Reset Migration**. This command clears all migration state and lets you begin again from the Discovery stage.
 
 ## Next steps
 
-- [Logic Apps Migration Agent overview](migrate-logic-apps-migration-agent-overview.md)
 - [Add a custom parser for a new platform](migrate-logic-apps-migration-agent-custom-parsers.md)

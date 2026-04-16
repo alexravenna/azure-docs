@@ -11,7 +11,7 @@ ms.topic: overview
 ai-usage: ai-assisted
 ms.update-cycle: 180-days
 ms.date: 04/21/2026
-# Customer intent: As a developer who works with enterprise integration platforms, such as BizTalk Server, Mulesoft, or others, I want to learn how to automate solution migration to Standard workflows in Azure Logic Apps by using the Migration Agent extension in Visual Studio Code.
+# Customer intent: As a developer who works with enterprise integration platforms, such as BizTalk Server, MuleSoft, or others, I want to learn about automating the migration process for my integration project to Standard workflows in Azure Logic Apps by using the Migration Agent extension in Visual Studio Code.
 ---
 
 # Migration from enterprise integration platforms to Azure Logic Apps (preview)
@@ -91,7 +91,7 @@ In your Visual Studio Code project workspace, the migration agent sets up and wo
 | `@migration-planner` | Create migration plans for each flow with action mappings and gap analysis. |
 | `@migration-converter` | Run conversion tasks that generate Standard workflows and connections for Azure Logic Apps. |
 
-These agents work with *25 language model tools* registered in Visual Studio Code to read artifacts, store results, and manage the migration workflow.
+These agents work with 25 language model tools registered in Visual Studio Code to read artifacts, store results, and manage the migration workflow.
 
 ## Flow visualization
 
@@ -107,7 +107,7 @@ Explore your integration architecture through an interactive browser by using th
 
 ## Prerequisites
 
-To run Azure Logic Apps Migration Agent in Visual Studio Code, you need the following requirements:
+To use the Azure Logic Apps Migration Agent extension in Visual Studio Code, meet the following requirements:
 
 | Requirement | Purpose |
 |-------------|---------|
@@ -121,14 +121,14 @@ To run Azure Logic Apps Migration Agent in Visual Studio Code, you need the foll
 
 ## Extension settings
 
-The Azure Logic Apps Migration Agent extension for Visual Studio Code provides the following settings that you can update:
+The Azure Logic Apps Migration Agent extension in Visual Studio Code provides the following settings that you can update:
 
-| Setting | Description | Default |
-|---------|-------------|---------|
-| `logicAppsMigrationAgent.deploymentModel` | The target deployment model for Azure Logic Apps (Standard) | `workflow-service-plan` |
-| `logicAppsMigrationAgent.azure.subscriptionId` | The Azure subscription ID for deployment | (empty) |
-| `logicAppsMigrationAgent.azure.resourceGroup` | The Azure resource group for provisioning and testing | `integration-migration-tool-test-rg` |
-| `logicAppsMigrationAgent.azure.location` | The Azure region for provisioning resources | For example, `eastus` |
+| Setting | Description | Default | Options or examples |
+|---------|-------------|---------|---------------------|
+| `logicAppsMigrationAgent.deploymentModel` | The target deployment model for Azure Logic Apps (Standard) | `workflow-service-plan` | `hybrid` |
+| `logicAppsMigrationAgent.azure.subscriptionId` | The Azure subscription ID for deployment | (empty) | Not applicable |
+| `logicAppsMigrationAgent.azure.resourceGroup` | The Azure resource group for provisioning and testing | (empty) | Example: `integration-migration-tool-test-rg` |
+| `logicAppsMigrationAgent.azure.location` | The Azure region for provisioning resources | (empty) | Example: `eastus` |
 
 To view these settings, from the **File** menu, go to **Preferences** > **Settings** > **Extensions** > **Logic Apps Migration Agent**.
 
