@@ -28,7 +28,7 @@ When your team needs to migrate workloads from legacy platforms like BizTalk Ser
 
 This quickstart shows how to migrate an integration workload from BizTalk Server to Standard workflows in Azure Logic Apps by using the Azure Logic Apps Migration Agent in Visual Studio Code. You learn how to install the extension, open your source project, and walk through all the migration stages: Discovery, Planning, Conversion, Validation, and Deployment.
 
-For more information, see [Azure Logic Apps Migration Agent](migrate-logic-apps-migration-agent-overview.md).
+For more information, see [About Azure Logic Apps Migration Agent](migration-agent-overview.md).
 
 ## Prerequisites
 
@@ -44,58 +44,61 @@ Before you start, meet the following requirements:
 | [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) | Local functions runtime and development tasks |
 | [GitHub Copilot subscription](https://github.com/features/copilot/plans) | AI-powered analysis, planning, and conversion |
 | [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) | Local connector resource deployment for testing |
-| Project folder for BizTalk Server or MuleSoft Anypoint | Project folder with source artifacts and files. For example, a BizTalk project folder includes `.btproj`, `.odx`, `.btm`, `.xsd`, and `.btp` files. |
+| Folder with BizTalk Server or MuleSoft Anypoint projects | Folder that contains integration project folders with source artifacts and files. For example, a BizTalk project folder includes files with the *.btproj*, *.odx*, *.btm*, *.xsd*, and *.btp* file name extensions. |
 
 ### 1: Install the Migration Agent extension
 
-1. Open VS Code. While not required, we recommend you to open VSCode from where all your integration project directories exist. For instance **C:\Migration>code .** 
+1. Open Visual Studio Code.
 
-:::image type="content" source="./media/migrate-logic-apps-migration-agent/logic-apps-migration-path.png" alt-text="Screenshot that shows the integration directories.":::
+   Optionally, but recommended, open Visual Studio Code from the folder or directory where your integration projects exist, for example, **C:\Migration\<*project-folders*>**.
 
-1. Go to the **Extensions** view by selecting the Extensions icon in the Activity Bar, or press **Ctrl+Shift+X**.
+   :::image type="content" source="./media/migration-agent-quickstart/migration-path.png" alt-text="Screenshot that shows the folder or directory with all integration project folders.":::
 
-1. Search for **Logic Apps Migration Agent**.
+1. On the Activity Bar, select **Extensions**. (Keyboard: Ctrl + Shift + X)
 
-   :::image type="content" source="./media/migrate-logic-apps-migration-agent/logic-apps-migration-search.png" alt-text="Screenshot that shows the Logic Apps Migration Agent icon in the VS Code Activity Bar.":::
+1. In the **Extensions: Marketplace** search box, find the **Azure Logic Apps Migration Agent** exztension, and select **Install**.
 
-1. Select **Install**.
+   :::image type="content" source="./media/migration-agent-quickstart/migration-search.png" alt-text="Screenshot that shows Visual Studio Code, Extensions Marketplace, and the Azure Logic Apps Migration Agent extension.":::
 
-After installation, a new **Logic Apps Migration Agent** icon appears in the Activity Bar on the left side of VS Code.
+   After installation completes, the Activity Bar displays an icon for the **Azure Logic Apps Migration Agent**.
 
-## Select a source folder
+   :::image type="content" source="./media/migration-agent-quickstart/activity-bar-icon.png" alt-text="Screenshot that shows the Logic Apps Migration Agent icon in the VS Code Activity Bar.":::
 
-1. Select the **Logic Apps Migration Agent** icon in the Activity Bar.
+### 2: Select your source folder
 
-   :::image type="content" source="./media/migrate-logic-apps-migration-agent/activity-bar-icon.png" alt-text="Screenshot that shows the Logic Apps Migration Agent icon in the VS Code Activity Bar.":::
+1. In Visual Studio Code, on the Activity Bar, select the **Azure Logic Apps Migration Agent** icon.
 
-1. Open a folder that contains your BizTalk, MuleSoft or other project in VS Code, by selecting **File** > **Open Folder**.
+1. Open the folder that contains your BizTalk, MuleSoft, or other integration projects. On the **File** menu, select **Open Folder**.
 
-1. When prompted, select the source folder that contains your integration artifacts. Alternatively, you can open the Command Palette (**Ctrl+Shift+P**) and run **Logic Apps Migration Agent: Select Source Folder**.
+1. Find and select the source folder that contains your integration artifacts.
 
-   :::image type="content" source="./media/migrate-logic-apps-migration-agent/logic-apps-migration-dialog.png" alt-text="Screenshot that shows the Logic Apps Migration Agent folder selection.":::
- 
+   > [!TIP]
+   >
+   > To open the source folder from the Command Palette (Keyboard Ctrl + Shift + P), find and run **Azure Logic Apps Migration Agent: Select Source Folder**.
 
-The extension auto-detects the source platform and begins the migration workflow.
+   :::image type="content" source="./media/migration-agent-quickstart/migration-dialog.png" alt-text="Screenshot that shows Visual Studio Code with the Azure Logic Apps Migration Agent and the source folder with projects.":::
+
+   The extension automatically detects the source platform and starts the migration workflow.
 
 ## Stage 1: Discovery
 
-The first stage discovers and catalogs all integration artifacts in your source project.
+This stage finds and catalogs all the integration artifacts in your source project. During the discovery stage, the migration agent performs the following actions:
 
-:::image type="content" source="./media/migrate-logic-apps-migration-agent/discovery-stage.png" alt-text="Screenshot that shows the Discovery stage in the Logic Apps Migration Agent, displaying discovered artifacts and dependencies.":::
+1. Detect the source platform, based on file patterns, such as BizTalk Server *.btproj* files.
 
-During discovery, the extension performs the following actions:
+1. Scans source files by using the built-in parser for your platform.
 
-1. **Detects the source platform** from file patterns (for example, `.btproj` files for BizTalk).
+1. Build an artifact inventory that includes orchestrations, schemas, maps, pipelines, and bindings.
 
-1. **Scans all source files** using the built-in parser for your platform.
+1. Generates a dependency graph that shows the relationships between artifacts.
 
-1. **Builds an artifact inventory** that includes orchestrations, schemas, maps, pipelines, and bindings.
+The following screenshot shows the 
 
-1. **Generates a dependency graph** that shows how artifacts relate to each other.
+:::image type="content" source="./media/migration-agent-quickstart/discovery-stage.png" alt-text="Screenshot that shows the Discovery stage in the Logic Apps Migration Agent, displaying discovered artifacts and dependencies.":::
 
 After the scan completes, the `@migration-analyser` Copilot agent analyzes the discovered artifacts and detects logical flow groups (sets of artifacts that work together). Something to consider is that the generated flows sometimes will not necessarily reflect a 1:1 relationship with the legacy integration applications. The agent will infer the flows that best reflect the legacy system intgration artifacts (i.e BizTalk workloads) in Logic Apps Standard. If you want to change the flows to reflect a 1:1 mapping with your integration workloads, you can use GHCP and indicate flows need to map your BizTalk applications. This is one of the first paradigm changes in the modernization. What was optimum for BizTalk will not necessarily be for Logic Apps Standard.
 
-:::image type="content" source="./media/migrate-logic-apps-migration-agent/discovery-stage-detail.png" alt-text="Screenshot that shows the Discovery stage details in the Logic Apps Migration Agent, displaying discovered artifacts and dependencies.":::
+:::image type="content" source="./media/migration-agent-quickstart/discovery-stage-detail.png" alt-text="Screenshot that shows the Discovery stage details in the Logic Apps Migration Agent, displaying discovered artifacts and dependencies.":::
 
 To continue with the next stage, you need to select the **Analyze Source Design** button in any of the flows. This will:
 
@@ -105,7 +108,6 @@ To continue with the next stage, you need to select the **Analyze Source Design*
 - Detect integration patterns such as publish/subscribe, request-reply, and batch.
 - Generate a discovery report based on the findings.
 
-
 Review the discovery results in the **Flow Visualizer** panel, which provides interactive tabs for architecture, message flows, components, gaps, and patterns. There are three important selections in this panel:
 
 1. **Suggest a change** to ask direct changes to the analysis.
@@ -114,7 +116,7 @@ Review the discovery results in the **Flow Visualizer** panel, which provides in
 
 1. **Export Report** to generate a report with the outcome of the discovery.
 
-:::image type="content" source="./media/migrate-logic-apps-migration-agent/discovery-stage-analysis.png" alt-text="Screenshot that shows the Discovery stage details in the Logic Apps Migration Agent, displaying discovered artifacts and dependencies.":::
+:::image type="content" source="./media/migration-agent-quickstart/discovery-stage-analysis.png" alt-text="Screenshot that shows the Discovery stage details in the Logic Apps Migration Agent, displaying discovered artifacts and dependencies.":::
 
 > [!TIP]
 > Use the Copilot chat integration in the Flow Visualizer to discuss or correct any flow group. Select a flow group and ask the `@migration-analyser` agent questions about the detected architecture. You can also provide information about any missing gaps and Regenerate the analysis.
@@ -126,7 +128,7 @@ Review the discovery results in the **Flow Visualizer** panel, which provides in
 
 To continue with the Planning stage, you need to select the **Plan LogicApp Design** button in any of the flows. The planning stage creates a migration roadmap.
 
-:::image type="content" source="./media/migrate-logic-apps-migration-agent/planning-stage-main.png" alt-text="Screenshot that shows the Planning stage with per-flow migration plans and action mappings.":::
+:::image type="content" source="./media/migration-agent-quickstart/planning-stage-main.png" alt-text="Screenshot that shows the Planning stage with per-flow migration plans and action mappings.":::
 
 The `@migration-planner` agent generates per-flow migration plans that include:
 
@@ -143,13 +145,13 @@ The `@migration-planner` agent generates per-flow migration plans that include:
 
 Review each plan carefully. You can interact with the `@migration-planner` agent via Copilot chat to adjust plans, ask questions about specific mappings, or request alternative approaches. To continue with the conversion, select **Home Page** or return to the **Home** tab
 
-:::image type="content" source="./media/migrate-logic-apps-migration-agent/planning-stage-create.png" alt-text="Screenshot that shows the Planning stage with per-flow migration plans and action mappings.":::
+:::image type="content" source="./media/migration-agent-quickstart/planning-stage-create.png" alt-text="Screenshot that shows the Planning stage with per-flow migration plans and action mappings.":::
 
 ## Stage 3: Create (Conversion Tasks)
 
 The conversion stage transforms your source artifacts into Logic Apps Standard workflows.
 
-:::image type="content" source="./media/migrate-logic-apps-migration-agent/conversion-stage-main.png" alt-text="Screenshot that shows the Conversion stage generating Logic Apps Standard workflow files.":::
+:::image type="content" source="./media/migration-agent-quickstart/conversion-stage-main.png" alt-text="Screenshot that shows the Conversion stage generating Logic Apps Standard workflow files.":::
 
 The `@migration-converter` agent executes the task plans from the planning stage:
 
@@ -176,11 +178,11 @@ Use this stage to:
 - Identify and fix any discrepancies.
 - Compare the behavior of the generated workflows with the original integration flows. The Validation stage provides the ability to **bring your own test cases and specifications**. This steps is key to validate your integration workload performs as expected.
 
-:::image type="content" source="./media/migrate-logic-apps-migration-agent/validation-stage-blackbox.png" alt-text="Screenshot that shows the Validation stage with Balck box testing.":::
+:::image type="content" source="./media/migration-agent-quickstart/validation-stage-blackbox.png" alt-text="Screenshot that shows the Validation stage with Balck box testing.":::
 
 The extension provides runtime validation and testing guidance through the `@migration-converter` agent. You can verify the generated solution in the out directory.
 
-:::image type="content" source="./media/migrate-logic-apps-migration-agent/deployment-stage-outcome.png" alt-text="Screenshot that shows the path of the generated code.":::
+:::image type="content" source="./media/migration-agent-quickstart/deployment-stage-outcome.png" alt-text="Screenshot that shows the path of the generated code.":::
 
 ## Stage 5: Deployment
 
@@ -190,11 +192,11 @@ The final stage deploys your migrated Logic Apps artifacts to Azure. Before depl
 - **Resource Group**: The target resource group for provisioning.
 - **Location**: The Azure region for your resources.
 
-:::image type="content" source="./media/migrate-logic-apps-migration-agent/deployment-stage-main.png" alt-text="Screenshot that shows the end to end testing with deployment in target environment.":::
+:::image type="content" source="./media/migration-agent-quickstart/deployment-stage-main.png" alt-text="Screenshot that shows the end to end testing with deployment in target environment.":::
 
 The extension uses the Azure CLI to provision the required infrastructure and deploy your Logic Apps Standard workflows. The following is a complete solution.
 
-:::image type="content" source="./media/migrate-logic-apps-migration-agent/deployment-stage-final.png" alt-text="Screenshot that shows the end to end testing with deployment in target environment.":::
+:::image type="content" source="./media/migration-agent-quickstart/deployment-stage-final.png" alt-text="Screenshot that shows the end to end testing with deployment in target environment.":::
 
 ## Reset the migration
 
@@ -202,4 +204,4 @@ If you need to start over, open the Command Palette (**Ctrl+Shift+P**) and run *
 
 ## Next steps
 
-- [Add a custom parser for a new platform](migrate-logic-apps-migration-agent-custom-parsers.md)
+- [Add a custom parser for a new platform](migration-agent-custom-parsers.md)
