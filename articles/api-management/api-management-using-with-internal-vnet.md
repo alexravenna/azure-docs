@@ -117,10 +117,10 @@ Creating a Private DNS zone or authoritative forward lookup zone for the apex do
 
 If a Private DNS zone is created for `azure-api.net`:
 
-- The zone becomes authoritative within the customer DNS scope  
-- Public records published by Azure are no longer resolvable  
-- Other Azure services that rely on `*.azure-api.net` may fail name resolution  
-- Customers must implement complex DNS forwarding to public resolvers to avoid breakage  
+- The zone becomes authoritative within the customer DNS scope
+- Public records published by Azure are no longer resolvable
+- Other Azure services that rely on `*.azure-api.net` may fail name resolution
+- Customers must implement complex DNS forwarding to public resolvers to avoid breakage
 
 **Forwarding or controlling the apex domain is strongly discouraged.**
 
