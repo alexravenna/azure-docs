@@ -1,14 +1,14 @@
 ---
 title: Secure Azure Health Data Services with Private Link
 description: Azure Health Data Services Private Link configuration made easy. Learn how to set up secure FHIR and DICOM access on your private virtual network.
-#customer intent: As a healthcare IT professional, I want to configure private endpoints for my Azure Health Data Services workspace so that I can restrict data access to authorized virtual networks.
 services: healthcare-apis
 author: EXPEkesheth
 ms.service: azure-health-data-services
 ms.subservice: fhir
 ms.topic: tutorial
-ms.date: 04/14/2026
+ms.date: 04/17/2026
 ms.author: kesheth
+ms.reviewer: v-catheribun
 ms.custom: sfi-image-nochange
 ---
 
@@ -34,23 +34,27 @@ In this tutorial, you:
 >
 >If you're exporting audit logs and metrics that are enabled, update the export setting through **Diagnostic Settings** from the portal.
 
+
 ## Prerequisites
 
 Before you create a private endpoint, create the following Azure resources:
 
-- [An active Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
+- [An active Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - **Resource Group** – The Azure resource group that contains the workspace, virtual network, and private endpoint.
 - [Workspace deployed in the Azure Health Data Services](healthcare-apis-quickstart.md):  You need the workspace to create the private endpoint. You create the private endpoint at the workspace level, and it applies to all services within the workspace. 
 - [FHIR service deployed in the workspace](fhir/fhir-portal-quickstart.md) or [DICOM service deployed in the workspace](dicom/deploy-dicom-services-in-azure.md): The Azure Health Data Services resource that you want to connect to over the private endpoint. You don't need this resource to create the private endpoint, but you need it to test the private endpoint connectivity.
-- To create a virtual network, you need to have an RBAC role for the resource group, such as **Owner**, **Contributor**, or **Network Contributor**. If you don't have permissions, contact your administrator.
-- To create a private endpoint, you need to have an RBAC role for the workspace or the resource group where the workspace is located, such as **Owner**, **Contributor**, or **Healthcare APIs Contributor**. If you don't have permissions, contact your administrator.
+- An RBAC role with permission to create a virtual network in the resource group, such as **Owner**, **Contributor**, or **Network Contributor**. For more information, see [Manage a virtual network](../virtual-network/manage-virtual-network.yml).
+- An RBAC role with permission to create a private endpoint in your resource group or Azure Health Data Services workspace, such as **Owner**, **Contributor**, or **Healthcare APIs Contributor**.  For more information, see [Private Link RBAC permissions](../private-link/rbac-permissions.md#private-endpoint). 
 
 
-## Create a virtual network and subnet
+## Create a virtual network and dedicated subnet
 
-If you don't already have a virtual network, create one at the resource group level. When you create a virtual network, create a dedicated subnet for the private endpoint. This subnet is required as part of the private endpoint creation process. 
+If you don't already have a virtual network, use the following steps to create the virtual network and a subnet dedicated to the private endpoint. 
 
-When you create the subnet for the private endpoint, don't enable any service endpoints on that subnet. Service endpoints aren't compatible with private endpoints and can cause connectivity problems.
+If you already have a virtual network, make sure to create a dedicated subnet for the private endpoint. To add a subnet, see [Add a subnet](../virtual-network/virtual-network-manage-subnet.md#add-a-subnet).
+
+Don't enable any service endpoints on the subnet you select for the private endpoint. Service endpoints aren't compatible with private endpoints and can cause connectivity problems.
+
 
 To create a virtual network and subnet, follow these steps:
 
@@ -59,11 +63,10 @@ To create a virtual network and subnet, follow these steps:
 1. Select **Create**.
 1. On the **Basics** tab, select the subscription and resource group that contains your workspace. 
 1. Enter a name for the virtual network, and select a region.
-1. Select the **IP Addresses** tab.  
+1. Select the **IP Addresses** tab and enter an address space for the virtual network or accept the default values. 
 
     :::image type="content" source="media/private-link/create-vnet-basics-tab.png" alt-text="Screenshot of the Create virtual network Basics tab." lightbox="media/private-link/create-vnet-basics-tab.png":::
 
-1. On the **IP Addresses** tab, enter an address space for the virtual network or accept the default values.
 1. Create a subnet for the private endpoint by selecting **+ Add subnet**. 
 
     :::image type="content" source="media/private-link/create-vnet-ip-addresses-tab.png" alt-text="Screenshot of the Create virtual network IP Addresses tab." lightbox="media/private-link/create-vnet-ip-addresses-tab.png":::
@@ -76,6 +79,8 @@ To create a virtual network and subnet, follow these steps:
 
     :::image type="content" source="media/private-link/create-vnet-review-tab.png" alt-text="Screenshot of the Create virtual network Review + create tab." lightbox="media/private-link/create-vnet-review-tab.png":::
 
+For more information on creating virtual networks, see [Manage a virtual network](../virtual-network/manage-virtual-network.yml).
+
 ## Create private endpoint
 
 To create a private endpoint, use the Azure portal as a user with role-based access control (RBAC) permissions on the workspace or the resource group where the workspace is located. Use the Azure portal because it automates the creation and configuration of the Private DNS Zone. For more information, see [Private Link Quick Start Guides](./../private-link/create-private-endpoint-portal.md).
@@ -84,7 +89,7 @@ You configure a private endpoint at the workspace level. The private endpoint au
 
 When you create a private endpoint for a workspace, you can disable public network access. If you disable public network access, all traffic to the workspace and its services must go through the private endpoint.
 
-You can create a private endpoint from the Network foundation experience in the Azure portal, or by selecting the workspace and navigating to the **Networking** tab.
+You can create a private endpoint from the Network foundation experience in the Azure portal which gives you more control over the network configuration, or choose a more guided experience by selecting the workspace and navigating to the **Networking** tab.
 
 ### Create a private endpoint from the Network foundation experience
 
@@ -154,6 +159,10 @@ You can choose whether to have the private endpoint automatically integrate with
 :::image type="content" source="media/private-link/create-private-endpoint-dns-tab.png" alt-text="Screenshot of create private endpoint DNS tab." lightbox="media/private-link/create-private-endpoint-dns-tab.png":::
 
 Go to the **Review + create** tab and review your configuration. If everything looks correct, select **Create** to create the private endpoint.
+
+#### Tags configuration
+
+You can also add tags to your private endpoint by selecting the **Tags** tab. Tags are name-value pairs that enable you to categorize resources and view consolidated billing by applying the same tag to multiple resources and resource groups. For more information, see [Use tags to organize your Azure resources](../azure-resource-manager/management/tag-resources?tabs=json).
 
 ### Create the private endpoint from the workspace networking tab
 
