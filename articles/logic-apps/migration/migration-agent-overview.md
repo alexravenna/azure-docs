@@ -71,7 +71,7 @@ The migration agent includes the following core capabilities:
 
 The migration agent guides you through the following 5-stage migration workflow:
 
-:::image type="content" source="./media/migrate-logic-apps-migration-agent/migration-stages.png" alt-text="Diagram that shows the five migration stages: Discovery, Planning, Conversion, Validation, and Deployment.":::
+:::image type="content" source="./media/migration-agent-overview/migration-stages.png" alt-text="Diagram that shows the five migration stages: Discovery, Planning, Conversion, Validation, and Deployment.":::
 
 | Stage | Purpose |
 |-------|---------|

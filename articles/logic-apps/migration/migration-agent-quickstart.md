@@ -110,36 +110,38 @@ Generated logical flows don't always reflect a 1:1 relationship with legacy inte
 
 ### Step 3: Analyze source design
 
-After the migration agent completes scanning and shows the resulting logical flow groups, choose a flow group, and select **Analyze Source Design**.
+1. After the migration agent completes scanning and shows the resulting logical flow groups, on the **Home** tab, choose a logical flow group, and select **Analyze Source Design**.
 
-The agent performs the following tasks:
+   :::image type="content" source="./media/migration-agent-quickstart/analyze-source-design.png" alt-text="Screenshot that shows migration agent home page with Analyze Source Design selected.":::
 
-1. Builds an artifact inventory that includes orchestrations, schemas, maps, pipelines, and bindings.
+   The agent performs the following tasks:
 
-1. Generates a dependency graph that shows the relationships between artifacts.
+   1. Builds an artifact inventory that includes orchestrations, schemas, maps, pipelines, and bindings.
 
-   The migration agent runs the following tasks to generate the dependency graph:
+   1. Generates a dependency graph that shows the relationships between artifacts.
 
-   - Generate architecture (Mermaid) diagrams that show message flows and components.
-   - Identify missing dependencies.
-   - Perform a gap analysis for features.
-   - Detect integration patterns such as publish-subscribe, request-reply, and batch.
-   - Propose mappings for Azure Logic Apps or other services alternatives.
-   - Generate a discovery report based on the findings.
+      The migration agent runs the following tasks to generate the dependency graph:
 
-   After the migration agent successfully generates the dependency graph, the flow visualizer opens and shows the following interactive tabs:
+      - Generate architecture (Mermaid) diagrams that show message flows and components.
+      - Identify missing dependencies.
+      - Perform a gap analysis for features.
+      - Detect integration patterns such as publish-subscribe, request-reply, and batch.
+      - Propose mappings for Azure Logic Apps or other services alternatives.
+      - Generate a discovery report based on the findings.
+
+      After the migration agent successfully generates the dependency graph, the flow visualizer opens and shows the following interactive tabs:
    
-   - **Architecture Diagram**
-   - **Mesage Flow**
-   - **Components**
-   - **Missing Dependencies**
-   - **Gap Analysis**
-   - **Patterns**
-   - **Learn BizTalk**
+      - **Architecture Diagram**
+      - **Mesage Flow**
+      - **Components**
+      - **Missing Dependencies**
+      - **Gap Analysis**
+      - **Patterns**
+      - **Learn BizTalk**
 
-   :::image type="content" source="./media/migration-agent-quickstart/discovery-stage-analysis.png" alt-text="Screenshot that shows theflow visualizer with the results from the Discovery stage.":::
+      :::image type="content" source="./media/migration-agent-quickstart/discovery-stage-analysis.png" alt-text="Screenshot that shows theflow visualizer with the results from the Discovery stage.":::
 
-1. To review the analysis results, select the tab you want to review the related information.
+1. To review the analysis results, select a tab to review the related information.
 
 ### Step 4: Update or export the analysis
 
@@ -157,9 +159,12 @@ The agent performs the following tasks:
 
 ## Stage 2: Planning
 
-To continue with the Planning stage, you need to select the **Plan Logic App Design** button in any of the flows. The planning stage creates a migration roadmap.
+After you finish your analysis, start the Planning stage by creating a migration roadmap to follow. 
 
-:::image type="content" source="./media/migration-agent-quickstart/planning-stage-main.png" alt-text="Screenshot that shows the Planning stage with per-flow migration plans and action mappings.":::
+1. On the **Home** tab, choose the logical flow group you want, and select **Plan Logic App Design**.
+
+   :::image type="content" source="./media/migration-agent-quickstart/plan-logic-app-design.png" alt-text="Screenshot that shows migration agent home page with Plan Logic App Design selected.":::
+
 
 The `@migration-planner` agent generates per-flow migration plans that include:
 
@@ -170,9 +175,11 @@ The `@migration-planner` agent generates per-flow migration plans that include:
 - **Migration GAPS**: Components that don't have direct equivalents, along with recommended workarounds.
 - **Integration patterns**: Detected patterns for the integration flow.
 - **Summary**: High level overview of the proposed workflow.
-
 - **Effort estimates**: Estimated complexity and effort for each flow.
 - **Task plans**: Step-by-step conversion tasks for the next stage.
+
+   :::image type="content" source="./media/migration-agent-quickstart/planning-stage-main.png" alt-text="Screenshot that shows the Planning stage with per-flow migration plans and action mappings.":::
+
 
 Review each plan carefully. You can interact with the `@migration-planner` agent via Copilot chat to adjust plans, ask questions about specific mappings, or request alternative approaches. To continue with the conversion, select **Home Page** or return to the **Home** tab
 
