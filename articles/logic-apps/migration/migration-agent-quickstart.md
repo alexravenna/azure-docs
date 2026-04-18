@@ -165,7 +165,6 @@ After you finish your analysis, start the Planning stage by creating a migration
 
    :::image type="content" source="./media/migration-agent-quickstart/plan-logic-app-design.png" alt-text="Screenshot that shows migration agent home page with Plan Logic App Design selected.":::
 
-
 The `@migration-planner` agent generates per-flow migration plans that include:
 
 - **Architecture**: Designer view (including Code view{}) and Architecture diagram for the proposed solution.
