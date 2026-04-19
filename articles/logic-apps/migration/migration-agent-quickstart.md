@@ -155,7 +155,7 @@ Generated logical flows don't always reflect a 1:1 relationship with legacy inte
 
    Or, to analyze more flows, select the **Home** tab or the home page icon.
 
-1. When you finish, continue to the next section for the Planning stage.
+1. When you finish, go to the next section for the Planning stage.
 
 ## Stage 2: Planning
 
@@ -165,28 +165,37 @@ After you finish your analysis, start the Planning stage by creating a migration
 
    :::image type="content" source="./media/migration-agent-quickstart/plan-logic-app-design.png" alt-text="Screenshot that shows migration agent home page with Plan Logic App Design selected.":::
 
-The `@migration-planner` agent generates per-flow migration plans that include:
+   For each logical flow group, the `@migration-planner` agent generates a migration plan that usually includes the following sections:
 
-- **Architecture**: Designer view (including Code view{}) and Architecture diagram for the proposed solution.
-- **Aditional Azure components**: This includes explicit and non-explicit conversions for the proposed design.
-- **Operation mappings**: One-to-one mappings from source platform components to their Logic Apps Standard equivalents.
-- **Artifacts disposition**: Artifacts requiring conversion along with their Upload destinations.
-- **Migration GAPS**: Components that don't have direct equivalents, along with recommended workarounds.
-- **Integration patterns**: Detected patterns for the integration flow.
-- **Summary**: High level overview of the proposed workflow.
-- **Effort estimates**: Estimated complexity and effort for each flow.
-- **Task plans**: Step-by-step conversion tasks for the next stage.
+   | Section name | Description |
+   |--------------|-------------|
+   | **Architecture** | The designer view, code view, and architecture diagram for the proposed solution. |
+   | **Additional Azure components** | The explicit and non-explicit Azure component conversions required for the proposed design. |
+   | **Operations mapping** | The one-to-one mappings from source platform components to their Standard workflow equivalents in Azure Logic Apps. |
+   | **Artifact dispositions** | The artifacts that require conversion and their upload destinations. |
+   | **Migration gaps** | The components without direct equivalents and the recommended workarounds. |
+   | **Integration patterns** | The detected patterns for the integration flow. |
+   | **Summary** | A high-level overview about the proposed workflow. |
+   | **Effort estimates** | The estimated complexity and effort for each flow. |
+   | **Task plans** | The step-by-step conversion tasks for the next stage. |
 
-   :::image type="content" source="./media/migration-agent-quickstart/planning-stage-main.png" alt-text="Screenshot that shows the Planning stage with per-flow migration plans and action mappings.":::
+   The following example shows a sample generated migration plan:
 
+   :::image type="content" source="./media/migration-agent-quickstart/planning-stage-main.png" alt-text="Screenshot that shows the Planning stage with the migration plan for each flow and action mappings.":::
 
-Review each plan carefully. You can interact with the `@migration-planner` agent via Copilot chat to adjust plans, ask questions about specific mappings, or request alternative approaches. To continue with the conversion, select **Home Page** or return to the **Home** tab
+1. Review each plan carefully and make any necessary updates.
 
-:::image type="content" source="./media/migration-agent-quickstart/planning-stage-create.png" alt-text="Screenshot that shows the Planning stage with per-flow migration plans and action mappings.":::
+   > [!TIP]
+   >
+   > To edit the generated plans, ask questions about specific mappings, or request alternative approaches, interact with the `@migration-planner` agent by using Copilot chat.
 
-## Stage 3: Create (Conversion Tasks)
+   :::image type="content" source="./media/migration-agent-quickstart/planning-stage-create.png" alt-text="Screenshot that shows the Planning stage with the migration plan for a logical flow and action mappings.":::
 
-The conversion stage transforms your source artifacts into Logic Apps Standard workflows.
+1. When you're ready, continue to the Create (Conversion Tasks) stage by selecting **Home Page** or returning to the **Home** tab.
+
+## Stage 3: Create
+
+When you're satisfied with your migration plan, start the Create stage to task conversions that transform your source artifacts into Standard workflows for Azure Logic Apps.
 
 :::image type="content" source="./media/migration-agent-quickstart/conversion-stage-main.png" alt-text="Screenshot that shows the Conversion stage generating Logic Apps Standard workflow files.":::
 
