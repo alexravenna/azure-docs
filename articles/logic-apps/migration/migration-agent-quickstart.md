@@ -110,7 +110,9 @@ Generated logical flows don't always reflect a 1:1 relationship with legacy inte
 
 ### Step 3: Analyze source design
 
-1. After the migration agent completes scanning and shows the resulting logical flow groups, on the **Home** tab, choose a logical flow group, and select **Analyze Source Design**.
+After the migration agent completes scanning and shows the resulting logical flow groups, follow these steps:
+
+1. On the **Home** tab, for the logical flow group you want, select **Analyze Source Design**, for example:
 
    :::image type="content" source="./media/migration-agent-quickstart/analyze-source-design.png" alt-text="Screenshot that shows migration agent home page with Analyze Source Design selected.":::
 
@@ -297,7 +299,7 @@ This last stage deploys your migrated solution to Azure Logic Apps.
 
    The migration agent provisions the required infrastructure and deploys your Standard logic app resource and workflows by using the Azure CLI.
 
-   The following example shows a sample complete solution:
+   The following example shows a sample completely migrated solution:
 
    :::image type="content" source="./media/migration-agent-quickstart/deployment-stage-final.png" alt-text="Screenshot that shows the end to end testing with deployment in target environment.":::
    
