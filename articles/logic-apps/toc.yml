@@ -215,6 +215,10 @@ items:
         href: biztalk-server-migration-overview.md
       - name: Migration options and best practices
         href: biztalk-server-migration-approaches.md
+      - name: Migration Agent for Azure Logic Apps
+        href: migration/migration-agent-overview.md
+      - name: Quickstart- Migrate to Azure Logic Apps
+        href: migration/migration-agent-quickstart.md
   - name: Develop
     items:
     - name: Add a trigger or action to a workflow
