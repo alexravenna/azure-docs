@@ -8,9 +8,10 @@ ms.topic: article
 ms.date: 04/30/2026
 ms.author: simranparkhe
 ---
-**Applies to:** :heavy_check_mark: Windows VMs
 
 # How to deploy a Virtual Machine with Azure Integrated HSM
+
+**Applies to:** :heavy_check_mark: Windows VMs
 
 Azure Integrated HSM is a Hardware Security Module (HSM) cache and crypto accelerator designed to enhance the security and performance of cryptographic operations in a virtual machine (VM).
 For customers who heavily rely on cryptography and have performance-intensive workloads, Azure Integrated HSM provides a secure way to store cryptographic keys for quick and secure retrieval. 

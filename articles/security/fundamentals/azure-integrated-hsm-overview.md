@@ -63,7 +63,7 @@ The following cryptographic operations are supported for Azure Integrated HSM:
 
 ## Availability and Pricing
 
-Azure Integrated HSM is now available to use on the AMD v7 generally available platform in all the AMD v7 supported regions. This is supported for the general purpose [Dasv7-series](/azure/virtual-machines/sizes/general-purpose/dasv7-series), [Dadsv7-series](/azure/virtual-machines/sizes/general-purpose/dadsv7-series), [Easv7-series](/azure/virtual-machines/sizes/general-purpose/easv7-series), and [Eadsv7-series](/azure/virtual-machines/sizes/general-purpose/eadsv7-series) for 8 vCores and higher for Trusted Launch VMs. The Azure Integrated HSM general availability is for **Windows support only**, with Linux support coming soon. This feature is offered at no extra cost.
+Azure Integrated HSM is now available to use on the AMD v7 generally available platform in all the AMD v7 supported regions. This is supported for the general purpose [Dasv7-series](/azure/virtual-machines/sizes/general-purpose/dasv7-series), [Dadsv7-series](/azure/virtual-machines/sizes/general-purpose/dadsv7-series), [Easv7-series](/azure/virtual-machines/sizes/memory-optimized/easv7-series), and [Eadsv7-series](/azure/virtual-machines/sizes/memory-optimized/eadsv7-series) for 8 vCores and higher for Trusted Launch VMs. The Azure Integrated HSM general availability is for **Windows support only**, with Linux support coming soon. This feature is offered at no extra cost.
 
 Our [GitHub repository](https://github.com/microsoft/AziHSM-Guest) has customer samples and instructions for more details on how to use Azure Integrated HSM.
 
@@ -73,7 +73,7 @@ Our [GitHub repository](https://github.com/microsoft/AziHSM-Guest) has customer 
 - Requires customer opt‑in—not enabled by default for all SKUs.
     - For more information on how to opt in, see our [how to deploy documentation](/how-to-deploy-azihsm).
 - Supported on select VM SKUs only
-    - [Dasv7-series](/azure/virtual-machines/sizes/general-purpose/dasv7-series), [Dadsv7-series](/azure/virtual-machines/sizes/general-purpose/dadsv7-series), [Easv7-series](/azure/virtual-machines/sizes/general-purpose/easv7-series), and [Eadsv7-series](/azure/virtual-machines/sizes/general-purpose/eadsv7-series)
+    - [Dasv7-series](/azure/virtual-machines/sizes/general-purpose/dasv7-series), [Dadsv7-series](/azure/virtual-machines/sizes/general-purpose/dadsv7-series), [Easv7-series](/azure/virtual-machines/sizes/memory-optimized/easv7-series), and [Eadsv7-series](/azure/virtual-machines/sizes/memory-optimized/eadsv7-series)
 - Minimum VM size requirement
     - Azure Integrated HSM is only supported for sizes **8vCores** and higher
 - Trusted Launch security type supported only
