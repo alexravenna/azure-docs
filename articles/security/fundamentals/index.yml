@@ -81,6 +81,8 @@ landingContent:
             url: operational-best-practices.md
           - text: AI security
             url: ai-security-best-practices.md
+          - text: Azure Integrated HSM Overview
+            url: azure-integrated-hsm-overview.md
 
   # Card
   - title: Protect your Azure resources
