@@ -20,7 +20,7 @@ After you deploy Azure VMware Solution Generation 2 (Gen 2) private cloud, you n
 
 ## Azure VMware Solution Hosted (Local) Virtual Network
 
-This Azure VMware Solution private cloud deployment is hosted in an Azure Virtual Network. This means the connectivity to the local Virtual Network from an Azure VMware Solution private cloud is established during deployment, with no other configuration required. The private cloud follows the same network connectivity constructs as other Azure services. VMware NSX workload segments created in this private cloud are systematically programmed as Virtual Network address spaces in the Virtual Network domain for routing purposes.
+Azure VMware Solution private cloud deployment is hosted in an Azure Virtual Network. The connectivity to the local Virtual Network from an Azure VMware Solution private cloud is established during deployment, with no other configuration required. The private cloud follows the same network connectivity constructs as other Azure services. VMware NSX workload segments created in this private cloud are systematically programmed as Virtual Network address spaces in the Virtual Network domain for routing purposes.
 
 :::image type="content" source="./media/native-connectivity/native-connectivity-private-cloud.png" alt-text="Diagram of an Azure VMware Solution Gen 2 connection to a private cloud." lightbox="media/native-connectivity/native-connectivity-private-cloud.png":::
 
