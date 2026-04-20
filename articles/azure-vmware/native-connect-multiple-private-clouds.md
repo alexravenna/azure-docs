@@ -23,11 +23,11 @@ Have multiple Azure VMware Solution Gen 2 private clouds deployed successfully.
 
 You can connect private clouds deployed in different Azure Virtual Networks using virtual network peering. The virtual network peering provides the best possible throughput and latency between Azure VMware Solution private clouds in the same region. For more information about how to do Azure Virtual Network peering, see [Create, change, or delete a Virtual Network peering](/azure/virtual-network/virtual-network-peering-overview).
 
-Depending on the location of the private cloud, you may require local Virtual Network peering or a global Virtual Network peering.
+Depending on the location of the private cloud, you might require local Virtual Network peering or a global Virtual Network peering.
 
 :::image type="content" source="./media/native-connectivity/native-connect-multiple-solutions-on-premises.png" alt-text="Diagram of multiple Azure VMware Solution Gen 2 private clouds connected together." lightbox="media/native-connectivity/native-connect-multiple-solutions-on-premises.png":::
 
-## Related topics 
+## Related articles 
 - [Connectivity to an Azure Virtual Network](native-network-connectivity.md)
 - [Connect to on-premises environment](native-connect-on-premises.md)
 - [Internet connectivity options](native-internet-connectivity-design-considerations.md)
