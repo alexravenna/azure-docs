@@ -298,13 +298,17 @@ Review the [Checklist before moving resources](./move-resource-group-and-subscri
 ## Microsoft.Cache
 
 > [!IMPORTANT]
-> If the Azure Managed Redis instance is configured with a virtual network, the instance can't be moved to a different subscription. See [Networking move limitations](./move-limitations/networking-move-limitations.md) to learn more.
+> If the Azure Cache for Redis instance is configured with a virtual network, the instance can't be moved to a different subscription. See [Networking move limitations](./move-limitations/networking-move-limitations.md) to learn more.
+
+> [!NOTE]
+> Azure Cache for Redis is being retired. For more information, see [Azure Cache for Redis retirement FAQ](../../azure-cache-for-redis/retirement-faq.md).
 
 > [!div class="mx-tableFixed"]
 > | Resource type | Resource group | Subscription | Region move |
 > | ------------- | ----------- | ---------- | ----------- |
 > | redis | **Yes** | **Yes** | No |
-> | redisenterprise | No | No | No |
+> | redisenterprise (Azure Cache for Redis Enterprise) | No | No | No |
+> | redisenterprise (Azure Managed Redis) | No | No | No |
 
 ## Microsoft.Capacity
 
