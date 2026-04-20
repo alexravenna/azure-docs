@@ -10,7 +10,7 @@ ms.reviewers: estfan, azla
 ms.topic: how-to
 ai-usage: ai-assisted
 ms.update-cycle: 180-days
-ms.date: 04/21/2026
+ms.date: 04/24/2026
 # Customer intent: As a developer who works with enterprise integration platforms, such as BizTalk Server, Mulesoft, or others, I want to learn how to quickly automate the migration process for my integration project to Standard workflows in Azure Logic Apps by using the Migration Agent extension in Visual Studio Code.
 ---
 
@@ -72,7 +72,7 @@ Before you start, meet the following requirements:
 
    > [!TIP]
    >
-   > From the Command Palette (Keyboard Ctrl + Shift + P), find and run **Azure Logic Apps Migration Agent: Select Source Folder**.
+   > To run this as a command, open the Command Palette (Keyboard: Ctrl+Shift+P). Enter and run **Azure Logic Apps Migration Agent: Select Source Folder**.
 
 1. Find and select the source folder that contains your BizTalk, MuleSoft, or other integration projects, then select **Select Source Project Folder or MSI**.
 
@@ -163,9 +163,9 @@ After you finish your analysis, start the Planning stage by creating a migration
 
 1. On the **Home** tab, choose the logical flow group you want, and select **Plan Logic App Design**.
 
-   :::image type="content" source="./media/migration-agent-quickstart/plan-logic-app-design.png" alt-text="Screenshot that shows migration agent home page with Plan Logic App Design selected.":::
+   :::image type="content" source="./media/migration-agent-quickstart/plan-logic-app-design-stage.png" alt-text="Screenshot that shows migration agent home page with Plan Logic App Design selected.":::
 
-   For each logical flow group, the `@migration-planner` agent generates a migration plan that usually includes the following sections:
+   The `@migration-planner` agent generates a migration plan that usually includes the following sections:
 
    | Section name | Description |
    |--------------|-------------|
@@ -181,7 +181,7 @@ After you finish your analysis, start the Planning stage by creating a migration
 
    The following example shows a sample generated migration plan:
 
-   :::image type="content" source="./media/migration-agent-quickstart/planning-stage-main.png" alt-text="Screenshot that shows the Planning stage with the migration plan for each flow and action mappings.":::
+   :::image type="content" source="./media/migration-agent-quickstart/planning-stage-main.png" alt-text="Screenshot that shows the Planning stage with the migration plan for a logical group flow and action mappings.":::
 
 1. Review each plan carefully and make any necessary updates.
 
@@ -189,65 +189,126 @@ After you finish your analysis, start the Planning stage by creating a migration
    >
    > To edit the generated plans, ask questions about specific mappings, or request alternative approaches, interact with the `@migration-planner` agent by using Copilot chat.
 
-   :::image type="content" source="./media/migration-agent-quickstart/planning-stage-create.png" alt-text="Screenshot that shows the Planning stage with the migration plan for a logical flow and action mappings.":::
+1. When you're ready, continue to the Conversion stage by selecting **Home Page** or returning to the **Home** tab.
 
-1. When you're ready, continue to the Create (Conversion Tasks) stage by selecting **Home Page** or returning to the **Home** tab.
+## Stage 3: Conversion
 
-## Stage 3: Create
+When you're satisfied with your migration plan, start the Conversion stage to generate conversion tasks that transform source artifacts into Standard workflows for Azure Logic Apps.
 
-When you're satisfied with your migration plan, start the Create stage to task conversions that transform your source artifacts into Standard workflows for Azure Logic Apps.
+1. On the **Home** tab, for your logical flow, select **Create Conversion Tasks**.
 
-:::image type="content" source="./media/migration-agent-quickstart/conversion-stage-main.png" alt-text="Screenshot that shows the Conversion stage generating Logic Apps Standard workflow files.":::
+   :::image type="content" source="./media/migration-agent-quickstart/create-conversion-tasks-stage.png" alt-text="Screenshot that shows the Conversion stage for generating conversion tasks.":::
 
-The `@migration-converter` agent executes the task plans from the planning stage:
+   The `@migration-converter` agent creates conversion tasks, which vary based your specific logical flow group. The conversion process produces complete, ready-to-run Standard workflow definitions. The `@migration-converter` agent uses the `no-stubs-code-generation` skill to make sure all generated code is fully functional.
+   
+   The following example shows sample task plans for a logical flow group named `Method Call Processing`:
 
-1. **Scaffolds the Logic Apps project** structure, including `host.json`, `local.settings.json`, and folder layout.
+   1. **Scaffold Logic Apps Project**
+   
+      Creates the Standard logic app project structure with the required folder hierarchy and files.
 
-1. **Generates `workflow.json` files** for each flow, using Logic Apps Standard workflow definitions.
+   1. **Convert Input Schema**
 
-1. **Creates `connections.json`** with the required connector configurations.
+      Migrates the *InputSchema.xsd* file from BizTalk format, which is UTF-16 with BizTalk annotations, to standard XSD, which is UTF-8 without BizTalk annotations.
 
-1. **Generates .NET local functions** when custom logic is needed that isn't available through built-in connectors.
+   1. **Convert Output Schema**
 
-1. **Validates completeness** to ensure no stubs or placeholder code remain in the generated output.
+      Migrates the *OutputSchema.xsd* file from BizTalk format, which is UTF-16 with BizTalk annotations, to standard XSD, which is UTF-8 without BizTalk annotations.
 
-> [!NOTE]
-> The conversion process produces complete, ready-to-run workflow definitions. The `@migration-converter` agent uses the `no-stubs-code-generation` skill to ensure that all generated code is fully functional.
+   1. **Generate <*connector-name*> Connections**
+   
+      Creates or updates the *connections.json* file that contains the configurations for the required <*connector-name*> connection.
+
+   1. **Generate <*workflow-name*> Workflow**
+
+      Creates the *workflow.json* file that contains the Standard workflow definition in Azure Logic Apps for the logical flow group.
+
+   1. **Generate Local Functions (<*function-names*>)**
+
+      Creates .NET 8 local functions for custom logic in the source code.
+
+   1. **Validate Runtime (func start)**
+
+      Validates the logic app project by running `func start`to confirm that all functions and workflows are ready.
+
+   1. **E2E Testing (Happy Path & Error Path)**
+
+      Runs end-to-end tests for the happy path, error path, and field-level validation.
+
+   1. **Black Box Tests (Optional)**
+
+      Runs tests that use external test data that you provide.
+
+   1. **Cloud Deployment & Testing (Optional)**
+
+      Deploys to Azure and run cloud E2E tests.
+
+1. To run each conversion task, select **Execute**, and then stop before **Cloud Deployment & Testing**.
+
+   The following example shows sample generated conversion tasks for the `Method Call Processing` logical flow:
+
+   :::image type="content" source="./media/migration-agent-quickstart/conversion-stage-main.png" alt-text="Screenshot that shows the Conversion stage with generated conversion tasks that create Standard workflow files for Azure Logic Apps.":::
+
+1. When you finish, continue to the Validation stage by selecting **Home Page** or returning to the **Home** tab.
 
 ## Stage 4: Validation
 
-The validation stage tests the generated workflows against the source specifications.
+After the migration agent completes converting your source artifacts to Standard workflows, test the generated workflows against your source specifications. The `@migration-converter` agent provides runtime validation and testing guidance. 
+The Validation stage lets you bring your own test cases and specifications. Your goal is to confirm that your converted workflow performs as expected.
 
-Use this stage to:
+For this stage, complete the following tasks:
 
-- Run generated workflows locally using the Azure Functions runtime and Docker Desktop.
-- Identify and fix any discrepancies.
-- Compare the behavior of the generated workflows with the original integration flows. The Validation stage provides the ability to **bring your own test cases and specifications**. This steps is key to validate your integration workload performs as expected.
+1. On the **Home** tab, for your logical flow, select **Open in Visual Studio Code**.
 
-:::image type="content" source="./media/migration-agent-quickstart/validation-stage-blackbox.png" alt-text="Screenshot that shows the Validation stage with Balck box testing.":::
+1. In your migration folder, go to the **out** directory, and select the generated solution folder, for example:
 
-The extension provides runtime validation and testing guidance through the `@migration-converter` agent. You can verify the generated solution in the out directory.
+   :::image type="content" source="./media/migration-agent-quickstart/validation-stage-generated-output.png" alt-text="Screenshot that shows the local path for where to find the generated code and solution.":::
 
-:::image type="content" source="./media/migration-agent-quickstart/deployment-stage-outcome.png" alt-text="Screenshot that shows the path of the generated code.":::
+1. Validate that the generated solution and code are complete. Make sure that no stubs or placeholder code remain.
+
+1. Locally run the generated workflows by using the Azure Functions runtime and the Docker Desktop.
+
+   For example, if you haven't done so, run the **Black Box Tests (Optional)** task with external test data that you provide:
+
+   :::image type="content" source="./media/migration-agent-quickstart/validation-stage-blackbox.png" alt-text="Screenshot that shows optional Black Box Tests.":::
+
+1. Compare the behavior of the generated workflows against the original integration flows.
+
+1. Identify and fix any discrepancies.
 
 ## Stage 5: Deployment
 
-The final stage deploys your migrated Logic Apps artifacts to Azure. Before deployment, configure the following extension settings at **Settings** > **Extensions** > **Logic Apps Migration Agent**:
+This last stage deploys your migrated solution to Azure Logic Apps.
 
-- **Azure Subscription ID**: Your Azure subscription for deployment.
-- **Resource Group**: The target resource group for provisioning.
-- **Location**: The Azure region for your resources.
+1. Before you start, view the extension's settings. From the **File** menu, go to **Preferences** > **Settings** > **Extensions** > **Logic Apps Migration Agent**.
 
-:::image type="content" source="./media/migration-agent-quickstart/deployment-stage-main.png" alt-text="Screenshot that shows the end to end testing with deployment in target environment.":::
+1. Update the following deployment setting values as appropriate:
 
-The extension uses the Azure CLI to provision the required infrastructure and deploy your Logic Apps Standard workflows. The following is a complete solution.
+   | Setting name | Description | Default | Action |
+   |--------------|-------------|---------|--------|
+   | **Location** | The Azure region for provisioning resources. | `eastus` | Change this value to the region you want. |
+   | **Resource Group** | The Azure resource group for provisioning and testing. | `integration-migration-tool-test-rg` | Change this value to the resource group name you want. |
+   | **Subscription ID** | The Azure subscription ID for deployment. | (empty) | Enter the GUID for your Azure subscription. |
+   | **Deployment Model** | The target deployment model for Azure Logic Apps (Standard). | `workflow-service-plan` | If appropriate, change this value to `hybrid`. |
 
-:::image type="content" source="./media/migration-agent-quickstart/deployment-stage-final.png" alt-text="Screenshot that shows the end to end testing with deployment in target environment.":::
+1. To start deployment, run the **Cloud Deployment & Testing** task by selecting **Execute**:
 
+   :::image type="content" source="./media/migration-agent-quickstart/validation-stage-main.png" alt-text="Screenshot that shows the end to end testing with deployment in target environment.":::
+
+   The migration agent provisions the required infrastructure and deploys your Standard logic app resource and workflows by using the Azure CLI.
+
+   The following example shows a sample complete solution:
+
+   :::image type="content" source="./media/migration-agent-quickstart/deployment-stage-final.png" alt-text="Screenshot that shows the end to end testing with deployment in target environment.":::
+   
 ## Reset the migration
 
-If you need to start over, open the Command Palette (**Ctrl+Shift+P**) and run **Logic Apps Migration Agent: Reset Migration**. This command clears all migration state and lets you begin again from the Discovery stage.
+For whatever reason, you can always restart your migration from the beginning. The following command clears the migration state and lets you start again with the Discovery stage.
 
-## Next steps
+1. In Visual Studio Code, open the Command Palette (Keyboard: Ctrl+Shift+P).
+
+1. At the prompt, enter **Azure Logic Apps Migration Agent: Reset Migration**.
+
+## Related content
 
 - [Add a custom parser for a new platform](migration-agent-custom-parsers.md)

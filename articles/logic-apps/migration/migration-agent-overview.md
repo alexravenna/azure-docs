@@ -105,33 +105,6 @@ Explore your integration architecture through an interactive browser by using th
 | Gap analysis | Summary about features without a direct equivalent in Azure Logic Apps, including suggested resolutions. |
 | Patterns | Detected integration patterns such as publish-subscribe, request-reply, and batch processing. |
 
-## Prerequisites
-
-To use the Azure Logic Apps Migration Agent extension in Visual Studio Code, meet the following requirements:
-
-| Requirement | Purpose |
-|-------------|---------|
-| [Azure subscription - Get a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) | Deployment to Azure (Stage 5) |
-| [Azure CLI](/cli/azure/install-azure-cli) | Azure resource provisioning and deployment |
-| [Visual Studio Code 1.85.0 or later](https://code.visualstudio.com/download) | Runtime host |
-| [Azure Logic Apps (Standard) extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurelogicapps) | Required extension dependency |
-| [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) | Local functions runtime and development tasks |
-| [GitHub Copilot subscription](https://github.com/features/copilot/plans) | AI-powered analysis, planning, and conversion |
-| [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) | Local connector resource deployment for testing |
-
-## Extension settings
-
-The Azure Logic Apps Migration Agent extension in Visual Studio Code provides the following settings that you can update:
-
-| Setting | Description | Default | Options or examples |
-|---------|-------------|---------|---------------------|
-| `logicAppsMigrationAgent.deploymentModel` | The target deployment model for Azure Logic Apps (Standard) | `workflow-service-plan` | `hybrid` |
-| `logicAppsMigrationAgent.azure.subscriptionId` | The Azure subscription ID for deployment | (empty) | Not applicable |
-| `logicAppsMigrationAgent.azure.resourceGroup` | The Azure resource group for provisioning and testing | (empty) | Example: `integration-migration-tool-test-rg` |
-| `logicAppsMigrationAgent.azure.location` | The Azure region for provisioning resources | (empty) | Example: `eastus` |
-
-To view these settings, from the **File** menu, go to **Preferences** > **Settings** > **Extensions** > **Logic Apps Migration Agent**.
-
 ## Next steps
 
 > [!div class="nextstepaction"]
