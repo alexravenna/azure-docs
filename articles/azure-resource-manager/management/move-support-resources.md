@@ -1932,7 +1932,7 @@ If you need to move your SQL virtual machines resource, first delete the [SQL Ia
 ## Microsoft.VisualStudio
 
 > [!IMPORTANT]
-> See [Manage billing](/azure/devops/organizations/billing/change-azure-subscription?toc=/azure/azure-resource-manager/toc.json) to learn learn how to change the subscription for Azure DevOps.
+> See [Manage billing](/azure/devops/organizations/billing/change-azure-subscription?toc=/azure/azure-resource-manager/toc.json) to learn how to change the subscription for Azure DevOps.
 
 > [!div class="mx-tableFixed"]
 > | Resource type | Resource group | Subscription | Region move |
