@@ -1,7 +1,6 @@
 ---
-title: Quickstart - Migrate Workloads from Integration Platforms
-titleSuffix: Azure Logic Apps
-description: Migrate BizTalk Server or MuleSoft integration projects to Standard workflows in Azure Logic Apps by using the migration agent in Visual Studio Code.
+title: Quickstart - Migrate from Integration Platforms
+description: Automate migration for BizTalk Server, MuleSoft integration projects to Azure Logic Apps (Standard) by using the Migration Agent in Visual Studio Code.
 services: azure-logic-apps
 ms.suite: integration
 author: haroldcampos
@@ -9,12 +8,12 @@ ms.author: hcampos
 ms.reviewers: estfan, azla
 ms.topic: how-to
 ai-usage: ai-assisted
-ms.update-cycle: 180-days
-ms.date: 04/24/2026
-# Customer intent: As a developer who works with enterprise integration platforms, such as BizTalk Server, Mulesoft, or others, I want to learn how to quickly automate the migration process for my integration project to Standard workflows in Azure Logic Apps by using the Migration Agent extension in Visual Studio Code.
+ms.update-cycle: 365-days
+ms.date: 04/27/2026
+# Customer intent: As a developer who works with enterprise integration platforms, such as BizTalk Server, MuleSoft, and others, I want to learn how to quickly automate the migration process for my integration project to Standard workflows in Azure Logic Apps by using the Migration Agent extension in Visual Studio Code.
 ---
 
-# Quickstart: Migrate integration projects to Standard workflows in Azure Logic Apps (preview)
+# Quickstart: Automate migration for integration projects to Azure Logic Apps (Standard) (preview)
 
 [!INCLUDE [logic-apps-sku-standard](../includes/logic-apps-sku-standard.md)]
 
@@ -22,19 +21,19 @@ ms.date: 04/24/2026
 >
 > This preview feature is subject to the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-When your team needs to migrate workloads from legacy platforms like BizTalk Server to the cloud, you'll likely find the process complex, time-consuming, and challenging. To help simplify and ease this task, the Azure Logic Apps Migration Agent in Visual Studio Code automates this process through five guided stages.
+When your team needs to migrate workloads from legacy platforms like BizTalk Server to the cloud, you might find the process complex, time-consuming, and challenging. To help simplify and ease this task, the Azure Logic Apps Migration Agent in Visual Studio Code automates this process through five guided stages.
 
 This quickstart shows how to migrate an example integration workload from BizTalk Server to Standard workflows in Azure Logic Apps by using the Azure Logic Apps Migration Agent in Visual Studio Code. You learn how to install the extension, open your source project, and follow the agent as it walks you through the migration stages: Discovery, Planning, Conversion, Validation, and Deployment.
 
 > [!NOTE]
 >
-> Although the migration agent almost runs autonomously, it might prompt you to allow running specific commands for required tasks. To let the agent continue, select **Allow**.
+> Although the migration agent runs almost autonomously, it might prompt you to allow running specific commands for required tasks. To let the agent continue, select **Allow**.
 
-For more information, see [About Azure Logic Apps Migration Agent](migration-agent-overview.md).
+For more information, see [Migration automation from integration platforms to Azure Logic Apps](migration-agent-overview.md).
 
 ## Prerequisites
 
-Before you start, meet the following requirements:
+Before you start, make sure you meet the following requirements:
 
 | Requirement | Purpose |
 |-------------|---------|
@@ -46,17 +45,17 @@ Before you start, meet the following requirements:
 | [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) | Local functions runtime and development tasks |
 | [GitHub Copilot subscription](https://github.com/features/copilot/plans) | AI-powered analysis, planning, and conversion |
 | [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) | Local connector resource deployment for testing |
-| Folder with BizTalk Server or MuleSoft Anypoint projects | Folder that contains integration project folders with source artifacts and files. For example, a BizTalk project folder includes files with the *.btproj*, *.odx*, *.btm*, *.xsd*, and *.btp* file name extensions. |
+| Folder with BizTalk Server projects | Folder that contains integration project folders with source artifacts and files. For example, a BizTalk project folder includes files with the following file name extensions: `.btproj`, `.odx`, `.btm`, `.xsd`, and `.btp`. |
 
 ### 1: Install the Migration Agent extension
 
 1. Open Visual Studio Code.
 
-   Optionally, but recommended, open Visual Studio Code from the folder or directory where your integration projects exist, for example, **C:\Migration\<*project-folders*>**.
+   Optionally, but recommended, open Visual Studio Code from the folder or directory where your integration projects exist, for example, **C:\Migration\\<*project-folders*>**.
 
    :::image type="content" source="media/migration-agent-quickstart/migration-path.png" alt-text="Screenshot that shows the folder or directory with all integration project folders.":::
 
-1. On the Activity Bar, select **Extensions**. (Keyboard: Ctrl + Shift + X)
+1. On the Activity Bar, select **Extensions**. (Keyboard: Ctrl+Shift+X)
 
 1. In the **Extensions: Marketplace** search box, find the **Azure Logic Apps Migration Agent** extension, and select **Install**.
 
@@ -72,9 +71,9 @@ Before you start, meet the following requirements:
 
    > [!TIP]
    >
-   > To run this as a command, open the Command Palette (Keyboard: Ctrl+Shift+P). Enter and run **Azure Logic Apps Migration Agent: Select Source Folder**.
+   > To run this action as a command, open the Command Palette (Keyboard: Ctrl+Shift+P). Enter and run **Azure Logic Apps Migration Agent: Select Source Folder**.
 
-1. Find and select the source folder that contains your BizTalk, MuleSoft, or other integration projects, then select **Select Source Project Folder or MSI**.
+1. Find and select the source folder that contains your BizTalk, MuleSoft, or other integration projects, and then select **Select Source Project Folder or MSI**.
 
    :::image type="content" source="media/migration-agent-quickstart/migration-dialog.png" alt-text="Screenshot that shows Visual Studio Code with the Azure Logic Apps Migration Agent and the source folder with projects.":::
 
@@ -82,27 +81,27 @@ Before you start, meet the following requirements:
 
 1. Follow the agent as it walks you through each migration stage, starting with the Discovery stage.
 
-## Stage 1: Discovery
+## Migration stage 1: Discovery
 
-In this stage, the migration agent finds and catalogs the integration artifacts in your source project. During the discovery stage, the migration agent performs the following actions in the described order with occasional input from you.
+In this stage, the migration agent finds and catalogs the integration artifacts in your source project. During the discovery stage, the migration agent performs the following actions in the described order with occasional input from you. For more information, see [Migration agent: Discovery stage](migration-agent-discovery-stage.md).
 
 ### Step 1: Detect the source platform
 
-The migration agent determines your source platform, based on file patterns, such as BizTalk Server *.btproj* files.
+The migration agent determines your source platform, based on file patterns, such as BizTalk Server (`.btproj`) files.
 
-The following screenshot shows the identified platform and example found artifacts and dependencies:
+The following screenshot shows the identified platform with example detected artifacts and dependencies:
 
-:::image type="content" source="media/migration-agent-quickstart/discovery-stage.png" alt-text="Screenshot that shows the Azure Logic Apps Migration Agent extension and the Discovery stage with the found artifacts and dependencies.":::
+:::image type="content" source="media/migration-agent-quickstart/discovery-stage.png" alt-text="Screenshot that shows the Azure Logic Apps Migration Agent extension and the Discovery stage with the detected artifacts and dependencies.":::
 
 ### Step 2: Scan source files
 
-The migration agent scans the found source files by using the built-in parser for your platform. After the scan completes, the `@migration-analyser` Copilot agent analyzes the discovered artifacts and detects logical flow groups, which are sets of artifacts that work together.
+The migration agent scans the detected source files by using the built-in parser for your platform. After the scan completes, the `@migration-analyser` Copilot agent analyzes the discovered artifacts and detects logical flow groups, which are sets of artifacts that work together.
 
 The following screenshot shows how each example integration project maps to a logical flow group:
 
-:::image type="content" source="media/migration-agent-quickstart/discovery-stage-detail.png" alt-text="Screenshot that shows the Discovery stage details with the found artifacts and dependencies.":::
+:::image type="content" source="media/migration-agent-quickstart/discovery-stage-detail.png" alt-text="Screenshot that shows the Discovery stage details with the detected artifacts and dependencies.":::
    
-Generated logical flows don't always reflect a 1:1 relationship with legacy integration applications. The migration agent infers the flows that best reflect the legacy system's intgration artifacts, such as BizTalk workloads, as Standard workflows in Azure Logic Apps.
+Generated logical flows don't always reflect a 1:1 relationship with legacy integration applications. The migration agent infers the flows that best reflect the legacy system's integration artifacts, such as BizTalk workloads, as Standard workflows in Azure Logic Apps.
 
 > [!TIP]
 >
@@ -122,26 +121,28 @@ After the migration agent completes scanning and shows the resulting logical flo
 
    1. Generates a dependency graph that shows the relationships between artifacts.
 
-      The migration agent runs the following tasks to generate the dependency graph:
+      To generate the dependency graph, the migration agent runs the following tasks:
 
-      - Generate architecture (Mermaid) diagrams that show message flows and components.
-      - Identify missing dependencies.
-      - Perform a gap analysis for features.
-      - Detect integration patterns such as publish-subscribe, request-reply, and batch.
-      - Propose mappings for Azure Logic Apps or other services alternatives.
-      - Generate a discovery report based on the findings.
+      - Generates architecture (Mermaid) diagrams that show message flows and components.
+      - Identifies missing dependencies.
+      - Performs a gap analysis for features.
+      - Detects integration patterns such as publish-subscribe, request-reply, and batch.
+      - Proposes mappings for Azure Logic Apps or other services alternatives.
+      - Generates a discovery report based on the findings.
 
       After the migration agent successfully generates the dependency graph, the flow visualizer opens and shows the following interactive tabs:
    
       - **Architecture Diagram**
-      - **Mesage Flow**
+      - **Message Flow**
       - **Components**
       - **Missing Dependencies**
       - **Gap Analysis**
       - **Patterns**
       - **Learn BizTalk**
 
-      :::image type="content" source="media/migration-agent-quickstart/discovery-stage-analysis.png" alt-text="Screenshot that shows theflow visualizer with the results from the Discovery stage.":::
+      :::image type="content" source="media/migration-agent-quickstart/discovery-stage-analysis.png" alt-text="Screenshot that shows the flow visualizer with the results from the Discovery stage.":::
+
+      For more information, see [Flow visualization for integration architecture](migration-agent-overview.md#flow-visualization-for-integration-architecture).
 
 1. To review the analysis results, select a tab to review the related information.
 
@@ -151,7 +152,7 @@ After the migration agent completes scanning and shows the resulting logical flo
 
    | Action | Description |
    |--------|-------------|
-   | **Suggest a Change** | Request direct changes to the analysis. <br><br>**Tip**: To discuss potential updates or corrections to any flow group, in the flow visualizer, use the Copilot chat integration. Select a flow group and ask the `@migration-analyser` agent questions about the detected architecture. Provide information about any missing gaps, and then regenerate the analysis. |
+   | **Suggest a Change** | Request direct changes to the analysis. <br><br>**Tip**: To discuss potential updates or corrections to any flow group, in the flow visualizer, use the Copilot chat window. Select a flow group and ask the `@migration-analyser` agent questions about the detected architecture. Provide information about any missing gaps, and then regenerate the analysis. |
    | **Regenerate Analysis** | After you update the analysis, such as add a missing dependency, artifact, or specification, rerun the analysis. |
    | **Export Report** | Generate a report with the discovery results in a shareable format. |
 
@@ -159,7 +160,7 @@ After the migration agent completes scanning and shows the resulting logical flo
 
 1. When you finish, go to the next section for the Planning stage.
 
-## Stage 2: Planning
+## Migration stage 2: Planning
 
 After you finish your analysis, start the Planning stage by creating a migration roadmap to follow. 
 
@@ -175,7 +176,7 @@ After you finish your analysis, start the Planning stage by creating a migration
    | **Additional Azure components** | The explicit and non-explicit Azure component conversions required for the proposed design. |
    | **Operations mapping** | The one-to-one mappings from source platform components to their Standard workflow equivalents in Azure Logic Apps. |
    | **Artifact dispositions** | The artifacts that require conversion and their upload destinations. |
-   | **Migration gaps** | The components without direct equivalents and the recommended workarounds. |
+   | **Migration gaps** | The features or components without direct equivalents in Azure Logic Apps (Standard) and the recommended workarounds. |
    | **Integration patterns** | The detected patterns for the integration flow. |
    | **Summary** | A high-level overview about the proposed workflow. |
    | **Effort estimates** | The estimated complexity and effort for each flow. |
@@ -193,7 +194,7 @@ After you finish your analysis, start the Planning stage by creating a migration
 
 1. When you're ready, continue to the Conversion stage by selecting **Home Page** or returning to the **Home** tab.
 
-## Stage 3: Conversion
+## Migration stage 3: Conversion
 
 When you're satisfied with your migration plan, start the Conversion stage to generate conversion tasks that transform source artifacts into Standard workflows for Azure Logic Apps.
 
@@ -201,7 +202,7 @@ When you're satisfied with your migration plan, start the Conversion stage to ge
 
    :::image type="content" source="media/migration-agent-quickstart/create-conversion-tasks-stage.png" alt-text="Screenshot that shows the Conversion stage for generating conversion tasks.":::
 
-   The `@migration-converter` agent creates conversion tasks, which vary based your specific logical flow group. The conversion process produces complete, ready-to-run Standard workflow definitions. The `@migration-converter` agent uses the `no-stubs-code-generation` skill to make sure all generated code is fully functional.
+   The `@migration-converter` agent creates conversion tasks, which vary based on your specific logical flow group. The conversion process produces complete, ready-to-run Standard workflow definitions. The `@migration-converter` agent uses the `no-stubs-code-generation` skill to make sure all generated code is fully functional.
    
    The following example shows sample task plans for a logical flow group named `Method Call Processing`:
 
@@ -217,21 +218,21 @@ When you're satisfied with your migration plan, start the Conversion stage to ge
 
       Migrates the *OutputSchema.xsd* file from BizTalk format, which is UTF-16 with BizTalk annotations, to standard XSD, which is UTF-8 without BizTalk annotations.
 
-   1. **Generate <*connector-name*> Connections**
+   1. **Generate \<*connector-name*\> Connections**
    
-      Creates or updates the *connections.json* file that contains the configurations for the required <*connector-name*> connection.
+      Creates or updates the *connections.json* file that contains the configurations for each required connection.
 
-   1. **Generate <*workflow-name*> Workflow**
+   1. **Generate \<*workflow-name*\> Workflow**
 
       Creates the *workflow.json* file that contains the Standard workflow definition in Azure Logic Apps for the logical flow group.
 
-   1. **Generate Local Functions (<*function-names*>)**
+   1. **Generate Local Functions (\<*function-names*\>)**
 
       Creates .NET 8 local functions for custom logic in the source code.
 
    1. **Validate Runtime (func start)**
 
-      Validates the logic app project by running `func start`to confirm that all functions and workflows are ready.
+      Validates the logic app project by running `func start` to confirm that all functions and workflows are ready.
 
    1. **E2E Testing (Happy Path & Error Path)**
 
@@ -243,7 +244,7 @@ When you're satisfied with your migration plan, start the Conversion stage to ge
 
    1. **Cloud Deployment & Testing (Optional)**
 
-      Deploys to Azure and run cloud E2E tests.
+      Deploys to Azure and runs cloud E2E tests.
 
 1. To run each conversion task, select **Execute**, and then stop before **Cloud Deployment & Testing**.
 
@@ -253,9 +254,9 @@ When you're satisfied with your migration plan, start the Conversion stage to ge
 
 1. When you finish, continue to the Validation stage by selecting **Home Page** or returning to the **Home** tab.
 
-## Stage 4: Validation
+## Migration stage 4: Validation
 
-After the migration agent completes converting your source artifacts to Standard workflows, test the generated workflows against your source specifications. The `@migration-converter` agent provides runtime validation and testing guidance. 
+After the migration agent converts your source artifacts to Standard workflows, test the generated workflows against your source specifications. The `@migration-converter` agent provides runtime validation and testing guidance. 
 The Validation stage lets you bring your own test cases and specifications. Your goal is to confirm that your converted workflow performs as expected.
 
 For this stage, complete the following tasks:
@@ -270,7 +271,7 @@ For this stage, complete the following tasks:
 
 1. Locally run the generated workflows by using the Azure Functions runtime and the Docker Desktop.
 
-   For example, if you haven't done so, run the **Black Box Tests (Optional)** task with external test data that you provide:
+   For example, if you didn't already, run the **Black Box Tests (Optional)** task with external test data that you provide:
 
    :::image type="content" source="media/migration-agent-quickstart/validation-stage-blackbox.png" alt-text="Screenshot that shows optional Black Box Tests.":::
 
@@ -278,7 +279,7 @@ For this stage, complete the following tasks:
 
 1. Identify and fix any discrepancies.
 
-## Stage 5: Deployment
+## Migration stage 5: Deployment
 
 This last stage deploys your migrated solution to Azure Logic Apps.
 
@@ -305,7 +306,7 @@ This last stage deploys your migrated solution to Azure Logic Apps.
    
 ## Reset the migration
 
-For whatever reason, you can always restart your migration from the beginning. The following command clears the migration state and lets you start again with the Discovery stage.
+You can restart your migration from the beginning. The following command clears the migration state and lets you start again with the Discovery stage.
 
 1. In Visual Studio Code, open the Command Palette (Keyboard: Ctrl+Shift+P).
 
@@ -313,4 +314,10 @@ For whatever reason, you can always restart your migration from the beginning. T
 
 ## Related content
 
-- [Add a custom parser for a new platform](migration-agent-custom-parsers.md)
+- []
+- [Migration agent stage 1: Discovery](migration-agent-discovery-stage.md)
+- [Migration agent stage 2: Planning](migration-agent-planning-stage.md)
+- [Migration agent stage 3: Conversion](migration-agent-conversion-stage.md)
+- [Migration agent stage 4: Validation](migration-agent-validation-stage.md)
+- [Migration agent stage 5: Deployment](migration-agent-deployment-stage.md)
+- [Add custom parsers for integration platforms](migration-agent-custom-parsers.md)

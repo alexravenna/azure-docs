@@ -219,6 +219,8 @@ items:
         href: migration/migration-agent-overview.md
       - name: Quickstart- Migrate to Azure Logic Apps
         href: migration/migration-agent-quickstart.md
+      - name: Stage 1 (Discovery) - Catalog artifacts
+        href: migration/migration-agent-discovery-stage.md
   - name: Develop
     items:
     - name: Add a trigger or action to a workflow
