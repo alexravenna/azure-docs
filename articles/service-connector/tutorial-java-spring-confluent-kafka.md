@@ -1,174 +1,159 @@
 ---
-title: 'Tutorial: Deploy a Spring Boot app connected to Apache Kafka on Confluent Cloud with Service Connector in Azure Spring Apps'
-description: Create a Spring Boot app connected to Apache Kafka on Confluent Cloud with Service Connector in Azure Spring Apps.
+title: 'Tutorial: Use Service Connector to connect a Spring Boot app to Kafka on Confluent Cloud
+description: Create a Spring Boot app in Azure Spring Apps and connect it to Apache Kafka on Confluent Cloud by using Service Connector.
 ms.devlang: java
 author: maud-lv
 ms.author: malev
 ms.service: service-connector
 ms.topic: tutorial
-ms.date: 11/20/2023
+ms.date: 04/21/2026
 ms.custom:
   - devx-track-extended-java
   - devx-track-azurecli
   - sfi-image-nochange
+#customer intent: As a Java app developer and Confluent Cloud user, I want to learn how to use Service Connector to connect Azure Spring Apps and other services to my Confluent Cloud instance, so I can easily use Confluent Cloud in my apps.
 ---
 
-# Tutorial: Deploy a Spring Boot app connected to Apache Kafka on Confluent Cloud with Service Connector in Azure Spring Apps
+# Tutorial: Connect a Spring Boot app to Kafka on Confluent Cloud
 
-Learn how to access Apache Kafka on Confluent Cloud for a Spring Boot application running on Azure Spring Apps. In this tutorial, you complete the following tasks:
+In this tutorial, you learn how to connect a Spring Boot application running on Azure Spring Apps to Apache Kafka on Confluent Cloud by using Service Connector. You complete the following tasks:
 
 > [!div class="checklist"]
-> * Create Apache Kafka on Confluent Cloud
-> * Create a Spring Cloud application
-> * Build and deploy the Spring Boot app
-> * Connect Apache Kafka on Confluent Cloud to Azure Spring Apps using Service Connector
+> * Create an Apache Kafka on Confluent Cloud instance.
+> * Create a Spring Cloud application.
+> * Build and deploy a Spring Boot app.
+> * Connect Apache Kafka on Confluent Cloud to Azure Spring Apps using Service Connector.
 
-[!INCLUDE [deprecation-note](../spring-apps/includes/deprecation-note.md)]
-
-> [!WARNING]
-> Microsoft recommends that you use the most secure authentication flow available. The authentication flow described in this procedure requires a very high degree of trust in the application, and carries risks that are not present in other flows. You should only use this flow when other more secure flows, such as managed identities, aren't viable.
+>[!IMPORTANT]
+>On March 17, 2025, all Azure Spring Apps Basic, Standard, and Enterprise plans entered a three-year retirement period, and will be fully retired on March 31, 2028. As of March 17, 2025, no new Azure Spring Apps plans or apps can be created. For more information, see the [Azure Spring Apps retirement announcement](/azure/spring-apps/basic-standard/retirement-announcement).
 
 ## Prerequisites
 
-* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- An Azure subscription with write permissions for the tutorial resources, in an Azure region that [supports Service Connector](concept-region-support.md) and has sufficient [App Service support and quota](/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-app-service-limits) for the tutorial resources.
+- [Git](https://git-scm.com/) to clone the sample repo.
 
-* Java 8 or a more recent version with long-term support (LTS) 1.
+- Java 8 or a more recent version with long-term support.
 
-[!INCLUDE [azure-cli-prepare-your-environment-no-header.md](~/reusable-content/azure-cli/azure-cli-prepare-your-environment-no-header.md)]
+- [Azure Cloud Shell](/azure/cloud-shell/get-started/classic) to run the tutorial steps, or if you prefer to run locally:
+  1. Install [Azure CLI](/cli/azure/install-azure-cli) 2.30.0 or higher. To check your version, run `az --version`. To upgrade, run `az upgrade`.
+  1. Sign in to Azure by using `az login` and following the prompts. If you have more than one subscription connected to your sign-in credentials, run `az account set --subscription <subscription-ID>` to select a subscription.
 
-## Clone or download the sample app
+- The Service Connector `Microsoft.ServiceLinker` resource provider registered for your subscription. To register the provider, go to **Settings** > **Resource providers** in the Azure portal, or run the Azure CLI command `az provider register -n Microsoft.ServiceLinker`.
 
-1. Clone the sample repository:
+## Set up the sample repo
 
-    ```Bash
-    git clone https://github.com/Azure-Samples/serviceconnector-springcloud-confluent-springboot/
-    ```
+1. Run the following commands to clone the sample repo and change directories into the sample app project folder.
 
-1. Navigate into the following folder:
+   ```bash
+   git clone https://github.com/Azure-Samples/serviceconnector-springcloud-confluent-springboot/
+   cd serviceconnector-springcloud-confluent-springboot
+   ```
 
-    ```Bash
-    cd serviceconnector-springcloud-confluent-springboot
-    ```
+## Create a Kafka for Confluent Cloud organization
 
-## Prepare cloud services
+1. Create an instance of Apache Kafka for Confluent Cloud by following the instructions at [Quickstart: Create a Confluent resource in the Azure portal](/azure/partner-solutions/apache-kafka-confluent-cloud/create).
 
-### Create an instance of Apache Kafka for Confluent Cloud
+>[!IMPORTANT]
+>To create a Confluent resource, you must [subscribe to Confluent Cloud](/azure/partner-solutions/apache-kafka-confluent-cloud/overview#subscribe-to-confluent-cloud).
 
-Create an instance of Apache Kafka for Confluent Cloud by following [this guidance](../partner-solutions/apache-kafka-confluent-cloud/create.md).
+1. Sign in to Confluent Cloud using the single sign-on (SSO) URL that Azure provides.
 
-### Create Kafka cluster and schema registry on Confluent Cloud
+   :::image type="content" source="media/tutorial-java-spring-confluent-kafka/azure-confluent-sso-login.png" alt-text="Screenshot showing the link of Confluent Cloud SSO login using Azure portal." lightbox="media/tutorial-java-spring-confluent-kafka/azure-confluent-sso-login.png":::
 
-1. Sign in to Confluent Cloud using the SSO provided by Azure
+1. In the default environment or a new one, create a Kafka cluster using the following settings:
 
-    :::image type="content" source="media/tutorial-java-spring-confluent-kafka/azure-confluent-sso-login.png" alt-text="The link of Confluent cloud SSO login using Azure portal" lightbox="media/tutorial-java-spring-confluent-kafka/azure-confluent-sso-login.png":::
+   * Cluster type: Standard
+   * Region/zones: The region that contains your Confluent Cloud resource, Single Zone
+   * Cluster name: `cluster_1`.
 
-1. Use the default environment or create a new one
+   :::image type="content" source="media/tutorial-java-spring-confluent-kafka/confluent-cloud-env.png" alt-text="Screenshot showing the cloud environment of Apache Kafka on Confluent Cloud." lightbox="media/tutorial-java-spring-confluent-kafka/confluent-cloud-env.png":::
 
-    :::image type="content" source="media/tutorial-java-spring-confluent-kafka/confluent-cloud-env.png" alt-text="Cloud environment of Apache Kafka on Confluent Cloud" lightbox="media/tutorial-java-spring-confluent-kafka/confluent-cloud-env.png":::
+1. In **Cluster overview** > **Cluster settings**, make a note of the Kafka **Bootstrap server** URL.
 
-1. Create a Kafka cluster with the following information:
+   :::image type="content" source="media/tutorial-java-spring-confluent-kafka/confluent-cluster-setting.png" alt-text="Screenshot showing Cluster settings of Apache Kafka on Confluent Cloud." lightbox="media/tutorial-java-spring-confluent-kafka/confluent-cluster-setting.png":::
 
-    * Cluster type: Standard
-    * Region/zones: eastus(Virginia), Single Zone
-    * Cluster name: `cluster_1` or any other name.
+1. Under **Data integration** > **API Keys**, create API keys for the cluster using ** Add Key** with **Global access**. Make a note of the key and secret.
 
-1. In **Cluster overview** -> **Cluster settings**, note the Kafka **Bootstrap server** URL.
+1. In **Topics** > **Add topic**, create a topic named `test` with partitions 6.
 
-    :::image type="content" source="media/tutorial-java-spring-confluent-kafka/confluent-cluster-setting.png" alt-text="Cluster settings of Apache Kafka on Confluent Cloud" lightbox="media/tutorial-java-spring-confluent-kafka/confluent-cluster-setting.png":::
+1. Under **default environment**, select the **Schema Registry** tab. Enable the Schema Registry and make a note of the **API endpoint**.
 
-1. Create API keys for the cluster in **Data integration** -> **API Keys** -> **+ Add Key** with **Global access**. Note down the key and secret.
-1. Create a topic named `test` with partitions 6 in **Topics** -> **+ Add topic**
-1. Under **default environment**, select the **Schema Registry** tab. Enable the Schema Registry and note down the **API endpoint**.
-1. Create API keys for schema registry. Save the key and secret.
+1. Create API keys for schema registry. Make a note of the key and secret.
 
-### Create an Azure Spring Apps instance
+## Create an Azure Spring Apps instance
 
-Create an instance of Azure Spring Apps by following [the Azure Spring Apps quickstart](../spring-apps/basic-standard/quickstart.md) in Java. Make sure your Azure Spring Apps instance is created in [a region that has Service Connector support](concept-region-support.md).
+>[!IMPORTANT]
+>As of March 17, 2025, no new Azure Spring Apps plans or apps can be created. For more information, see [Azure Spring Apps retirement announcement](/azure/spring-apps/basic-standard/retirement-announcement).
 
-## Build and deploy the app
+1. Create an instance of Azure Spring Apps by following the instructions at [Quickstart: Deploy your first application to Azure Spring Apps](/azure/spring-apps/basic-standard/quickstart). Make sure to create the instance in a region that has [Service Connector support](concept-region-support.md).
 
-### Build the sample app and create a new spring app
+1. Build the project using [Gradle](https://gradle.org/).
 
-1. Sign in to Azure and choose your subscription.
+   ```Bash
+   ./gradlew build
+   ```
 
-    ```azurecli
-    az login
+1. Create the app with a public endpoint assigned.
 
-    az account set --subscription <Name or ID of your subscription>
-    ```
+   ```azurecli
+   az spring app create -n hellospring -s <service-instance-name> -g <your-resource-group-name> --assign-endpoint true
+   ```
 
-1. Build the project using gradle.
+## Create the service connection
 
-    ```Bash
-    ./gradlew build
-    ```
+Use Azure CLI or the Azure portal to connect your Apache Kafka on Confluent Cloud instance to your Spring Cloud app.
 
-1. Create the app with a public endpoint assigned. If you selected Java version 11 when generating the Spring Cloud project, include the `--runtime-version=Java_11` switch.
-
-    ```azurecli
-    az spring app create -n hellospring -s <service-instance-name> -g <your-resource-group-name> --assign-endpoint true
-    ```
-
-## Create a service connection using Service Connector
+> [!IMPORTANT]
+> The connection authentication flow in this procedure requires a high degree of trust in the application, and carries risks not present in other flows. You should use this flow only when more secure flows, such as managed identities, aren't viable.
 
 #### [CLI](#tab/Azure-CLI)
 
-Run the following command to connect your Apache Kafka on Confluent Cloud to your spring cloud app.
+Run the following command, replacing the placeholders with your information.
+
+* `<resource-group-name>`: Azure Spring Apps instance resource group.
+* `<kafka-bootstrap-server-url>`: Kafka bootstrap server URL, for example `pkc-xxxx.eastus.azure.confluent.cloud:9092`.
+* `<cluster-api-key>` and `<cluster-api-secret>`: Cluster API key and secret.
+* `<kafka-schema-registry-endpoint>`: Kafka Schema Registry endpoint, for example `https://psrc-xxxx.westus2.azure.confluent.cloud`.
+* `<registry-api-key>` and `<registry-api-secret>`: Kafka Schema Registry API key and secret.
 
 ```azurecli
-az spring connection create confluent-cloud -g <your-spring-cloud-resource-group> --service <your-spring-cloud-service> --app <your-spring-cloud-app> --deployment <your-spring-cloud-deployment> --bootstrap-server <kafka-bootstrap-server-url> --kafka-key <cluster-api-key> --kafka-secret <cluster-api-secret> --schema-registry <kafka-schema-registry-endpoint> --schema-key <registry-api-key> --schema-secret <registry-api-secret>
+az spring connection create confluent-cloud -g <spring-cloud-resource-group> --service <spring-cloud-service> --app <spring-cloud-app> --deployment <spring-cloud-deployment> --bootstrap-server <kafka-bootstrap-server-url> --kafka-key <cluster-api-key> --kafka-secret <cluster-api-secret> --schema-registry <kafka-schema-registry-endpoint> --schema-key <registry-api-key> --schema-secret <registry-api-secret>
 ```
-
-Replace the following placeholder texts with your own data:
-
-* Replace *`<your-resource-group-name>`* with the resource group name that you created for your Apps Spring Apps instance.
-* Replace *`<kafka-bootstrap-server-url>`* with your Kafka bootstrap server URL. For example: `pkc-xxxx.eastus.azure.confluent.cloud:9092`.
-* Replace *`<cluster-api-key>`* and *`<cluster-api-secret>`* with your cluster API key and secret.
-* Replace *`<kafka-schema-registry-endpoint>`* with your Kafka Schema Registry endpoint. For example: `https://psrc-xxxx.westus2.azure.confluent.cloud`.
-* Replace *`<registry-api-key>`* and *`<registry-api-secret>`* with your kafka Schema Registry API key and secret.
-
-> [!NOTE]
-> If you see the error message "The subscription is not registered to use Microsoft.ServiceLinker", please run `az provider register -n Microsoft.ServiceLinker` to register the Service Connector resource provider and run the connection command again.
 
 #### [Portal](#tab/Azure-portal)
 
-Select **Service Connector** and enter the following settings.
+1. On your Spring App portal page, select **Service Connector** from the left navigation menu and enter the following settings.
 
-| Setting      | Suggested value  | Description                               |
-| ------------ |  ------- | -------------------------------------------------- |
-| **Service Type** | Apache Kafka on Confluent cloud | Target service type. If you don't have an Apache Kafka on Confluent Cloud target service, complete the previous steps in this tutorial. |
-| **Name** | Generated unique name | The connection name that identifies the connection between your Spring Cloud and target service.  |
-| **Kafka bootstrap server url** | Your Kafka bootstrap server url. | Enter the value from earlier step: "Create Kafka cluster and schema registry on Confluent Cloud". |
-| **Cluster API Key** | Your cluster API key. | Your cluster API key. |
-| **Cluster API Secret** |  Your cluster API secret. | Your cluster API secret. |
-| **Create connection for schema registry**  | Checked | Also create a connection to the schema registry. |
-| **Schema Registry endpoint** | Your Kafka Schema Registry endpoint.  |  |
-| **Schema Registry API Key** | Your Kafka Schema Registry API Key. |Your Kafka Schema Registry API Key. |
-| **Schema Registry API Secret** | Your Kafka Schema Registry API Secret. |Your Kafka Schema Registry API Secret. |
+   - **Service Type**: Select **Apache Kafka on Confluent cloud**.
+   - **Name**: Generated unique connection name.
+   - **Kafka bootstrap server URL**: Enter the bootstrap server URL, for example `pkc-xxxx.eastus.azure.confluent.cloud:9092`. 
+   - **Cluster API Key**: Enter your cluster API key.
+   - **Cluster API Secret**: Enter your cluster API secret.
+   - **Create connection for schema registry**: Select to also create a connection to the schema registry. 
+   - **Schema Registry endpoint**: Enter your Kafka Schema Registry endpoint.
+   - **Schema Registry API Key**: Enter your Kafka Schema Registry API Key.
+   - **Schema Registry API Secret**: Enter your Kafka Schema Registry API Secret.
 
-Select **Review + Create** to review the connection settings. Then select **Create** to create start creating the service connection.
+1. Select **Review + Create** to review the connection settings, and then select **Create**.
 
 ---
 
 ## Deploy the JAR file
 
-Run the following command to upload the JAR file (`build/libs/java-springboot-0.0.1-SNAPSHOT.jar`) to your Spring Cloud app.
+Run the following command to upload the JAR file *build/libs/java-springboot-0.0.1-SNAPSHOT.jar* to your Spring Cloud app.
 
 ```azurecli
-az spring app deploy -n hellospring -s <service-instance-name> -g <your-resource-group-name>  --artifact-path build/libs/java-springboot-0.0.1-SNAPSHOT.jar
+az spring app deploy -n hellospring -s <service-instance-name> -g <resource-group-name>  --artifact-path build/libs/java-springboot-0.0.1-SNAPSHOT.jar
 ```
 
 ## Validate the Kafka data ingestion
 
-Navigate to your Spring Cloud app's endpoint from the Azure portal and select the application URL. You'll see "10 messages were produced to topic test".
+1. On the Azure portal page for your Spring Cloud app, select **Browse** or **Default domain** near the top of the page.You should see the message **10 messages were produced to topic test**.
 
-Then go to the Confluent portal and the topic's page will show production throughput.
+1. Go to the topic page in the Confluent portal to see production throughput.
 
-:::image type="content" source="media/tutorial-java-spring-confluent-kafka/confluent-sample-metrics.png" alt-text="Sample metrics" lightbox="media/tutorial-java-spring-confluent-kafka/confluent-sample-metrics.png":::
+   :::image type="content" source="media/tutorial-java-spring-confluent-kafka/confluent-sample-metrics.png" alt-text="Screenshot showing sample metrics." lightbox="media/tutorial-java-spring-confluent-kafka/confluent-sample-metrics.png":::
 
-## Next steps
+## Related content
 
-Follow the tutorials listed below to learn more about Service Connector.
-
-> [!div class="nextstepaction"]
-> [Learn about Service Connector concepts](./concept-service-connector-internals.md)
+- [Service Connector concepts](concept-service-connector-internals.md)
