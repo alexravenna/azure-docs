@@ -272,7 +272,7 @@ Use clear, specific prompts — Ensure prompts are explicit about your goal, the
 
 Example Prompt
 
-Using my indexed knowledge base documents on <TOPIC>, propose 3 testable hypotheses for <RESEARCH GOAL>. For each hypothesis: (a) summarize the supporting evidence, (b) cite the specific source(s) used, and (c) list 2–3 experiments to validate it. If evidence is missing or weak, say so explicitly and suggest what additional data would be needed.
+Using my indexed knowledge base documents on \<TOPIC>, propose 3 testable hypotheses for \<RESEARCH GOAL>. For each hypothesis: (a) summarize the supporting evidence, (b) cite the specific source(s) used, and (c) list 2–3 experiments to validate it. If evidence is missing or weak, say so explicitly and suggest what additional data would be needed.
 
 Monitor for performance drift — Because output quality and groundedness depend on the data available for grounding and how agents/tools are configured, results may change as your knowledge base, tools, or workflows evolve. To detect drift:
 
@@ -316,4 +316,4 @@ Learn more about responsible AI
 
 - [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai)
 - [Microsoft responsible AI resources](https://www.microsoft.com/ai/tools-practices)
-- [Microsoft Azure Learning courses on responsible AI](https://docs.microsoft.com/en-us/learn/paths/responsible-ai-business-principles/)
+- [Microsoft Azure Learning courses on responsible AI](/training/paths/responsible-ai-business-principles/)
