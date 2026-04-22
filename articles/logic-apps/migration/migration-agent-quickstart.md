@@ -1,6 +1,6 @@
 ---
 title: Quickstart - Migrate from Integration Platforms
-description: Automate migration for BizTalk Server, MuleSoft integration projects to Azure Logic Apps (Standard) by using the Migration Agent in Visual Studio Code.
+description: "Automate migration for BizTalk Server, MuleSoft integration projects to Azure Logic Apps (Standard) by using the Migration Agent in Visual Studio Code."
 services: azure-logic-apps
 ms.suite: integration
 author: haroldcampos

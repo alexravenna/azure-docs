@@ -1,7 +1,7 @@
 ---
 title: Migration Automation from Integration Platforms
 titleSuffix: Azure Logic Apps
-description: Learn about automated migration from BizTalk Server, MuleSoft, and other integration platforms to Azure Logic Apps (Standard) with the Migration Agent in Visual Studio Code.
+description: "Learn about automated migration from BizTalk Server, MuleSoft, and other integration platforms to Azure Logic Apps (Standard) with the Migration Agent in Visual Studio Code."
 services: azure-logic-apps
 ms.suite: integration
 author: haroldcampos

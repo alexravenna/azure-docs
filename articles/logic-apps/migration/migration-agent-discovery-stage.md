@@ -1,6 +1,6 @@
 ---
 title: "Migration Stage 1 - Discovery: Catalog Artifacts"
-description: Learn how the Migration Agent scans, analyzes, and catalogs source artifacts in the Discovery stage for migrating to Azure Logic Apps (Standard).
+description: "Learn how the Migration Agent scans, analyzes, and catalogs source artifacts in the Discovery stage for migrating to Azure Logic Apps (Standard)".
 services: azure-logic-apps
 ms.suite: integration
 author: haroldcampos
@@ -21,7 +21,9 @@ ms.date: 04/27/2026
 >
 > This preview feature is subject to the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-When you start the migration process, you need to first inventory and understand the source artifacts in your integration projects. In Visual Studio Code, the Azure Logic Apps Migration Agent workflow begins with the Discovery stage by scanning your source project files, detecting the source platform, and cataloging the artifacts and dependencies. The agent then identifies the logical flow groups, architecture, and migration gaps so you can enter the Planning stage with the necessary information to generate your migration plan.
+Before you can start a migration, you need to understand the artifacts in your source integration projects. In Visual Studio Code, the Azure Logic Apps Migration Agent helps automate this task by scanning your source project files during the Discovery stage, detecting the source platform, and cataloging artifacts and dependencies. The agent then identifies logical flow groups, architecture, and migration gaps so you have the information you need to move to the Planning stage.
+
+This article explains how the Azure Logic Apps Migration Agent scans your source, inventories your project assets, and generates a visualization that describes your integration architecture with its components and dependencies.
 
 ## Discovery stage actions and events
 
@@ -65,7 +67,7 @@ After you start the source design analysis for a logical flow group, the migrati
 
 The following example shows a sample flow visualization and results:
 
-:::image type="content" source="media/migration-agent-discovery-stage/discovery-stage-analysis.png" alt-text="Screenshot that shows an example flow visualization with the results from the Discovery stage.":::
+:::image type="content" source="media/migration-agent-discovery-stage/discovery-stage-analysis.png" alt-text="Screenshot that shows an example flow visualization from the Discovery stage analysis results.":::
 
 You can switch between the interactive tabs to review your integration architecture. To learn more about this architecture, you can use the GitHub Copilot chat window to ask the `@migration-analyser` agent questions about the detected architecture, request corrections, and regenerate the analsysis.
 

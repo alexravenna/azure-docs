@@ -1,6 +1,6 @@
 ---
 title: "Migration Stage 2 - Planning: Create Migration Plan"
-description: Learn how the Migration Agent generates roadmaps or plans in the Planning stage for migrating to Azure Logic Apps (Standard).
+description: "Learn how the Migration Agent creates migration plans in the Planning stage for Azure Logic Apps (Standard)."
 services: azure-logic-apps
 ms.suite: integration
 author: haroldcampos
@@ -21,9 +21,11 @@ ms.date: 04/27/2026
 >
 > This preview feature is subject to the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-The previous Discovery stage gives you concrete information about your integration project's design, artifacts, components, and dependencies. However, you still face a key challenge: turning inventory into an executable migration roadmap. You need information about how artifacts and components map to equivalents in Azure Logic Apps (Standard), which parts might need redesign, and how much effort these activities take before you start the conversion process. 
+Although the previous Discovery stage gives you concrete information about your integration project's design, artifacts, components, and dependencies, you still face a key challenge: turning inventory into an executable migration roadmap. You need information about how artifacts and components map to equivalents in Azure Logic Apps (Standard), which parts might need redesign, and how much effort these activities take before you start the conversion process.
 
-For the Planning stage, the Azure Logic Apps Migration Agent in Visual Studio Code uses the cataloged artifacts from the Discovery stage and generates a detailed migration plan for each logical flow group. This migration plan includes action mappings, migration gaps with recommended approaches, effort estimates, and task plans. With this knowledge, you can move on to the Conversion stage with greater predictability and a clear, low-risk plan.
+In the Planning stage, the Azure Logic Apps Migration Agent in Visual Studio Code uses the cataloged artifacts and generates a detailed migration plan for each logical flow group. This migration plan includes action mappings, migration gaps with recommended approaches, effort estimates, and task plans. With this knowledge, you can move on to the Conversion stage with greater predictability and a clear, low-risk plan.
+
+This article explains how the Azure Logic Apps Migration Agent creates a migration plan during the Planning stage. You can then use this migration plan to map source artifacts to Azure Logic Apps (Standard), identify redesign gaps, and estimate effort before you start the conversion process.
 
 ## Planning stage actions and events
 
@@ -43,7 +45,7 @@ In the Azure Logic Apps Migration Agent for Visual Studio Code, after you comple
 
    The following example shows a sample generated migration plan:
 
-   :::image type="content" source="media/migration-agent-planning-stage/planning-stage-main.png" alt-text="Screenshot that shows the Planning stage with the migration plan for a logical group flow and action mappings.":::
+   :::image type="content" source="media/migration-agent-planning-stage/planning-stage-main.png" alt-text="Screenshot that shows the Planning stage with the migration plan for a logical flow group and action mappings.":::
 
 The following sections provide more information about specific migration plan areas:
 
@@ -96,4 +98,4 @@ To help you better understand the plan and determine whether you need to make up
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Migration agent stage 3 - Conversion:  - ](migration-agent-planning-stage.md)
+> [Migration agent stage 3 - Conversion:  - ](migration-agent-conversion-stage.md)
