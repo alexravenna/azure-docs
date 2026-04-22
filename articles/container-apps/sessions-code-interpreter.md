@@ -412,7 +412,6 @@ The list endpoint supports skip-based pagination. By default, each page returns 
 | Field | Type | Description |
 |-------|------|-------------|
 | `value` | SessionView[] | Array of session objects |
-| `count` | integer | Number of sessions in the current page |
 | `nextLink` | string | URL for the next page (null if no more results) |
 
 #### Example pagination loop
@@ -451,7 +450,6 @@ Example response (HTTP 200):
       "lastAccessedAt": "2026-04-30T14:29:00Z"
     }
   ],
-  "count": 2,
   "nextLink": "https://eastasia.dynamicsessions.io/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myrg/sessionPools/mysessionpool/listSessions?skip=300"
 }
 ```
