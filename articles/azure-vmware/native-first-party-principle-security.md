@@ -24,7 +24,7 @@ You must have the permissions to edit applications in your Microsoft Entra ID te
 
 ## Enable first-party application service principal for Azure VMware Solution Gen 2 Private Clouds
 
-There are two options to enable the service principal for Azure VMware Solution. You can use either the **Microsoft Entra ID** portal or Azure PowerShell. The following sections describe both options.
+There are two options to enable the service principal for Azure VMware Solution. You can use the **Microsoft Entra ID** portal or Azure PowerShell. The following sections describe both options.
 
 ### Option 1: From the Portal  
 
@@ -68,7 +68,7 @@ Azure VMware Solution Gen 2 relies on **two first-party applications** in Micros
 
 Both apps must be enabled for proper operation of the Azure VMware Solution control plane.  
 
-If customers **delete either application ID** (for example, during a tenant cleanup), they can recover functionality by re-enabling the applications on the same page in Microsoft Entra ID. Make sure that **both the Avs Fleet Rp and AzS VIS Prod App** are set to **Enabled for users to sign-in**.  
+If customers **delete either application ID** (for example, during a tenant cleanup), they can recover functionality by re-enabling the applications on the same page in Microsoft Entra ID. Ensure both the **Avs Fleet Rp** and **AzS VIS Prod App** are set to **Enabled** for users to sign-in.  
 
 To help customers quickly identify issues, we added an **error check** that validates the presence of both apps. If either app is missing or disabled, the error message clearly indicates the required fix and provides a link back to this documentation for guidance.  
 
