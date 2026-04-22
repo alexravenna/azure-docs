@@ -24,13 +24,13 @@ This tutorial uses Azure CLI to complete the following tasks:
 >[!IMPORTANT]
 >On March 17, 2025, Azure Spring Apps entered a three-year retirement period, and will be fully retired on March 31, 2028. As of March 17, 2005, no new Azure Spring Apps plans or apps can be created. For more information, see the [Azure Spring Apps retirement announcement](/azure/spring-apps/basic-standard/retirement-announcement).
 
-Because of the [Azure Spring Apps retirement](/azure/spring-apps/basic-standard/retirement-announcement), you can run the Azure Spring Apps parts of this tutorial only if you have an preexisting Azure Spring Apps plan, and then only until March 31, 2028. For other ways to connect Java JBoss apps to Azure Database for MySQL using Service Connector, see [Tutorial: Connect to a MySQL database from Java JBoss EAP using passwordless connection](tutorial-java-jboss-connect-managed-identity-mysql-database.md) and [Integrate Azure Database for MySQL with Service Connector](how-to-integrate-mysql.md).
+Because of the [Azure Spring Apps retirement](/azure/spring-apps/basic-standard/retirement-announcement), you can run the Azure Spring Apps parts of this tutorial only if you have a preexisting Azure Spring Apps plan, and then only until March 31, 2028. For other ways to connect Java apps to Azure Database for MySQL using Service Connector, see [`Tutorial: Connect to a MySQL database from Java JBoss EAP using passwordless connection`](tutorial-java-jboss-connect-managed-identity-mysql-database.md) and [Integrate Azure Database for MySQL with Service Connector](how-to-integrate-mysql.md).
 
 ## Prerequisites
 
 - An Azure subscription with write permissions for the tutorial resources, in an Azure region that [supports Service Connector](concept-region-support.md) and has sufficient [App Service support and quota](/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-app-service-limits) for the tutorial resources.
 
-- An existing Azure Spring Apps plan. Due to the upcoming [Azure Spring Apps retirement](/azure/spring-apps/basic-standard/retirement-announcement), you can run the Azure Spring Apps parts of this tutorial only if you have an preexisting Azure Spring Apps plan, and only until March 31, 2028.
+- An existing Azure Spring Apps plan. Due to the upcoming [Azure Spring Apps retirement](/azure/spring-apps/basic-standard/retirement-announcement), you can run the Azure Spring Apps parts of this tutorial only if you have a preexisting Azure Spring Apps plan, and only until March 31, 2028.
 
 - [Git](https://git-scm.com/) to clone the sample repo.
 
@@ -40,7 +40,7 @@ Because of the [Azure Spring Apps retirement](/azure/spring-apps/basic-standard/
   1. Install [Azure CLI](/cli/azure/install-azure-cli) 2.0.67 or higher. To check your version, run `az --version`. To upgrade, run `az upgrade`.
   1. Sign in to Azure by using `az login` and following the prompts. If you have more than one subscription connected to your sign-in credentials, run `az account set --subscription <subscription-ID>` to select a subscription.
 
-- The Service Connector `Microsoft.ServiceLinker` resource provider registered for your subscription. To register the provider, go to **Settings** > **Resource providers** in the Azure portal, or run the Azure CLI command `az provider register -n Microsoft.ServiceLinker`.
+- The Service Connector `Microsoft.ServiceLinker` resource provider registered for your subscription. To register the provider, run the Azure CLI command `az provider register -n Microsoft.ServiceLinker`.
 
 ## Set up your environment
 
@@ -64,22 +64,22 @@ Create an Azure Database for MySQL server and database in your subscription. The
 - The MySQL host name must be unique across all of Azure.
 - The default SKU is a General Purpose Gen5 server with two vCores. Standard_B1ms SKU is used by default. For more information about pricing, see [Azure Database for MySQL pricing](https://azure.microsoft.com/pricing/details/mysql/).
 - The `admin-user` can't be `azure_superuser`, `azure_pg_admin`, `admin`, `administrator`, `root`, `guest`, or `public`, and can't start with `pg_`. 
-- The `admin-password` must contain 8-128 Latin uppercase letters, Latin lowercase letters, numbers, or non-alphanumeric characters, excluding `username`.
+- The `admin-password` must contain 8-128 Latin uppercase letters, Latin lowercase letters, numbers, or nonalphanumeric characters, excluding `username`.
 - The following default values are set unless you manually override them:
-  - `backup-retention`: 7 days
+  - `backup-retention`: Seven days
   - `geo-redundant-backup`: Disabled
-  - `ssl-enforcement: Enabled
-  - `version: MySQL major version 5.7
+  - `ssl-enforcement`: Enabled
+  - `version`: MySQL major version 5.7
 
 For more information, see [az mysql flexible-server create](/cli/azure/mysql/flexible-server#az-mysql-flexible-server-create).
 
 >[!IMPORTANT]
->The connection authentication using secrets requires a high degree of trust in the application, and carries risks not present in other flows. You should use this flow only when more secure flows, such as managed identities, aren't viable.
+>The authentication flow described in this procedure requires a high degree of trust in the application, and carries risks not present in other flows. You should use this flow only when more secure flows, such as managed identities, aren't viable.
 
 Run the following command to create the Azure Database for MySQL server and database.
 
 ```azurecli
-export MYSQL_ADMIN_USER=azureuser
+export MYSQL_ADMIN_USER="azureuser"
 export MYSQL_ADMIN_PASSWORD="AdminPassword1"
 export RAND_ID=$RANDOM
 export MYSQL_HOST="mysqlf-$RAND_ID"
@@ -96,9 +96,9 @@ az mysql flexible-server create \
     --storage-size 32
 ```
 
-## Create and build the Azure Spring Apps instance and app
+## Create and connect the Azure Spring Apps instance and app
 
-The following procedure uses the Azure CLI extension to create and provision an instance of Azure Spring Apps. Because of the [Azure Spring Apps retirement](/azure/spring-apps/basic-standard/retirement-announcement), you can run this procedure only if you have an preexisting Azure Spring Apps plan, and then only until March 31, 2028. 
+The following procedure uses the Azure CLI extension to create and provision an instance of Azure Spring Apps. Because of the [Azure Spring Apps retirement](/azure/spring-apps/basic-standard/retirement-announcement), you can run this procedure only if you have a preexisting Azure Spring Apps plan, and then only until March 31, 2028. 
 
 1. Update Azure CLI with the Azure Spring Apps extension.
 
@@ -118,7 +118,7 @@ The following procedure uses the Azure CLI extension to create and provision an 
     az spring app create -n hellospring -s my-azure-spring -g $RESOURCE_GROUP --assign-endpoint true
     ```
 
-1. Run the `az spring connection create` command to connect the Azure Spring Apps application to the MySQL database. Replace the placeholders below with your own information.
+1. Run the `az spring connection create` command to connect the Azure Spring Apps application to the MySQL database.
 
     ```azurecli
     az spring connection create mysql-flexible \
@@ -177,5 +177,5 @@ The following procedure uses the Azure CLI extension to create and provision an 
 ## Related content
 
 - [Service Connector concepts](concept-service-connector-internals.md)
-- [Tutorial: Connect to a MySQL database from Java JBoss EAP using passwordless connection](tutorial-java-jboss-connect-managed-identity-mysql-database.md)
+- [`Tutorial: Connect to a MySQL database from Java JBoss EAP using passwordless connection`](tutorial-java-jboss-connect-managed-identity-mysql-database.md)
 - [Integrate Azure Database for MySQL with Service Connector](how-to-integrate-mysql.md)
