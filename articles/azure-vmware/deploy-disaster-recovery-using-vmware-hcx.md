@@ -15,7 +15,7 @@ ms.custom:
 >[!IMPORTANT]
 >Broadcom announced that VMware HCX Disaster Recovery is being deprecated as of HCX 4.11 and is to be removed in a future release. Refer to [VMware HCX 4.11 Release Notes](https://techdocs.broadcom.com/us/en/vmware-cis/hcx/vmware-hcx/4-11/hcx-4-11-release-notes/vmware-hcx-411-release-notes.html).
 
-In this article, learn how to deploy disaster recovery of your virtual machines (VMs) with VMware HCX solution and use an Azure VMware Solution private cloud as the recovery or target site.
+In this article, learn how to deploy disaster recovery for your virtual machines (VMs) with VMware HCX solution. Also learn how to use an Azure VMware Solution private cloud as the recovery or target site.
 
 The diagram shows the deployment of VMware HCX from on-premises VMware vSphere to Azure VMware Solution private cloud disaster recovery scenario.
 
