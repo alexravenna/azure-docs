@@ -26,7 +26,7 @@ Before you begin, these items are required to create an Azure VMware Solution Ge
 - Ensure you have the administrative rights and permission needed to create a private cloud. You must be at minimum Owner or User Access Administrator on the subscription.
 - Hosts configured and the "Microsoft.AVS" and "Microsoft.BareMetal" resource provider is registered.
 - Deploy or use an existing Azure Virtual Network with a minimum network address space of a /22 or four /24s.
-- The newly created Azure Virtual Network and your Azure VMware Solution Gen 2 private cloud must be in the same Resource Group.
+- Verify the newly created Azure Virtual Network and your Azure VMware Solution Gen 2 private cloud is in the same Resource Group.
 - Ensure you have sufficient AV64 quota allocated to your subscription in the desired region before your deployment.
 
 >[!IMPORTANT]
