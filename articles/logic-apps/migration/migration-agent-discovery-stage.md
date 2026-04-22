@@ -1,6 +1,6 @@
 ---
 title: "Migration Stage 1 - Discovery: Catalog Artifacts"
-description: Learn how the Migration Agent scans, catalogs, and analyzes source artifacts during Discovery stage for migration to Azure Logic Apps (Standard).
+description: Learn how the Migration Agent scans, analyzes, and catalogs source artifacts in the Discovery stage for migrating to Azure Logic Apps (Standard).
 services: azure-logic-apps
 ms.suite: integration
 author: haroldcampos
@@ -13,7 +13,7 @@ ms.date: 04/27/2026
 # Customer intent: As a developer who works with enterprise integration platforms, such as BizTalk Server, MuleSoft, and others, I want to learn how the Azure Logic Apps (Standard) Migration Agent in Visual Studio Code scans my source integration projects to find, catalog, and analyze integration artifacts during the Discovery stage.
 ---
 
-# Migration Agent Stage 1 - Discovery: Catalog integration artifacts (preview)
+# Migration to Azure Logic Apps Stage 1 - Discovery: Catalog integration artifacts (preview)
 
 [!INCLUDE [logic-apps-sku-standard](../includes/logic-apps-sku-standard.md)]
 
@@ -21,7 +21,7 @@ ms.date: 04/27/2026
 >
 > This preview feature is subject to the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-When you start the migration process, you need to first inventory and understand the source artifacts in your integration projects. In Visual Studio Code, the Azure Logic Apps Migration Agent workflow begins with the Discovery stage by scanning your source project files, detecting the source platform, and cataloging the artifacts and dependencies. The agent then identifies the flow groups, architecture, and migration gaps so you can plan the next stage with better information.
+When you start the migration process, you need to first inventory and understand the source artifacts in your integration projects. In Visual Studio Code, the Azure Logic Apps Migration Agent workflow begins with the Discovery stage by scanning your source project files, detecting the source platform, and cataloging the artifacts and dependencies. The agent then identifies the logical flow groups, architecture, and migration gaps so you can enter the Planning stage with the necessary information to generate your migration plan.
 
 ## Discovery stage actions and events
 
@@ -49,18 +49,27 @@ After the migrate agent completes the initial scan, the agent performs a deeper,
 
 For more information, see [Migration stage 1: Discovery](migration-agent-quickstart.md#migration-stage-1-discovery).
 
-## Source design analysis
+## Source design analysis and results
 
-When you start the source design analysis for a logical flow group, the migration agent generates and opens a flow visualization, for example:
+After you start the source design analysis for a logical flow group, the migration agent generates and opens a flow visualization where you can explore your integration architecture through the following interactive views:
 
-:::image type="content" source="media/migration-agent-discovery-stage/discovery-stage-analysis.png" alt-text="Screenshot that shows the flow visualizer with the results from the Discovery stage.":::
+| View | Shows |
+|------|-------|
+| **Architecture Diagram** | A system architecture diagram with all artifacts and connections, rendered as a [Mermaid diagram](https://mermaid.ai/open-source). |
+| **Message Flow** | One or multiple per-artifact message flows from trigger to completion. |
+| **Components** | A components inventory with details such as adapters, endpoints, and pipelines. |
+| **Missing Dependencies** | Any dependencies that were missing or unresolvable during discovery.  |
+| **Gap Analysis** | Any source platform features without a direct equivalent in Azure Logic Apps, including suggested resolutions. |
+| **Patterns** | Any detected integration patterns such as publish-subscribe, request-reply, and batch processing. |
+| **Learn BizTalk** | A discovery report based on the findings, for example, about any existing message flow layers and proposed mappings to Azure Logic Apps or other services alternatives. |
+
+The following example shows a sample flow visualization and results:
+
+:::image type="content" source="media/migration-agent-discovery-stage/discovery-stage-analysis.png" alt-text="Screenshot that shows an example flow visualization with the results from the Discovery stage.":::
 
 You can switch between the interactive tabs to review your integration architecture. To learn more about this architecture, you can use the GitHub Copilot chat window to ask the `@migration-analyser` agent questions about the detected architecture, request corrections, and regenerate the analsysis.
 
-For more information, see:
-
-- [Flow visualization for integration architecture](migration-agent-overview.md#flow-visualization-for-integration-architecture)
-- [Discovery stage - Step 3: Analyze source design](migration-agent-quickstart.md#step-3-analyze-source-design)
+For more information, see [Discovery stage - Step 3: Analyze source design](migration-agent-quickstart.md#step-3-analyze-source-design).
 
 ## Related content
 

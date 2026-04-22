@@ -140,9 +140,11 @@ After the migration agent completes scanning and shows the resulting logical flo
       - **Patterns**
       - **Learn BizTalk**
 
-      :::image type="content" source="media/migration-agent-quickstart/discovery-stage-analysis.png" alt-text="Screenshot that shows the flow visualizer with the results from the Discovery stage.":::
+      The following example shows a sample generated flow visualization:
 
-      For more information, see [Flow visualization for integration architecture](migration-agent-overview.md#flow-visualization-for-integration-architecture).
+      :::image type="content" source="media/migration-agent-quickstart/discovery-stage-analysis.png" alt-text="Screenshot that shows the flow visualization with the results from the Discovery stage.":::
+
+      For more information, see [Source design analysis and results](migration-agent-discovery-stage.md#source-design-analysis-and-results).
 
 1. To review the analysis results, select a tab to review the related information.
 
@@ -162,7 +164,7 @@ After the migration agent completes scanning and shows the resulting logical flo
 
 ## Migration stage 2: Planning
 
-After you finish your analysis, start the Planning stage by creating a migration roadmap to follow. 
+After you finish your analysis, start the Planning stage by creating a migration roadmap to follow. For more information, see [Migration agent stage 2: Planning](migration-agent-planning-stage.md).
 
 1. On the **Home** tab, choose the logical flow group you want, and select **Plan Logic App Design**.
 
@@ -170,21 +172,21 @@ After you finish your analysis, start the Planning stage by creating a migration
 
    The `@migration-planner` agent generates a migration plan that usually includes the following sections:
 
-   | Section name | Description |
-   |--------------|-------------|
-   | **Architecture** | The designer view, code view, and architecture diagram for the proposed solution. |
-   | **Additional Azure components** | The explicit and non-explicit Azure component conversions required for the proposed design. |
-   | **Operations mapping** | The one-to-one mappings from source platform components to their Standard workflow equivalents in Azure Logic Apps. |
-   | **Artifact dispositions** | The artifacts that require conversion and their upload destinations. |
-   | **Migration gaps** | The features or components without direct equivalents in Azure Logic Apps (Standard) and the recommended workarounds. |
-   | **Integration patterns** | The detected patterns for the integration flow. |
-   | **Summary** | A high-level overview about the proposed workflow. |
-   | **Effort estimates** | The estimated complexity and effort for each flow. |
-   | **Task plans** | The step-by-step conversion tasks for the next stage. |
+   - **Architecture**
+   - **Additional Azure components**
+   - **Operations mapping**
+   - **Artifact dispositions**
+   - **Migration gaps**
+   - **Integration patterns**
+   - **Summary**
+   - **Effort estimates**
+   - **Task plans**
 
    The following example shows a sample generated migration plan:
 
    :::image type="content" source="media/migration-agent-quickstart/planning-stage-main.png" alt-text="Screenshot that shows the Planning stage with the migration plan for a logical group flow and action mappings.":::
+
+   For more information, see [Planning stage actions and events](migration-agent-planning-stage.md#planning-stage-actions-and-events).
 
 1. Review each plan carefully and make any necessary updates.
 

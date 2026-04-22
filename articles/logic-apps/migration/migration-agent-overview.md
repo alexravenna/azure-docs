@@ -119,20 +119,6 @@ In your Visual Studio Code project workspace, the migration agent sets up and wo
 
 These agents work with 25 language model tools registered in Visual Studio Code to read artifacts, store results, and manage the migration workflow.
 
-## Flow visualization for integration architecture
-
-After the agent finishes the discovery and analysis tasks, the agent opens a flow visualizer where you can explore your integration architecture through the following interactive views:
-
-| View | Shows |
-|------|-------|
-| **Architecture Diagram** | A system architecture diagram with all artifacts and connections, rendered as a [Mermaid diagram](https://mermaid.ai/open-source). |
-| **Message Flow** | One or multiple per-artifact message flows from trigger to completion. |
-| **Components** | A components inventory with details such as adapters, endpoints, and pipelines. |
-| **Missing Dependencies** | Any dependencies that were missing or unresolvable during discovery.  |
-| **Gap Analysis** | Any source platform features without a direct equivalent in Azure Logic Apps, including suggested resolutions. |
-| **Patterns** | Any detected integration patterns such as publish-subscribe, request-reply, and batch processing. |
-| **Learn BizTalk** | A discovery report based on the findings, for example, about any existing message flow layers and proposed mappings to Azure Logic Apps or other services alternatives. |
-
 ## Next steps
 
 > [!div class="nextstepaction"]
