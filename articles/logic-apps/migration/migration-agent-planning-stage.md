@@ -21,9 +21,9 @@ ms.date: 04/27/2026
 >
 > This preview feature is subject to the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-The previous Discovery stage gave you concrete information about your integration project's design, artifacts, components, and dependencies. However, you still face a key challenge: turning inventory into an executable migration roadmap. You need information about how artifacts and components map to equivalents in Azure Logic Apps (Standard), which parts might need redesign, and how much effort these activities take before you start the conversion process. 
+The previous Discovery stage gives you concrete information about your integration project's design, artifacts, components, and dependencies. However, you still face a key challenge: turning inventory into an executable migration roadmap. You need information about how artifacts and components map to equivalents in Azure Logic Apps (Standard), which parts might need redesign, and how much effort these activities take before you start the conversion process. 
 
-For the Planning stage, the Azure Logic Apps Migration Agent in Visual Studio Code uses the catalogued artifacts from the Discovery stage and generates a detailed migration plan for each logical flow group. This migration plan includes action mappings, migration gaps with recommended approaches, effort estimates, and task plans. With this knowledge, you can move on to the Conversion stage with greater predictability and a clear, low-risk plan.
+For the Planning stage, the Azure Logic Apps Migration Agent in Visual Studio Code uses the cataloged artifacts from the Discovery stage and generates a detailed migration plan for each logical flow group. This migration plan includes action mappings, migration gaps with recommended approaches, effort estimates, and task plans. With this knowledge, you can move on to the Conversion stage with greater predictability and a clear, low-risk plan.
 
 ## Planning stage actions and events
 
@@ -32,14 +32,14 @@ In the Azure Logic Apps Migration Agent for Visual Studio Code, after you comple
    | Section name | Description |
    |--------------|-------------|
    | **Architecture** | The designer view, code view, and architecture diagram for the proposed solution. |
-   | **Additional Azure components** | The explicit and non-explicit Azure component conversions required for the proposed design. |
+   | **Additional Azure components** | The explicit and nonexplicit Azure component conversions required for the proposed design. |
    | **Operations mapping** | The one-to-one mappings from source platform components to their equivalents in Azure Logic Apps (Standard). <br><br>For example: <br><br>- A BizTalk FILE receive port maps to a **File System** trigger in a Standard workflow. <br>- A BizTalk HTTP send port maps to an **HTTP** action in a Standard workflow. <br><br>For more information, see [Operations mapping](#operations-mapping). |
    | **Artifact dispositions** | The artifacts that require conversion and their upload destinations. |
-   | **Migration gaps** | The features or components that don't have direct equivalents in Standard workflows and the recommended workarounds. <br><br>For example, a BizTalk custom pipeline component might require a .NET local function in a Standard workflow. |
+   | **Migration gaps** | The features or components that don't have direct equivalents in Standard workflows and the recommended workarounds. For example, a BizTalk custom pipeline component might require a .NET local function in a Standard workflow. <br><br>For more information, see [Migration gaps](#migration-gaps). |
    | **Integration patterns** | The detected patterns in the integration flow. |
    | **Summary** | A high-level overview about the proposed workflow. |
    | **Effort estimates** | The estimated complexity (low, medium, high) and effort for each integration flow based on the number of actions, gaps, and dependencies. |
-   | **Task plans** | The step-by-step conversion tasks for the next stage. |
+   | **Task plans** | The step-by-step instructions for conversion tasks in the next stage. For more information, see [Task plans](#task-plans). |
 
    The following example shows a sample generated migration plan:
 
@@ -51,43 +51,49 @@ The following sections provide more information about specific migration plan ar
 
 The **Operations mapping** section describes how each source component maps to an equivalent in a Standard workflow, for example:
 
-| Source component | Standard worflow equivalent | Operation type | Mapping type | Notes |
+| Source component | Standard workflow equivalent | Operation type | Mapping type | Notes |
 |------------------|-----------------------------|----------------|--------------|-------|
 | Receive port (FILE) | **File System** trigger named **When a file is added or modified** | Built-in | Runtime native | Choose the *built-in* version that runs in single-tenant Azure Logic Apps. The *shared* version runs in multitenant Azure Logic Apps. <br><br>For more information, see: <br><br>- [Connect to on-premises file systems from Azure Logic Apps](../../connectors/file-system.md?tabs=standard) <br>- [File System built-in connector reference](/azure/logic-apps/connectors/built-in/reference/filesystem/) |
 | Send port (HTTP) | **HTTP** action | Built-in | Runtime native | For more information, see [Call external HTTP or HTTPS endpoints from Azure Logic Apps](../../connectors/connectors-native-http.md?tabs=standard). |
 | Orchestration shape (Transform) | **XML Operations** action named **Transform XML** | Built-in | Runtime native | For more information, see [Transform XML in Azure Logic Apps](../logic-apps-enterprise-integration-transform.md?tabs=standard). |
 | Custom pipeline component | An **Azure Functions** function <br>-or- <br>A .NET local function | Built-in | Custom | Requires code migration. <br><br>For more information, see: <br><br>- [Call Azure Functions from Azure Logic Apps](../logic-apps/call-azure-functions-from-workflows.md?tabs=standard) <br>- [Create and run .NET code from Standard workflows in Azure Logic Apps](../create-run-custom-code-functions.md) |
 
-### Gap resolution
+### Migration gaps
 
-For each identified gap, the plan includes:
+For each identified gap, the plan includes the following information:
 
-- **Gap description**: What the source component does and why there's no direct equivalent.
-- **Recommended resolution**: The suggested approach, such as using a .NET local function, Azure Function, or custom connector.
-- **Effort impact**: How the gap affects the overall migration effort estimate.
+| Item | Description |
+|------|-------------|
+| **Gap description** | What the source component does and why no direct equivalent exists. |
+| **Recommended resolution** | The suggested workaround, such as using a .NET local function, Azure Functions function, or a custom connector. |
+| **Effort impact** | How the gap affects the migration effort estimate. |
 
 ### Task plans
 
-Task plans are the step-by-step instructions that drive Stage 3 (Conversion). Each task specifies:
+Each migration plan includes task plans that provide step-by-step instructions that drive Stage 3 - Conversion. Each task specifies the following information:
 
-- The artifacts to convert
-- The target Logic Apps workflow structure
-- The connections and configurations to generate
-- Any custom code that needs to be written
+- The artifacts to convert.
+- The target Standard workflow structure in Azure Logic Apps.
+- The connections and configurations to generate.
+- Any custom code that you need to write.
 
-## Reviewing and adjusting plans
+## Review and adjust the plans
 
-You can interact with the `@migration-planner` agent through Copilot chat to:
+After the migration agent generates the migration plan, carefully review the plan so you understand the roadmap and recommendations. Make any updates necessary for your scenario before you go on to the Conversion stage. The accuracy of your plan greatly affects the quality of the conversion output.
 
-- Ask questions about specific mappings
-- Request alternative approaches for gap resolutions
-- Adjust effort estimates
-- Request plan modifications before proceeding to conversion
+To help you better understand the plan and determine whether you need to make updates, interact with the `@migration-planner` GitHub Copilot agent by using Copilot chat for the following tasks:
+   
+   - Ask questions about specific mappings.
+   - Request alternative approaches for gap resolution.
+   - Adjust effort estimates.
+   - Request plan modifications before moving on to conversion.
 
-> [!TIP]
-> Review each migration plan carefully before proceeding to Stage 3. The quality of the conversion output depends on the accuracy of the plans.
+## Related content
+
+- [Migration automation from integration platforms to Azure Logic Apps](migration-agent-overview.md)
+- [Quickstart: Migrate an integration project using the Azure Logic Apps Migration Agent](migrate-logic-apps-migration-agent-quickstart.md)
 
 ## Next steps
 
-- [Stage 3 - Conversion: Generate Logic Apps workflows](migrate-logic-apps-migration-agent-stage-conversion.md)
-- [Stage 1 - Discovery: Catalog integration artifacts](migrate-logic-apps-migration-agent-stage-discovery.md)
+> [!div class="nextstepaction"]
+> [Migration agent stage 3 - Conversion:  - ](migration-agent-planning-stage.md)

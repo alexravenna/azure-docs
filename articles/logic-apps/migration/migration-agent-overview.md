@@ -51,6 +51,8 @@ The Azure Logic Apps Migration Agent extension for Visual Studio Code is an open
 
 ### Supported BizTalk Server artifact types
 
+The migration agent currently supports the following BizTalk Server artifact types:
+
 | Artifact type | File name extension | Description |
 |---------------|---------------------|-------------|
 | Project | `.btproj` | BizTalk project file |
@@ -63,6 +65,8 @@ The Azure Logic Apps Migration Agent extension for Visual Studio Code is an open
 <a id="mulesoft-support"></a>
 
 ### Supported MuleSoft Anypoint artifact types
+
+The migration agent currently supports the following MuleSoft Anypoint artifact types:
 
 | Artifact type | File pattern | Description |
 |---------------|---------------------|-------------|
@@ -119,7 +123,16 @@ In your Visual Studio Code project workspace, the migration agent sets up and wo
 
 These agents work with 25 language model tools registered in Visual Studio Code to read artifacts, store results, and manage the migration workflow.
 
+## Related content
+
+- [Migration agent stage 1 - Discovery: Catalog artifacts](migration-agent-discovery-stage.md)
+- [Migration agent stage 2 - Planning: Create migration plan](migration-agent-planning-stage.md)
+- [Migration agent stage 3 - Conversion](migration-agent-conversion-stage.md)
+- [Migration agent stage 4 - Validation](migration-agent-validation-stage.md)
+- [Migration agent stage 5 - Deployment](migration-agent-deployment-stage.md)
+- [Add custom parsers for integration platforms](migration-agent-custom-parsers.md)
+
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Quickstart: Migrate an integration project using the Logic Apps Migration Agent](migrate-logic-apps-migration-agent-quickstart.md)
+> [Quickstart: Migrate an integration project using the Azure Logic Apps Migration Agent](migrate-logic-apps-migration-agent-quickstart.md)

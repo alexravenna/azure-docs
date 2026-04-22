@@ -188,11 +188,16 @@ After you finish your analysis, start the Planning stage by creating a migration
 
    For more information, see [Planning stage actions and events](migration-agent-planning-stage.md#planning-stage-actions-and-events).
 
-1. Review each plan carefully and make any necessary updates.
+1. Before you continue to the Conversion stage, review each plan carefully. Make any updates as necessary.
 
-   > [!TIP]
-   >
-   > To edit the generated plans, ask questions about specific mappings, or request alternative approaches, interact with the `@migration-planner` agent by using Copilot chat.
+   The accuracy of your plan greatly affects the quality of the conversion output. 
+
+   To help you determine whether the plan needs any updates, interact with the `@migration-planner` GitHub Copilot agent by using Copilot chat to complete the following tasks:
+   
+   - Ask questions about specific mappings.
+   - Request alternative approaches for gap resolution.
+   - Adjust effort estimates.
+   - Request plan modifications before moving on to conversion.
 
 1. When you're ready, continue to the Conversion stage by selecting **Home Page** or returning to the **Home** tab.
 
@@ -316,8 +321,8 @@ You can restart your migration from the beginning. The following command clears 
 
 ## Related content
 
-- []
-- [Migration agent stage 1: Discovery](migration-agent-discovery-stage.md)
+- [Migration automation from integration platforms to Azure Logic Apps](migration-agent-overview.md)
+- [Migration agent stage 1 - Discovery: Catalog artifacts](migration-agent-discovery-stage.md)
 - [Migration agent stage 2: Planning](migration-agent-planning-stage.md)
 - [Migration agent stage 3: Conversion](migration-agent-conversion-stage.md)
 - [Migration agent stage 4: Validation](migration-agent-validation-stage.md)
