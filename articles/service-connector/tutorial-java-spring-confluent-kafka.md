@@ -73,7 +73,7 @@ In this tutorial, you learn how to connect a Java Spring Boot application to Apa
 
 1. Create API keys for schema registry. Make a note of the key and secret.
 
-## Create and deploy the Java Spring Boot app
+## Create the Java Spring Boot app
 
 >[!IMPORTANT]
 >As of March 17, 2025, no new Azure Spring Apps resources can be created. You can try deploying the Java Spring Boot app to [Azure Container Apps](/azure/developer/java/identity/deploy-spring-boot-to-azure-container-apps), or [directly to App Service as a Java app](/azure/app-service/quickstart-java).
@@ -122,7 +122,7 @@ az spring connection create confluent-cloud -g <spring-cloud-resource-group> --s
 
 #### [Portal](#tab/Azure-portal)
 
-1. On the Azure portal page for your Java Spring Boot app, select **Service Connector** from the left navigation menu and enter the following settings.
+1. On the Azure portal page for your Java Spring Boot app, select **Service Connector** from the left navigation menu, and enter the following settings.
 
    - **Service Type**: Select **Apache Kafka on Confluent cloud**.
    - **Name**: Generated unique connection name.
@@ -148,7 +148,7 @@ az spring app deploy -n hellospring -s <service-instance-name> -g <resource-grou
 
 ## Validate the Kafka data ingestion
 
-1. On the Azure portal page for your Spring Boot app, select **Browse** or **Default domain** near the top of the page. You should see the message **10 messages were produced to topic test**.
+1. On the Azure portal page for your Spring Boot app, select **Browse** from the top menu. You should see the message **10 messages were produced to topic test**.
 
 1. To see production throughput, go to the topic page in the Confluent portal.
 
