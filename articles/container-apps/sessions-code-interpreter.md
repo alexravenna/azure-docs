@@ -322,7 +322,7 @@ After allocating a session, you can call this API to manually terminate it at an
 #### Request
 
 ```http
-DELETE {PoolManagementEndpoint}/session?api-version=2025-02-02-preview&identifier={SessionIdentifier}
+DELETE <POOL_MANAGEMENT_ENDPOINT>/session?api-version=2025-02-02-preview&identifier=<SessionIdentifier>
 ```
 
 #### Parameters
@@ -337,7 +337,7 @@ DELETE {PoolManagementEndpoint}/session?api-version=2025-02-02-preview&identifie
 #### Request
 
 ```http
-DELETE {PoolManagementEndpoint}/session?api-version=2025-02-02-preview&identifier=testSessionIdentifier
+DELETE <POOL_MANAGEMENT_ENDPOINT>/session?api-version=2025-02-02-preview&identifier=testSessionIdentifier
 ```
 
 #### Response
@@ -355,7 +355,7 @@ You can query your session pool to check session status, get expiration details,
 To retrieve details about a specific session, use the get session API:
 
 ```http
-GET {PoolManagementEndpoint}/session?identifier={SessionIdentifier}&api-version=2025-02-02-preview
+GET <POOL_MANAGEMENT_ENDPOINT>/session?identifier=<SessionIdentifier>&api-version=2025-02-02-preview
 ```
 
 The `getSession` endpoint returns session metadata including the session identifier, current expiration time, and creation timestamp.
