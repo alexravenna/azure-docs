@@ -6,7 +6,7 @@ author: maud-lv
 ms.author: malev
 ms.service: service-connector
 ms.topic: tutorial
-ms.date: 04/21/2026
+ms.date: 04/22/2026
 ms.custom:
   - devx-track-extended-java
   - devx-track-azurecli
@@ -26,12 +26,12 @@ In this tutorial, you learn how to connect a Java Spring Boot application to Apa
 
 >[!IMPORTANT]
 >On March 17, 2025, Azure Spring Apps entered a three-year retirement period, and will be fully retired on March 31, 2028. As of March 17, 2005, no new Azure Spring Apps plans or apps can be created. For more information, see the [Azure Spring Apps retirement announcement](/azure/spring-apps/basic-standard/retirement-announcement).
->
->You can run the Azure Spring Apps parts of this tutorial only if you have an existing Azure Spring Apps plan. Otherwise, you can try deploying the Java Spring Boot app to [Azure Container Apps](/azure/developer/java/identity/deploy-spring-boot-to-azure-container-apps), or [directly to App Service as a Java app](/azure/app-service/quickstart-java).
 
 ## Prerequisites
 
 - An Azure subscription with write permissions for the tutorial resources, in an Azure region that [supports Service Connector](concept-region-support.md) and has sufficient [App Service support and quota](/azure/azure-resource-manager/management/azure-subscription-service-limits#azure-app-service-limits) for the tutorial resources.
+- An existing Azure Spring Apps plan. Due to the upcoming [Azure Spring Apps retirement](/azure/spring-apps/basic-standard/retirement-announcement), you can run the Azure Spring Apps parts of this tutorial only until March 31, 2028, and only if you have an preexisting Azure Spring Apps plan.
+
 - [Git](https://git-scm.com/) to clone the sample repo.
 
 - Java 8 or a more recent version with long-term support.
