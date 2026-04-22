@@ -1,6 +1,6 @@
 ---
 title: "Migration Stage 2 - Planning: Create Migration Plan"
-description: "Learn how the Migration Agent creates migration plans in the Planning stage for Azure Logic Apps (Standard)."
+description: "Learn how the Migration Agent creates plans or roadmaps for migration to Azure Logic Apps (Standard) during the Planning stage."
 services: azure-logic-apps
 ms.suite: integration
 author: haroldcampos
@@ -27,9 +27,9 @@ In the Planning stage, the Azure Logic Apps Migration Agent in Visual Studio Cod
 
 This article explains how the Azure Logic Apps Migration Agent creates a migration plan during the Planning stage. You can then use this migration plan to map source artifacts to Azure Logic Apps (Standard), identify redesign gaps, and estimate effort before you start the conversion process.
 
-## Planning stage actions and events
+## Planning stage actions
 
-In the Azure Logic Apps Migration Agent for Visual Studio Code, after you complete the **Analyze Source Design** activity, the **Plan Logic App Design** activity becomes available. When you select this activity, the  `@migration-planner` GitHub Copilot agent generates the following information for each flow group:
+In the Azure Logic Apps Migration Agent, after you complete the **Analyze Source Design** activity, the **Plan Logic App Design** activity becomes available. When you select this activity, the `@migration-planner` GitHub Copilot agent generates the following information for each flow group:
 
    | Section name | Description |
    |--------------|-------------|
@@ -55,7 +55,7 @@ The **Operations mapping** section describes how each source component maps to a
 
 | Source component | Standard workflow equivalent | Operation type | Mapping type | Notes |
 |------------------|-----------------------------|----------------|--------------|-------|
-| Receive port (FILE) | **File System** trigger named **When a file is added or modified** | Built-in | Runtime native | Choose the *built-in* version that runs in single-tenant Azure Logic Apps. The *shared* version runs in multitenant Azure Logic Apps. <br><br>For more information, see: <br><br>- [Connect to on-premises file systems from Azure Logic Apps](../../connectors/file-system.md?tabs=standard) <br>- [File System built-in connector reference](/azure/logic-apps/connectors/built-in/reference/filesystem/) |
+| Receive port (FILE) | **File System** trigger named **When a file is added or modified** | Built-in | Runtime native | Choose the *built-in* version that runs in the same process as the Azure Logic Apps runtime. The *shared* version runs in multitenant Azure. <br><br>For more information, see: <br><br>- [Connect to on-premises file systems from Azure Logic Apps](../../connectors/file-system.md?tabs=standard) <br>- [File System built-in connector reference](/azure/logic-apps/connectors/built-in/reference/filesystem/) |
 | Send port (HTTP) | **HTTP** action | Built-in | Runtime native | For more information, see [Call external HTTP or HTTPS endpoints from Azure Logic Apps](../../connectors/connectors-native-http.md?tabs=standard). |
 | Orchestration shape (Transform) | **XML Operations** action named **Transform XML** | Built-in | Runtime native | For more information, see [Transform XML in Azure Logic Apps](../logic-apps-enterprise-integration-transform.md?tabs=standard). |
 | Custom pipeline component | An **Azure Functions** function <br>-or- <br>A .NET local function | Built-in | Custom | Requires code migration. <br><br>For more information, see: <br><br>- [Call Azure Functions from Azure Logic Apps](../logic-apps/call-azure-functions-from-workflows.md?tabs=standard) <br>- [Create and run .NET code from Standard workflows in Azure Logic Apps](../create-run-custom-code-functions.md) |
@@ -98,4 +98,4 @@ To help you better understand the plan and determine whether you need to make up
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Migration agent stage 3 - Conversion:  - ](migration-agent-conversion-stage.md)
+> [Migration agent stage 3 - Conversion: Generate workflows](migration-agent-conversion-stage.md)

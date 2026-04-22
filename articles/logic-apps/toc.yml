@@ -223,6 +223,8 @@ items:
         href: migration/migration-agent-discovery-stage.md
       - name: Stage 2 (Planning) - Create migration plan
         href: migration/migration-agent-planning-stage.md
+      - name: Stage 3 (Conversion) - Generate workflows
+        href: migration/migration-agent-conversion-stage.md
   - name: Develop
     items:
     - name: Add a trigger or action to a workflow

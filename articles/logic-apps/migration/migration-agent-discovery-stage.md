@@ -1,6 +1,6 @@
 ---
 title: "Migration Stage 1 - Discovery: Catalog Artifacts"
-description: "Learn how the Migration Agent scans, analyzes, and catalogs source artifacts in the Discovery stage for migrating to Azure Logic Apps (Standard)".
+description: "Learn how the Migration Agent scans, analyzes, and catalogs source artifacts for migration to Azure Logic Apps (Standard) during the Discovery stage".
 services: azure-logic-apps
 ms.suite: integration
 author: haroldcampos
@@ -25,7 +25,7 @@ Before you can start a migration, you need to understand the artifacts in your s
 
 This article explains how the Azure Logic Apps Migration Agent scans your source, inventories your project assets, and generates a visualization that describes your integration architecture with its components and dependencies.
 
-## Discovery stage actions and events
+## Discovery stage actions
 
 In Visual Studo Code, after you open the Azure Logic Apps Migration Agent on the Activity Bar, and select the source folder, the migration agent automatically completes the following steps by using the `@migration-analyser` GitHub Copilot agent:
 
@@ -36,9 +36,11 @@ In Visual Studo Code, after you open the Azure Logic Apps Migration Agent on the
 | 3 | **Catalog artifacts** | Inventories discovered artifacts, including the following items: <br><br>- Orchestrations and workflows <br>- Schemas (XSD, JSON) <br>- Maps and transformations <br>- Pipelines <br>- Send ports and receive ports <br>- Bindings and endpoint configurations |
 | 4 | **Build dependency graph** | Generates a dependency graph that shows how artifacts relate to each other. For example, the graph shows which orchestrations reference which schemas and maps. |
 
-## Discovery stage analysis and results
+<a id="source-design-analysis-results"></a>
 
-After the migrate agent completes the initial scan, the agent performs a deeper, AI-powered analysis by using the `@migration-analyser` GitHub Copilot agent:
+### Source design analysis and results
+
+After the migration agent completes the initial scan, the agent performs a deeper, AI-powered analysis by using the `@migration-analyser` GitHub Copilot agent:
 
 | Action | Description |
 |--------|-------------|
@@ -51,7 +53,9 @@ After the migrate agent completes the initial scan, the agent performs a deeper,
 
 For more information, see [Migration stage 1: Discovery](migration-agent-quickstart.md#migration-stage-1-discovery).
 
-## Source design analysis and results
+<a id="flow-visualization-results"></a>
+
+### Flow visualization and results
 
 After you start the source design analysis for a logical flow group, the migration agent generates and opens a flow visualization where you can explore your integration architecture through the following interactive views:
 

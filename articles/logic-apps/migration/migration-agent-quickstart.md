@@ -144,7 +144,7 @@ After the migration agent completes scanning and shows the resulting logical flo
 
       :::image type="content" source="media/migration-agent-quickstart/discovery-stage-analysis.png" alt-text="Screenshot that shows the flow visualization with the results from the Discovery stage.":::
 
-      For more information, see [Source design analysis and results](migration-agent-discovery-stage.md#source-design-analysis-and-results).
+      For more information, see [Source design analysis and results](migration-agent-discovery-stage.md#source-design-analysis-results).
 
 1. To review the analysis results, select a tab to review the related information.
 
