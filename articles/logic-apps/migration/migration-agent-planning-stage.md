@@ -83,7 +83,7 @@ Each migration plan includes task plans that provide step-by-step instructions t
 
 After the migration agent generates the migration plan, carefully review the plan so you understand the roadmap and recommendations. Make any updates necessary for your scenario before you go on to the Conversion stage. The accuracy of your plan greatly affects the quality of the conversion output.
 
-To help you better understand the plan and determine whether you need to make updates, interact with the `@migration-planner` GitHub Copilot agent by using Copilot chat for the following tasks:
+To help you better understand the plan and determine whether you need to make updates, interact with the `@migration-planner` GitHub Copilot agent by using Copilot chat in Visual Studio Code for the following tasks:
    
    - Ask questions about specific mappings.
    - Request alternative approaches for gap resolution.
