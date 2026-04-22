@@ -241,6 +241,8 @@ To monitor the _Geo Replication Healthy_ metric in the Azure portal:
 
 - Large key size - Large keys can create synchronization issues among geo-replicas. To maintain smooth performance and reliable replication, we recommend keeping key sizes under 500MB when using geo-replication. If individual key size gets close to 2GB the cache faces geo-replication health issues.  
 
+- OOM - Some free memory is needed for the geo-replication sync to work. When the cache is OOM, syncing will be paused. Make sure to reduce memory pressure by setting TTLs or changing the eviction policy. 
+
 ### Flush caches using Azure CLI or PowerShell
 
 The Azure CLI and PowerShell can also be used to trigger a flush operation. For more information on using Azure CLI, see [az redisenterprise database flush](/cli/azure/redisenterprise#az-redisenterprise-database-flush). For more information on using PowerShell, see [Invoke-AzRedisEnterpriseCacheDatabaseFlush](/powershell/module/az.redisenterprisecache/invoke-azredisenterprisecachedatabaseflush).
