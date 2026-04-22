@@ -25,9 +25,9 @@ In this tutorial, you learn how to connect a Java Spring Boot application to Apa
 > * Connect Apache Kafka on Confluent Cloud to the Java Spring Boot app by using Service Connector.
 
 >[!IMPORTANT]
->All Basic, Standard, and Enterprise Azure Spring Apps plans will be fully retired on March 31, 2028. For more information, see the [Azure Spring Apps retirement announcement](/azure/spring-apps/basic-standard/retirement-announcement).
+>On March 17, 2025, Azure Spring Apps entered a three-year retirement period, and will be fully retired on March 31, 2028. As of March 17, 2005, no new Azure Spring Apps plans or apps can be created. For more information, see the [Azure Spring Apps retirement announcement](/azure/spring-apps/basic-standard/retirement-announcement).
 >
->As of March 17, 2025, no new Azure Spring Apps plans or apps can be created, so you can run the Azure Spring Apps parts of this tutorial only if you have an existing Azure Spring Apps plan. You can try deploying the Java Spring Boot app to [Azure Container Apps](/azure/developer/java/identity/deploy-spring-boot-to-azure-container-apps), or [directly to App Service as a Java app](/azure/app-service/quickstart-java).
+>You can run the Azure Spring Apps parts of this tutorial only if you have an existing Azure Spring Apps plan. Otherwise, you can try deploying the Java Spring Boot app to [Azure Container Apps](/azure/developer/java/identity/deploy-spring-boot-to-azure-container-apps), or [directly to App Service as a Java app](/azure/app-service/quickstart-java).
 
 ## Prerequisites
 
@@ -42,7 +42,7 @@ In this tutorial, you learn how to connect a Java Spring Boot application to Apa
 
 - The Service Connector `Microsoft.ServiceLinker` resource provider registered for your subscription. To register the provider, go to **Settings** > **Resource providers** in the Azure portal, or run the Azure CLI command `az provider register -n Microsoft.ServiceLinker`.
 
-## Create a Kafka for Confluent Cloud organization
+## Create and configure a Kafka for Confluent Cloud resource
 
 1. Create an instance of Apache Kafka for Confluent Cloud by following the instructions at [Quickstart: Create a Confluent resource in the Azure portal](/azure/partner-solutions/apache-kafka-confluent-cloud/create).
 
@@ -65,7 +65,7 @@ In this tutorial, you learn how to connect a Java Spring Boot application to Apa
 
    :::image type="content" source="media/tutorial-java-spring-confluent-kafka/confluent-cluster-setting.png" alt-text="Screenshot showing Cluster settings of Apache Kafka on Confluent Cloud." lightbox="media/tutorial-java-spring-confluent-kafka/confluent-cluster-setting.png":::
 
-1. Under **Data integration** > **API Keys**, create API keys for the cluster using ** Add Key** with **Global access**. Make a note of the key and secret.
+1. Under **Data integration** > **API Keys**, create API keys for the cluster using **Add Key** with **Global access**. Make a note of the key and secret.
 
 1. In **Topics** > **Add topic**, create a topic named `test` with partitions 6.
 
@@ -75,6 +75,9 @@ In this tutorial, you learn how to connect a Java Spring Boot application to Apa
 
 ## Create and deploy the Java Spring Boot app
 
+>[!IMPORTANT]
+>As of March 17, 2025, no new Azure Spring Apps resources can be created. You can try deploying the Java Spring Boot app to [Azure Container Apps](/azure/developer/java/identity/deploy-spring-boot-to-azure-container-apps), or [directly to App Service as a Java app](/azure/app-service/quickstart-java).
+
 1. Run the following commands to clone the sample repo and change directories into the sample app project folder.
 
    ```bash
@@ -83,9 +86,6 @@ In this tutorial, you learn how to connect a Java Spring Boot application to Apa
    ```
 
 1. Create an instance of Azure Spring Apps by following the instructions at [Quickstart: Deploy your first application to Azure Spring Apps](/azure/spring-apps/basic-standard/quickstart). Make sure to create the instance in a region that has [Service Connector support](concept-region-support.md).
-
-   >[!IMPORTANT]
-   >As of March 17, 2025, no new Azure Spring Apps plans or apps can be created, so you can't create a new Azure Spring Apps plan. You can try deploying the Java Spring Boot app to [Azure Container Apps](/azure/developer/java/identity/deploy-spring-boot-to-azure-container-apps), or [directly to App Service as a Java app](/azure/app-service/quickstart-java).
 
 1. Build the project using [Gradle](https://gradle.org/).
 
@@ -101,7 +101,7 @@ In this tutorial, you learn how to connect a Java Spring Boot application to Apa
 
 ## Create the service connection
 
-Use Azure CLI or the Azure portal to connect your Apache Kafka on Confluent Cloud instance to your Spring Boot app.
+You can use Azure CLI or the Azure portal to connect your Kafka on Confluent Cloud instance to your Spring Boot app.
 
 > [!IMPORTANT]
 > The connection authentication flow in this procedure requires a high degree of trust in the application, and carries risks not present in other flows. You should use this flow only when more secure flows, such as managed identities, aren't viable.
@@ -122,7 +122,7 @@ az spring connection create confluent-cloud -g <spring-cloud-resource-group> --s
 
 #### [Portal](#tab/Azure-portal)
 
-1. On the Azure portal page for your app, select **Service Connector** from the left navigation menu and enter the following settings.
+1. On the Azure portal page for your Java Spring Boot app, select **Service Connector** from the left navigation menu and enter the following settings.
 
    - **Service Type**: Select **Apache Kafka on Confluent cloud**.
    - **Name**: Generated unique connection name.
@@ -140,7 +140,7 @@ az spring connection create confluent-cloud -g <spring-cloud-resource-group> --s
 
 ## Deploy the JAR file
 
-Run the following command to upload the JAR file *build/libs/java-springboot-0.0.1-SNAPSHOT.jar* to your Spring Cloud app.
+Run the following command to upload the JAR file *build/libs/java-springboot-0.0.1-SNAPSHOT.jar* to your Spring Boot app.
 
 ```azurecli
 az spring app deploy -n hellospring -s <service-instance-name> -g <resource-group-name>  --artifact-path build/libs/java-springboot-0.0.1-SNAPSHOT.jar
@@ -148,7 +148,7 @@ az spring app deploy -n hellospring -s <service-instance-name> -g <resource-grou
 
 ## Validate the Kafka data ingestion
 
-1. On the Azure portal page for your Spring Cloud app, select **Browse** or **Default domain** near the top of the page. You should see the message **10 messages were produced to topic test**.
+1. On the Azure portal page for your Spring Boot app, select **Browse** or **Default domain** near the top of the page. You should see the message **10 messages were produced to topic test**.
 
 1. To see production throughput, go to the topic page in the Confluent portal.
 
@@ -157,3 +157,5 @@ az spring app deploy -n hellospring -s <service-instance-name> -g <resource-grou
 ## Related content
 
 - [Service Connector concepts](concept-service-connector-internals.md)
+- [What is Apache Kafka & Apache Flink on Confluent Cloud?](/azure/partner-solutions/apache-kafka-confluent-cloud/overview)
+- [Azure Spring Apps retirement announcement](/azure/spring-apps/basic-standard/retirement-announcement)
