@@ -191,7 +191,7 @@ After you finish your analysis, start the Planning stage by creating a migration
 1. Before you continue to the Conversion stage, review each plan carefully. Make any updates as necessary.
 
    The accuracy of your plan greatly affects the quality of the conversion output. 
-
+   
    To help you determine whether the plan needs any updates, interact with the `@migration-planner` GitHub Copilot agent by using Copilot chat to complete the following tasks:
    
    - Ask questions about specific mappings.
@@ -205,55 +205,34 @@ After you finish your analysis, start the Planning stage by creating a migration
 
 When you're satisfied with your migration plan, start the Conversion stage to create conversion tasks that transform source artifacts into Standard workflows, connections, and other supporting files for Azure Logic Apps.
 
+### 3.1: Create conversion tasks
+
 1. On the **Home** tab, for your logical flow, select **Create Conversion Tasks**.
 
    :::image type="content" source="media/migration-agent-quickstart/create-conversion-tasks-stage.png" alt-text="Screenshot that shows the Conversion stage for creating conversion tasks.":::
 
    The `@migration-converter` agent creates the conversion tasks, which vary based on your specific logical flow group. The following list describes sample conversion tasks for a logical flow group named `Method Call Processing`:
 
-   1. **Scaffold Logic Apps Project**
-   
-      Creates the Standard logic app project structure with the required folder hierarchy and files.
-
-   1. **Convert Input Schema**
-
-      Migrates the *InputSchema.xsd* file from BizTalk format, which is UTF-16 with BizTalk annotations, to standard XSD, which is UTF-8 without BizTalk annotations.
-
-   1. **Convert Output Schema**
-
-      Migrates the *OutputSchema.xsd* file from BizTalk format, which is UTF-16 with BizTalk annotations, to standard XSD, which is UTF-8 without BizTalk annotations.
-
-   1. **Generate \<*connector-name*\> Connections**
-   
-      Creates or updates the *connections.json* file that contains the configurations for each required connection.
-
-   1. **Generate \<*workflow-name*\> Workflow**
-
-      Creates the *workflow.json* file that contains the Standard workflow definition in Azure Logic Apps for the logical flow group.
-
-   1. **Generate Local Functions (\<*function-names*\>)**
-
-      Creates .NET 8 local functions for custom logic in the source code.
-
-   1. **Validate Runtime (func start)**
-
-      Validates the logic app project by running `func start` to confirm that all functions and workflows are ready.
-
-   1. **E2E Testing (Happy Path & Error Path)**
-
-      Runs end-to-end tests for the happy path, error path, and field-level validation.
-
-   1. **Black Box Tests (Optional)**
-
-      Runs tests that use external test data that you provide.
-
-   1. **Cloud Deployment & Testing (Optional)**
-
-      Deploys to Azure and runs cloud E2E tests.
+   | Step | Task | Description |
+   |------|------|-------------|
+   | 1 | **Scaffold Logic Apps Project** | Creates the Standard logic app project structure with the required folder hierarchy and files. |
+   | 2 | **Convert Input Schema** | Migrates the *InputSchema.xsd* file from BizTalk format, which is UTF-16 with BizTalk annotations, to standard XSD, which is UTF-8 without BizTalk annotations. |
+   | 3 | **Convert Output Schema** | Migrates the *OutputSchema.xsd* file from BizTalk format, which is UTF-16 with BizTalk annotations, to standard XSD, which is UTF-8 without BizTalk annotations. |
+   | 4 |**Generate \<*connector-name*\> Connections** | Creates or updates the *connections.json* file that contains the configurations for each required connection. |
+   | 5 | **Generate \<*workflow-name*\> Workflow** | Creates the *workflow.json* file that contains the Standard workflow definition in Azure Logic Apps for the logical flow group. |
+   | 6 | **Generate Local Functions (\<*function-names*\>)** | Creates .NET 8 local functions for custom logic in the source code. |
+   | 7 | **Validate Runtime (func start)** | Validates the logic app project by running `func start` to confirm that all functions and workflows are ready. |
+   | 8 | **E2E Testing (Happy Path & Error Path)** | Runs end-to-end tests for the happy path, error path, and field-level validation. |
+   | 9 | **Black Box Tests (Optional)** | Runs tests that use external test data that you provide. |
+   | 10 | **Cloud Deployment & Testing (Optional)** | Deploys to Azure and runs cloud E2E tests. |
 
    The following example shows sample generated conversion tasks for the `Method Call Processing` logical flow group:
 
    :::image type="content" source="media/migration-agent-quickstart/conversion-stage-main.png" alt-text="Screenshot that shows the Conversion stage with generated conversion tasks that create Standard logic app project files.":::
+
+1. For the next section, select the **Home Page** or return to the **Home** tab.
+
+### 3.2: Run the conversion tasks
 
 1. To run each conversion task, select **Execute**, and then stop before **Cloud Deployment & Testing**. Or, select **Execute All**, which works the same as selecting **Execute Conversion Tasks** on the **Home** tab.
 
@@ -263,17 +242,11 @@ When you're satisfied with your migration plan, start the Conversion stage to cr
    >
    > During conversion task execution, the agent might prompt you for access or permissions to edit files. Review the available options and respond appropriately.
 
-1. When you finish, continue to the Validation stage by selecting **Home Page** or returning to the **Home** tab.
+1. For the next section, select the **Home Page** or return to the **Home** tab.
 
-## Migration stage 4: Validation
+### 3.3 Check output for completeness and quality
 
-After the migration agent converts your source artifacts to Standard workflows, test the generated workflows against your source specifications. The `@migration-converter` agent provides runtime validation and testing guidance. 
-The Validation stage lets you bring your own test cases and specifications. Your goal is to confirm that your converted workflow performs as expected.
-
-> [!TIP]
-> Use the `@migration-converter` agent through Copilot chat to ask questions about the generated output, request modifications, or regenerate specific workflows.
-
-For this stage, complete the following tasks:
+After the agent finishes generating the project and its files, review the generated artifacts for completeness and quality by following these steps:
 
 1. On the **Home** tab, for your logical flow, select **Open in Visual Studio Code**.
 
@@ -281,13 +254,21 @@ For this stage, complete the following tasks:
 
    :::image type="content" source="media/migration-agent-quickstart/validation-stage-generated-output.png" alt-text="Screenshot that shows the local path for where to find the generated code and solution.":::
 
-1. Validate that the generated solution and code are complete. Make sure that no stubs or placeholder code remain.
+1. Check that the generated solution and code are complete. Make sure that no stubs or placeholder code remain.
 
-1. Inspect each `workflow.json` to verify the trigger, actions, and control flow match the source behavior.
+   > [!TIP]
+   >
+   > To ask questions about the generated output, request modifications, or regenerate specific workflows, interact with the `@migration-converter` agent by using Copilot chat.
+
+1. Inspect each `workflow.json` to verify that the trigger and actions match the source behavior.
 
 1. Check `connections.json` for correct connector configurations.
 
 1. Review any generated .NET local functions for correctness.
+
+## Migration stage 4: Validation
+
+For the Validation stage, test the generated workflows against your source specifications. You can bring your own test cases and specifications. The `@migration-converter` agent provides runtime validation and testing guidance. Your goal is to confirm that your converted workflows perform as expected and matches the source flow behavior.
 
 1. Locally run the generated workflows by using the Azure Functions runtime and the Docker Desktop.
 

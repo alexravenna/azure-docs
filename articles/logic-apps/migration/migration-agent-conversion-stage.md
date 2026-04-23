@@ -21,9 +21,9 @@ ms.date: 04/27/2026
 >
 > This preview feature is subject to the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-The migration process for integration projects can stall when complex source artifacts are difficult to transform into deployable resources in Azure Logic Apps (Standard). In the Conversion stage, the Azure Logic Apps Migration Agent in Visual Studio Code solves this problem by running the task plans in your migration plan to create complete artifacts, including ready-to-deploy-and-run Standard workflow definitions, connection configurations, and supporting files. During this stage, review the quality for your conversion outputs and prepare them for validation.
+The migration process for integration projects can stall when complex source artifacts are difficult to transform into deployable resources in Azure Logic Apps (Standard). In the Conversion stage, the Azure Logic Apps Migration Agent in Visual Studio Code solves this problem by running the task plans in your migration plan to create complete artifacts, including ready-to-deploy-and-run Standard workflow definitions, connection configurations, and supporting files.
 
-This article describes how the Azure Logic Apps Migration Agent maps source integration artifacts to ready-to-deploy Standard logic app project resources.
+This article describes how the Azure Logic Apps Migration Agent creates conversion tasks that map the source integration artifacts to ready-to-deploy Standard logic app project resources and how the agent runs these tasks to produce ready-to-deploy-and-run project artifacts.
 
 ## Conversion stage actions
 
@@ -93,9 +93,9 @@ If you have source platform components that don't have a direct connector equiva
 
 ## 2. Check output completeness and quality
 
-The `@migration-converter` agent produces complete, deployable artifacts. To confirm that all generated code fully works, the agent runs the `no-stubs-code-generation` skill. This skill also verifies that the output doesn't contain any placeholder code, `TODO` comments, or stub implementations.
+The `@migration-converter` agent produces complete, deployable artifacts. To confirm that all generated code is fully functional, the agent runs the `no-stubs-code-generation` skill. This skill also verifies that the output doesn't contain any placeholder code, `TODO` comments, or stub implementations.
 
-The agent checks that each generated file meets the following standards:
+The agent checks whether each generated file meets the following standards:
 
 | Standard | Description |
 |----------|-------------|
