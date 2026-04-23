@@ -203,15 +203,13 @@ After you finish your analysis, start the Planning stage by creating a migration
 
 ## Migration stage 3: Conversion
 
-When you're satisfied with your migration plan, start the Conversion stage to generate conversion tasks that transform source artifacts into Standard workflows for Azure Logic Apps.
+When you're satisfied with your migration plan, start the Conversion stage to create conversion tasks that transform source artifacts into Standard workflows, connections, and other supporting files for Azure Logic Apps.
 
 1. On the **Home** tab, for your logical flow, select **Create Conversion Tasks**.
 
-   :::image type="content" source="media/migration-agent-quickstart/create-conversion-tasks-stage.png" alt-text="Screenshot that shows the Conversion stage for generating conversion tasks.":::
+   :::image type="content" source="media/migration-agent-quickstart/create-conversion-tasks-stage.png" alt-text="Screenshot that shows the Conversion stage for creating conversion tasks.":::
 
-   The `@migration-converter` agent creates conversion tasks, which vary based on your specific logical flow group. The conversion process produces complete, ready-to-run Standard workflow definitions. The `@migration-converter` agent uses the `no-stubs-code-generation` skill to make sure all generated code is fully functional.
-   
-   The following example shows sample task plans for a logical flow group named `Method Call Processing`:
+   The `@migration-converter` agent creates the conversion tasks, which vary based on your specific logical flow group. The following list describes sample conversion tasks for a logical flow group named `Method Call Processing`:
 
    1. **Scaffold Logic Apps Project**
    
@@ -253,11 +251,17 @@ When you're satisfied with your migration plan, start the Conversion stage to ge
 
       Deploys to Azure and runs cloud E2E tests.
 
-1. To run each conversion task, select **Execute**, and then stop before **Cloud Deployment & Testing**.
+   The following example shows sample generated conversion tasks for the `Method Call Processing` logical flow group:
 
-   The following example shows sample generated conversion tasks for the `Method Call Processing` logical flow:
+   :::image type="content" source="media/migration-agent-quickstart/conversion-stage-main.png" alt-text="Screenshot that shows the Conversion stage with generated conversion tasks that create Standard logic app project files.":::
 
-   :::image type="content" source="media/migration-agent-quickstart/conversion-stage-main.png" alt-text="Screenshot that shows the Conversion stage with generated conversion tasks that create Standard workflow files for Azure Logic Apps.":::
+1. To run each conversion task, select **Execute**, and then stop before **Cloud Deployment & Testing**. Or, select **Execute All**, which works the same as selecting **Execute Conversion Tasks** on the **Home** tab.
+
+   The conversion process produces complete, ready-to-run Standard workflow definitions. The `@migration-converter` agent uses the `no-stubs-code-generation` skill to make sure all generated code is fully functional.
+
+   > [!NOTE]
+   >
+   > During conversion task execution, the agent might prompt you for access or permissions to edit files. Review the available options and respond appropriately.
 
 1. When you finish, continue to the Validation stage by selecting **Home Page** or returning to the **Home** tab.
 
@@ -265,6 +269,9 @@ When you're satisfied with your migration plan, start the Conversion stage to ge
 
 After the migration agent converts your source artifacts to Standard workflows, test the generated workflows against your source specifications. The `@migration-converter` agent provides runtime validation and testing guidance. 
 The Validation stage lets you bring your own test cases and specifications. Your goal is to confirm that your converted workflow performs as expected.
+
+> [!TIP]
+> Use the `@migration-converter` agent through Copilot chat to ask questions about the generated output, request modifications, or regenerate specific workflows.
 
 For this stage, complete the following tasks:
 
@@ -276,13 +283,19 @@ For this stage, complete the following tasks:
 
 1. Validate that the generated solution and code are complete. Make sure that no stubs or placeholder code remain.
 
+1. Inspect each `workflow.json` to verify the trigger, actions, and control flow match the source behavior.
+
+1. Check `connections.json` for correct connector configurations.
+
+1. Review any generated .NET local functions for correctness.
+
 1. Locally run the generated workflows by using the Azure Functions runtime and the Docker Desktop.
 
    For example, if you didn't already, run the **Black Box Tests (Optional)** task with external test data that you provide:
 
    :::image type="content" source="media/migration-agent-quickstart/validation-stage-blackbox.png" alt-text="Screenshot that shows optional Black Box Tests.":::
 
-1. Compare the behavior of the generated workflows against the original integration flows.
+1. Compare the behavior of the generated workflows against the source integration flows.
 
 1. Identify and fix any discrepancies.
 

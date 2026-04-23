@@ -21,17 +21,23 @@ ms.date: 04/27/2026
 >
 > This preview feature is subject to the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-The migration process for integration projects can stall when complex source artifacts are difficult to transform into deployable resources in Azure Logic Apps (Standard). In the Conversion stage, the Azure Logic Apps Migration Agent in Visual Studio Code solves this problem by running the task plans in your migration plan to create complete artifacts, including ready-to-run Standard workflow definitions, connection configurations, and supporting files. During this stage, review the quality for your conversion outputs and prepare them for validation.
+The migration process for integration projects can stall when complex source artifacts are difficult to transform into deployable resources in Azure Logic Apps (Standard). In the Conversion stage, the Azure Logic Apps Migration Agent in Visual Studio Code solves this problem by running the task plans in your migration plan to create complete artifacts, including ready-to-deploy-and-run Standard workflow definitions, connection configurations, and supporting files. During this stage, review the quality for your conversion outputs and prepare them for validation.
 
 This article describes how the Azure Logic Apps Migration Agent maps source integration artifacts to ready-to-deploy Standard logic app project resources.
 
 ## Conversion stage actions
 
-In the Azure Logic Apps Migration Agent, after you complete the **Plan Logic App Design** activity, the **Execute Conversion Tasks** activity becomes available. When you select this activity, the `@migration-converter` GitHub Copilot agent processes each task plan and generates the outputs described in these subsections.
+In the Azure Logic Apps Migration Agent, after you finish the **Plan Logic App Design** activity, the **Create Conversion Tasks** activity becomes available. When you select the **Create Conversion Tasks** activity, the `@migration-converter` GitHub Copilot agent creates the conversion tasks necessary to generate the target logic app project artifacts.
 
-### Project scaffold structure
+After you review these tasks and select the **Execute Conversion Tasks** activity, the `@migration-converter` GitHub Copilot agent processes each task plan and takes the following actions.
 
-The `@migration-coverter` agent generates a Standard logic app project. This project contains one Standard workflow definition file per logical flow group, a connections configuration file, a host configuration file, and other supporting files:
+### 1: Generate logic app project artifacts
+
+The `@migration-converter` agent generates the outputs described in the following sections.
+
+#### Project scaffold structure
+
+The `@migration-converter` agent generates a Standard logic app project. This project contains one Standard workflow definition file per logical flow group, a connections configuration file, a host configuration file, and other supporting files:
 
 ```
 <project-root>/
@@ -47,9 +53,13 @@ The `@migration-coverter` agent generates a Standard logic app project. This pro
         └── <function-name>.cs   # .NET local function, if necessary
 ```
 
-### Workflow definition file
+The following example shows the `@migration-converter` agent creating the project scaffold structure and files:
 
-For each logical flow group, the `@migration-coverter` agent generates a `workflow.json` file that contains the following workflow operations:
+:::image type="content" source="media/migration-agent-conversion-stage/conversion-stage-execution.png" alt-text="Screenshot that shows the Conversion stage generating Logic Apps Standard workflow files.":::
+
+#### Workflow definition file
+
+For each logical flow group, the `@migration-converter` agent generates a `workflow.json` file that contains the following workflow operations:
 
 | Operation | Description |
 |-----------|-------------|
@@ -58,56 +68,41 @@ For each logical flow group, the `@migration-coverter` agent generates a `workfl
 | Conditions or loops | Actions that perform control flow logic, such as **If**, **For each**, and **Until**. The agent translates these actions from decision shapes and loops in the source. |
 | Scopes | Actions with `run-after` configurations that you can use to set up error handling. |
 
-### Connections configuration
+#### Connection configurations
 
-The `@migration-coverter` agent generates a `connections.json` file, which stores the necessary configurations for connector operations in workflows.
+The `@migration-converter` agent generates a `connections.json` file, which stores the necessary configurations for connector operations in your workflows.
 
 The following table describes the high-level connector groups:
 
 | Connector group | Description and examples |
 |-----------------|--------------------------|
-| **Built-in** | Connectors with operations that run in the same process as the Azure Logic Apps (Standard) runtime. For example, these connectors include **Request**, **File System**, **HTTP**, **Azure Blob Storage**, **Service Bus**, **SQL Server**, **AS2**, **EDIFACT**, **X12**, and others. |
-| **Shared** | Connectors with operations that run in multitenant Azure. For example, these connectors include **Salesforce**, **SAP**, **Office 365 Outlook**, **Power BI**, **SharePoint**, and more. Azure Logic Apps supports [1,400+ shared connectors](/connectors/connector-reference/connector-reference-logicapps-connectors) for Microsoft, Azure, and other platforms in the cloud, on-premises, and hybrid environments. |
+| **Built-in** | Connectors with operations that run in the same process as the Azure Logic Apps (Standard) runtime. For example, these connectors include **Request**, **File System**, **HTTP**, **Azure Blob Storage**, **Service Bus**, **SQL Server**, **AS2**, **EDIFACT**, **X12**, and others. <br><br>For more information, see: <br><br>- [Built-in connectors in Azure Logic Apps](../connectors/built-in.md) <br>- [Azure Logic Apps (Standard) built-in connectors reference](/azure/logic-apps/connectors/built-in/reference/) |
+| **Shared** or "managed" | Connectors with operations that run in multitenant Azure. For example, these connectors include **Salesforce**, **SAP**, **Office 365 Outlook**, **Power BI**, **SharePoint**, and more. Azure Logic Apps supports [1,400+ shared connectors](/connectors/connector-reference/connector-reference-logicapps-connectors) for Microsoft, Azure, and other platforms in the cloud, on-premises, and hybrid environments. <br><br>For more information, see [Managed or shared connectors in Azure Logic Apps](../connectors/managed.md). |
 | **Custom** | Connectors from other publishers or your organization that you create for custom APIs or other services. For more information, see [Create custom built-in connectors for Standard workflows](../create-custom-built-in-connector-standard.md). |
 
-### 4. .NET local functions
+For more information, [What are connectors in Azure Logic Apps](../connectors/introduction.md).
 
-When source platform components don't have a direct Logic Apps connector equivalent, the agent generates .NET local functions. Common scenarios include:
+#### .NET local functions
+
+If you have source platform components that don't have a direct connector equivalent in Azure Logic Apps (Standard), the `@migration-converter` agent generates .NET local functions. This behavior commonly happens in scenarios where you have the following:
 
 - Custom data transformation logic
 - Complex parsing or validation rules
-- Calls to on-premises systems via custom protocols
-- Business rule evaluation
+- Calls to on-premises systems through custom protocols
+- Business rules evaluation
 
-### 5. Completeness check
+## 2. Check output completeness and quality
 
-The agent applies the `no-stubs-code-generation` skill to verify that all generated code is fully functional. No placeholder code, `TODO` comments, or stub implementations are left in the output.
+The `@migration-converter` agent produces complete, deployable artifacts. To confirm that all generated code fully works, the agent runs the `no-stubs-code-generation` skill. This skill also verifies that the output doesn't contain any placeholder code, `TODO` comments, or stub implementations.
 
-:::image type="content" source="./media/migrate-logic-apps-migration-agent/conversion-stage.png" alt-text="Screenshot that shows the Conversion stage generating Logic Apps Standard workflow files.":::
-
-
-## Generated output quality
-
-The conversion process produces complete, deployable artifacts. Each generated file follows these standards:
+The agent checks that each generated file meets the following standards:
 
 | Standard | Description |
-|---|---|
-| **No stubs** | All generated code is complete and functional. |
-| **Valid JSON** | All `workflow.json` and `connections.json` files are valid and conform to the Logic Apps schema. |
-| **Correct references** | Workflow actions reference the correct connections and parameters. |
-| **Error handling** | Workflows include appropriate error handling scopes. |
-
-## Reviewing conversion output
-
-After conversion completes, review the generated files:
-
-1. Open the generated Logic Apps project folder in VS Code.
-1. Inspect each `workflow.json` to verify the trigger, actions, and control flow match the source behavior.
-1. Check `connections.json` for correct connector configurations.
-1. Review any generated .NET local functions for correctness.
-
-> [!TIP]
-> Use the `@migration-converter` agent through Copilot chat to ask questions about the generated output, request modifications, or regenerate specific workflows.
+|----------|-------------|
+| No stubs | All generated code is complete and functional. |
+| Valid JSON | All `workflow.json` and `connections.json` files are valid and conform to the Azure Logic Apps schema. |
+| Correct references | Workflow actions reference the correct connections and parameters. |
+| Error handling | Workflows include the appropriate error handling scopes. |
 
 ## Related content
 

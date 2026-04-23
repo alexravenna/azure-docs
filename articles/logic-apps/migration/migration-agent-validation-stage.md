@@ -13,6 +13,11 @@ ms.date: 04/06/2026
 
 The Validation stage tests the Logic Apps Standard workflows generated in Stage 3 against the original source specifications. This stage helps you verify that the migrated workflows behave correctly before you deploy them to Azure.
 
+
+## Review the conversion output
+
+After the agent finishes the conversion, review the generated files by following these steps:
+
 ## What happens during Validation
 
 During validation, you run the generated workflows locally and compare their behavior with the original integration flows:
