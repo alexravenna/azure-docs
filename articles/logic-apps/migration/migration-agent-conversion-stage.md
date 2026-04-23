@@ -91,23 +91,33 @@ If you have source platform components that don't have a direct connector equiva
 - Calls to on-premises systems through custom protocols
 - Business rules evaluation
 
+<a id="check-completeness"></a>
+
 ## 2. Check output completeness and quality
 
-The `@migration-converter` agent produces complete, deployable artifacts. To confirm that all generated code is fully functional, the agent runs the `no-stubs-code-generation` skill. This skill also verifies that the output doesn't contain any placeholder code, `TODO` comments, or stub implementations.
+The `@migration-converter` agent produces complete, ready-to-run, deployable artifacts. To confirm that all generated code is fully functional and complete, the agent uses the `no-stubs-code-generation` skill to make sure all generated code is complete, fully functional, and that no stub implementations, placeholder code, or `TODO` comments exist.
 
-The agent checks whether each generated file meets the following standards:
+The agent uses the following standards to verify each generated file meets the following standards:
 
 | Standard | Description |
 |----------|-------------|
-| No stubs | All generated code is complete and functional. |
+| No stubs or placeholder code | All generated code is complete and functional. |
 | Valid JSON | All `workflow.json` and `connections.json` files are valid and conform to the Azure Logic Apps schema. |
 | Correct references | Workflow actions reference the correct connections and parameters. |
 | Error handling | Workflows include the appropriate error handling scopes. |
 
+To prepare the generated output for the Validation stage where you locally run the workflows for testing, make sure that you manually inspect the workflow definitions, connections, and any generated .NET local functions for inaccuracies.
+
+> [!IMPORTANT]
+>
+> As a best practice, always review any AI generated outputs before you use them. Such outputs might include incorrect information.
+
+For more information, see [Quickstart: Migrate an integration project using the Azure Logic Apps Migration Agent](migrate-logic-apps-migration-agent-quickstart.md#check-completeness).
+
 ## Related content
 
 - [Migration automation from integration platforms to Azure Logic Apps](migration-agent-overview.md)
-- [Quickstart: Migrate an integration project using the Azure Logic Apps Migration Agent](migrate-logic-apps-migration-agent-quickstart.md)
+- [Quickstart: Migrate an integration project using the Azure Logic Apps Migration Agent](migration-agent-quickstart.md#migration-stage-3-conversion)
 
 ## Next steps
 

@@ -33,18 +33,19 @@ For more information, see [Migration automation from integration platforms to Az
 
 ## Prerequisites
 
-Before you start, make sure you meet the following requirements:
+Before you start, make sure to meet the following requirements:
 
 | Requirement | Purpose |
 |-------------|---------|
 | [Azure subscription - Get a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) | Deployment to Azure (Stage 5) |
 | [Azure CLI](/cli/azure/install-azure-cli) | Azure resource provisioning and deployment |
-| [Visual Studio Code 1.85.0 or later](https://code.visualstudio.com/download) | Runtime host |
+| [Visual Studio Code 1.85.0 or later](https://code.visualstudio.com/download) | Local development experience |
 | [Azure Logic Apps Migration Agent extension]() | Required extension with migration agent |
 | [Azure Logic Apps (Standard) extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurelogicapps) | Required extension dependency |
 | [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) | Local functions runtime and development tasks |
+| [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local) | Local runtime host for Azure Logic Apps (Standard) |
 | [GitHub Copilot subscription](https://github.com/features/copilot/plans) | AI-powered analysis, planning, and conversion |
-| [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) | Local connector resource deployment for testing |
+| [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) | Local connector resource deployment for testing and running connections |
 | Folder with BizTalk Server projects | Folder that contains integration project folders with source artifacts and files. For example, a BizTalk project folder includes files with the following file name extensions: `.btproj`, `.odx`, `.btm`, `.xsd`, and `.btp`. |
 
 ### 1: Install the Migration Agent extension
@@ -203,7 +204,7 @@ After you finish your analysis, start the Planning stage by creating a migration
 
 ## Migration stage 3: Conversion
 
-When you're satisfied with your migration plan, start the Conversion stage to create conversion tasks that transform source artifacts into Standard workflows, connections, and other supporting files for Azure Logic Apps.
+When you're satisfied with your migration plan, start the Conversion stage to create and run conversion tasks that transform source artifacts into Standard workflows, connections, and other supporting files for Azure Logic Apps.
 
 ### 3.1: Create conversion tasks
 
@@ -234,9 +235,7 @@ When you're satisfied with your migration plan, start the Conversion stage to cr
 
 ### 3.2: Run the conversion tasks
 
-1. To run each conversion task, select **Execute**, and then stop before **Cloud Deployment & Testing**. Or, select **Execute All**, which works the same as selecting **Execute Conversion Tasks** on the **Home** tab.
-
-   The conversion process produces complete, ready-to-run Standard workflow definitions. The `@migration-converter` agent uses the `no-stubs-code-generation` skill to make sure all generated code is fully functional.
+1. To have the `@migration-converter` agent to run each conversion task, select **Execute**, but stop before **Cloud Deployment & Testing**. Or, select **Execute All**, which works the same as selecting **Execute Conversion Tasks** on the **Home** tab.
 
    > [!NOTE]
    >
@@ -244,9 +243,19 @@ When you're satisfied with your migration plan, start the Conversion stage to cr
 
 1. For the next section, select the **Home Page** or return to the **Home** tab.
 
+<a id="check-completeness"></a>
+
 ### 3.3 Check output for completeness and quality
 
-After the agent finishes generating the project and its files, review the generated artifacts for completeness and quality by following these steps:
+The `@migration-converter` agent produces ready-to-run Standard workflow definitions and deployable project artifacts. This agent uses the `no-stubs-code-generation` skill to make sure all generated code is complete, fully functional, and that no stub implementations, placeholder code, or `TODO` comments exist.
+
+To prepare the generated output for the Validation stage where you locally run the workflows for testing, make sure that you manually inspect the workflow definitions, connections, and any generated .NET local functions for inaccuracies.
+
+> [!IMPORTANT]
+>
+> As a best practice, always review any AI generated outputs before you use them. Such outputs might include incorrect information.
+
+To review the generated output, follow these steps:
 
 1. On the **Home** tab, for your logical flow, select **Open in Visual Studio Code**.
 
@@ -254,15 +263,13 @@ After the agent finishes generating the project and its files, review the genera
 
    :::image type="content" source="media/migration-agent-quickstart/validation-stage-generated-output.png" alt-text="Screenshot that shows the local path for where to find the generated code and solution.":::
 
-1. Check that the generated solution and code are complete. Make sure that no stubs or placeholder code remain.
+1. Inspect each `workflow.json` file to verify that the trigger and actions match the source behavior.
 
    > [!TIP]
    >
    > To ask questions about the generated output, request modifications, or regenerate specific workflows, interact with the `@migration-converter` agent by using Copilot chat.
 
-1. Inspect each `workflow.json` to verify that the trigger and actions match the source behavior.
-
-1. Check `connections.json` for correct connector configurations.
+1. Check the `connections.json` file for the correct connector configurations.
 
 1. Review any generated .NET local functions for correctness.
 
@@ -270,15 +277,60 @@ After the agent finishes generating the project and its files, review the genera
 
 For the Validation stage, test the generated workflows against your source specifications. You can bring your own test cases and specifications. The `@migration-converter` agent provides runtime validation and testing guidance. Your goal is to confirm that your converted workflows perform as expected and matches the source flow behavior.
 
-1. Locally run the generated workflows by using the Azure Functions runtime and the Docker Desktop.
+> [!TIP]
+>
+> To help you easily make direct comparisons, keep the test data and expected outputs for your source platform readily available during validation.
 
-   For example, if you didn't already, run the **Black Box Tests (Optional)** task with external test data that you provide:
+### Requirements for local testing
 
-   :::image type="content" source="media/migration-agent-quickstart/validation-stage-blackbox.png" alt-text="Screenshot that shows optional Black Box Tests.":::
+Before you start the validation steps, make sure the following requirements are installed for testing:
 
-1. Compare the behavior of the generated workflows against the source integration flows.
+| Requirement | Purpose |
+|-------------|---------|
+| [Azure Logic Apps (Standard) extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurelogicapps) | Required extension dependency |
+| [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local) | Local runtime host for Azure Logic Apps (Standard) |
+| [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) | Local connector resource deployment for testing and running connections |
 
-1. Identify and fix any discrepancies.
+### Locally test the workflows
+
+To locally run the generated workflows, follow these steps:
+
+1. On the **Home** tab, for your logical flow, select **Open in Visual Studio Code**.
+
+1. In your migration folder, go to the **out** directory, and select the generated solution folder.
+
+1. Open the generated logic app project folder.
+
+1. Check that Docker Desktop is running.
+
+1. On the **Run** menu, select **Start Debugging** (Keyboard: F5) to locally start the runtime for Azure Logic Apps.
+
+   The runtime starts and the workflows become available at local endpoints.
+
+1. Use sample input data to send test requests or trigger a workflow.
+
+1. Compare the generated workflow behavior against the source behavior to identify any discrepancies or inaccuracies.
+
+   The following checklist describes behaviors for you to verify:
+
+   - [ ] All triggers correctly fire with the expected input formats.
+   - [ ] Action sequences run in the correct order.
+   - [ ] Data transformations produce the expected output.
+   - [ ] Conditional logic correctly branches with the expected results based on input data.
+   - [ ] Loop constructs process all items as expected.
+   - [ ] Error handling scopes appropriately catch and handle exceptions.
+   - [ ] Connection configurations resolve to the correct endpoints.
+   - [ ] .NET local functions return the expected results.
+
+1. Investigate and fix any discrepancies or problems that you find.
+
+   > [!TIP]
+   >
+   > To help you through the resolution process, discuss the discrepancy or problem with the `@migration-converter` agent through Copilot chat.
+   >
+   > 1. In Copilot chat, describe the expected behavior versus the actual behavior.
+   > 1. Review the agent's suggested fixes.
+   > 1. If you accept the agent's recommendations and make the changes, ask the agent to regenerate the updated parts of the workflow.
 
 ## Migration stage 5: Deployment
 

@@ -107,7 +107,7 @@ The migration agent guides you through the following 5-stage migration workflow:
 |-------|-------|---------|
 | 1 | **Discovery** | Scan, detect, and catalog integration artifacts on the source platform. <br><br>The agent automatically detects the platform, scans files, and builds a dependency graph and artifact inventory. |
 | 2 | **Planning** | Analyze complexity, plan the migration roadmap, and map source patterns to Logic Apps patterns. <br><br>The agent generates migration plans for each flow with action mappings, gap analysis, and effort estimates. |
-| 3 | **Conversion** | Transform source artifacts into Standard workflows, connections, and supporting files for Azure Logic Apps. <br><br>The agent executes the task plans generated during the planning stage. |
+| 3 | **Conversion** | Transform source artifacts into Standard workflows, connections, and supporting files for Azure Logic Apps. <br><br>The agent creates conversion tasks and executes the task plans generated during the planning stage. |
 | 4 | **Validation** | Test generated workflows and validate behavior against source specifications. |
 | 5 | **Deployment** | Deploy generated artifacts for Azure Logic Apps to Azure. |
 

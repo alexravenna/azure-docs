@@ -93,7 +93,7 @@ To help you better understand the plan and determine whether you need to make up
 ## Related content
 
 - [Migration automation from integration platforms to Azure Logic Apps](migration-agent-overview.md)
-- [Quickstart: Migrate an integration project using the Azure Logic Apps Migration Agent](migrate-logic-apps-migration-agent-quickstart.md)
+- [Quickstart: Migrate an integration project using the Azure Logic Apps Migration Agent](migration-agent-quickstart.md#migration-stage-2-planning)
 
 ## Next steps
 

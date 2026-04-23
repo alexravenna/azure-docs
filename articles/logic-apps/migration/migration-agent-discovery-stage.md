@@ -80,7 +80,7 @@ For more information, see [Discovery stage - Step 3: Analyze source design](migr
 ## Related content
 
 - [Migration automation from integration platforms to Azure Logic Apps](migration-agent-overview.md)
-- [Quickstart: Migrate an integration project using the Azure Logic Apps Migration Agent](migrate-logic-apps-migration-agent-quickstart.md)
+- [Quickstart: Migrate an integration project using the Azure Logic Apps Migration Agent](migration-agent-quickstart.md#migration-stage-1-discovery)
 
 ## Next steps
 
