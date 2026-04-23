@@ -1,0 +1,57 @@
+---
+title: Increase Private Endpoints for Azure VMware Solution Datastores
+description: Increase private endpoints on Azure VMware Solution datastores to boost performance and reliability. Learn how to migrate VMs and templates with step-by-step guidance.
+ms.service: azure-elastic-san-storage
+author: shaynasrag
+ms.author: shaynasrag
+ms.reviewer: rogarana
+ms.date: 04/23/2026
+ms.topic: how-to
+---
+
+
+# Increase Private Endpoints on Azure VMware Solution Datastores
+
+Deploying Azure VMware Solution datastores on Elastic SAN with the recommended number of private endpoints enhances performance and reliability. If you have existing Azure VMware Solution datastores and need to adjust the number of endpoints, you must create a new datastore with the recommended configuration and migrate your workloads. This article guides you through creating a new datastore with the recommended endpoint configuration and migrating your VMs and templates.
+
+## Prerequisites
+
+- You must have permissions to create and manage Elastic SAN resources.
+- You must have vSphere Client access for VM migration.
+- Review the [Configuration recommendations](../../azure-vmware/configure-azure-elastic-san.md#configuration-recommendations).
+
+## Create new Azure VMware Solution datastore with recommended configuration
+
+To increase the number of private endpoints, first create a new datastore in Elastic SAN with the recommended configuration.
+
+1. [Create volume groups](elastic-san-create.md#create-volume-groups) in your Elastic SAN account.
+1. Add the [recommended number of private endpoints](../../azure-vmware/configure-azure-elastic-san.md#configuration-recommendations) to your volume group.
+1. [Create a new volume](elastic-san-create.md#create-volumes) in your new volume group.
+1. [Create a new Elastic SAN Datastore](../../azure-vmware/configure-azure-elastic-san.md#add-an-elastic-san-volume-as-a-datastore) on Azure VMware Solution. This is your target datastore.
+
+## Migrate VMs and templates to the new datastore
+
+After creating the new datastore, use storage vMotion to relocate all VMs and templates from the source datastore to the target datastore.
+
+1. Go to the **Storage** view in the vSphere Client.
+1. Find and select the **Source ElasticSAN Datastore**.
+1. Under the **VMs** tab, select multiple virtual machines for migration.
+1. Right-click the selected VMs and choose **Migrate**.
+
+    :::image type="content" source="media/elastic-san-increase-private-endpoints-azure-vmware-solutions/select-vms-for-migration.png" alt-text="vSphere Client showing migration option for selected VMs":::
+    
+    - Select the migration type: **Change storage only**.
+
+    :::image type="content" source="media/elastic-san-increase-private-endpoints-azure-vmware-solutions/migration-wizard-change-storage.png" alt-text="Migration wizard with 'Change storage only' selected":::
+
+    - Select the **Target Datastore** that you created in the previous steps.
+
+    :::image type="content" source="media/elastic-san-increase-private-endpoints-azure-vmware-solutions/select-target-datastore.png" alt-text="Selecting target datastore for VM migration":::
+
+1. After you successfully relocate all VMs and templates to the target datastore, [disconnect and delete](../../azure-vmware/configure-azure-elastic-san.md#disconnect-and-delete-an-elastic-san-based-datastore) from the cluster.
+
+    :::image type="content" source="media/elastic-san-increase-private-endpoints-azure-vmware-solutions/delete-source-datastore.png" alt-text="Deleting the source datastore from the cluster in vSphere Client":::
+
+## Next steps
+
+Learn more about [managing Azure VMware Solution datastores](https://learn.microsoft.com/azure/azure-vmware/).
