@@ -11,7 +11,7 @@ ms.custom: engagement-fy25
 # Internet connectivity options for Azure VMware Solution Generation 2 private clouds 
 
 
-After you deploy an Azure VMware Solution Generation 2 (Gen 2) private cloud, you could require network connectivity between the private cloud and other networks you have in an Azure Virtual Network, on-premises, other Azure VMware Solution private clouds, or the internet. In this article, you learn to connect Azure VMware Solution on an Azure Virtual Network private cloud to the internet.
+After you deploy an Azure VMware Solution Generation 2 (Gen 2) private cloud, you could require network connectivity between the private cloud and other networks you have in an Azure Virtual Network, on-premises, other Azure VMware Solution private clouds, or the internet. In this article, you learn how to connect Azure VMware Solution on an Azure Virtual Network private cloud to the internet.
 
 ## Prerequisites
 - Gen 2 private cloud deployed successfully.
