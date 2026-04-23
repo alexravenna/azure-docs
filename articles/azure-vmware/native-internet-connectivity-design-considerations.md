@@ -30,9 +30,9 @@ Internet connectivity using Azure Firewall is similar to the way Azure virtual n
 
 1. Have or create Azure Firewall or a third-party Network Virtual Appliance in the virtual network local to the private cloud or in the peered virtual network.
 2. 
-3. Adjust the existing route table to the Azure VMware Solution specific virtual network subnet named **avs-mgmt**, required for management appliances that include: vCenter, NSX, and HCX Manager to communicate outbound.
+3. Adjust the existing route table to the Azure VMware Solution specific virtual network subnet named **avs-mgmt**, which are required for management appliances that include: vCenter, NSX, and HCX Manager to communicate outbound.
 
-4. Define an Azure user defined route with a 0.0.0.0/0 route pointing to the next-hop type Virtual Appliance with the next-hop IP address of the Azure Firewall private IP or IP of the Network Virtual Appliance.
+4. Define an Azure user chosen route with a 0.0.0.0/0 pointing to the next-hop type Virtual Appliance with the next-hop IP address of the Azure Firewall private IP or IP of the Network Virtual Appliance.
 
 5. Associate the route table to the Azure VMware Solution specific virtual network subnets named 'avs-nsx-gw' and 'avs-nsx-gw-1'. Both network subnets are part of the virtual network associated with private cloud.
 
