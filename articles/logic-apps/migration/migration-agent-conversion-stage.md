@@ -6,7 +6,7 @@ ms.suite: integration
 author: haroldcampos
 ms.author: hcampos
 ms.reviewers: estfan, azla
-ms.topic: conceptual-article
+ms.topic: concept-article
 ai-usage: ai-assisted
 ms.update-cycle: 365-days
 ms.date: 04/27/2026
@@ -63,8 +63,8 @@ For each logical flow group, the `@migration-converter` agent generates a `workf
 
 | Operation | Description |
 |-----------|-------------|
-| [Trigger](../logic-apps-overview.md/#key-terms) | Each workflow always starts with a single trigger, which is the workflow's entry point. The agent maps this trigger from the receive ports or listeners in the source. |
-| [Action](../logic-apps-overview.md/#key-terms) | Each workflow has one or more actions that perform tasks. The agent maps these actions from the orchestration shapes, flow processors, or activities in the source. |
+| [Trigger](../logic-apps-overview.md#key-terms) | Each workflow always starts with a single trigger, which is the workflow's entry point. The agent maps this trigger from the receive ports or listeners in the source. |
+| [Action](../logic-apps-overview.md#key-terms) | Each workflow has one or more actions that perform tasks. The agent maps these actions from the orchestration shapes, flow processors, or activities in the source. |
 | Conditions or loops | Actions that perform control flow logic, such as **If**, **For each**, and **Until**. The agent translates these actions from decision shapes and loops in the source. |
 | Scopes | Actions with `run-after` configurations that you can use to set up error handling. |
 
@@ -76,11 +76,11 @@ The following table describes the high-level connector groups:
 
 | Connector group | Description and examples |
 |-----------------|--------------------------|
-| **Built-in** | Connectors with operations that run in the same process as the Azure Logic Apps (Standard) runtime. For example, these connectors include **Request**, **File System**, **HTTP**, **Azure Blob Storage**, **Service Bus**, **SQL Server**, **AS2**, **EDIFACT**, **X12**, and others. <br><br>For more information, see: <br><br>- [Built-in connectors in Azure Logic Apps](../connectors/built-in.md) <br>- [Azure Logic Apps (Standard) built-in connectors reference](/azure/logic-apps/connectors/built-in/reference/) |
-| **Shared** or "managed" | Connectors with operations that run in multitenant Azure. For example, these connectors include **Salesforce**, **SAP**, **Office 365 Outlook**, **Power BI**, **SharePoint**, and more. Azure Logic Apps supports [1,400+ shared connectors](/connectors/connector-reference/connector-reference-logicapps-connectors) for Microsoft, Azure, and other platforms in the cloud, on-premises, and hybrid environments. <br><br>For more information, see [Managed or shared connectors in Azure Logic Apps](../connectors/managed.md). |
+| **Built-in** | Connectors with operations that run in the same process as the Azure Logic Apps (Standard) runtime. For example, these connectors include **Request**, **File System**, **HTTP**, **Azure Blob Storage**, **Service Bus**, **SQL Server**, **AS2**, **EDIFACT**, **X12**, and others. <br><br>For more information, see: <br><br>- [Built-in connectors in Azure Logic Apps](../../connectors/built-in.md) <br>- [Azure Logic Apps (Standard) built-in connectors reference](/azure/logic-apps/connectors/built-in/reference/) |
+| **Shared** or "managed" | Connectors with operations that run in multitenant Azure. For example, these connectors include **Salesforce**, **SAP**, **Office 365 Outlook**, **Power BI**, **SharePoint**, and more. Azure Logic Apps supports [1,400+ shared connectors](/connectors/connector-reference/connector-reference-logicapps-connectors) for Microsoft, Azure, and other platforms in the cloud, on-premises, and hybrid environments. <br><br>For more information, see [Managed or shared connectors in Azure Logic Apps](../../connectors/managed.md). |
 | **Custom** | Connectors from other publishers or your organization that you create for custom APIs or other services. For more information, see [Create custom built-in connectors for Standard workflows](../create-custom-built-in-connector-standard.md). |
 
-For more information, [What are connectors in Azure Logic Apps](../connectors/introduction.md).
+For more information, [What are connectors in Azure Logic Apps](../../connectors/introduction.md).
 
 #### .NET local functions
 
@@ -112,7 +112,7 @@ To prepare the generated output for the Validation stage where you locally run t
 >
 > As a best practice, always review any AI generated outputs before you use them. Such outputs might include incorrect information.
 
-For more information, see [Quickstart: Migrate an integration project using the Azure Logic Apps Migration Agent](migrate-logic-apps-migration-agent-quickstart.md#check-completeness).
+For more information, see [Quickstart: Migrate an integration project using the Azure Logic Apps Migration Agent](migration-agent-quickstart.md#check-completeness).
 
 ## Related content
 
