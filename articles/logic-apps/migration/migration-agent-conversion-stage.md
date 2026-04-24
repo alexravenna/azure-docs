@@ -1,6 +1,7 @@
 ---
 title: "Migration Stage 3 - Conversion: Create Workflows"
 description: "Learn how the Migration Agent converts source integration artifacts into workflows, connections, and other files for migration to Azure Logic Apps (Standard) during the Conversion stage."
+titleSuffix: Azure Logic Apps
 services: azure-logic-apps
 ms.suite: integration
 author: haroldcampos
