@@ -1,92 +1,58 @@
 ---
-title: "Stage 5 - Deployment: Deploy to Azure"
-titleSuffix: Logic Apps Migration Agent - Azure
-description: Learn how the Deployment stage in the Logic Apps Migration Agent deploys your migrated Logic Apps Standard workflows to Azure.
+title: "Migration Stage 5 - Deployment: Deploy Workflows to Azure"
+description: "Learn how the Migration Agent deploys migrated Standard workflows to Azure during the Deployment stage."
+services: azure-logic-apps
+ms.suite: integration
 author: haroldcampos
 ms.author: hcampos
-ms.reviewer: estfan
-ms.topic: overview
-ms.date: 04/06/2026
+ms.reviewers: estfan, azla
+ms.topic: conceptual-article
+ai-usage: ai-assisted
+ms.update-cycle: 365-days
+ms.date: 04/27/2026
+# Customer intent: As a developer who works with enterprise integration platforms, such as BizTalk Server, MuleSoft, and others, I want to learn how the Azure Logic Apps (Standard) Migration Agent in Visual Studio Code deploys migrated Standard workflows to Azure during the Deployment stage.
 ---
 
-# Stage 5 - Deployment: Deploy to Azure
+# Migration to Azure Logic Apps Stage 5 - Deployment: Deploy migrated workflows to Azure (preview)
 
-The Deployment stage is the final step of the Logic Apps Migration Agent workflow. In this stage, you deploy your validated Logic Apps Standard workflows and supporting resources to Azure.
+[!INCLUDE [logic-apps-sku-standard](../includes/logic-apps-sku-standard.md)]
 
-## What happens during Deployment
+> [!NOTE]
+>
+> This preview feature is subject to the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-The extension uses the Azure CLI to provision infrastructure and deploy your Logic Apps artifacts:
+After you locally test your migrated Standard workflows and validate that their behavior matches the source integration flows, you need a reliable way to deploy them to Azure without manually provisioning infrastructure or risking configuration errors.
 
-1. **Resource provisioning**: Creates the required Azure resources, including the Logic Apps Standard resource (Workflow Service Plan), storage account, and Application Insights instance.
+In the Deployment stage, the Azure Logic Apps Migration Agent in Visual Studio Code automates this process by using the Azure CLI to provision the required Azure resources and deploy your validated workflows, connections, and supporting artifacts to Azure in a single step.
 
-1. **Artifact deployment**: Deploys the generated `workflow.json`, `connections.json`, `host.json`, and any .NET local functions to the provisioned Logic Apps resource.
+This article describes the general process that the migration agent follows to deploy migrated Standard workflows to Azure.
 
-1. **Connection authorization**: Configures managed connector connections and prompts for any authorization steps required by specific connectors.
+## Deployed Azure resources architecture
 
-## Prerequisites for Deployment
-
-Before you deploy, make sure you have:
-
-| Requirement | Purpose |
-|---|---|
-| Azure CLI | Provisions and deploys Azure resources |
-| Azure subscription | Target subscription for deployment |
-| Contributor access | Role-based access to create resources in the target resource group |
-
-## Configure deployment settings
-
-Before deployment, configure the extension settings at **Settings** > **Extensions** > **Logic Apps Migration Agent**:
-
-| Setting | Description | Default |
-|---|---|---|
-| `logicAppsMigrationAssistant.azure.subscriptionId` | Your Azure subscription ID | (empty) |
-| `logicAppsMigrationAssistant.azure.resourceGroup` | Target resource group | `integration-migration-tool-test-rg` |
-| `logicAppsMigrationAssistant.azure.location` | Azure region | `eastus` |
-| `logicAppsMigrationAssistant.deploymentModel` | Deployment model | `workflow-service-plan` |
-
-## Deploy to Azure
-
-To deploy the migrated workflows:
-
-1. Make sure you've completed Stages 1 through 4 and validated the generated workflows locally.
-
-1. Verify that the deployment settings are configured correctly.
-
-1. Sign in to Azure CLI if you haven't already:
-
-   ```bash
-   az login
-   ```
-
-1. Proceed with the deployment from the Logic Apps Migration Agent panel.
-
-1. The extension provisions the required resources and deploys your workflows.
-
-## Post-deployment verification
-
-After deployment completes, verify your workflows in Azure:
-
-1. Open the [Azure portal](https://portal.azure.com).
-
-1. Navigate to your Logic Apps Standard resource in the configured resource group.
-
-1. Verify that all workflows appear and are in the **Enabled** state.
-
-1. Test each workflow with sample inputs to confirm they behave as expected in the cloud environment.
-
-1. Check **Application Insights** for any runtime errors or performance issues.
-
-## Deployed resource architecture
-
-The deployment creates the following Azure resources:
+The Deployment stage creates the following Azure resources:
 
 | Resource | Description |
-|---|---|
-| **Logic Apps Standard** (Workflow Service Plan) | Hosts your migrated workflows |
-| **Storage Account** | Stores workflow state and run history |
-| **Application Insights** | Provides monitoring, logging, and diagnostics |
+|----------|-------------|
+| Standard logic app resource with the Workflow Service Plan hosting option | The logic app resource that hosts your migrated workflows. |
+| Storage account | The resource that stores workflow state and run history. |
+| Application Insights | The resource that provides monitoring, logging, and diagnostics. |
+
+## Deployment stage actions
+
+The migration agent uses the Azure CLI to provision the necessary infrastructure, deploy your logic app workflows and other artifacts, and authorize any shared connections as required.
+
+| Step | Action | Description |
+|------|--------|-------------|
+| 1 | **Provision resources** | Creates the required Azure resources, including the Standard logic app resource with the Workflow Service Plan as the hosting option, storage account, and Application Insights resource. |
+| 2 | **Deploy artifacts** | Deploys the generated `workflow.json`, `connections.json`, and `host.json` files plus any .NET local functions to the provisioned Standard logic app resource. |
+| 3 | **Authorize connections** | Configures connections for any shared connectors and prompts for any authorization steps as required. |
+
+## Related content
+
+- [Migration automation from integration platforms to Azure Logic Apps](migration-agent-overview.md)
+- [Quickstart: Migrate an integration project using the Azure Logic Apps Migration Agent](migration-agent-quickstart.md#migration-stage-5-deployment)
 
 ## Next steps
 
-- [Logic Apps Migration Agent overview](migrate-logic-apps-migration-agent-overview.md)
-- [Stage 1 - Discovery: Catalog integration artifacts](migrate-logic-apps-migration-agent-stage-discovery.md)
+> [!div class="nextstepaction"]
+> [Add custom parsers for unsupported integration platforms](migration-agent-custom-parses.md)

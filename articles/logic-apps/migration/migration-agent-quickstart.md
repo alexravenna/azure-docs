@@ -281,7 +281,7 @@ For the Validation stage, test the generated workflows against your source speci
 >
 > To help you easily make direct comparisons, keep the test data and expected outputs for your source platform readily available during validation.
 
-### Requirements for local testing
+### Requirements for locally testing your workflows
 
 Before you start the validation steps, make sure the following requirements are installed for testing:
 
@@ -291,7 +291,7 @@ Before you start the validation steps, make sure the following requirements are 
 | [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local) | Local runtime host for Azure Logic Apps (Standard) |
 | [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) | Local connector resource deployment for testing and running connections |
 
-### Locally test the workflows
+### Locally test your workflows
 
 To locally run the generated workflows, follow these steps:
 
@@ -334,29 +334,77 @@ To locally run the generated workflows, follow these steps:
 
 ## Migration stage 5: Deployment
 
-This last stage deploys your migrated solution to Azure Logic Apps.
+The Deployment stage deploys your migrated migrated Standard solution to Azure Logic Apps in the Azure portal.
 
-1. Before you start, view the extension's settings. From the **File** menu, go to **Preferences** > **Settings** > **Extensions** > **Logic Apps Migration Agent**.
+### Requirements for deploying your workflows
+
+Before you start the deployment steps, make sure to meet the following requirements:
+
+| Requirement | Purpose |
+|-------------|---------|
+| Azure CLI | Provisions and deploys Azure resources. |
+| Azure subscription | Your target subscription to use for deployment. |
+| Contributor access | Role-based access to create resources in the target resource group. |
+
+Make sure you finished migration agent stages 1 (Discovery) through 4 (Validation), including locally running the generated workflows and confirming their behavior match the source behavior.
+
+### Step 1: Set up extension settings for deployment
+
+1. In Visual Studio Code, open the extension settings. From the **File** menu, go to **Preferences** > **Settings** > **Extensions** > **Azure Logic Apps Migration Agent**.
 
 1. Update the following deployment setting values as appropriate:
 
-   | Setting name | Description | Default | Action |
-   |--------------|-------------|---------|--------|
-   | **Location** | The Azure region for provisioning resources. | `eastus` | Change this value to the region you want. |
-   | **Resource Group** | The Azure resource group for provisioning and testing. | `integration-migration-tool-test-rg` | Change this value to the resource group name you want. |
-   | **Subscription ID** | The Azure subscription ID for deployment. | (empty) | Enter the GUID for your Azure subscription. |
-   | **Deployment Model** | The target deployment model for Azure Logic Apps (Standard). | `workflow-service-plan` | If appropriate, change this value to `hybrid`. |
+   | Setting name | JSON name | Description | Default | Action |
+   |--------------|-----------|-------------|---------|--------|
+   | **Location** | `logicAppsMigrationAssistant.azure.location` | The Azure region for provisioning resources. | `eastus` | Change this value to the region you want. |
+   | **Resource Group** | `logicAppsMigrationAssistant.azure.resourceGroup` | The Azure resource group for provisioning and testing. | `integration-migration-tool-test-rg` | Change this value to the resource group name you want. |
+   | **Subscription ID** | `logicAppsMigrationAssistant.azure.subscriptionId` | The Azure subscription ID for deployment. | (empty) | Enter the GUID for your Azure subscription. |
+   | **Deployment Model** | `logicAppsMigrationAssistant.deploymentModel` | The target deployment model for Azure Logic Apps (Standard). | `workflow-service-plan` | If appropriate, change this value to `hybrid`. |
 
-1. To start deployment, run the **Cloud Deployment & Testing** task by selecting **Execute**:
+### Step 2: Start the deployment process
+
+Follow these steps to begin deployment to Azure:
+
+1. Sign in to Azure CLI with your Azure subscription, for example:
+
+   ```bash
+   az login
+   ```
+
+1. From the Azure Logic Apps Migration Agent window, go to the migration plan, and run the **Cloud Deployment & Testing** task by selecting **Execute**:
 
    :::image type="content" source="media/migration-agent-quickstart/validation-stage-main.png" alt-text="Screenshot that shows the end to end testing with deployment in target environment.":::
 
-   The migration agent provisions the required infrastructure and deploys your Standard logic app resource and workflows by using the Azure CLI.
+   The migration agent provisions the necessary infrastructure and deploys your Standard logic app resource and workflows by using the Azure CLI.
 
    The following example shows a sample completely migrated solution:
 
    :::image type="content" source="media/migration-agent-quickstart/deployment-stage-final.png" alt-text="Screenshot that shows the end to end testing with deployment in target environment.":::
-   
+
+### Step 3: Verify the deployment
+
+After deployment completes, verify that your Standard workflows appear in the Azure portal.
+
+1. In the [Azure portal](https://portal.azure.com) search box, enter `logic apps`, and then select **Logic  apps**.
+
+1. On the **Logic apps** page, select your Standard logic app resource.
+
+1. On the logic app sidebar, under **Workflows**, expand **Workflows**. On the **Workflows** page, confirm that all the expected workflows appear. Confirm that their **State** is **Enabled**.
+
+   > [!NOTE]
+   >
+   > For any disabled workflow, select the workflow checkbox. On the **Workflows** toolbar, select **Enable**.
+
+1. Test each workflow with sample inputs to make sure they work as expected.
+
+1. To find any runtime errors or performance problems, go to the **Application Insights** page for your Standard logic app resource.
+
+   1. On the logic app sidebar, under **Monitoring**, select **Application Insights**.
+
+   1. Under **Link to an Application Insights resource**, select the link to the Application Insights resource.
+
+   For more information, see [View workflow metrics in Application Insights](../enable-enhanced-telemetry-standard-workflows.md#view-workflow-metrics-in-application-insights).
+
 ## Reset the migration
 
 You can restart your migration from the beginning. The following command clears the migration state and lets you start again with the Discovery stage.
@@ -368,7 +416,7 @@ You can restart your migration from the beginning. The following command clears 
 ## Related content
 
 - [Migration automation from integration platforms to Azure Logic Apps](migration-agent-overview.md)
-- [Migration agent stage 1 - Discovery: Catalog artifacts](migration-agent-discovery-stage.md)
+- [Migration agent stage 1: Discovery](migration-agent-discovery-stage.md)
 - [Migration agent stage 2: Planning](migration-agent-planning-stage.md)
 - [Migration agent stage 3: Conversion](migration-agent-conversion-stage.md)
 - [Migration agent stage 4: Validation](migration-agent-validation-stage.md)
