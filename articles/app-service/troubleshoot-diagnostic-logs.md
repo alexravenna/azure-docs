@@ -37,18 +37,15 @@ In addition to the logging instructions in this article, you can use the Azure M
 
 When logs are stored in the App Service file system, they're subject to the available storage for your pricing tier. For more information, see [App Service limits](../azure-resource-manager/management/azure-subscription-service-limits.md#azure-app-service-limits).
 
-## Enable application logs (Windows)
+## Enable application logging (Windows)
 
 To enable application logs for Windows apps in the [Azure portal](https://portal.azure.com):
 
 1. Go to your app and select **Monitoring** > **App Service logs**.
 
-1. Select **On** for either or both of these options:
+1. Select **On** for **Application logging (Filesystem)**. This option is for temporary debugging purposes. It turns itself off in 12 hours.
 
-   - **Application logging (Filesystem)**: This option is for temporary debugging purposes. It turns itself off in 12 hours.
-   - **Web server logging**: This option is for long-term logging.
-
-1. If you enable **Application logging (Filesystem)**, select the level of details to log. The following table shows the log categories included in each level:
+1. Select the level of details to log. The following table shows the log categories included in each level:
 
    | Level | Included categories |
    |:-|:-|
@@ -58,9 +55,17 @@ To enable application logs for Windows apps in the [Azure portal](https://portal
    |**Information** | **Info**, **Warning**, **Error**, **Critical**|
    |**Verbose** | **Trace**, **Debug**, **Info**, **Warning**, **Error**, **Critical** (all categories) |
 
-1. If you enable **Web server logging**, select **Storage** to store logs in blob storage, or select **File System** to store logs in the App Service file system.
+1. Select **Save**.
+
+## Enable web server logging
+
+1. Go to your app and select **Monitoring** > **App Service logs**.
+
+1. For **Web server logging**, select **Storage** to store logs in blob storage, or select **File System** to store logs in the App Service file system.
 
 1. In **Retention Period (Days)**, set the number of days to retain the logs.
+
+1. Select **Save**.
 
 If you write logs to blobs, the retention policy no longer applies if you delete the app but keep the logs in the blobs. For more information, see [Costs that might accrue after resource deletion](overview-manage-costs.md#costs-that-might-accrue-after-resource-deletion).
 
@@ -68,9 +73,7 @@ Currently, only .NET application logs can be written to blob storage. Java, PHP,
 
 If you [regenerate your storage account's access keys](../storage/common/storage-account-create.md), you must reset the respective logging configuration to use the updated access keys:
 
-1. Select **Save**.
-
-## <a name = "enable-application-logging-linuxcontainer"></a> Enable application logs (Linux or container)
+## <a name = "enable-application-logging-linuxcontainer"></a> Enable application logging (Linux or container)
 
 To enable application logging for Linux apps or custom containers in the [Azure portal](https://portal.azure.com):
 
@@ -84,7 +87,7 @@ To enable application logging for Linux apps or custom containers in the [Azure 
 
 1. Select **Save**.
 
-## Log detailed errors (Linux or container)
+## Log detailed errors
 
 To save the error page or failed request traces for apps in the [Azure portal](https://portal.azure.com):
 
