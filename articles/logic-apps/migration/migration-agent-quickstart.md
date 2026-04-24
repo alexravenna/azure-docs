@@ -334,7 +334,7 @@ To locally run the generated workflows, follow these steps:
 
 ## Migration stage 5: Deployment
 
-The Deployment stage deploys your migrated migrated Standard solution to Azure Logic Apps in the Azure portal.
+The Deployment stage deploys your migrated Standard solution to Azure Logic Apps in the Azure portal.
 
 ### Requirements for deploying your workflows
 
