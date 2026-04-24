@@ -1,6 +1,7 @@
 ---
 title: "Migration Stage 1 - Discovery: Catalog Artifacts"
 description: "Learn how the Migration Agent scans, analyzes, and catalogs source artifacts for migration to Azure Logic Apps (Standard) during the Discovery stage."
+titleSuffix: Azure Logic Apps
 services: azure-logic-apps
 ms.suite: integration
 author: haroldcampos
