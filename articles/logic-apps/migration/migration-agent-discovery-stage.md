@@ -1,12 +1,12 @@
 ---
 title: "Migration Stage 1 - Discovery: Catalog Artifacts"
-description: "Learn how the Migration Agent scans, analyzes, and catalogs source artifacts for migration to Azure Logic Apps (Standard) during the Discovery stage".
+description: "Learn how the Migration Agent scans, analyzes, and catalogs source artifacts for migration to Azure Logic Apps (Standard) during the Discovery stage."
 services: azure-logic-apps
 ms.suite: integration
 author: haroldcampos
 ms.author: hcampos
 ms.reviewers: estfan, azla
-ms.topic: conceptual-article
+ms.topic: concept-article
 ai-usage: ai-assisted
 ms.update-cycle: 365-days
 ms.date: 04/27/2026
@@ -27,7 +27,7 @@ This article explains how the Azure Logic Apps Migration Agent scans your source
 
 ## Discovery stage actions
 
-In Visual Studo Code, after you open the Azure Logic Apps Migration Agent on the Activity Bar, and select the source folder, the migration agent automatically completes the following steps by using the `@migration-analyser` GitHub Copilot agent:
+In Visual Studio Code, after you open the Azure Logic Apps Migration Agent on the Activity Bar, and select the source folder, the migration agent automatically completes the following steps by using the `@migration-analyser` GitHub Copilot agent:
 
 | Step | Action | Description |
 |------|--------|-------------|
