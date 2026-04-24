@@ -55,4 +55,4 @@ The migration agent uses the Azure CLI to provision the necessary infrastructure
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Add custom parsers for unsupported integration platforms](migration-agent-custom-parses.md)
+> [Extend the migration agent by creating custom parsers for unsupported integration platforms](migration-agent-extend.md)

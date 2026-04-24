@@ -225,6 +225,12 @@ items:
         href: migration/migration-agent-planning-stage.md
       - name: Stage 3 (Conversion) - Generate workflows
         href: migration/migration-agent-conversion-stage.md
+      - name: Stage 4 (Validation) - Test your workflows
+        href: migration/migration-agent-validation-stage.md
+      - name: Stage 5 (Deployment) - Deploy workflows to Azure
+        href: migration/migration-agent-deployment-stage.md
+      - name: Extend migration agent with custom parsers
+        href: migration/migration-agent-extend.md
   - name: Develop
     items:
     - name: Add a trigger or action to a workflow
