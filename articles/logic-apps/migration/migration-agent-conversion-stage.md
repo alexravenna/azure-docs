@@ -21,7 +21,7 @@ ms.date: 04/27/2026
 >
 > This preview feature is subject to the [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
-The migration process for integration projects can stall when complex source artifacts are difficult to transform into deployable resources in Azure Logic Apps (Standard). In the Conversion stage, the Azure Logic Apps Migration Agent in Visual Studio Code solves this problem by running the task plans in your migration plan to create complete artifacts, including ready-to-deploy-and-run Standard workflow definitions, connection configurations, and supporting files.
+The migration process for integration projects can stall when complex source artifacts are difficult to transform into deployable resources in Azure Logic Apps (Standard). In the Conversion stage, the Azure Logic Apps Migration Agent in Visual Studio Code solves this problem by running the task plans in your migration plan. This process creates complete artifacts that include ready to deploy Standard workflow definitions, connection configurations, and supporting files.
 
 This article describes how the Azure Logic Apps Migration Agent creates conversion tasks that map the source integration artifacts to ready-to-deploy Standard logic app project resources and how the agent runs these tasks to produce ready-to-deploy-and-run project artifacts.
 
