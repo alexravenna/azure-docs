@@ -215,6 +215,22 @@ items:
         href: biztalk-server-migration-overview.md
       - name: Migration options and best practices
         href: biztalk-server-migration-approaches.md
+      - name: Migration Agent for Azure Logic Apps
+        href: migration/migration-agent-overview.md
+      - name: Quickstart- Migrate to Azure Logic Apps
+        href: migration/migration-agent-quickstart.md
+      - name: Stage 1 (Discovery) - Catalog artifacts
+        href: migration/migration-agent-discovery-stage.md
+      - name: Stage 2 (Planning) - Create migration plan
+        href: migration/migration-agent-planning-stage.md
+      - name: Stage 3 (Conversion) - Generate workflows
+        href: migration/migration-agent-conversion-stage.md
+      - name: Stage 4 (Validation) - Test your workflows
+        href: migration/migration-agent-validation-stage.md
+      - name: Stage 5 (Deployment) - Deploy workflows to Azure
+        href: migration/migration-agent-deployment-stage.md
+      - name: Extend migration agent with custom parsers
+        href: migration/migration-agent-extend.md
   - name: Develop
     items:
     - name: Add a trigger or action to a workflow
