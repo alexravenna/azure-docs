@@ -39,12 +39,12 @@ The Deployment stage creates the following Azure resources:
 
 ## Deployment stage actions
 
-The migration agent uses the Azure CLI to provision the necessary infrastructure, deploy your logic app workflows and other artifacts, and authorize any shared connections as required.
+The migration agent uses the Azure CLI to create the necessary infrastructure, deploy your logic app workflows and other artifacts, and authorize any shared connections as required.
 
 | Step | Action | Description |
 |------|--------|-------------|
 | 1 | **Provision resources** | Creates the required Azure resources, including the Standard logic app resource with the Workflow Service Plan as the hosting option, storage account, and Application Insights resource. |
-| 2 | **Deploy artifacts** | Deploys the generated `workflow.json`, `connections.json`, and `host.json` files plus any .NET local functions to the provisioned Standard logic app resource. |
+| 2 | **Deploy artifacts** | Deploys the generated `workflow.json`, `connections.json`, and `host.json` files plus any .NET local functions to the created Standard logic app resource. |
 | 3 | **Authorize connections** | Configures connections for any shared connectors and prompts for any authorization steps as required. |
 
 ## Related content

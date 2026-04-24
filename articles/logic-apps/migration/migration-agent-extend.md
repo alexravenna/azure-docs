@@ -41,11 +41,11 @@ Before you start, make sure you have the following resources:
 
 ## Parser architecture
 
-For adding platform support to the migration agent, the following approaches exist:
+To add platform support to the migration agent, use the following approaches:
 
 | Approach | Recommended | Description |
 |----------|-------------|-------------|
-| **Built-in parser** (contribute to the repo) | Yes | Add a parser and skills directly to the project. Full integration with all five migration stages. This approach is the recommended option because built-in parsers ship with the extension, use the same CI/CD pipeline, and can access all internal APIs. |
+| **Built-in parser** (contribute to the repo) | Yes | Add a parser and skills directly to the project. Full integration with all five migration stages. This approach is recommended because built-in parsers ship with the extension, use the same CI/CD pipeline, and can access all internal APIs. |
 | **External parser extension** | No | Create a separate Visual Studio Code extension that registers parsers through the plugin API. Covers only the Discovery stage. |
 
 All parsers transform source platform artifacts into a common IR format as a JSON document. The migration agent uses the IR format in the planning, conversion, and validation stages. The parser registry supports both built-in and external parser plugins:
@@ -58,7 +58,7 @@ All parsers transform source platform artifacts into a common IR format as a JSO
 
 ## Step 1: Add a built-in parser
 
-1. Under `src/parsers/<your-platform>/`, create a new parser module:
+1. Under `src/parsers/<your-platform>/`, create a new parser module.
 
    ```
    src/parsers/
@@ -74,7 +74,7 @@ All parsers transform source platform artifacts into a common IR format as a JSO
    │   └── <your-platform-parser-name>.ts
    ```
 
-1. Make sure each parser implements the `IParser` interface:
+1. Make sure each parser implements the `IParser` interface.
 
    ```typescript
    import { IParser, ParserCapabilities, ParseResult, ParseOptions } from '../types';
@@ -107,7 +107,7 @@ All parsers transform source platform artifacts into a common IR format as a JSO
    }
    ```
 
-1. Register your parser in `src/parsers/index.ts`:
+1. Register your parser in `src/parsers/index.ts`.
 
    ```typescript
    import { <your-platform-parser-name> } from './<your-platform>';
@@ -126,7 +126,7 @@ All parsers transform source platform artifacts into a common IR format as a JSO
 
 As Markdown files, skills provide AI instructions for each migration stage. They tell the GitHub Copilot agents how to analyze, plan, and convert artifacts for your specific platform.
 
-To find these skills, look under `resources/skills/` with platform-specific variants:
+To find these skills, look under `resources/skills/` with platform-specific variants.
 
 ```
 resources/skills/
@@ -173,18 +173,18 @@ description: >-
    | `@migration-analyser` | `dependency-and-decompilation-analysis` | Rules for identifying missing dependencies |
    | All agents | `source-to-logic-apps-mapping` | Component-by-component mapping from source to Azure Logic Apps |
    | `@migration-planner` | `logic-apps-planning-rules` | Rules for generating migration plans |
-   | `@migration-converter` | `conversion-task-plan-rules` | Rules for creating conversion task plans |
+   | `@migration-converter` | `conversion-task-plan-rules` | Rules for creating conversion tasks |
    | `@migration-converter` | `scaffold-logic-apps-project` | Rules for scaffolding the Standard logic app project structure |
    | `@migration-converter` | `workflow-json-generation-rules` | Rules for generating `workflow.json` files |
    | `@migration-converter` | `connections-json-generation-rules` | Rules for generating the `connections.json` file |
    | `@migration-converter` | `dotnet-local-functions-logic-apps` | Rules for generating .NET local functions |
-   | `@migration-converter` | `no-stubs-code-generation` | Rules to make sure generated code is complete |
+   | `@migration-converter` | `no-stubs-code-generation` | Rules that make sure generated code is complete |
    | `@migration-converter` | `runtime-validation-and-testing` | Rules for runtime validation and testing |
    | `@migration-converter` | `cloud-deployment-and-testing` | Rules for cloud deployment and testing |
 
 ## Step 4: Register your platform
 
-1. In the `src/types/platforms.ts` file, add your platform to the supported platforms list:
+1. In the `src/types/platforms.ts` file, add your platform to the supported platforms list.
 
    ```typescript
    export type SourcePlatform = 'biztalk' | 'mulesoft' | '<your-platform>';
@@ -201,7 +201,7 @@ description: >-
    ];
    ```
 
-1. In `src/stages/discovery/PlatformDetector.ts` file, add the detection logic.
+1. In the `src/stages/discovery/PlatformDetector.ts` file, add the detection logic.
 
 1. In the `src/stages/discovery/SourceFolderService.ts` file, add the file patterns.
 

@@ -125,14 +125,14 @@ These agents work with 25 language model tools registered in Visual Studio Code 
 
 ## Related content
 
-- [Migration agent stage 1 - Discovery: Catalog artifacts](migration-agent-discovery-stage.md)
-- [Migration agent stage 2 - Planning: Create migration plan](migration-agent-planning-stage.md)
+- [Migration agent stage 1 - Discovery](migration-agent-discovery-stage.md)
+- [Migration agent stage 2 - Planning](migration-agent-planning-stage.md)
 - [Migration agent stage 3 - Conversion](migration-agent-conversion-stage.md)
 - [Migration agent stage 4 - Validation](migration-agent-validation-stage.md)
 - [Migration agent stage 5 - Deployment](migration-agent-deployment-stage.md)
-- [Add custom parsers for integration platforms](migration-agent-custom-parsers.md)
+- [Extend the migration agent by creating custom parsers for unsupported integration platforms](migration-agent-extend.md)
 
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Quickstart: Migrate an integration project using the Azure Logic Apps Migration Agent](migrate-logic-apps-migration-agent-quickstart.md)
+> [Quickstart: Migrate an integration project using the Azure Logic Apps Migration Agent](migration-agent-quickstart.md)

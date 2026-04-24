@@ -421,4 +421,4 @@ You can restart your migration from the beginning. The following command clears 
 - [Migration agent stage 3: Conversion](migration-agent-conversion-stage.md)
 - [Migration agent stage 4: Validation](migration-agent-validation-stage.md)
 - [Migration agent stage 5: Deployment](migration-agent-deployment-stage.md)
-- [Add custom parsers for integration platforms](migration-agent-custom-parsers.md)
+- [Extend the migration agent by creating custom parsers for unsupported integration platforms](migration-agent-extend.md)
