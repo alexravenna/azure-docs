@@ -11,7 +11,7 @@ ms.custom: engagement-fy25
 # Internet connectivity options for Azure VMware Solution Generation 2 private clouds 
 
 
-After you deploy an Azure VMware Solution Generation 2 ( ) private cloud, you could require network connectivity between the private cloud and other networks you have in an Azure Virtual Network, on-premises, other Azure VMware Solution private clouds, or the internet. In this article, you learn how to connect Azure VMware Solution on an Azure Virtual Network private cloud to the internet.
+In this article, learn how to connect Azure VMware Solution on an Azure Virtual Network private cloud to the internet. Once you deploy an Azure VMware Solution Generation 2 (Gen 2) private cloud, you might need to connect the network between the private cloud and other networks you have in an Azure Virtual Network, on-premises, other Azure VMware Solution private clouds, or the internet.
 
 ## Prerequisites
 - Gen 2 private cloud deployed successfully.
@@ -20,7 +20,7 @@ After you deploy an Azure VMware Solution Generation 2 ( ) private cloud, you co
 
 ## Connect Azure VMware Solution Generation 2 Private Cloud to the Internet
 
-Azure VMware Solution provides necessary internet connectivity to SDDC appliances like vCenter, NSX Manager, and HCX Manager for management functions. This private cloud relies on the internet connectivity configured on the Virtual Network it's deployed in. The customer workload can connect to the internet through either virtual WAN, Azure Firewall, or third-party Network Virtual Appliances. The standard Azure Supported topology for virtual WAN, Azure Firewall, and third-party Network Virtual Appliances are supported.
+Azure VMware Solution provides necessary internet connectivity to SDDC appliances like vCenter, NSX Manager, and HCX Manager for management functions. This private cloud relies on the internet connectivity configured on the Virtual Network it gets deployed in. The customer workload can connect to the internet through either virtual WAN, Azure Firewall, or third-party Network Virtual Appliances. The standard Azure Supported topology for virtual WAN, Azure Firewall, and third-party Network Virtual Appliances are supported.
 
 :::image type="content" source="./media/native-connectivity/native-connect-private-cloud-internet.png" alt-text="Diagram showing an Azure VMware Solution Gen 2 connection to internet via Azure Firewall." lightbox="media/native-connectivity/native-connect-private-cloud-internet.png":::
 
