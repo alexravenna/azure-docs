@@ -178,7 +178,7 @@ description: >-
    | `@migration-converter` | `workflow-json-generation-rules` | Rules for generating `workflow.json` files |
    | `@migration-converter` | `connections-json-generation-rules` | Rules for generating the `connections.json` file |
    | `@migration-converter` | `dotnet-local-functions-logic-apps` | Rules for generating .NET local functions |
-   | `@migration-converter` | `no-stubs-code-generation` | Rules that make sure generated code is complete |
+   | `@migration-converter` | `no-stubs-code-generation` | Rules for ensuring that generated code is complete |
    | `@migration-converter` | `runtime-validation-and-testing` | Rules for runtime validation and testing |
    | `@migration-converter` | `cloud-deployment-and-testing` | Rules for cloud deployment and testing |
 
