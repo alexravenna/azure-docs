@@ -1,7 +1,7 @@
 ---
 title: "Migration Stage 5 - Deployment: Deploy Workflows to Azure"
-titleSuffix: Azure Logic Apps
 description: "Learn how the Migration Agent deploys migrated Standard workflows to Azure during the Deployment stage."
+titleSuffix: Azure Logic Apps
 services: azure-logic-apps
 ms.suite: integration
 author: haroldcampos
