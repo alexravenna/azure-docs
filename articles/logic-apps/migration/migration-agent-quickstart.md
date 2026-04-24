@@ -43,7 +43,7 @@ Before you start, make sure to meet the following requirements:
 | [Azure Logic Apps Migration Agent extension]() | Required extension with migration agent for Visual Studio Code |
 | [Azure Logic Apps (Standard) extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurelogicapps) | Required dependency for the Azure Logic Apps Migration Agent extension |
 | [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) | Local functions runtime and development tasks |
-| [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local) | Local runtime host for Azure Logic Apps (Standard) |
+| [Azure Functions Core Tools](/azure/azure-functions/functions-run-local) | Local runtime host for Azure Logic Apps (Standard) |
 | [GitHub Copilot subscription](https://github.com/features/copilot/plans) | AI-powered analysis, planning, and conversion |
 | [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) | Local connector resource deployment for testing and running connections |
 | Folder with BizTalk Server projects | Folder that contains integration project folders with source artifacts and files. For example, a BizTalk project folder includes files with the following file name extensions: `.btproj`, `.odx`, `.btm`, `.xsd`, and `.btp`. |
@@ -187,7 +187,7 @@ After you finish your analysis, start the Planning stage by creating a migration
 
    :::image type="content" source="media/migration-agent-quickstart/planning-stage-main.png" alt-text="Screenshot that shows the Planning stage with the migration plan for a logical group flow and action mappings.":::
 
-   For more information, see [Planning stage actions and events](migration-agent-planning-stage.md#planning-stage-actions-and-events).
+   For more information, see [Planning stage action](migration-agent-planning-stage.md#planning-stage-actions).
 
 1. Before you continue to the Conversion stage, review each plan carefully. Make any updates as necessary.
 
@@ -288,7 +288,7 @@ Before you start the validation steps, make sure the following requirements are 
 | Requirement | Purpose |
 |-------------|---------|
 | [Azure Logic Apps (Standard) extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurelogicapps) | Required extension dependency |
-| [Azure Functions Core Tools](https://learn.microsoft.com/azure/azure-functions/functions-run-local) | Local runtime host for Azure Logic Apps (Standard) |
+| [Azure Functions Core Tools](/azure/azure-functions/functions-run-local) | Local runtime host for Azure Logic Apps (Standard) |
 | [Docker Desktop](https://docs.docker.com/desktop/setup/install/windows-install/) | Local connector resource deployment for testing and running connections |
 
 ### Locally test your workflows
@@ -373,13 +373,13 @@ Follow these steps to begin deployment to Azure:
 
 1. From the Azure Logic Apps Migration Agent window, go to the migration plan, and run the **Cloud Deployment & Testing** task by selecting **Execute**:
 
-   :::image type="content" source="media/migration-agent-quickstart/validation-stage-main.png" alt-text="Screenshot that shows the end to end testing with deployment in target environment.":::
+   :::image type="content" source="media/migration-agent-quickstart/validation-stage-main.png" alt-text="Screenshot that shows the end to end testing task with deployment in target environment.":::
 
    The migration agent provisions the necessary infrastructure and deploys your Standard logic app resource and workflows by using the Azure CLI.
 
    The following example shows a sample completely migrated solution:
 
-   :::image type="content" source="media/migration-agent-quickstart/deployment-stage-final.png" alt-text="Screenshot that shows the end to end testing with deployment in target environment.":::
+   :::image type="content" source="media/migration-agent-quickstart/deployment-stage-final.png" alt-text="Screenshot that shows Visual Studio Code and the completely migrated solution.":::
 
 ### Step 3: Verify the deployment
 
