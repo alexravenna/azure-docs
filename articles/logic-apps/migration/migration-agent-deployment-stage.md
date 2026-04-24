@@ -6,7 +6,7 @@ ms.suite: integration
 author: haroldcampos
 ms.author: hcampos
 ms.reviewers: estfan, azla
-ms.topic: conceptual-article
+ms.topic: concept-article
 ai-usage: ai-assisted
 ms.update-cycle: 365-days
 ms.date: 04/27/2026
