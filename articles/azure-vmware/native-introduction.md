@@ -75,7 +75,7 @@ Gen 2 is available in the following Azure public regions.
 - UK West
 - West US 2
 
-There could be other regions that have Gen 2 available. Contact your Microsoft account team or Microsoft Support to confirm coverage in other regions.
+There could be other regions that have Gen 2 available. To confirm coverage in other regions, contact your Microsoft account team or Microsoft Support.
 
 ## Next steps
 
