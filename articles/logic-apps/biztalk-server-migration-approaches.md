@@ -1,6 +1,6 @@
 ---
 title: Migration Approaches for BizTalk Server to Azure Logic Apps
-description: Learn about migration strategies, planning, and best practices for moving from BizTalk Server to Azure Logic Apps.
+description: "Learn about migration strategies, planning, and best practices for moving from BizTalk Server to Azure Logic Apps (Standard)."
 services: logic-apps
 ms.service: azure-logic-apps
 ms.suite: integration
@@ -119,7 +119,7 @@ You'll also want to identify and list the various out-of-scope variables that sh
 
 #### Initial backlog
 
-The [*initial backlog*](/azure/devops/boards/backlogs/backlogs-overview?view=azure-devops&preserve-view=true) is a set of User Stories, which you group into Features to build the [in-scope processes](#in-scope-processes) for your MVP. In other words, an MVP is represented by Scrum items known as Epics, Features, and User Stories. Ideally, each Epic encompasses a group of BizTalk applications or BizTalk projects. You can use the simple rule that associates one BizTalk application or BizTalk project with a feature.
+The [*initial backlog*](/azure/devops/boards/backlogs/backlogs-overview?view=azure-devops&preserve-view=true) is a set of User Stories, which you group into Features to build the [in-scope processes](#in-scope-processes) for your MVP. In other words, an MVP is represented by Scrum items known as Epics, Features, and User Stories. Ideally, each Epic encompasses a group of BizTalk applications or BizTalk projects. You can use a rule that associates one BizTalk application or BizTalk project with a feature.
 
 For example, suppose you have a BizTalk Server project with an orchestration called "LoanRequests" that customers use to request bank loans. So, you have the following proposed Feature and User Story:
 
@@ -190,7 +190,7 @@ After your team finishes and meets the "definition of done" for the user stories
 
 1. Plan for operations or production support.
 
-1. Choose "go or no go" criteria for releasing to production.
+1. Choose criteria for releasing to production.
 
 1. Celebrate your team's success.
 
