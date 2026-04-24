@@ -6,7 +6,7 @@ ms.suite: integration
 author: haroldcampos
 ms.author: hcampos
 ms.reviewers: estfan, azla
-ms.topic: conceptual-article
+ms.topic: concept-article
 ai-usage: ai-assisted
 ms.update-cycle: 365-days
 ms.date: 04/27/2026
@@ -53,4 +53,4 @@ The Validation stage tests your generated Standard workflows against the origina
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Migration agent stage 5 - Deployment: Deploy to Azure](migration-agent-validation-deployment.md)
+> [Migration agent stage 5 - Deployment: Deploy to Azure](migration-agent-deployment-stage.md)
