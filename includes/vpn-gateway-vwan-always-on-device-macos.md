@@ -9,19 +9,19 @@
  # this file is used for both virtual wan and vpn gateway. When modifying, make sure that your changes work for both environments.
 ---
 > [!NOTE]
-> Note the following prerequisites for Always On VPN user tunnels on macOS:
-> - The Azure VPN Client for macOS must be [version 3.0.0](/azure/vpn-gateway/azure-vpn-client-versions) or later.
+> Note the following prerequisites for Always On VPN device tunnels on macOS:
+> - The Azure VPN Client for macOS must be [version 3.0.100](/azure/vpn-gateway/azure-vpn-client-versions) or later.
 > - Always On must be configured per profile - there's no default Always On profile.
 > - Only one profile can have Always On enabled at a time.
 > - Always On can only be enabled when the VPN connection is disconnected.
 > - Disconnecting an Always On profile disables the Always On feature for that profile.
 
 1. Open the Azure VPN Client for Mac.
-1. Select the profile you want to configure for Always On. If there isn't a client profile downloaded, follow the steps in **[this document](need to configure cert based auth doc for Mac Client)** to configure a profile for your VPN client.
+1. Select the profile you want to configure for Always On. If there isn't a client profile downloaded, follow the steps in **[this document](/articles/vpn-gateway/point-to-site-entra-vpn-client-mac.md)** to configure a profile for your VPN client.
 1. Ensure the connection is in disconnected mode.
 1. Select the checkbox for **Connect-Automatically**. 
 1. Select **Connect** to establish the VPN connection.
-1. If the connection succeeds, you successfully configured an Always On user tunnel. 
+1. If the connection succeeds, you successfully configured an Always On device tunnel. 
 
 ![Diagram showing the always on feature in client.](./media/vpn-gateway-vwan-always-on-device-macos/app-settings-menu-macos-always-on.png)
 
