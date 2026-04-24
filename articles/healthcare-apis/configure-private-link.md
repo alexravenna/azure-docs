@@ -6,9 +6,8 @@ author: EXPEkesheth
 ms.service: azure-health-data-services
 ms.subservice: fhir
 ms.topic: tutorial
-ms.date: 04/17/2026
+ms.date: 04/24/2026
 ms.author: kesheth
-ms.reviewer: v-catheribun
 ms.custom: sfi-image-nochange
 ---
 
@@ -27,8 +26,6 @@ In this tutorial, you:
 > * Add a DNS record for the Private DNS Zone for new services created after the private endpoint
 > * Test connectivity to Azure Health Data Services over the private endpoint
 
-
-
 >[!NOTE]
 > You can't move Private Link or Azure Health Data Services from one resource group or subscription to another once Private Link is enabled. To make a move, delete the Private Link first, and then move Azure Health Data Services. Create a new Private Link after the move is complete. Next, assess potential security ramifications before deleting the Private Link.
 >
@@ -41,10 +38,10 @@ Before you create a private endpoint, create the following Azure resources:
 
 - [An active Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - **Resource Group** – The Azure resource group that contains the workspace, virtual network, and private endpoint.
-- [Workspace deployed in the Azure Health Data Services](healthcare-apis-quickstart.md):  You need the workspace to create the private endpoint. You create the private endpoint at the workspace level, and it applies to all services within the workspace. 
+- [An Azure Health Data Services workspace](healthcare-apis-quickstart.md):  You need the workspace to create the private endpoint. You create the private endpoint at the workspace level, and it applies to all services within the workspace. 
 - [FHIR service deployed in the workspace](fhir/fhir-portal-quickstart.md) or [DICOM service deployed in the workspace](dicom/deploy-dicom-services-in-azure.md): The Azure Health Data Services resource that you want to connect to over the private endpoint. You don't need this resource to create the private endpoint, but you need it to test the private endpoint connectivity.
 - An RBAC role with permission to create a virtual network in the resource group, such as **Owner**, **Contributor**, or **Network Contributor**. For more information, see [Manage a virtual network](../virtual-network/manage-virtual-network.yml).
-- An RBAC role with permission to create a private endpoint in your resource group or Azure Health Data Services workspace, such as **Owner**, **Contributor**, or **Healthcare APIs Contributor**.  For more information, see [Private Link RBAC permissions](../private-link/rbac-permissions.md#private-endpoint). 
+- An RBAC role with permission to create a private endpoint in your resource group or Azure Health Data Services workspace, such as **Owner**, **Contributor**, or **Healthcare APIs Contributor**. For more information, see [Private Link RBAC permissions](../private-link/rbac-permissions.md#private-endpoint). 
 
 
 ## Create a virtual network and dedicated subnet
@@ -58,30 +55,19 @@ Don't enable any service endpoints on the subnet you select for the private endp
 
 To create a virtual network and subnet, follow these steps:
 
-1. In the [Azure portal](https://portal.azure.com), select **Create a resource**.
-1. Search for and select **Virtual Network**.
+1. In the [Azure portal](https://portal.azure.com), search for and select **Virtual Network**.
 1. Select **Create**.
 1. On the **Basics** tab, select the subscription and resource group that contains your workspace. 
 1. Enter a name for the virtual network, and select a region.
-1. Select the **IP Addresses** tab and enter an address space for the virtual network or accept the default values. 
-
-    :::image type="content" source="media/private-link/create-vnet-basics-tab.png" alt-text="Screenshot of the Create virtual network Basics tab." lightbox="media/private-link/create-vnet-basics-tab.png":::
-
+1. Go to **IP Addresses** and enter an address space for the virtual network or accept the default values. 
 1. Create a subnet for the private endpoint by selecting **+ Add subnet**. 
-
-    :::image type="content" source="media/private-link/create-vnet-ip-addresses-tab.png" alt-text="Screenshot of the Create virtual network IP Addresses tab." lightbox="media/private-link/create-vnet-ip-addresses-tab.png":::
-
 1. Enter a name and select the address range, starting address, and size for the subnet. Select **Add** to add the subnet.
-
-    :::image type="content" source="media/private-link/create-vnet-add-subnet.png" alt-text="Screenshot of the Create virtual network Add subnet tab." lightbox="media/private-link/create-vnet-add-subnet.png":::
-
 1. Select **Review + create**, and then select **Create**.
 
-    :::image type="content" source="media/private-link/create-vnet-review-tab.png" alt-text="Screenshot of the Create virtual network Review + create tab." lightbox="media/private-link/create-vnet-review-tab.png":::
 
 For more information on creating virtual networks, see [Manage a virtual network](../virtual-network/manage-virtual-network.yml).
 
-## Create private endpoint
+## Create a private endpoint
 
 To create a private endpoint, use the Azure portal as a user with role-based access control (RBAC) permissions on the workspace or the resource group where the workspace is located. Use the Azure portal because it automates the creation and configuration of the Private DNS Zone. For more information, see [Private Link Quick Start Guides](./../private-link/create-private-endpoint-portal.md).
 
@@ -89,25 +75,20 @@ You configure a private endpoint at the workspace level. The private endpoint au
 
 When you create a private endpoint for a workspace, you can disable public network access. If you disable public network access, all traffic to the workspace and its services must go through the private endpoint.
 
-You can create a private endpoint from the Network foundation experience in the Azure portal which gives you more control over the network configuration, or choose a more guided experience by selecting the workspace and navigating to the **Networking** tab.
-
-### Create a private endpoint from the Network foundation experience
-
 Follow these steps to create a private endpoint from the Network foundation experience:
 
-1. In the Azure portal, search for and select **Private endpoints** from the top search bar.
-1. Select **+ Create** to create a new private endpoint.
+1. Go to your workspace in the Azure portal.
+1. Go to **Settings** > **Networking**.
+1. Select **+ Private endpoint**.
 1. On the **Basics** tab, select the subscription and resource group that contains your workspace. 
-1. Enter a name for the private endpoint, and select a region. The region for the private endpoint must be the same as the region for the virtual network.
-1. Select **Next: Resource >** to continue to the **Resource** tab.
+1. Enter a **Name** for the private endpoint, and select a region. The region for the private endpoint must be the same as the region for the virtual network.
+1. Select **Next: Resource >**.
 
-:::image type="content" source="media/private-link/create-private-endpoint-basics-tab.png" alt-text="Screenshot of create private endpoint Basics Tab." lightbox="media/private-link/create-private-endpoint-basics-tab.png":::
+:::image type="content" source="media/private-link/create-private-endpoint-basics-tab.png" alt-text="Screenshot of create private endpoint Basics tab." lightbox="media/private-link/create-private-endpoint-basics-tab.png":::
 
-#### Resource configuration
+### Resource configuration
 
 Assign a resource to the private endpoint in one of two ways. The auto approval flow enables a user with RBAC permissions on the workspace to create a private endpoint without needing approval. The manual approval flow enables a user without permissions on the workspace to request that owners of the workspace or resource group approve the private endpoint.
-
-
 
 #### [Auto approval](#tab/auto-approval)
 
@@ -116,7 +97,7 @@ For auto approval, follow these steps:
 1. For **Connection method**, select **Connect to an Azure resource in my directory**. 
 1. For the resource type, search for and select **Microsoft.HealthcareApis/workspaces** from the drop-down list. 
 1. For the resource, select the workspace in the resource group. The **Target sub-resource** is automatically populated with  **healthcareworkspace**.
-1. Select **Next: Virtual Network >** to continue to the **Virtual Network** tab.
+1. Select **Next: Virtual Network >**.
 
 :::image type="content" source="media/private-link/create-private-endpoint-auto-approval.png" alt-text="Screenshot of create private endpoint Resources tab with auto approval selection." lightbox="media/private-link/create-private-endpoint-auto-approval.png":::
 
@@ -128,7 +109,7 @@ For manual approval, follow these steps:
 1. For the resource ID, enter `subscriptions/{subscriptionid}/resourceGroups/{resourcegroupname}/providers/Microsoft.HealthcareApis/workspaces/{workspacename}`. 
 1. For the **Target sub-resource**, enter `healthcareworkspace`.
 1. Enter a message for the approver in the **Message for approver** field to provide context for the approval request.
-1. Select **Next: Virtual Network >** to continue to the **Virtual Network** tab.
+1. Select **Next: Virtual Network >**.
 
 :::image type="content" source="media/private-link/create-private-endpoint-manual-approval.png" alt-text="Screenshot of create private endpoint Manual Approval Resources tab with manual approval selection." lightbox="media/private-link/create-private-endpoint-manual-approval.png":::
 
@@ -140,17 +121,17 @@ When you use manual approval, you can't integrate with a private DNS zone as par
 ---
 
 
-#### Virtual network configuration
+### Virtual network configuration
 
-1. For the **Virtual network**, select the virtual network that you created for the private endpoint.
-1. For the **Subnet**, select the subnet that you created for the private endpoint.
+1. For  **Virtual network**, select the virtual network that you created for the private endpoint.
+1. For **Subnet**, select the subnet that you created for the private endpoint.
 1. To set up Network Security Group (NSG) rules or route tables to restrict the traffic to the private endpoint, select **edit** the **Network policy for private endpoints**. 
 1. For **Private IP configuration**, choose to have an IP address automatically assigned from the subnet, or specify a static IP address from the subnet.
-1. Select **Next: DNS >** to continue to the **DNS** tab.
+1. Select **Next: DNS >**.
 
 :::image type="content" source="media/private-link/create-private-endpoint-vnet-tab.png" alt-text="Screenshot of create private endpoint Virtual Network tab." lightbox="media/private-link/create-private-endpoint-vnet-tab.png":::
 
-#### DNS configuration
+### DNS configuration
 
 If you use the auto approval method, you can integrate with Azure Private DNS zones as part of the private endpoint creation process. If you use the manual approval method and want to integrate with Azure Private DNS zones, you need to manually create a private DNS zone and link it to your virtual network. For more information, see [Private endpoint DNS configuration](#private-endpoint-dns-configuration).
 
@@ -159,23 +140,6 @@ You can choose whether to have the private endpoint automatically integrate with
 :::image type="content" source="media/private-link/create-private-endpoint-dns-tab.png" alt-text="Screenshot of create private endpoint DNS tab." lightbox="media/private-link/create-private-endpoint-dns-tab.png":::
 
 Go to the **Review + create** tab and review your configuration. If everything looks correct, select **Create** to create the private endpoint.
-
-#### Tags configuration
-
-You can also add tags to your private endpoint by selecting the **Tags** tab. Tags are name-value pairs that enable you to categorize resources and view consolidated billing by applying the same tag to multiple resources and resource groups. For more information, see [Use tags to organize your Azure resources](../azure-resource-manager/management/tag-resources?tabs=json).
-
-### Create the private endpoint from the workspace networking tab
-
-To create a private endpoint from the workspace Networking tab, follow these steps:
-1. In the Azure portal, go to your workspace.
-1. Select **Networking** from the left-hand menu, and then select **+ Private endpoint**.
-1. Enter the resource group where you want to create your private endpoint, and the name for your private endpoint. The region is automatically populated based on the region of your workspace. Make sure that the region for the private endpoint is the same as the region for the virtual network.
-1. Select your virtual network and subnet for the private endpoint. Don't enable any service endpoints on the subnet you select for the private endpoint.
-1. For **Integrate with private DNS zone**, choose whether to have the private endpoint automatically integrate with an Azure Private DNS zone. When you choose to integrate with a private DNS zone, the portal creates a private DNS zone that is automatically linked to the virtual network that you selected for the private endpoint.
-1. Select **OK** to create the private endpoint.
-
-:::image type="content" source="media/private-link/create-private-endpoint-from-workspace.png" alt-text="Screenshot of create private endpoint from workspace experience." lightbox="media/private-link/create-private-endpoint-from-workspace.png":::
-
 
 ## Private endpoint DNS configuration
 
@@ -189,7 +153,7 @@ If you need to support multiple virtual networks, you must create separate DNS z
 
 Select **DNS Management** > **Recordsets** to view DNS records for that zone. You see the A record for each service with the private IP address assigned to that service.
 
-A new DNS record is automatically created in the appropfor each new service created in the workspace after the private endpoint is created. 
+After the private endpoint is created, newly created services in the workspace automatically have DNS records added to the appropriate private DNS zone.
 
 ## Test private endpoint
 
@@ -233,6 +197,6 @@ Validate the following points:
 ## Related articles
 
 - [Create a private endpoint using the Azure portal](./../private-link/create-private-endpoint-portal.md)
-- [Private Link Documentation](./../private-link/index.yml).
+- [Private Link Documentation](./../private-link/index.yml)
 
 [!INCLUDE [FHIR and DICOM trademark statement](./includes/healthcare-apis-fhir-dicom-trademark.md)]
