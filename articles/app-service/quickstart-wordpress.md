@@ -29,11 +29,6 @@ In this quickstart, you learn how to:
 - Configure a MySQL Flexible Server database
 - Set up App Service hosting plans
 - Deploy and manage your WordPress site
-- Monitor site performance and health
-- Configure custom domains and SSL
-- Optimize your WordPress deployment for production
-- Scale your application as traffic grows
-- Implement backup and disaster recovery strategies
 - Secure your WordPress site with best practices
 
 ## Prerequisites
