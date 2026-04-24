@@ -113,7 +113,7 @@ For manual approval, follow these steps:
 
 :::image type="content" source="media/private-link/create-private-endpoint-manual-approval.png" alt-text="Screenshot of create private endpoint Manual Approval Resources tab with manual approval selection." lightbox="media/private-link/create-private-endpoint-manual-approval.png":::
 
-When you use manual approval, you can't integrate with a private DNS zone as part of the private endpoint creation process. To use Azure Private DNS, you need to manually create a private DNS zone and link it to your virtual network. For more information, see [Private endpoint DNS configuration](#private-endpoint-dns-configuration).
+When you use manual approval, you can't integrate with a private DNS zone as part of the private endpoint creation process. To use Azure Private DNS, you need to manually create a private DNS zone and link it to your virtual network. For more information, see [Create a private zone](../dns/private-dns-getstarted-portal.md).
 
 > [!NOTE]
 > When you create an approved private endpoint for Azure Health Data Services, it automatically disables public traffic. 
@@ -162,7 +162,7 @@ To verify that your service isn't receiving public traffic after disabling publi
 It can take up to five minutes after updating the public network access flag before public traffic is blocked.
 
 > [!IMPORTANT]
-> Every time you add a new service into the Private Link enabled workspace, you need to add a DNS record to your private DNS zone or your custom DNS zone. If DNS A records aren't added in your private DNS zone, requests fail with a 403 Forbidden error. For instructions on how to add DNS records, see the [Private endpoint DNS configuration](#private-endpoint-dns-configuration) section.
+> Every time you add a new service into the Private Link enabled workspace, you need to add a DNS record to your private DNS zone or your custom DNS zone. If DNS A records aren't added in your private DNS zone, requests fail with a 403 Forbidden error. 
 
 To ensure your Private Endpoint can send traffic to your server:
 
