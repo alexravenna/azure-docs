@@ -1,6 +1,7 @@
 ---
 title: Extend Migration Agent to Other Platforms
 description: "Learn how to extend the Azure Logic Apps (Standard) Migration Agent by creating and adding custom parsers that support integration platforms like TIBCO, IBM IIB, Dell Boomi, or Workato."
+titleSuffix: Azure Logic Apps
 services: azure-logic-apps
 ms.suite: integration
 author: haroldcampos
