@@ -156,6 +156,9 @@ PS C:\> Get-AzRoleAssignment | Where-Object {$_.Scope -eq "/subscriptions/000000
 
 ## List role assignments for classic service administrator and co-administrators
 
+> [!IMPORTANT]
+> As of **May 2026**, classic administrator roles are fully retired and the **Classic Administrators** tab has been removed from the Azure portal. For more information, see [Azure classic subscription administrators](classic-administrators.md).
+
 To list role assignments for the classic subscription administrator and co-administrators, use [Get-AzRoleAssignment](/powershell/module/az.resources/get-azroleassignment).
 
 ```azurepowershell

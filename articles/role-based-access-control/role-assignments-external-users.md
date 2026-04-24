@@ -181,10 +181,6 @@ Before you remove an external user from a directory, you should first remove any
 
 1. In the remove role assignment message that appears, select **Yes**.
 
-1. Select the **Classic administrators** tab.
-
-1. If the external user has a Co-Administrator assignment, add a check mark next to the external user and select **Remove**.
-
 1. In the left navigation bar, select **Microsoft Entra ID** > **Users**.
 
 1. Select the external user you want to remove.
