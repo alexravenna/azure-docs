@@ -8,7 +8,7 @@ author: haroldcampos
 ms.author: hcampos
 ms.reviewer: estfan, azla
 ms.topic: concept-article
-ms.date: 04/27/202
+ms.date: 04/27/2026
 # Customer intent: As a developer who works with BizTalk Server, I want to learn about migration options, planning considerations, and best practices for moving from BizTalk Server to Azure Logic Apps.
 ---
 
