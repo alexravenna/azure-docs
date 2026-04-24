@@ -8,8 +8,8 @@ author: haroldcampos
 ms.author: hcampos
 ms.reviewer: estfan, azla
 ms.topic: concept-article
-ms.date: 02/11/2026
-# Customer intent: As a BizTalk Server customer, I want to learn about migration options, planning considerations, and best practices for moving from BizTalk Server to Azure Logic Apps.
+ms.date: 04/27/202
+# Customer intent: As a developer who works with BizTalk Server, I want to learn about migration options, planning considerations, and best practices for moving from BizTalk Server to Azure Logic Apps.
 ---
 
 # Migration approaches for BizTalk Server to Azure Logic Apps Standard 
@@ -49,12 +49,9 @@ To complete such a project, we recommend that you follow the iterative or wave-b
 
 :::image type="content" source="./media/biztalk-server-to-azure-integration-services-overview/biztalk-gradual-migration.png" alt-text="Diagram shows migration waves." border="false":::
 
-> [!NOTE]
+> [!TIP]
 >
-> Use the [Logic Apps Migration Agent](./migration/migrate-logic-apps-migration-agent-overview.md) to conduct each migration phase. Built on **GitHub Copilot** and the **VS Code Language Model API**, the Logic Apps Migration Agent provides a structured 5-stage migration workflow with AI-powered analysis and conversion. The extension uses specialized Copilot agents and built-in parsers to automate the migration process while keeping you in control at every step.
-
-
-
+> For each migration phase, use the [Azure Logic Apps Migration Agent extension](migration/migration-agent-overview.md) for Visual Studio Code. Built on GitHub Copilot and the Visual Studio Code Language Model API, the extension guides you through an automated and structured 5-stage migration workflow with AI-powered discovery, analysis, and conversion. The migration agent uses specialized Copilot agents and built-in parsers to automate the migration process while you stay in control at every step.
 
 ### Sprint 0
 
@@ -144,8 +141,7 @@ After your team completes Sprint 0, you should have a clear view of the MVP to b
 
 #### Migrate
 
-During each wave, migration focuses on the agreed User Stories. For the first wave, your team focuses on the initial backlog. Technology decisions must use the information in the BizTalk Server features mapping, described by [Why migrate from BizTalk Server to Azure Logic Apps](/azure/logic-apps/biztalk-server-migration-overview.md).
-
+During each wave, migration focuses on the agreed User Stories. For the first wave, your team focuses on the initial backlog. Technology decisions must use the information in the BizTalk Server features mapping as described by [Why migrate from BizTalk Server to Azure Logic Apps](biztalk-server-migration-overview.md).
 
 <a name="initial-migration-environment"></a>
 
