@@ -45,7 +45,7 @@ The migration agent currently supports the following source integration platform
 | BizTalk Server | 2016, 2020 | Fully completed | Built-in |
 | MuleSoft Anypoint | Mule 3, Mule 4 | In progress, not yet available | Built-in (stub) |
 
-The Azure Logic Apps Migration Agent extension for Visual Studio Code is an open-source, extensible project. To add support for a new platform, contribute a built-in parser or create an external parser extension. For more information, see [Add a custom parser for a new platform](migrate-logic-apps-migration-agent-custom-parsers.md).
+The Azure Logic Apps Migration Agent extension for Visual Studio Code is an open-source, extensible project. To add support for a new platform, contribute a built-in parser or create an external parser extension. For more information, see [Extend the migration agent by creating and adding custom parsers for new platforms](migration-agent-extend.md).
 
 <a id="biztalk-support"></a>
 
@@ -130,7 +130,7 @@ These agents work with 25 language model tools registered in Visual Studio Code 
 - [Migration agent stage 3 - Conversion](migration-agent-conversion-stage.md)
 - [Migration agent stage 4 - Validation](migration-agent-validation-stage.md)
 - [Migration agent stage 5 - Deployment](migration-agent-deployment-stage.md)
-- [Extend the migration agent by creating custom parsers for unsupported integration platforms](migration-agent-extend.md)
+- [Extend the migration agent by creating custom  for unsupported integration platforms](migration-agent-extend.md)
 
 ## Next steps
 
