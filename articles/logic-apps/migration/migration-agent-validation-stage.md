@@ -1,5 +1,6 @@
 ---
 title: "Migration Stage 4 - Validation: Test Workflows"
+titleSuffix: Azure Logic Apps
 description: "Learn how the Migration Agent tests generated workflows in Azure Logic Apps (Standard) against source behavior during the Validation stage."
 services: azure-logic-apps
 ms.suite: integration
