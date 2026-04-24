@@ -6,7 +6,7 @@ ms.suite: integration
 author: haroldcampos
 ms.author: hcampos
 ms.reviewers: estfan, azla
-ms.topic: conceptual-article
+ms.topic: concept-article
 ai-usage: ai-assisted
 ms.update-cycle: 365-days
 ms.date: 04/27/2026
@@ -58,7 +58,7 @@ The **Operations mapping** section describes how each source component maps to a
 | Receive port (FILE) | **File System** trigger named **When a file is added or modified** | Built-in | Runtime native | Choose the *built-in* version that runs in the same process as the Azure Logic Apps runtime. The *shared* version runs in multitenant Azure. <br><br>For more information, see: <br><br>- [Connect to on-premises file systems from Azure Logic Apps](../../connectors/file-system.md?tabs=standard) <br>- [File System built-in connector reference](/azure/logic-apps/connectors/built-in/reference/filesystem/) |
 | Send port (HTTP) | **HTTP** action | Built-in | Runtime native | For more information, see [Call external HTTP or HTTPS endpoints from Azure Logic Apps](../../connectors/connectors-native-http.md?tabs=standard). |
 | Orchestration shape (Transform) | **XML Operations** action named **Transform XML** | Built-in | Runtime native | For more information, see [Transform XML in Azure Logic Apps](../logic-apps-enterprise-integration-transform.md?tabs=standard). |
-| Custom pipeline component | An **Azure Functions** function <br>-or- <br>A .NET local function | Built-in | Custom | Requires code migration. <br><br>For more information, see: <br><br>- [Call Azure Functions from Azure Logic Apps](../logic-apps/call-azure-functions-from-workflows.md?tabs=standard) <br>- [Create and run .NET code from Standard workflows in Azure Logic Apps](../create-run-custom-code-functions.md) |
+| Custom pipeline component | An **Azure Functions** function <br>-or- <br>A .NET local function | Built-in | Custom | Requires code migration. <br><br>For more information, see: <br><br>- [Call Azure Functions from Azure Logic Apps](../call-azure-functions-from-workflows.md?tabs=standard) <br>- [Create and run .NET code from Standard workflows in Azure Logic Apps](../create-run-custom-code-functions.md) |
 
 ### Migration gaps
 
