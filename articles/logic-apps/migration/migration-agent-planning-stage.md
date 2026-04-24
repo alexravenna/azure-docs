@@ -1,5 +1,6 @@
 ---
 title: "Migration Stage 2 - Planning: Create Migration Plan"
+titleSuffix: Azure Logic Apps
 description: "Learn how the Migration Agent creates plans or roadmaps for migration to Azure Logic Apps (Standard) during the Planning stage."
 services: azure-logic-apps
 ms.suite: integration
