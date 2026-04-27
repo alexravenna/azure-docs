@@ -36,7 +36,7 @@ In this tutorial, you:
 
 Before you create a private endpoint, create the following Azure resources:
 
-- [An active Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- [An active Azure account](https://az deployed in the workspaceure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - **Resource Group** – The Azure resource group that contains the workspace, virtual network, and private endpoint.
 - [An Azure Health Data Services workspace](healthcare-apis-quickstart.md):  You need the workspace to create the private endpoint. You create the private endpoint at the workspace level, and it applies to all services within the workspace. 
 - A [FHIR service](fhir/fhir-portal-quickstart.md) or [DICOM service](dicom/deploy-dicom-services-in-azure.md) deployed in the workspace: The Azure Health Data Services resource that you want to connect to over the private endpoint. You don't need these resources to create the private endpoint, but you need them to test the private endpoint connectivity.
@@ -138,7 +138,15 @@ You can choose whether to have the private endpoint automatically integrate with
 
 :::image type="content" source="media/private-link/create-private-endpoint-dns-tab.png" alt-text="Screenshot of create private endpoint DNS tab." lightbox="media/private-link/create-private-endpoint-dns-tab.png":::
 
-Go to the **Review + create** tab and review your configuration. If everything looks correct, select **Create** to create the private endpoint.
+Select **Next: Tags >**.
+
+### Tags
+
+You can optionally add tags to the private endpoint for resource management and billing purposes. Tags are name/value pairs that enable you to categorize resources and view consolidated billing by applying the same tag to multiple resources and resource groups.
+
+To add tags, enter a name and value for each tag you want to apply to the private endpoint. After adding any tags, select **Next: Review + create >** and review your configuration. If everything looks correct, select **Create** to create the private endpoint.
+
+:::image type="content" source="media/private-link/create-private-endpoint-tags-tab.png" alt-text="Screenshot of create private endpoint Tags tab.":::
 
 ## Private endpoint DNS configuration
 
