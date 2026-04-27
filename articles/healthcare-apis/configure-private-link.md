@@ -144,9 +144,18 @@ Select **Next: Tags >**.
 
 You can optionally add tags to the private endpoint for resource management and billing purposes. Tags are name/value pairs that enable you to categorize resources and view consolidated billing by applying the same tag to multiple resources and resource groups.
 
-To add tags, enter a name and value for each tag you want to apply to the private endpoint. After adding any tags, select **Next: Review + create >** and review your configuration. If everything looks correct, select **Create** to create the private endpoint.
+To add tags, enter a name and value for each tag you want to apply to the private endpoint. After adding any tags, select **Next: Review + create >** 
 
-:::image type="content" source="media/private-link/create-private-endpoint-tags-tab.png" alt-text="Screenshot of create private endpoint Tags tab.":::
+:::image type="content" source="media/private-link/create-private-endpoint-tags-tab.png" alt-text="Screenshot of create private endpoint Tags tab.0 lightbox="media/private-link/create-private-endpoint-tags-tab.png":::
+
+
+### Review and create
+
+Use this tab to review all the configuration settings you have selected for the private endpoint. The result of the validation is shown at the top of the tab. If there are any issues with the configuration, or you need to make changes, select the appropriate tab to go back and update the settings before creating the private endpoint.
+
+Select **Create** to create the private endpoint.
+
+:::image type="content" source="media/private-link/create-private-endpoint-review-tab.png" alt-text="Screenshot of create private endpoint Review + create tab." lightbox="media/private-link/create-private-endpoint-review-tab.png":::
 
 ## Private endpoint DNS configuration
 
@@ -154,7 +163,7 @@ After the deployment finishes, select the private endpoint resource in the resou
 
 :::image type="content" source="media/private-link/private-link-dns-configuration.png" alt-text="Screenshot of private endpoint DNS Configuration." lightbox="media/private-link/private-link-dns-configuration.png":::
 
-Select a private DNS zone to see the configuration for the zone. Select **DNS Management** > **Virtual Network Links**. See that the private DNS zone is linked to the virtual network. Make sure you associate only a single virtual network with the DNS zone. 
+Select a private DNS zone to see the configuration for the zone. Select **DNS Management** > **Virtual Network Links**. See that the private DNS zone is linked to the virtual network. Make sure you associate only a single virtual network with the DNS zone. Associating multiple virtual networks with the same private DNS zone can cause DNS resolution conflicts that prevent the private endpoint from resolving the service IP addresses correctly.
 
 If you need to support multiple virtual networks, you must create separate DNS zones in different resource groups. During the setup, confirm that the Private Endpoint and Private DNS Zone aren't shared across multiple virtual networks. This common misconfiguration can lead to IP resolution problems and access failures that result in HTTP 403 errors on the service.
 
