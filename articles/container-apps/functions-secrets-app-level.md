@@ -18,9 +18,9 @@ App-level secrets are configuration values that your function code and bindings 
 
 Examples include:
 
-- **Infrastructure secrets** — `AzureWebJobsStorage` connection strings, trigger and binding connections (Event Hubs, Service Bus, Cosmos DB, SQL).
-- **Business secrets** — third-party API keys, database passwords, SaaS platform tokens.
-- **Custom configuration** — any sensitive value your code reads from environment variables.
+- **Infrastructure secrets** - `AzureWebJobsStorage` connection strings, trigger and binding connections (Event Hubs, Service Bus, Cosmos DB, SQL).
+- **Business secrets** - third-party API keys, database passwords, SaaS platform tokens.
+- **Custom configuration** - any sensitive value your code reads from environment variables.
 
 ## When to use app-level secrets
 
@@ -38,8 +38,8 @@ Azure Container Apps gives you two ways to store these secrets:
 
 | Option | Best for | Centralized management | Automatic rotation | Audit logging |
 |--------|---------|----------------------|-------------------|---------------|
-| **Container Apps secrets** | Dev/test, simple single-app workloads | No — scoped to one app | No | Activity logs only |
-| **Key Vault references** | Production, multi-app, compliance | Yes — across all apps | Yes (versionless URI) | Full Key Vault diagnostics |
+| **Container Apps secrets** | Dev/test, simple single-app workloads | No - scoped to one app | No | Activity logs only |
+| **Key Vault references** | Production, multi-app, compliance | Yes - across all apps | Yes (versionless URI) | Full Key Vault diagnostics |
 
 > [!TIP]
 > Start with Container Apps secrets for simplicity. Move to Key Vault references when you need centralized management, automatic rotation, or compliance-grade auditing.
@@ -334,8 +334,8 @@ curl "https://<FUNCTIONS_APP_URL>/api/<FUNCTION_NAME>"
 
 When you reference a Key Vault secret with a versionless URI, Container Apps automatically retrieves the latest version:
 
-- **Versionless URI**: `https://myvault.vault.azure.net/secrets/mysecret` — always uses the latest version.
-- **Versioned URI**: `https://myvault.vault.azure.net/secrets/mysecret/ec96f020...` — pinned to a specific version.
+- **Versionless URI**: `https://myvault.vault.azure.net/secrets/mysecret` - always uses the latest version.
+- **Versioned URI**: `https://myvault.vault.azure.net/secrets/mysecret/ec96f020...` - pinned to a specific version.
 
 With versionless URIs, Container Apps checks for new versions within 30 minutes and automatically restarts active revisions to pick up the new value.
 

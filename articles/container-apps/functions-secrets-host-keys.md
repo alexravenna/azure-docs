@@ -1,7 +1,7 @@
 ---
 #customer intent: As a developer, I want to configure durable storage for Functions host keys on Azure Container Apps so my HTTP-triggered functions stay secured across restarts.
 title: Configure Functions host key storage on Azure Container Apps
-description: Choose and configure a storage backend for Functions host keys — Container Apps secret store, Key Vault, or Blob Storage — for Azure Functions on Azure Container Apps.
+description: Choose and configure a storage backend for Functions host keys - Container Apps secret store, Key Vault, or Blob Storage - for Azure Functions on Azure Container Apps.
 author: deepganguly
 ms.author: deepganguly
 ms.reviewer: cshoe
@@ -24,7 +24,7 @@ Host keys are **not** the same as [app-level secrets](functions-secrets-app-leve
 |----------|------------------|
 | **Third-party webhooks** | Providers like GitHub, Stripe, or Twilio call your function via a URL + secret. Host keys slot directly into the `?code=` pattern they expect. |
 | **Service-to-service calls in a trusted network** | Backend service A calls Function B over HTTP. Passing a shared key is simpler than setting up Microsoft Entra app registrations for an internal-only call. |
-| **Event Grid subscriptions** | Event Grid validates and calls your function endpoint using a **system key** — the platform manages this automatically. |
+| **Event Grid subscriptions** | Event Grid validates and calls your function endpoint using a **system key** - the platform manages this automatically. |
 | **Dev/test quick auth gate** | During development you need *some* authentication without wiring up full OAuth/OIDC. Host keys provide a non-zero auth bar with zero identity config. |
 | **Migration compatibility** | Existing Azure Functions apps already use host keys. When migrating to Container Apps, you need the same key-based auth to avoid breaking callers. |
 
@@ -75,12 +75,12 @@ You control where the runtime persists host keys by setting the `AzureWebJobsSec
 
 | Backend | Setting value | Auto-generates keys | External dependency | Best for | Production rank |
 |---------|--------------|--------------------|--------------------|----------|----------------|
-| **Container Apps secret store** | `containerapp` | Yes | None | Most workloads on ACA — simplest, no external resources | **1st — Recommended** |
-| **Azure Key Vault** | `keyvault` | No — trigger creation manually | Key Vault instance | Centralized governance, compliance, enterprise auditing | **2nd** |
+| **Container Apps secret store** | `containerapp` | Yes | None | Most workloads on ACA - simplest, no external resources | **1st - Recommended** |
+| **Azure Key Vault** | `keyvault` | No - trigger creation manually | Key Vault instance | Centralized governance, compliance, enterprise auditing | **2nd** |
 | **Azure Blob Storage** | `blob` | Yes | Storage account | Legacy or when you already share an `AzureWebJobsStorage` account | **3rd** |
 
 > [!WARNING]
-> The **default** backend is `files` (local file system). On Azure Container Apps, the file system is **ephemeral** — host keys stored with `files` are lost every time the app scales to zero, restarts, or a new revision deploys. **Always** set `AzureWebJobsSecretStorageType` to one of the three production backends above.
+> The **default** backend is `files` (local file system). On Azure Container Apps, the file system is **ephemeral** - host keys stored with `files` are lost every time the app scales to zero, restarts, or a new revision deploys. **Always** set `AzureWebJobsSecretStorageType` to one of the three production backends above.
 
 ## Configure the Container Apps secret store
 
