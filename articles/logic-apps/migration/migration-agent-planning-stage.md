@@ -46,7 +46,7 @@ In the Azure Logic Apps Migration Agent, after you complete the **Analyze Source
 
    The following example shows a sample generated migration plan:
 
-   :::image type="content" source="media/migration-agent-planning-stage/planning-stage-main.png" alt-text="Screenshot that shows the Planning stage with the migration plan for a logical flow group and action mappings.":::
+   :::image type="content" source="media/migration-agent-planning-stage/planning-stage-main.png" alt-text="Screenshot that shows the Planning stage with the migration plan for a logical flow group and action mappings." lightbox="media/migration-agent-planning-stage/planning-stage-main.png":::
 
 The following sections provide more information about specific migration plan areas:
 

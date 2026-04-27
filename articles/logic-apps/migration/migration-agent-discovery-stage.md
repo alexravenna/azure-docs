@@ -72,7 +72,7 @@ After you start the source design analysis for a logical flow group, the migrati
 
 The following example shows a sample flow visualization and results:
 
-:::image type="content" source="media/migration-agent-discovery-stage/discovery-stage-analysis.png" alt-text="Screenshot that shows an example flow visualization from the Discovery stage analysis results.":::
+:::image type="content" source="media/migration-agent-discovery-stage/discovery-stage-analysis.png" alt-text="Screenshot that shows an example flow visualization from the Discovery stage analysis results." lightbox="media/migration-agent-discovery-stage/discovery-stage-analysis.png":::
 
 You can switch between the interactive tabs to review your integration architecture. To learn more about this architecture, you can use the GitHub Copilot chat window to ask the `@migration-analyser` agent questions about the detected architecture, request corrections, and regenerate the analysis.
 

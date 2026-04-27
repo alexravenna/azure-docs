@@ -55,13 +55,13 @@ Before you start, make sure to meet the following requirements:
 
    Optionally, but recommended, open Visual Studio Code from the folder or directory where your integration projects exist, for example, **C:\Migration\\<*project-folders*>**.
 
-   :::image type="content" source="media/migration-agent-quickstart/migration-path.png" alt-text="Screenshot that shows the folder or directory with all integration project folders.":::
+   :::image type="content" source="media/migration-agent-quickstart/migration-path.png" alt-text="Screenshot that shows the folder or directory with all integration project folders." lightbox="media/migration-agent-quickstart/migration-path.png":::
 
 1. On the Activity Bar, select **Extensions**. (Keyboard: Ctrl+Shift+X)
 
 1. In the **Extensions: Marketplace** search box, find the **Azure Logic Apps Migration Agent** extension, and select **Install**.
 
-   :::image type="content" source="media/migration-agent-quickstart/migration-search.png" alt-text="Screenshot that shows Visual Studio Code, Extensions Marketplace, and the Azure Logic Apps Migration Agent extension.":::
+   :::image type="content" source="media/migration-agent-quickstart/migration-search.png" alt-text="Screenshot that shows Visual Studio Code, Extensions Marketplace, and the Azure Logic Apps Migration Agent extension." lightbox="media/migration-agent-quickstart/migration-search.png":::
 
    After installation completes, the Activity Bar shows the icon for the **Azure Logic Apps Migration Agent** (![Icon for Azure Logic Apps Migration Agent.](media/migration-agent-quickstart/migration-agent-icon.png)).
 
@@ -77,7 +77,7 @@ Before you start, make sure to meet the following requirements:
 
 1. Find and select the source folder that contains your BizTalk, MuleSoft, or other integration projects, and then select **Select Source Project Folder or MSI**.
 
-   :::image type="content" source="media/migration-agent-quickstart/migration-dialog.png" alt-text="Screenshot that shows Visual Studio Code with the Azure Logic Apps Migration Agent and the source folder with projects.":::
+   :::image type="content" source="media/migration-agent-quickstart/migration-dialog.png" alt-text="Screenshot that shows Visual Studio Code with the Azure Logic Apps Migration Agent and the source folder with projects." lightbox="media/migration-agent-quickstart/migration-dialog.png":::
 
    The extension automatically detects the source platform and begins the migration workflow, starting with the discovery stage.
 
@@ -93,7 +93,7 @@ The migration agent determines your source platform, based on file patterns, suc
 
 The following screenshot shows the identified platform with example detected artifacts and dependencies:
 
-:::image type="content" source="media/migration-agent-quickstart/discovery-stage.png" alt-text="Screenshot that shows the Azure Logic Apps Migration Agent extension and the Discovery stage with the detected artifacts and dependencies.":::
+:::image type="content" source="media/migration-agent-quickstart/discovery-stage.png" alt-text="Screenshot that shows the Azure Logic Apps Migration Agent extension and the Discovery stage with the detected artifacts and dependencies." lightbox="media/migration-agent-quickstart/discovery-stage.png":::
 
 ### Step 2: Scan source files
 
@@ -101,7 +101,7 @@ The migration agent scans the detected source files by using the built-in parser
 
 The following screenshot shows how each example integration project maps to a logical flow group:
 
-:::image type="content" source="media/migration-agent-quickstart/discovery-stage-detail.png" alt-text="Screenshot that shows the Discovery stage details with the detected artifacts and dependencies.":::
+:::image type="content" source="media/migration-agent-quickstart/discovery-stage-detail.png" alt-text="Screenshot that shows the Discovery stage details with the detected artifacts and dependencies." lightbox="media/migration-agent-quickstart/discovery-stage-detail.png":::
    
 Generated logical flows don't always reflect a 1:1 relationship with legacy integration applications. The migration agent infers the flows that best reflect the legacy system's integration artifacts, such as BizTalk workloads, as Standard workflows in Azure Logic Apps.
 
@@ -115,7 +115,7 @@ After the migration agent completes scanning and shows the resulting logical flo
 
 1. On the **Home** tab, for the logical flow group you want, select **Analyze Source Design**, for example:
 
-   :::image type="content" source="media/migration-agent-quickstart/analyze-source-design.png" alt-text="Screenshot that shows migration agent home page with Analyze Source Design selected.":::
+   :::image type="content" source="media/migration-agent-quickstart/analyze-source-design.png" alt-text="Screenshot that shows migration agent home page with Analyze Source Design selected." lightbox="media/migration-agent-quickstart/analyze-source-design.png":::
 
    The agent performs the following tasks:
 
@@ -144,7 +144,7 @@ After the migration agent completes scanning and shows the resulting logical flo
 
       The following example shows a sample generated flow visualization:
 
-      :::image type="content" source="media/migration-agent-quickstart/discovery-stage-analysis.png" alt-text="Screenshot that shows the flow visualization with the results from the Discovery stage.":::
+      :::image type="content" source="media/migration-agent-quickstart/discovery-stage-analysis.png" alt-text="Screenshot that shows the flow visualization with the results from the Discovery stage." lightbox="media/migration-agent-quickstart/discovery-stage-analysis.png":::
 
       For more information, see [Source design analysis and results](migration-agent-discovery-stage.md#source-design-analysis-results).
 
@@ -170,7 +170,7 @@ After you finish your analysis, start the Planning stage by creating a migration
 
 1. On the **Home** tab, choose the logical flow group you want, and select **Plan Logic App Design**.
 
-   :::image type="content" source="media/migration-agent-quickstart/plan-logic-app-design-stage.png" alt-text="Screenshot that shows migration agent home page with Plan Logic App Design selected.":::
+   :::image type="content" source="media/migration-agent-quickstart/plan-logic-app-design-stage.png" alt-text="Screenshot that shows migration agent home page with Plan Logic App Design selected." lightbox="media/migration-agent-quickstart/plan-logic-app-design-stage.png":::
 
    The `@migration-planner` agent generates a migration plan that usually includes the following sections:
 
@@ -186,7 +186,7 @@ After you finish your analysis, start the Planning stage by creating a migration
 
    The following example shows a sample generated migration plan:
 
-   :::image type="content" source="media/migration-agent-quickstart/planning-stage-main.png" alt-text="Screenshot that shows the Planning stage with the migration plan for a logical group flow and action mappings.":::
+   :::image type="content" source="media/migration-agent-quickstart/planning-stage-main.png" alt-text="Screenshot that shows the Planning stage with the migration plan for a logical group flow and action mappings." lightbox=:::
 
    For more information, see [Planning stage action](migration-agent-planning-stage.md#planning-stage-actions).
 
@@ -211,7 +211,7 @@ When you're satisfied with your migration plan, start the Conversion stage to cr
 
 1. On the **Home** tab, for your logical flow, select **Create Conversion Tasks**.
 
-   :::image type="content" source="media/migration-agent-quickstart/create-conversion-tasks-stage.png" alt-text="Screenshot that shows the Conversion stage for creating conversion tasks.":::
+   :::image type="content" source="media/migration-agent-quickstart/create-conversion-tasks-stage.png" alt-text="Screenshot that shows the Conversion stage for creating conversion tasks." lightbox=:::
 
    The `@migration-converter` agent creates the conversion tasks, which vary based on your specific logical flow group. The following list describes sample conversion tasks for a logical flow group named `Method Call Processing`:
 
@@ -230,7 +230,7 @@ When you're satisfied with your migration plan, start the Conversion stage to cr
 
    The following example shows sample generated conversion tasks for the `Method Call Processing` logical flow group:
 
-   :::image type="content" source="media/migration-agent-quickstart/conversion-stage-main.png" alt-text="Screenshot that shows the Conversion stage with generated conversion tasks that create Standard logic app project files.":::
+   :::image type="content" source="media/migration-agent-quickstart/conversion-stage-main.png" alt-text="Screenshot that shows the Conversion stage with generated conversion tasks that create Standard logic app project files." lightbox=:::
 
 1. For the next section, select the **Home Page** or return to the **Home** tab.
 
@@ -262,7 +262,7 @@ To review the generated output, follow these steps:
 
 1. In your migration folder, go to the **out** directory, and select the generated solution folder, for example:
 
-   :::image type="content" source="media/migration-agent-quickstart/validation-stage-generated-output.png" alt-text="Screenshot that shows the local path for where to find the generated code and solution.":::
+   :::image type="content" source="media/migration-agent-quickstart/validation-stage-generated-output.png" alt-text="Screenshot that shows the local path for where to find the generated code and solution." lightbox=:::
 
 1. Inspect each `workflow.json` file to verify that the trigger and actions match the source behavior.
 
@@ -281,6 +281,10 @@ For the Validation stage, test the generated workflows against your source speci
 > [!TIP]
 >
 > To help you easily make direct comparisons, keep the test data and expected outputs for your source platform readily available during validation.
+
+For example, the migration plan provides optional black box testing capability for you to use external inputs:
+
+:::image type="content" source="media/migration-agent-quickstart/validation-stage-black-box.png" alt-text="Screenshot shows migration plan and black box testing option." lightbox=:::
 
 ### Requirements for locally testing your workflows
 
@@ -314,14 +318,15 @@ To locally run the generated workflows, follow these steps:
 
    The following checklist describes behaviors for you to verify:
 
-   - [ ] All triggers correctly fire with the expected input formats.
-   - [ ] Action sequences run in the correct order.
-   - [ ] Data transformations produce the expected output.
-   - [ ] Conditional logic correctly branches with the expected results based on input data.
-   - [ ] Loop constructs process all items as expected.
-   - [ ] Error handling scopes appropriately catch and handle exceptions.
-   - [ ] Connection configurations resolve to the correct endpoints.
-   - [ ] .NET local functions return the expected results.
+   > [!div class="checklist"]
+   > - All triggers correctly fire with the expected input formats.
+   > - Action sequences run in the correct order.
+   > - Data transformations produce the expected output.
+   > - Conditional logic correctly branches with the expected results based on input data.
+   > - Loop constructs process all items as expected.
+   > - Error handling scopes appropriately catch and handle exceptions.
+   > - Connection configurations resolve to the correct endpoints.
+   > - .NET local functions return the expected results.
 
 1. Investigate and fix any discrepancies or problems that you find.
 
@@ -374,13 +379,13 @@ Follow these steps to begin deployment to Azure:
 
 1. From the Azure Logic Apps Migration Agent window, go to the migration plan, and run the **Cloud Deployment & Testing** task by selecting **Execute**:
 
-   :::image type="content" source="media/migration-agent-quickstart/validation-stage-main.png" alt-text="Screenshot that shows the end to end testing task with deployment in target environment.":::
+   :::image type="content" source="media/migration-agent-quickstart/validation-stage-main.png" alt-text="Screenshot that shows the end to end testing task with deployment in target environment." lightbox=:::
 
    The migration agent provisions the necessary infrastructure and deploys your Standard logic app resource and workflows by using the Azure CLI.
 
    The following example shows a sample completely migrated solution:
 
-   :::image type="content" source="media/migration-agent-quickstart/deployment-stage-final.png" alt-text="Screenshot that shows Visual Studio Code and the completely migrated solution.":::
+   :::image type="content" source="media/migration-agent-quickstart/deployment-stage-final.png" alt-text="Screenshot that shows Visual Studio Code and the completely migrated solution." lightbox=:::
 
 ### Step 3: Verify the deployment
 

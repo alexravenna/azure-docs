@@ -55,7 +55,7 @@ All parsers transform source platform artifacts into a common IR format as a JSO
 |------------------|-------------------------|
 | BizTalk (`.btproj`, `.odx`) <br>BizTalk (`.btm`, `.xsd`) <br>BizTalk (`.btp`) <br>MuleSoft (stub) | Partner platform parsers <br>Community parsers |
 
-:::image type="content" source="./media/migration-agent-extend/parser-architecture.png" alt-text="Diagram that shows how built-in and external parser plugins feed into the common IR document format used by migration stages.":::
+:::image type="content" source="media/migration-agent-extend/parser-architecture.png" alt-text="Diagram that shows how built-in and external parser plugins feed into the common IR document format used by migration stages." lightbox="media/migration-agent-extend/parser-architecture.png":::
 
 ## Step 1: Add a built-in parser
 

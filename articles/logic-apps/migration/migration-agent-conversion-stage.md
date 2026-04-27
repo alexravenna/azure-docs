@@ -56,7 +56,7 @@ The `@migration-converter` agent generates a Standard logic app project. This pr
 
 The following example shows the `@migration-converter` agent creating the project scaffold structure and files:
 
-:::image type="content" source="media/migration-agent-conversion-stage/conversion-stage-execution.png" alt-text="Screenshot that shows the Conversion stage generating Logic Apps Standard workflow files.":::
+:::image type="content" source="media/migration-agent-conversion-stage/conversion-stage-execution.png" alt-text="Screenshot that shows the Conversion stage generating Logic Apps Standard workflow files." lightbox="media/migration-agent-conversion-stage/conversion-stage-execution.png":::
 
 #### Workflow definition file
 
