@@ -71,9 +71,8 @@ For more information on creating virtual networks, see [Manage a virtual network
 
 To create a private endpoint, use the Azure portal as a user with role-based access control (RBAC) permissions on the workspace or the resource group where the workspace is located. Use the Azure portal because it automates the creation and configuration of the Private DNS Zone. For more information, see [Private Link Quick Start Guides](./../private-link/create-private-endpoint-portal.md).
 
-You configure a private endpoint at the workspace level. The private endpoint automatically applies to all FHIR and DICOM services within the workspace. If you create services after the private endpoint, add those services to the private endpoint. However, you need to add a DNS record for the new service to the Private DNS Zone. For more information, see [Private endpoint DNS configuration](#private-endpoint-dns-configuration).
+You configure a private endpoint at the workspace level. The private endpoint automatically applies to all FHIR and DICOM services within the workspace. 
 
-When you create a private endpoint for a workspace, you can disable public network access. If you disable public network access, all traffic to the workspace and its services must go through the private endpoint.
 
 Follow these steps to create a private endpoint from the Network foundation experience:
 
