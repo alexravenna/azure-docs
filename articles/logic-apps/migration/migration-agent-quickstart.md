@@ -186,7 +186,7 @@ After you finish your analysis, start the Planning stage by creating a migration
 
    The following example shows a sample generated migration plan:
 
-   :::image type="content" source="media/migration-agent-quickstart/planning-stage-main.png" alt-text="Screenshot that shows the Planning stage with the migration plan for a logical group flow and action mappings." lightbox=:::
+   :::image type="content" source="media/migration-agent-quickstart/planning-stage-main.png" alt-text="Screenshot that shows the Planning stage with the migration plan for a logical group flow and action mappings." lightbox="media/migration-agent-quickstart/planning-stage-main.png" :::
 
    For more information, see [Planning stage action](migration-agent-planning-stage.md#planning-stage-actions).
 
@@ -211,7 +211,7 @@ When you're satisfied with your migration plan, start the Conversion stage to cr
 
 1. On the **Home** tab, for your logical flow, select **Create Conversion Tasks**.
 
-   :::image type="content" source="media/migration-agent-quickstart/create-conversion-tasks-stage.png" alt-text="Screenshot that shows the Conversion stage for creating conversion tasks." lightbox=:::
+   :::image type="content" source="media/migration-agent-quickstart/create-conversion-tasks-stage.png" alt-text="Screenshot that shows the Conversion stage for creating conversion tasks." lightbox="media/migration-agent-quickstart/create-conversion-tasks-stage.png":::
 
    The `@migration-converter` agent creates the conversion tasks, which vary based on your specific logical flow group. The following list describes sample conversion tasks for a logical flow group named `Method Call Processing`:
 
@@ -230,7 +230,7 @@ When you're satisfied with your migration plan, start the Conversion stage to cr
 
    The following example shows sample generated conversion tasks for the `Method Call Processing` logical flow group:
 
-   :::image type="content" source="media/migration-agent-quickstart/conversion-stage-main.png" alt-text="Screenshot that shows the Conversion stage with generated conversion tasks that create Standard logic app project files." lightbox=:::
+   :::image type="content" source="media/migration-agent-quickstart/conversion-stage-main.png" alt-text="Screenshot that shows the Conversion stage with generated conversion tasks that create Standard logic app project files." lightbox="media/migration-agent-quickstart/conversion-stage-main.png":::
 
 1. For the next section, select the **Home Page** or return to the **Home** tab.
 
@@ -262,7 +262,7 @@ To review the generated output, follow these steps:
 
 1. In your migration folder, go to the **out** directory, and select the generated solution folder, for example:
 
-   :::image type="content" source="media/migration-agent-quickstart/validation-stage-generated-output.png" alt-text="Screenshot that shows the local path for where to find the generated code and solution." lightbox=:::
+   :::image type="content" source="media/migration-agent-quickstart/validation-stage-generated-output.png" alt-text="Screenshot that shows the local path for where to find the generated code and solution." lightbox="media/migration-agent-quickstart/validation-stage-generated-output.png":::
 
 1. Inspect each `workflow.json` file to verify that the trigger and actions match the source behavior.
 
@@ -284,7 +284,7 @@ For the Validation stage, test the generated workflows against your source speci
 
 For example, the migration plan provides optional black box testing capability for you to use external inputs:
 
-:::image type="content" source="media/migration-agent-quickstart/validation-stage-black-box.png" alt-text="Screenshot shows migration plan and black box testing option." lightbox=:::
+:::image type="content" source="media/migration-agent-quickstart/validation-stage-black-box.png" alt-text="Screenshot shows migration plan and black box testing option." lightbox="media/migration-agent-quickstart/validation-stage-black-box.png":::
 
 ### Requirements for locally testing your workflows
 
@@ -379,13 +379,13 @@ Follow these steps to begin deployment to Azure:
 
 1. From the Azure Logic Apps Migration Agent window, go to the migration plan, and run the **Cloud Deployment & Testing** task by selecting **Execute**:
 
-   :::image type="content" source="media/migration-agent-quickstart/validation-stage-main.png" alt-text="Screenshot that shows the end to end testing task with deployment in target environment." lightbox=:::
+   :::image type="content" source="media/migration-agent-quickstart/validation-stage-main.png" alt-text="Screenshot that shows the end to end testing task with deployment in target environment." lightbox="media/migration-agent-quickstart/validation-stage-main.png":::
 
    The migration agent provisions the necessary infrastructure and deploys your Standard logic app resource and workflows by using the Azure CLI.
 
    The following example shows a sample completely migrated solution:
 
-   :::image type="content" source="media/migration-agent-quickstart/deployment-stage-final.png" alt-text="Screenshot that shows Visual Studio Code and the completely migrated solution." lightbox=:::
+   :::image type="content" source="media/migration-agent-quickstart/deployment-stage-final.png" alt-text="Screenshot that shows Visual Studio Code and the completely migrated solution." lightbox="media/migration-agent-quickstart/deployment-stage-final.png":::
 
 ### Step 3: Verify the deployment
 
