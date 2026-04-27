@@ -6,7 +6,7 @@ ms.reviewer: mijeffer
 ms.service: cost-management-billing
 ms.subservice: billing
 ms.topic: how-to
-ms.date: 04/24/2026
+ms.date: 04/28/2026
 ms.author: mijeffer
 ms.custom: sfi-ga-nochange
 service.tree.id: b69a7832-2929-4f60-bf9d-c6784a865ed8
@@ -14,7 +14,7 @@ service.tree.id: b69a7832-2929-4f60-bf9d-c6784a865ed8
 
 # Azure classic administrator roles retirement
 
-Azure classic administrator roles retired on August 31, 2024. Starting in December 2025, Azure automatically assigned the Owner role at subscription scope to users who were still assigned the Co-Administrator or Service Administrator role. As of May 2026, classic administrator roles are fully retired and the **Classic Administrators** tab has been removed from the Azure portal.
+[!INCLUDE [classic-administrators-retirement-note](../../role-based-access-control/includes/classic-administrators-retirement-note.md)]
 
 [Azure Service Manager and all Azure classic resources](https://azure.microsoft.com/updates/cloud-services-retirement-announcement/) also retired on August 31, 2024.
 

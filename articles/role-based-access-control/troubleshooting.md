@@ -7,7 +7,7 @@ manager: pmwongera
 ms.assetid: df42cca2-02d6-4f3c-9d56-260e1eb7dc44
 ms.service: role-based-access-control
 ms.topic: troubleshooting
-ms.date: 12/11/2025
+ms.date: 04/28/2026
 ms.author: rolyon
 ms.custom:
   - seohack1
@@ -618,10 +618,7 @@ If you're a Microsoft Entra Global Administrator and you don't have access to a 
 
 ## Classic subscription administrators
 
-> [!IMPORTANT]
-> As of **August 31, 2024**, Azure classic administrator roles (along with Azure classic resources and Azure Service Manager) are retired and no longer supported. Starting in **December 2025**, Azure automatically assigned the Owner role at subscription scope to users in the public cloud who were still assigned the Co-Administrator or Service Administrator role. As of **May 2026**, classic administrator roles are fully retired and the **Classic Administrators** tab has been removed from the Azure portal.
->
-> For more information, see [Azure classic subscription administrators](classic-administrators.md).
+[!INCLUDE [classic-administrators-retirement-note](./includes/classic-administrators-retirement-note.md)]
 
 ## Next steps
 

@@ -6,7 +6,7 @@ manager: pmwongera
 ms.assetid: 174f1706-b959-4230-9a75-bf651227ebf6
 ms.service: role-based-access-control
 ms.topic: overview
-ms.date: 12/11/2025
+ms.date: 04/28/2026
 ms.author: rolyon
 ms.custom:
   - it-pro;
@@ -96,10 +96,7 @@ Several Microsoft Entra roles span Microsoft Entra ID and Microsoft 365, such as
 
 ## Classic subscription administrator roles
 
-> [!IMPORTANT]
-> As of **August 31, 2024**, Azure classic administrator roles (along with Azure classic resources and Azure Service Manager) are retired and no longer supported. Starting in **December 2025**, Azure automatically assigned the Owner role at subscription scope to users in the public cloud who were still assigned the Co-Administrator or Service Administrator role. As of **May 2026**, classic administrator roles are fully retired and the **Classic Administrators** tab has been removed from the Azure portal.
->
-> For more information, see [Azure classic subscription administrators](classic-administrators.md).
+[!INCLUDE [classic-administrators-retirement-note](./includes/classic-administrators-retirement-note.md)]
 
 Account Administrator, Service Administrator, and Co-Administrator are the three classic subscription administrator roles in Azure. Classic subscription administrators had full access to the Azure subscription. They could manage resources using the Azure portal, Azure Resource Manager APIs, and the classic deployment model APIs. The account that is used to sign up for Azure is automatically set as both the Account Administrator and Service Administrator. Then, additional Co-Administrators could be added. The Service Administrator and the Co-Administrators had the equivalent access of users who have been assigned the Owner role (an Azure role) at the subscription scope. The following table describes the differences between these three classic subscription administrative roles.
 

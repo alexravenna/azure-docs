@@ -6,7 +6,7 @@ manager: pmwongera
 
 ms.service: role-based-access-control
 ms.topic: how-to
-ms.date: 04/24/2026
+ms.date: 04/28/2026
 ms.author: rolyon
 ms.reviewer: bagovind
 ms.custom: sfi-image-nochange
@@ -14,8 +14,7 @@ ms.custom: sfi-image-nochange
 
 # Azure classic subscription administrators
 
-> [!IMPORTANT]
-> As of **August 31, 2024**, Azure classic administrator roles (along with Azure classic resources and Azure Service Manager) are retired and no longer supported. Starting in **December 2025**, Azure automatically assigned the Owner role at subscription scope to users in the public cloud who were still assigned the Co-Administrator or Service Administrator role. As of **May 2026**, classic administrator roles are fully retired and the **Classic Administrators** tab has been removed from the Azure portal.
+[!INCLUDE [classic-administrators-retirement-note](./includes/classic-administrators-retirement-note.md)]
 
 This article describes the retirement of the Co-Administrator and Service Administrator roles.
 
