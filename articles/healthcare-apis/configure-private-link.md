@@ -146,7 +146,7 @@ You can optionally add tags to the private endpoint for resource management and 
 
 To add tags, enter a name and value for each tag you want to apply to the private endpoint. After adding any tags, select **Next: Review + create >** 
 
-:::image type="content" source="media/private-link/create-private-endpoint-tags-tab.png" alt-text="Screenshot of create private endpoint Tags tab.0 lightbox="media/private-link/create-private-endpoint-tags-tab.png":::
+:::image type="content" source="media/private-link/create-private-endpoint-tags-tab.png" alt-text="Screenshot of create private endpoint Tags tab."lightbox="media/private-link/create-private-endpoint-tags-tab.png":::
 
 
 ### Review and create
