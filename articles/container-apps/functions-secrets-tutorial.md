@@ -1,6 +1,6 @@
 ---
 #customer intent: As a developer, I want to understand my secrets options for Azure Functions on Azure Container Apps so I can choose the right approach.
-title: Managing Secrets in Functions on ACA - Overview
+title: Managing secrets for Azure Functions on Azure Container Apps
 description: Understand the two categories of secrets for Azure Functions on Azure Container Apps and choose the right implementation path.
 author: deepganguly
 ms.author: deepganguly
@@ -10,7 +10,7 @@ ms.topic: overview
 ms.date: 04/27/2026
 ---
 
-# Managing Secrets in Functions on ACA
+# Managing secrets for Azure Functions on Azure Container Apps
 
 ## Overview
 
@@ -19,14 +19,14 @@ When you run Azure Functions on Azure Container Apps, you work with two distinct
 | Category | What it is | Who consumes it |
 |----------|-----------|----------------|
 | **App-level secrets** | Configuration values your function code reads at runtime - database connection strings, API keys, trigger/binding connection strings. | Your code and the Functions runtime bindings. |
-| **Functions host keys** | Authentication tokens that secure HTTP-triggered function endpoints - master, host, function, and system keys. | Callers of your HTTP functions (other services, webhooks, developers). |
+| **Functions access keys** | Authentication tokens ([access keys](/azure/azure-functions/function-keys-how-to#understand-keys)) that secure HTTP-triggered function endpoints - master, host, function, and system keys. | Callers of your HTTP functions (other services, webhooks, developers). |
 
 The key distinction is **direction**:
 
 - **App-level secrets** are **outbound** - your function uses them to authenticate when connecting to other services (databases, APIs, queues).
-- **Functions host keys** are **inbound** - callers pass them to authenticate when invoking your HTTP endpoints.
+- **Functions access keys** are **inbound** - callers pass them to authenticate when invoking your HTTP endpoints.
 
-| | App-level secrets | Functions host keys |
+| | App-level secrets | Functions access keys |
 |---|---|---|
 | **Direction** | Outbound - your function calls other services | Inbound - callers invoke your function |
 | **Who holds the secret** | Your function app | The caller (webhook provider, another service, a developer) |
@@ -47,18 +47,18 @@ Store configuration values that your function code and bindings consume. Two opt
 > [!TIP]
 > Start with Container Apps secrets for simplicity. Move to Key Vault references when you need centralized management, automatic rotation, or compliance-grade auditing.
 
-## Functions host keys
+## Functions access keys
 
-Lightweight shared-secret auth for HTTP endpoints. Use host keys when callers can't use Microsoft Entra ID tokens - for example, third-party webhooks, service-to-service calls, or during development.
+Lightweight shared-secret auth for HTTP endpoints. Use [access keys](/azure/azure-functions/function-keys-how-to#understand-keys) when callers can't use Microsoft Entra ID tokens - for example, third-party webhooks, service-to-service calls, or during development.
 
 You choose a **storage backend** via the `AzureWebJobsSecretStorageType` environment variable:
 
 > [!IMPORTANT]
-> **For production, choose backends in this order:** Container Apps secret store (`containerapp`) > Azure Key Vault (`keyvault`) > Azure Blob Storage (`blob`). Start with the ACA secret store unless you have a specific reason to use the others.
+> **For production, choose backends in this order:** Container Apps secret store (`containerapp`) > Azure Key Vault (`keyvault`) > Azure Blob Storage (`blob`). Start with the Container Apps secret store unless you have a specific reason to use the others.
 
 | Backend | Setting value | Best for | Production rank | Guide |
 |---------|--------------|---------|-----------------|-------|
-| **Container Apps secret store** | `containerapp` | Most ACA workloads - no external dependencies | **1st - Recommended** | [Configure host keys](functions-secrets-host-keys.md#configure-the-container-apps-secret-store) |
+| **Container Apps secret store** | `containerapp` | Most Container Apps workloads - no external dependencies, you provision keys as Container Apps secrets | **1st - Recommended** | [Configure host keys](functions-secrets-host-keys.md#configure-the-container-apps-secret-store) |
 | **Azure Key Vault** | `keyvault` | Centralized governance, compliance auditing | **2nd** - when you need cross-app governance or compliance audit | [Configure host keys](functions-secrets-host-keys.md#configure-key-vault) |
 | **Azure Blob Storage** | `blob` | Legacy or existing `AzureWebJobsStorage` dependency | **3rd** - only with existing storage dependency | [Configure host keys](functions-secrets-host-keys.md#configure-blob-storage) |
 

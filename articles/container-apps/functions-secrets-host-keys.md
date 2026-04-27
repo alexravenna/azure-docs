@@ -12,11 +12,11 @@ ms.date: 04/27/2026
 
 # Configure Functions host key storage on Azure Container Apps
 
-## What are Functions host keys?
+## What are Functions access keys?
 
-Functions host keys are authentication tokens that the Functions runtime uses to secure HTTP-triggered endpoints. When a caller invokes an HTTP function, it passes a key as a `?code=` query parameter or an `x-functions-key` header. The runtime validates the key against its secret store and authorizes (or rejects) the request.
+Functions [access keys](/azure/azure-functions/function-keys-how-to#understand-keys) are authentication tokens that the Functions runtime uses to secure HTTP-triggered endpoints. When a caller invokes an HTTP function, it passes a key as a `?code=` query parameter or an `x-functions-key` header. The runtime validates the key against its secret store and authorizes (or rejects) the request.
 
-Host keys are **not** the same as [app-level secrets](functions-secrets-app-level.md), which store credentials your code reads at runtime (database passwords, API keys, etc.). Host keys protect **who can call your functions**, while app-level secrets protect **what your functions connect to**.
+Access keys are **not** the same as [app-level secrets](functions-secrets-app-level.md), which store credentials your code reads at runtime (database passwords, API keys, etc.). Access keys protect **who can call your functions**, while app-level secrets protect **what your functions connect to**.
 
 ## When to use host keys
 
@@ -52,7 +52,11 @@ The Functions runtime manages four types of keys:
 
 ## Host key secret name patterns
 
-The Functions runtime stores keys in the configured backend using these naming conventions. These are the names you see in Blob Storage containers, Key Vault secrets, or the Container Apps secret store.
+The naming convention depends on the storage backend.
+
+### Key Vault and Blob Storage naming
+
+Key Vault and Blob Storage backends use a double-dash (`--`) convention:
 
 | Key type | Secret name pattern | Example |
 |----------|--------------------|---------| 
@@ -63,19 +67,32 @@ The Functions runtime stores keys in the configured backend using these naming c
 | Function key (custom) | `host--functionKey--<name>` | `host--functionKey--MyApiClient` |
 | System key | `host--systemKey--<extension>` | `host--systemKey--eventgrid_extension` |
 
+### Container Apps secret store naming
+
+The Container Apps secret store uses a different convention. The Functions host reads keys from volume-mounted files at the path `/run/secrets/functions-keys/`. Each file uses a **dotted** name (for example, `host.master`), but Container Apps secret names only allow **lowercase alphanumeric characters and dashes**. The platform maps the secret name (with dashes) to the file path (with dots) automatically.
+
+| Key type | Container Apps secret name (dashes) | Mounted file path (dots) |
+|----------|--------------------------|--------------------------|
+| Master key | `host-master` | `host.master` |
+| Default host key | `host-function-default` | `host.function.default` |
+| Custom host key | `host-function-<name>` | `host.function.<name>` |
+| Default function key for a specific function | `functions-<functionname>-default` | `functions.<functionName>.default` |
+| Custom function key for a specific function | `functions-<functionname>-<keyname>` | `functions.<functionName>.<keyName>` |
+| System key | `host-systemkey-<extension>` | `host.systemKey.<extension>` |
+
 > [!TIP]
-> When troubleshooting, search for these patterns in your backend store to verify that the runtime created keys successfully.
+> When troubleshooting, search for these patterns in your backend store to verify that keys are configured correctly.
 
 ## Choose a storage backend
 
 You control where the runtime persists host keys by setting the `AzureWebJobsSecretStorageType` environment variable. Azure Container Apps supports three production-grade backends.
 
 > [!IMPORTANT]
-> **For production, choose backends in this order:** Container Apps secret store (`containerapp`) > Azure Key Vault (`keyvault`) > Azure Blob Storage (`blob`). The ACA secret store has no external dependencies and is the simplest to operate. Use Key Vault only when you need centralized cross-app governance or compliance-grade audit logs. Use Blob Storage only when you have an existing storage account dependency.
+> **For production, choose backends in this order:** Container Apps secret store (`containerapp`) > Azure Key Vault (`keyvault`) > Azure Blob Storage (`blob`). The Container Apps secret store has no external dependencies and is the simplest to operate. Use Key Vault only when you need centralized cross-app governance or compliance-grade audit logs. Use Blob Storage only when you have an existing storage account dependency.
 
 | Backend | Setting value | Auto-generates keys | External dependency | Best for | Production rank |
 |---------|--------------|--------------------|--------------------|----------|----------------|
-| **Container Apps secret store** | `containerapp` | Yes | None | Most workloads on ACA - simplest, no external resources | **1st - Recommended** |
+| **Container Apps secret store** | `containerapp` | No - you provision keys as Container Apps secrets | None | Most workloads on Container Apps - simplest, no external resources | **1st - Recommended** |
 | **Azure Key Vault** | `keyvault` | No - trigger creation manually | Key Vault instance | Centralized governance, compliance, enterprise auditing | **2nd** |
 | **Azure Blob Storage** | `blob` | Yes | Storage account | Legacy or when you already share an `AzureWebJobsStorage` account | **3rd** |
 
@@ -84,25 +101,198 @@ You control where the runtime persists host keys by setting the `AzureWebJobsSec
 
 ## Configure the Container Apps secret store
 
-The Container Apps secret store is the recommended backend. Keys stay within the ACA platform boundary, require no external storage or Key Vault, and integrate with the same `az containerapp` CLI commands you use for other app secrets.
+The Container Apps secret store is the recommended backend. Keys stay within the Container Apps platform boundary and require no external storage or Key Vault. Changes to secrets and environment variables are tracked through Azure Resource Manager activity logs, providing audit visibility without requiring an external service.
 
-1. Set the storage type:
+With this backend, the Functions host reads keys from files volume-mounted at `/run/secrets/functions-keys/`. The host **does not auto-generate keys** - you must provision each key as a Container Apps secret, and the platform mounts them as files for the host to read.
 
-    ```azurecli
-    az containerapp update \
-      --resource-group "<RESOURCE_GROUP>" \
-      --name "<FUNCTIONS_APP_NAME>" \
-      --set-env-vars "AzureWebJobsSecretStorageType=containerapp"
-    ```
+> [!IMPORTANT]
+> The Container Apps secret store is **read-only from the host's perspective**. The host reads the mounted key files but never writes to them. You are responsible for creating the secrets that the host expects. If a required key is missing, the host won't generate it automatically.
 
-1. The Functions runtime auto-generates keys on the next cold start. Verify by listing host keys:
+### Step 1: Set the storage type
 
-    ```azurecli
-    az containerapp function keys list \
-      --resource-group "<RESOURCE_GROUP>" \
-      --name "<FUNCTIONS_APP_NAME>" \
-      --key-type hostKey
-    ```
+#### [Portal](#tab/portal)
+
+1. Go to your Functions container app in the [Azure portal](https://portal.azure.com).
+
+1. Under *Settings*, select **Environment variables**.
+
+1. Select **Add**, and enter the following values:
+
+    | Property | Value |
+    |---|---|
+    | **Name** | `AzureWebJobsSecretStorageType` |
+    | **Value** | `containerapp` |
+
+1. Select **Save**, and then select **Apply** to confirm the changes.
+
+#### [Azure CLI](#tab/cli)
+
+```azurecli
+az containerapp update \
+  --resource-group "<RESOURCE_GROUP>" \
+  --name "<FUNCTIONS_APP_NAME>" \
+  --set-env-vars "AzureWebJobsSecretStorageType=containerapp"
+```
+
+---
+
+### Step 2: Generate and store access key secrets
+
+Generate key values and store them as Container Apps secrets. At minimum you need the **master key** and a **default host key**.
+
+#### [Portal](#tab/portal)
+
+1. In your Functions container app, under *Settings*, select **Secrets**.
+
+1. Select **Add** and enter the following values:
+
+    | Property | Value |
+    |---|---|
+    | **Name** | `host-master` |
+    | **Type** | **Container Apps Secret** |
+    | **Value** | A randomly generated key value. |
+
+1. Select **Add**.
+
+1. Repeat for `host-function-default` with another randomly generated value.
+
+1. To add a per-function key, add a secret named `functions-<functionname>-default` (all lowercase).
+
+#### [Azure CLI](#tab/cli)
+
+```azurecli
+# Generate random key values
+MASTER_KEY=$(openssl rand -hex 32)
+HOST_DEFAULT_KEY=$(openssl rand -hex 32)
+
+# Store as Container Apps secrets
+az containerapp secret set \
+  --resource-group "<RESOURCE_GROUP>" \
+  --name "<FUNCTIONS_APP_NAME>" \
+  --secrets "host-master=$MASTER_KEY" "host-function-default=$HOST_DEFAULT_KEY"
+```
+
+To add a per-function key (for example, for a function named `MyHttpFunc`):
+
+```azurecli
+FUNC_KEY=$(openssl rand -hex 32)
+
+az containerapp secret set \
+  --resource-group "<RESOURCE_GROUP>" \
+  --name "<FUNCTIONS_APP_NAME>" \
+  --secrets "functions-myhttpfunc-default=$FUNC_KEY"
+```
+
+---
+
+> [!NOTE]
+> Container Apps secret names only allow lowercase alphanumeric characters and dashes. The platform maps dashes in the secret name to dots in the mounted file path (for example, `host-master` becomes `host.master` at `/run/secrets/functions-keys/host.master`).
+
+### Step 3: Configure the volume mount
+
+The secrets must be mounted as files at `/run/secrets/functions-keys/`.
+
+#### [Portal](#tab/portal)
+
+1. In your Functions container app, under *Application*, select **Revisions and replicas**.
+
+1. Select **Create new revision**.
+
+1. In the *Scale and volumes* tab, under *Volumes*, select **Add**.
+
+1. Enter the following values:
+
+    | Property | Value |
+    |---|---|
+    | **Volume type** | **Secret** |
+    | **Name** | `functions-keys` |
+
+1. Select **Add**.
+
+1. In the *Container* tab, select your container and then select **Edit**.
+
+1. Select the **Volume mounts** tab and select **Add**.
+
+1. Enter the following values:
+
+    | Property | Value |
+    |---|---|
+    | **Volume name** | `functions-keys` |
+    | **Mount path** | `/run/secrets/functions-keys` |
+
+1. Select **Save**, and then select **Create** to deploy the new revision.
+
+#### [Azure CLI](#tab/cli)
+
+Export your app's YAML, add the volume and volume mount, then apply:
+
+```azurecli
+# Export current config
+az containerapp show \
+  --resource-group "<RESOURCE_GROUP>" \
+  --name "<FUNCTIONS_APP_NAME>" \
+  --output yaml > app.yaml
+```
+
+Edit `app.yaml` to add the volume and volume mount under the appropriate sections:
+
+```yaml
+properties:
+  template:
+    volumes:
+      - name: functions-keys
+        storageType: Secret
+    containers:
+      - name: <CONTAINER_NAME>
+        volumeMounts:
+          - volumeName: functions-keys
+            mountPath: /run/secrets/functions-keys
+```
+
+Apply the updated config:
+
+```azurecli
+az containerapp update \
+  --resource-group "<RESOURCE_GROUP>" \
+  --name "<FUNCTIONS_APP_NAME>" \
+  --yaml app.yaml
+```
+
+---
+
+### Step 4: Verify
+
+After the app restarts, confirm the keys are working:
+
+```azurecli
+az containerapp function keys list \
+  --resource-group "<RESOURCE_GROUP>" \
+  --name "<FUNCTIONS_APP_NAME>" \
+  --key-type hostKey
+```
+
+You can also check the app logs for the message `Resolved secret storage provider ContainerAppsSecretsRepository`, which confirms the host is using the Container Apps secret store.
+
+### Rotate keys
+
+To rotate a key, update the Container Apps secret and restart the app:
+
+```azurecli
+NEW_KEY=$(openssl rand -hex 32)
+
+az containerapp secret set \
+  --resource-group "<RESOURCE_GROUP>" \
+  --name "<FUNCTIONS_APP_NAME>" \
+  --secrets "host-function-default=$NEW_KEY"
+
+az containerapp revision restart \
+  --resource-group "<RESOURCE_GROUP>" \
+  --name "<FUNCTIONS_APP_NAME>" \
+  --revision "<REVISION_NAME>"
+```
+
+> [!NOTE]
+> All replicas share the same mounted secrets. After a restart, every replica picks up the updated key values.
 
 ## Configure Blob Storage
 
