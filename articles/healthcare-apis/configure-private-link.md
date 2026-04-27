@@ -39,7 +39,7 @@ Before you create a private endpoint, create the following Azure resources:
 - [An active Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - **Resource Group** – The Azure resource group that contains the workspace, virtual network, and private endpoint.
 - [An Azure Health Data Services workspace](healthcare-apis-quickstart.md):  You need the workspace to create the private endpoint. You create the private endpoint at the workspace level, and it applies to all services within the workspace. 
-- [FHIR service deployed in the workspace](fhir/fhir-portal-quickstart.md) or [DICOM service deployed in the workspace](dicom/deploy-dicom-services-in-azure.md): The Azure Health Data Services resource that you want to connect to over the private endpoint. You don't need this resource to create the private endpoint, but you need it to test the private endpoint connectivity.
+- A [FHIR service](fhir/fhir-portal-quickstart.md) or [DICOM service](dicom/deploy-dicom-services-in-azure.md) deployed in the workspace: The Azure Health Data Services resource that you want to connect to over the private endpoint. You don't need these resources to create the private endpoint, but you need them to test the private endpoint connectivity.
 - An RBAC role with permission to create a virtual network in the resource group, such as **Owner**, **Contributor**, or **Network Contributor**. For more information, see [Manage a virtual network](../virtual-network/manage-virtual-network.yml).
 - An RBAC role with permission to create a private endpoint in your resource group or Azure Health Data Services workspace, such as **Owner**, **Contributor**, or **Healthcare APIs Contributor**. For more information, see [Private Link RBAC permissions](../private-link/rbac-permissions.md#private-endpoint). 
 
@@ -122,7 +122,7 @@ When you use manual approval, you can't integrate with a private DNS zone as par
 
 ### Virtual network configuration
 
-1. For  **Virtual network**, select the virtual network that you created for the private endpoint.
+1. For **Virtual network**, select the virtual network that you created for the private endpoint.
 1. For **Subnet**, select the subnet that you created for the private endpoint.
 1. To set up Network Security Group (NSG) rules or route tables to restrict the traffic to the private endpoint, select **edit** the **Network policy for private endpoints**. 
 1. For **Private IP configuration**, choose to have an IP address automatically assigned from the subnet, or specify a static IP address from the subnet.
