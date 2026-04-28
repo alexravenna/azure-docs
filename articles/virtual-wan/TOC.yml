@@ -80,6 +80,20 @@
   items:
   - name: Migrate to Virtual WAN
     href: migrate-from-hub-spoke-topology.md
+  - name: Static routes in Virtual WAN
+    items:
+    - name: Overview of static routes
+      href: static-routes.md
+    - name: Azure Firewall static routing basics
+      href: static-routes-firewall-basic.md
+    - name: Selective Azure Firewall bypass
+      href: firewall-custom-bypass.md
+    - name: Route traffic to spoke NVAs
+      href: indirect-spoke-architecture.md
+    - name: Spoke NVA inspection
+      href: spoke-nva-north-south.md
+    - name: Combining Azure Firewall and spoke NVAs
+      href: hybrid-firewall-spoke-static.md
   - name: Virtual hub routing preference
     href: about-virtual-hub-routing-preference.md
   - name: Any-to-any
@@ -92,14 +106,8 @@
     href: scenario-isolate-virtual-networks-branches.md
   - name: Shared services VNets
     href: scenario-shared-services-vnet.md
-  - name: Route through an NVA
-    href: scenario-route-through-nva.md
-  - name: Route through an NVA - custom
-    href: scenario-route-through-nvas-custom.md
   - name: BGP peering with virtual hub
     href: scenario-bgp-peering-hub.md
-  - name: Azure Firewall - custom
-    href: scenario-route-between-vnets-firewall.md
   - name: Application Gateway and backend pools
     href: scenario-secured-hub-app-gateway.md
   - name: Microsoft 365 - ExpressRoute private peering
