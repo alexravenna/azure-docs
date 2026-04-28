@@ -13,7 +13,15 @@ ai-usage: ai-assisted
 
 # Enable and run management actions
 
-Management actions let you invoke operations on southbound assets connected to your Azure IoT Operations instance. You can call methods, write values, and read values on assets such as OPC UA servers, ONVIF cameras, and MQTT devices. Management actions use Azure Event Grid to route requests and responses between the cloud and the internal MQTT broker. The connector subscribes to a known topic on the internal MQTT broker and then executes the operation on the target asset.
+Management actions let you invoke operations on southbound assets connected to your Azure IoT Operations instance. You can call methods, write values, and read values on assets such as OPC UA servers, ONVIF cameras, and MQTT devices. Management actions use Azure Event Grid to route requests and responses between the cloud and the internal MQTT broker. The connector subscribes to a known topic on the internal MQTT broker and then executes the operation on the target asset. You can execute on these management actions either locally via MQTT or from the cloud via Azure Resource Manager (ARM) APIs. Enabling cloud-initiated management actions means you can use bicep files, ARM templates and the CLI to send commands and configurations to Assets at scale. 
+
+Key features of management actions include: 
+- Defining management groups that group actions and properties together
+- ADR Namespace mapping to Event Grid instance for consistent data routing and management operations
+- Actions routed through Event Grid to provide reliable, event-driven messaging between ARM and Azure IoT Operations
+- User can invoke actions on Assets using ARM and can deploy/replicate via ARM templates or Bicep files
+- RBAC control and Managed Identity (MI) access 
+- Activity logs for auditing, monitoring, etc.
 
 When you enable management actions, the Azure CLI provisions the infrastructure that connects Event Grid to the MQTT broker. This infrastructure includes an Event Grid data flow endpoint, a request data flow that uses a WebAssembly (WASM) module to process incoming messages, a response data flow that routes replies back through Event Grid, and the required topic spaces and permission bindings. After the infrastructure is in place, you can execute actions on any asset that has a management group and action defined.
 
