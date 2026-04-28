@@ -12,26 +12,22 @@ ms.date: 04/27/2026
 
 # Configure Functions host key storage on Azure Container Apps
 
-## What are Functions access keys?
+Functions [access keys](/azure/azure-functions/function-keys-how-to#understand-keys) are authentication tokens that the Functions runtime uses to secure HTTP-triggered endpoints. When a caller invokes an HTTP function, it includes a key as a `?code=` query parameter or an `x-functions-key` header. The runtime validates the key and authorizes or rejects the request.
 
-Functions [access keys](/azure/azure-functions/function-keys-how-to#understand-keys) are authentication tokens that the Functions runtime uses to secure HTTP-triggered endpoints. When a caller invokes an HTTP function, it passes a key as a `?code=` query parameter or an `x-functions-key` header. The runtime validates the key against its secret store and authorizes (or rejects) the request.
+Access keys are **not** the same as [app-level secrets](functions-secrets-app-level.md). Access keys protect **who can call your functions**, while app-level secrets protect **what your functions connect to**.
 
-Access keys are **not** the same as [app-level secrets](functions-secrets-app-level.md), which store credentials your code reads at runtime (database passwords, API keys, etc.). Access keys protect **who can call your functions**, while app-level secrets protect **what your functions connect to**.
+## When to use access keys
 
-## When to use host keys
-
-| Scenario | Why host keys fit |
+| Scenario | Why access keys fit |
 |----------|------------------|
-| **Third-party webhooks** | Providers like GitHub, Stripe, or Twilio call your function via a URL + secret. Host keys slot directly into the `?code=` pattern they expect. |
-| **Service-to-service calls in a trusted network** | Backend service A calls Function B over HTTP. Passing a shared key is simpler than setting up Microsoft Entra app registrations for an internal-only call. |
-| **Event Grid subscriptions** | Event Grid validates and calls your function endpoint using a **system key** - the platform manages this automatically. |
-| **Dev/test quick auth gate** | During development you need *some* authentication without wiring up full OAuth/OIDC. Host keys provide a non-zero auth bar with zero identity config. |
-| **Migration compatibility** | Existing Azure Functions apps already use host keys. When migrating to Container Apps, you need the same key-based auth to avoid breaking callers. |
+| **Third-party webhooks** | Providers like GitHub, Stripe, or Twilio call your function via a URL and secret. Access keys slot directly into the `?code=` pattern they expect. |
+| **Service-to-service calls** | Backend service A calls Function B over HTTP. A shared key is simpler than setting up Microsoft Entra app registrations for internal-only calls. |
+| **Event Grid subscriptions** | Event Grid validates and calls your function endpoint using a **system key** that the platform manages automatically. |
+| **Dev/test authentication** | During development you need basic authentication without configuring full OAuth/OIDC. Access keys provide a low-friction auth gate with no identity config. |
+| **Migration compatibility** | Existing Azure Functions apps already use access keys. When migrating to Container Apps, you need the same key-based auth to avoid breaking callers. |
 
 > [!NOTE]
-> For user-facing APIs, zero-trust workloads, or scenarios requiring per-user authorization, use Microsoft Entra ID / OAuth 2.0 instead of host keys. Host keys are shared secrets with no identity-level audit trail.
-
-This article explains the key types the Functions runtime manages, the storage backends available on Azure Container Apps, and how to configure each one.
+> For user-facing APIs, zero-trust workloads, or per-user authorization scenarios, use Microsoft Entra ID / OAuth 2.0 instead of access keys. Access keys are shared secrets with no identity-level audit trail.
 
 ## Prerequisites
 
@@ -39,22 +35,22 @@ This article explains the key types the Functions runtime manages, the storage b
 - [Azure CLI](/cli/azure/install-azure-cli) version 2.40.0 or higher.
 - An existing [Azure Functions app in Container Apps](functions-usage.md) or permissions to create one.
 
-## Host key types
+## Access key types
 
 The Functions runtime manages four types of keys:
 
 | Key type | Scope | Purpose |
 |----------|-------|---------|
-| **Master key** (`_master`) | Entire function app | Admin-level access to all functions and the `/admin/*` management endpoints. Can't be revoked, only rotated. |
+| **Master key** (`_master`) | Entire function app | Admin-level access to all functions and `/admin/*` management endpoints. Can't be revoked, only rotated. |
 | **Host keys** (`default` + custom) | Entire function app | Authorize calls to any HTTP-triggered function in the app. |
-| **Function keys** (`default` + custom) | Single function | Authorize calls to one specific function. More granular than host keys. |
-| **System keys** | Extension endpoints | Used by platform extensions (for example, Event Grid webhook subscriptions, Durable Functions). Managed automatically; you rarely interact with these directly. |
+| **Function keys** (`default` + custom) | Single function | Authorize calls to one specific function. Provides more granular control than host keys. |
+| **System keys** | Extension endpoints | Used by platform extensions such as Event Grid webhook subscriptions and Durable Functions. Managed automatically. |
 
-## Host key secret name patterns
+## Secret name patterns
 
-The naming convention depends on the storage backend.
+The naming convention for stored keys depends on the storage backend.
 
-### Key Vault and Blob Storage naming
+### Key Vault and Blob Storage
 
 Key Vault and Blob Storage backends use a double-dash (`--`) convention:
 
@@ -67,9 +63,9 @@ Key Vault and Blob Storage backends use a double-dash (`--`) convention:
 | Function key (custom) | `host--functionKey--<name>` | `host--functionKey--MyApiClient` |
 | System key | `host--systemKey--<extension>` | `host--systemKey--eventgrid_extension` |
 
-### Container Apps secret store naming
+### Container Apps secret store
 
-The Container Apps secret store uses a different convention. The Functions host reads keys from volume-mounted files at the path `/run/secrets/functions-keys/`. Each file uses a **dotted** name (for example, `host.master`), but Container Apps secret names only allow **lowercase alphanumeric characters and dashes**. The platform maps the secret name (with dashes) to the file path (with dots) automatically.
+The Container Apps secret store uses a different convention. The Functions host reads keys from volume-mounted files at `/run/secrets/functions-keys/`. Each file uses a **dotted** name (for example, `host.master`), but Container Apps secret names only allow **lowercase alphanumeric characters and dashes**. The platform maps dashes in the secret name to dots in the file path automatically.
 
 | Key type | Container Apps secret name (dashes) | Mounted file path (dots) |
 |----------|--------------------------|--------------------------|
@@ -85,28 +81,28 @@ The Container Apps secret store uses a different convention. The Functions host 
 
 ## Choose a storage backend
 
-You control where the runtime persists host keys by setting the `AzureWebJobsSecretStorageType` environment variable. Azure Container Apps supports three production-grade backends.
+Set the `AzureWebJobsSecretStorageType` environment variable to control where the runtime persists access keys. Azure Container Apps supports three production-grade backends.
 
 > [!IMPORTANT]
-> **For production, choose backends in this order:** Container Apps secret store (`containerapp`) > Azure Key Vault (`keyvault`) > Azure Blob Storage (`blob`). The Container Apps secret store has no external dependencies and is the simplest to operate. Use Key Vault only when you need centralized cross-app governance or compliance-grade audit logs. Use Blob Storage only when you have an existing storage account dependency.
+> For production workloads, prefer backends in this order: Container Apps secret store (`containerapp`) > Azure Key Vault (`keyvault`) > Azure Blob Storage (`blob`). The Container Apps secret store has no external dependencies and is the simplest to operate.
 
-| Backend | Setting value | Auto-generates keys | External dependency | Best for | Production rank |
-|---------|--------------|--------------------|--------------------|----------|----------------|
-| **Container Apps secret store** | `containerapp` | No - you provision keys as Container Apps secrets | None | Most workloads on Container Apps - simplest, no external resources | **1st - Recommended** |
-| **Azure Key Vault** | `keyvault` | No - trigger creation manually | Key Vault instance | Centralized governance, compliance, enterprise auditing | **2nd** |
-| **Azure Blob Storage** | `blob` | Yes | Storage account | Legacy or when you already share an `AzureWebJobsStorage` account | **3rd** |
+| Backend | Setting value | Auto-generates keys | External dependency | Best for |
+|---------|--------------|--------------------|--------------------|----------|
+| **Container Apps secret store** | `containerapp` | No - you provision keys as Container Apps secrets | None | Most workloads (**Recommended**) |
+| **Azure Key Vault** | `keyvault` | No - trigger creation manually | Key Vault instance | Centralized governance, compliance auditing |
+| **Azure Blob Storage** | `blob` | Yes | Storage account | Legacy apps or existing `AzureWebJobsStorage` account |
 
 > [!WARNING]
-> The **default** backend is `files` (local file system). On Azure Container Apps, the file system is **ephemeral** - host keys stored with `files` are lost every time the app scales to zero, restarts, or a new revision deploys. **Always** set `AzureWebJobsSecretStorageType` to one of the three production backends above.
+> The default backend is `files` (local file system). On Azure Container Apps, the file system is **ephemeral**. Host keys stored with `files` are lost every time the app scales to zero, restarts, or deploys a new revision. Always set `AzureWebJobsSecretStorageType` to one of the three production backends.
 
 ## Configure the Container Apps secret store
 
-The Container Apps secret store is the recommended backend. Keys stay within the Container Apps platform boundary and require no external storage or Key Vault. Changes to secrets and environment variables are tracked through Azure Resource Manager activity logs, providing audit visibility without requiring an external service.
+The Container Apps secret store is the recommended backend. Keys stay within the Container Apps platform and require no external storage or Key Vault. Changes to secrets and environment variables are tracked through Azure Resource Manager activity logs.
 
-With this backend, the Functions host reads keys from files volume-mounted at `/run/secrets/functions-keys/`. The host **does not auto-generate keys** - you must provision each key as a Container Apps secret, and the platform mounts them as files for the host to read.
+With this backend, the Functions host reads keys from files volume-mounted at `/run/secrets/functions-keys/`. The host **does not auto-generate keys**. You must create each key as a Container Apps secret, and the platform mounts them as files for the host to read.
 
 > [!IMPORTANT]
-> The Container Apps secret store is **read-only from the host's perspective**. The host reads the mounted key files but never writes to them. You are responsible for creating the secrets that the host expects. If a required key is missing, the host won't generate it automatically.
+> The Container Apps secret store is **read-only from the host's perspective**. The host reads the mounted key files but never writes to them. If a required key is missing, the host won't generate it automatically.
 
 ### Step 1: Set the storage type
 
@@ -296,7 +292,7 @@ az containerapp revision restart \
 
 ## Configure Blob Storage
 
-The Blob Storage backend lets the runtime auto-generate and manage host keys. Use this option when you already have a storage account for `AzureWebJobsStorage` and don't need centralized cross-app governance.
+The Blob Storage backend lets the runtime auto-generate and manage access keys. Use this option when you already have a storage account for `AzureWebJobsStorage` and don't need centralized governance.
 
 1. Enable managed identity on your container app (if not already enabled):
 
@@ -348,7 +344,7 @@ The Blob Storage backend lets the runtime auto-generate and manage host keys. Us
 
 ## Configure Key Vault
 
-The Key Vault backend stores host keys as Key Vault secrets, providing enterprise-grade auditing and access control.
+The Key Vault backend stores access keys as Key Vault secrets, providing enterprise-grade auditing and access control.
 
 1. Create a Key Vault (if you don't have one):
 
@@ -422,9 +418,9 @@ The Key Vault backend stores host keys as Key Vault secrets, providing enterpris
       --key-type hostKey
     ```
 
-## Manage host keys
+## Manage access keys
 
-Regardless of backend, use the following commands to list, create, and delete host keys:
+Regardless of backend, use the following commands to list, create, and delete access keys:
 
 ```azurecli
 # List all host keys
@@ -462,7 +458,7 @@ az containerapp function keys delete \
   --key-type hostKey
 ```
 
-## Call a function with a host key
+## Call a function with an access key
 
 Pass the key as a query parameter or request header:
 

@@ -12,29 +12,17 @@ ms.date: 04/27/2026
 
 # Store app-level secrets for Azure Functions on Azure Container Apps
 
-## What are app-level secrets?
+App-level secrets are configuration values that your function code and bindings consume at runtime. Unlike [Functions access keys](functions-secrets-host-keys.md), which secure HTTP endpoints, app-level secrets are the credentials your application needs to connect to other services.
 
-App-level secrets are configuration values that your function code and bindings consume at runtime. Unlike [Functions host keys](functions-secrets-host-keys.md), which secure HTTP endpoints, app-level secrets are the credentials your application needs to connect to other services and resources.
+Common examples include:
 
-Examples include:
-
-- **Infrastructure secrets** - `AzureWebJobsStorage` connection strings, trigger and binding connections (Event Hubs, Service Bus, Cosmos DB, SQL).
-- **Business secrets** - third-party API keys, database passwords, SaaS platform tokens.
+- **Infrastructure connections** - `AzureWebJobsStorage` connection strings, trigger and binding connections for Event Hubs, Service Bus, Cosmos DB, and SQL.
+- **Business credentials** - third-party API keys, database passwords, SaaS platform tokens.
 - **Custom configuration** - any sensitive value your code reads from environment variables.
-
-## When to use app-level secrets
-
-| Scenario | Example |
-|----------|---------|
-| Your function connects to a database | Store the connection string as a secret, reference it via an environment variable. |
-| A trigger or binding needs credentials | Store the Event Hub / Service Bus / Cosmos DB connection string as a secret. |
-| Your code calls a third-party API | Store the API key as a secret so it isn't hard-coded in source. |
-| You share secrets across multiple apps | Use Key Vault references so all apps pull from one centralized store. |
-| Compliance requires rotation and audit trails | Use Key Vault references with versionless URIs for automatic rotation and full audit logs. |
 
 ## Choose a storage option
 
-Azure Container Apps gives you two ways to store these secrets:
+Azure Container Apps gives you two ways to store app-level secrets:
 
 | Option | Best for | Centralized management | Automatic rotation | Audit logging |
 |--------|---------|----------------------|-------------------|---------------|
@@ -52,7 +40,7 @@ Azure Container Apps gives you two ways to store these secrets:
 
 ## Use Container Apps secrets
 
-Container Apps stores secrets in the app's `configuration.secrets` array. The platform encrypts values at rest. You can reference secrets in environment variables, scale rules, volume mounts, and Dapr components.
+Container Apps stores secrets in the app's `configuration.secrets` array and encrypts values at rest. You can reference secrets in environment variables, scale rules, volume mounts, and Dapr components.
 
 ### Store a secret
 
@@ -62,13 +50,11 @@ Container Apps stores secrets in the app's `configuration.secrets` array. The pl
 
 1. Under *Settings*, select **Secrets**.
 
-1. Select **Add**.
-
-1. In *Add secret*, enter the following values:
+1. Select **Add** and enter the following values:
 
     | Property | Value |
     |---|---|
-    | **Name** | A secret name, such as `database-password`. Use lowercase letters, numbers, and hyphens only. |
+    | **Name** | A secret name such as `database-password`. Use lowercase letters, numbers, and hyphens only. |
     | **Type** | **Container Apps Secret** |
     | **Value** | Your secret value. |
 
@@ -145,18 +131,20 @@ curl "https://<FUNCTIONS_APP_URL>/api/<FUNCTION_NAME>"
 > [!IMPORTANT]
 > Container Apps injects the secret value into the environment variable at runtime. Your code reads the environment variable and doesn't access the secret store directly.
 
-### Limitations of Container Apps secrets
+### Limitations
 
-- **No centralization**: Each container app stores its own secrets separately.
-- **No automatic rotation**: You must update secret values manually.
-- **No expiration**: Secrets don't expire automatically.
-- **Limited audit**: Basic activity logs only; no detailed secret access auditing.
-- **No versioning**: No built-in secret version history.
-- **Update behavior**: Changing a secret doesn't create a new revision. You must create a new revision or restart existing revisions to pick up changes.
+Container Apps secrets have the following limitations:
+
+- **No centralization** - each container app stores its own secrets separately.
+- **No automatic rotation** - you must update secret values manually.
+- **No expiration** - secrets don't expire automatically.
+- **Limited audit** - basic activity logs only; no detailed secret access auditing.
+- **No versioning** - no built-in secret version history.
+- **Update behavior** - changing a secret doesn't trigger a new revision. You must create a new revision or restart existing revisions to pick up changes.
 
 ## Use Key Vault references
 
-Key Vault references let your container app pull secrets from Azure Key Vault using a managed identity. This approach provides centralized management, automatic rotation, and compliance-grade auditing.
+Key Vault references let your container app pull secrets directly from Azure Key Vault using a managed identity. This approach gives you centralized management, automatic rotation, and compliance-grade auditing.
 
 ### Step 1: Set up managed identity
 
