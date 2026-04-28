@@ -7,7 +7,7 @@ ms.author: deepganguly
 ms.reviewer: cshoe
 ms.service: azure-container-apps
 ms.topic: how-to
-ms.date: 04/27/2026
+ms.date: 04/28/2026
 ---
 
 # Store app-level secrets for Azure Functions on Azure Container Apps
@@ -312,7 +312,7 @@ az containerapp update \
 
 ### Step 5: Verify the Key Vault reference
 
-Invoke your function and confirm it runs without errors related to missing configuration:
+Invoke your function and confirm it runs without errors related to missing configuration.
 
 ```bash
 curl "https://<FUNCTIONS_APP_URL>/api/<FUNCTION_NAME>"

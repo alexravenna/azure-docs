@@ -7,7 +7,7 @@ ms.author: deepganguly
 ms.reviewer: cshoe
 ms.service: azure-container-apps
 ms.topic: overview
-ms.date: 04/27/2026
+ms.date: 04/28/2026
 ---
 
 # Manage secrets for Azure Functions on Azure Container Apps
@@ -42,7 +42,7 @@ App-level secrets are the credentials your function code and bindings need to co
 
 ## Functions access keys
 
-Access keys provide lightweight shared-secret authentication for HTTP endpoints. Use [access keys](/azure/azure-functions/function-keys-how-to#understand-keys) when callers can't present Microsoft Entra ID tokens, for example, third-party webhooks, service-to-service calls, or during development.
+Access keys provide lightweight shared-secret authentication for HTTP endpoints. Use [access keys](/azure/azure-functions/function-keys-how-to#understand-keys) when callers can't present Microsoft Entra ID tokens, such as third-party webhooks, service-to-service calls, or during development.
 
 Set the `AzureWebJobsSecretStorageType` environment variable to choose a storage backend:
 

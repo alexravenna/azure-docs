@@ -7,14 +7,14 @@ ms.author: deepganguly
 ms.reviewer: cshoe
 ms.service: azure-container-apps
 ms.topic: how-to
-ms.date: 04/27/2026
+ms.date: 04/28/2026
 ---
 
 # Configure Functions host key storage on Azure Container Apps
 
 Functions [access keys](/azure/azure-functions/function-keys-how-to#understand-keys) are authentication tokens that the Functions runtime uses to secure HTTP-triggered endpoints. When a caller invokes an HTTP function, it includes a key as a `?code=` query parameter or an `x-functions-key` header. The runtime validates the key and authorizes or rejects the request.
 
-Access keys are **not** the same as [app-level secrets](functions-secrets-app-level.md). Access keys protect **who can call your functions**, while app-level secrets protect **what your functions connect to**.
+Access keys aren't the same as [app-level secrets](functions-secrets-app-level.md). Access keys protect **who can call your functions**, while app-level secrets protect **what your functions connect to**.
 
 ## When to use access keys
 
@@ -97,12 +97,12 @@ Set the `AzureWebJobsSecretStorageType` environment variable to control where th
 
 ## Configure the Container Apps secret store
 
-The Container Apps secret store is the recommended backend. Keys stay within the Container Apps platform and require no external storage or Key Vault. Changes to secrets and environment variables are tracked through Azure Resource Manager activity logs.
+The Container Apps secret store is the recommended backend. Keys stay within the Container Apps platform and require no external storage or Key Vault. Azure Resource Manager activity logs track changes to secrets and environment variables.
 
-With this backend, the Functions host reads keys from files volume-mounted at `/run/secrets/functions-keys/`. The host **does not auto-generate keys**. You must create each key as a Container Apps secret, and the platform mounts them as files for the host to read.
+With this backend, the Functions host reads keys from files volume-mounted at `/run/secrets/functions-keys/`. The host **doesn't auto-generate keys**. You must create each key as a Container Apps secret, and the platform mounts them as files for the host to read.
 
 > [!IMPORTANT]
-> The Container Apps secret store is **read-only from the host's perspective**. The host reads the mounted key files but never writes to them. If a required key is missing, the host won't generate it automatically.
+> The Container Apps secret store is **read-only from the host's perspective**. The host reads the mounted key files but never writes to them. If a required key is missing, the host doesn't generate it automatically.
 
 ### Step 1: Set the storage type
 
@@ -134,7 +134,7 @@ az containerapp update \
 
 ### Step 2: Generate and store access key secrets
 
-Generate key values and store them as Container Apps secrets. At minimum you need the **master key** and a **default host key**.
+Generate key values and store them as Container Apps secrets. At minimum, you need the **master key** and a **default host key**.
 
 #### [Portal](#tab/portal)
 
@@ -186,7 +186,7 @@ az containerapp secret set \
 
 ### Step 3: Configure the volume mount
 
-The secrets must be mounted as files at `/run/secrets/functions-keys/`.
+Mount the secrets as files at `/run/secrets/functions-keys/`.
 
 #### [Portal](#tab/portal)
 
@@ -292,7 +292,7 @@ az containerapp revision restart \
 
 ## Configure Blob Storage
 
-The Blob Storage backend lets the runtime auto-generate and manage access keys. Use this option when you already have a storage account for `AzureWebJobsStorage` and don't need centralized governance.
+The Blob Storage backend enables the runtime to auto-generate and manage access keys. Use this option when you already have a storage account for `AzureWebJobsStorage` and don't need centralized governance.
 
 1. Enable managed identity on your container app (if not already enabled):
 
@@ -460,7 +460,7 @@ az containerapp function keys delete \
 
 ## Call a function with an access key
 
-Pass the key as a query parameter or request header:
+Pass the key as a query parameter or request header.
 
 ```bash
 # Query parameter
