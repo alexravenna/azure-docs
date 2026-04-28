@@ -23,9 +23,9 @@ These scenarios are useful when you need selected traffic between two virtual ne
 
 This design pattern allows trusted Virtual Networks to communicate directly, while all other traffic between branches and untrustdd Virtual Networks are routed directly.
 
-## Network diagram
+### Network diagram
 
-:::image type="content" source="./media/route-scenarios/bypass-trusted-vnets.png" alt-text="Diagram that shows selective Azure Firewall bypass for trusted virtual network to virtual network traffic in a secure hub." lightbox="./media/route-scenarios/bypass-trusted-vnets.png":::
+:::image type="content" source="./media/route-scenarios/bypass-trusted-virtual-networks.png" alt-text="Diagram that shows selective Azure Firewall bypass for trusted virtual network to virtual network traffic in a secure hub." lightbox="./media/route-scenarios/bypass-trusted-virtual-networks.png":::
 
 In the diagram before, Virtual Networks are split into two types:
 
@@ -33,7 +33,7 @@ In the diagram before, Virtual Networks are split into two types:
 * Un-trusted Virtual Networks: traffic within the untrusted domain and between the trust and untrusted domain requires inspection with Azure Firewall.
 
 
-## Traffic flows
+### Traffic flows
 
 | Source | Trusted Virtual Networks | Untrusted Virtual Networks | Branches |
 |--|--|--|--|
@@ -41,9 +41,9 @@ In the diagram before, Virtual Networks are split into two types:
 | Untrusted Virtual Networks | Via Azure Firewall | Via Azure Firewall | Via Azure Firewall |
 | Branches | Via Azure Firewall | Via Azure Firewall | Via Azure Firewall |
 
-## Configuration
+### Configuration
 
-### Virtual WAN route tables
+#### Virtual WAN route tables
 
 | Route table name | Associated connections | Reasoning |
 |--|--|--|
@@ -51,7 +51,7 @@ In the diagram before, Virtual Networks are split into two types:
 | trustedRouteTable | Trusted virtual networks | Used to keep trusted virtual networks in a separate route table, ensuring trusted-to-trusted traffic can use the Virtual WAN hub router directly and bypass Azure Firewall inspection. |
 
 
-### Virtual WAN routing configuration
+#### Virtual WAN routing configuration
 
 | Connection | Associated route table | Propagated route table | Reasoning |
 |--|--|--|--|
@@ -59,7 +59,7 @@ In the diagram before, Virtual Networks are split into two types:
 | Untrusted virtual networks | defaultRouteTable | noneRouteTable | Untrusted virtual networks can only be reached via Azure Firewall. |
 | Branches | defaultRouteTable | noneRouteTable | Branch connections traffic must be routed via Azure Firewall. |
 
-### Static routes
+#### Static routes
 
 | Route table | Address prefix | Next hop | Reasoning |
 |--|--|--|--|
@@ -71,7 +71,7 @@ In the diagram before, Virtual Networks are split into two types:
 
 This design pattern builds on the previous design, by  allowing branches to directly access trusted Virtual Network. All other traffic patterns remain the same.
 
-## Network diagram
+### Network diagram
 
 :::image type="content" source="./media/route-scenarios/bypass-trusted-branches.png" alt-text="Diagram that shows selective Azure Firewall bypass for trusted on-premises to virtual network traffic in a secure hub." lightbox="./media/route-scenarios/bypass-trusted-branches.png":::
 
@@ -81,7 +81,7 @@ As before, Virtual Networks are split into two types:
 * Un-trusted Virtual Networks: traffic from on-premises to untrusted Virtual Networks requires inspection with Azure Firewall.
 
 
-## Traffic flows
+### Traffic flows
 
 > [!NOTE]
 > Because all on-premises connections must associate and propagate to the same route tables, all on-premises connections must send traffic to trusted or untrusted virtual networks through the same routing path. On-premises connection-level traffic customization isn't supported.
@@ -93,9 +93,9 @@ As before, Virtual Networks are split into two types:
 | Untrusted Virtual Networks | Via Azure Firewall | Via Azure Firewall | Via Azure Firewall |
 | Branches | Direct via Virtual WAN hub router to trusted Virtual Networks, otherwise via Azure Firewall | Via Azure Firewall | Direct |
 
-## Configuration
+### Configuration
 
-### Virtual WAN route tables
+#### Virtual WAN route tables
 
 | Route table name | Associated connections | Reasoning |
 |--|--|--|
@@ -103,7 +103,7 @@ As before, Virtual Networks are split into two types:
 | trustedRouteTable | Trusted virtual networks branches| Used by trusted Virtual Networks. |
 
 
-### Virtual WAN routing configuration
+#### Virtual WAN routing configuration
 
 | Connection | Associated route table | Propagated route table | Reasoning |
 |--|--|--|--|
@@ -111,13 +111,9 @@ As before, Virtual Networks are split into two types:
 | Untrusted virtual networks | defaultRouteTable | noneRouteTable | Untrusted virtual networks can only be reached via Azure Firewall. |
 | Selected branches | defaultRouteTable | trustedRouteTable, defaultRouteTable | Branch connections must associate to defaultRouteTable. Branches propagate to the trusted route table so branch-to-trusted-virtual-network traffic can bypass Azure Firewall. |
 
-### Static routes
+#### Static routes
 
 | Route table | Address prefix | Next hop | Reasoning |
 |--|--|--|--|
 | trustedRouteTable | 10.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12 | Azure Firewall | Virtual WAN advertises more specific routes for Virtual Network trusted prefixes and on-premises that bypass inspection. All other traffic is routed to Azure Firewall using static routes. |
 | defaultRouteTable | 10.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12 | Azure Firewall | All traffic for untrusted virtual networks and non-bypassed branch connectivity is routed to Azure Firewall for inspection. |
-
-
-
-* 

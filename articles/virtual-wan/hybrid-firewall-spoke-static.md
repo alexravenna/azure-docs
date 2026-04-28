@@ -75,6 +75,7 @@ The following static routes are needed to route traffic from on-premises and Vir
 | defaultRouteTable | 10.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12 | Azure Firewall| Sends on-premises traffic destined for workload Virtual Networks to Azure Firewall for inspection. |
 
 If using the **legacy** static routing model, add additional static routes in the route tables:
+
 | Route Table | Address prefix | Next hop  | Reasoning |
 |--|--|--|--|
 | workloadRouteTable | 0.0.0.0/0 | DMZ Virtual Network connection| Sends Virtual Network to internet traffic to DMZ NVA. |

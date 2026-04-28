@@ -78,7 +78,7 @@ When using static routes pointing to a Virtual Network connection, note the foll
 #### Common use cases
 
 * [Routing traffic to indirect spokes. Indirect spokes are virtual networks that are peered to Virtual WAN spokes, but not directly connected to the Virtual WAN hub](indirect-spoke-architecture.md).
-* [Route on-premises traffic destined to a spoke Virtual Network to a NVA deployed in a different spoke VNET for inspection](spoke-nva-north-south.md).
+* [Route on-premises traffic destined to a spoke Virtual Network to a NVA deployed in a different spoke VNET for inspection](spoke-inspection-north-south.md).
 * [Route internet-bound traffic to a spoke NVA for inspection and egress. Commonly used in scenarios where you don't want to use a Firewall solution directly deployed in the Virtual WAN hub](indirect-spoke-architecture.md).  
 
 Some common use cases that require alternative approaches or are not supported in Virtual WAN:

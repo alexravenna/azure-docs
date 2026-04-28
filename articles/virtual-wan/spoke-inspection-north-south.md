@@ -25,9 +25,9 @@ This document covers two specific design patterns:
 
 In this option, workload virtual networks are directly peered to the DMZ virtual network for internet egress, and user-defined routes are applied on workload virtual networks to route internet traffic to the DMZ virtual network. Traffic between workload virtual networks and on-premises are inspected by the shared services NVA.
 
-## Network diagram
+### Network diagram
 
-:::image type="content" source="./media/route-scenarios/spoke-nva-option-1.png" alt-text="Diagram that shows Option 1 routing with a shared services NVA for private traffic inspection and a DMZ NVA for internet egress." lightbox="./media/route-scenarios/spoke-nva-option-1.png":::
+:::image type="content" source="./media/route-scenarios/spoke-option-direct-peering.png" alt-text="Diagram that shows Option 1 routing with a shared services NVA for private traffic inspection and a DMZ NVA for internet egress." lightbox="./media/route-scenarios/spoke-option-direct-peering.png":::
 
 In the diagram above, there are a few special types of Virtual Networks:
 * DMZ Virtual Network: hosts NVA used for internet egress
@@ -114,9 +114,9 @@ The following sections explain how traffic is routed to indirect spokes and the 
 | Branches | Workload Virtual Network | Via Shared Services NVA |
 | Branches | Internet | via DMZ NVA  |
 
-## Network diagram
+### Network diagram
 
-:::image type="content" source="./media/route-scenarios/spoke-nva-option-2.png" alt-text="Diagram that shows Option 2 routing with Virtual WAN sending both private and internet-bound traffic through a DMZ NVA." lightbox="./media/route-scenarios/spoke-nva-option-2.png":::
+:::image type="content" source="./media/route-scenarios/spoke-option-routing.png" alt-text="Diagram that shows Option 2 routing with Virtual WAN sending both private and internet-bound traffic through a DMZ NVA." lightbox="./media/route-scenarios/spoke-option-routing.png":::
 
 In the diagram above, there are a two special types of Virtual Networks:
 * DMZ Virtual Network: hosts NVA used for internet egress and north-south traffic inspection.
