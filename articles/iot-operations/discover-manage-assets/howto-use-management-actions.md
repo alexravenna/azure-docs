@@ -27,6 +27,9 @@ When you enable management actions, the Azure CLI provisions the infrastructure 
 
 This article explains how to enable management actions, execute actions on assets, and how the message flow works through the system. The management actions CLI commands are protocol-agnostic. The examples in this article use an OPC UA asset, but the same commands work for any protocol that supports management actions.
 
+> ![NOTE] 
+> Cloud-initated management actions are currently enabled via CLI only, but check back soon for Azure IoT Operations portal experience. 
+
 ## Prerequisites
 
 - A deployed [Azure IoT Operations](../deploy-iot-ops/howto-deploy-iot-operations.md) instance on an Arc-connected cluster.
