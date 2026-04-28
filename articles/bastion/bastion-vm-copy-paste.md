@@ -47,13 +47,13 @@ To change the setting:
 
 1. In the Azure portal, go to your Bastion resource.
 1. Select **Configuration** on the left side.
-   * To enable, select the **Copy and paste** checkbox.
    * To disable, clear the **Copy and paste** checkbox.
+   * To enable, select the **Copy and paste** checkbox.
 1. Select **Apply**. The bastion host updates with the new configuration.
 
 ## <a name="to"></a> Copy and paste
 
-### <a name="advanced"></a> Browsers that support the Clipboard API
+# [Clipboard API (Edge, Chrome)](#tab/clipboard-api)
 
 If your browser supports the Clipboard API (such as Microsoft Edge or Google Chrome), you can copy and paste text between your local device and the remote session using standard keyboard shortcuts. This is the simplest method and works the same way as copying between applications on your local device.
 
@@ -62,11 +62,11 @@ If your browser supports the Clipboard API (such as Microsoft Edge or Google Chr
 1. Use keyboard shortcuts to copy and paste as usual. On macOS, the keyboard shortcut to paste is `Shift+Ctrl+V`.
 1. To copy text from the VM to your local device, select the text in the remote session, copy it (`Ctrl+C`), and paste it into any application on your local device.
 
-### <a name="other"></a> Use the clipboard tool palette
+# [Clipboard tool palette](#tab/clipboard-palette)
 
 If your browser doesn't support the Clipboard API, use the Bastion clipboard tool palette to transfer text. The tool palette acts as an intermediary — text passes through its text area before reaching the remote session or your local clipboard.
 
-#### Copy text from your local device to the VM
+### Copy text from your local device to the VM
 
 1. Connect to your virtual machine.
 1. Copy text on your local device.
@@ -75,11 +75,13 @@ If your browser doesn't support the Clipboard API, use the Bastion clipboard too
 
    :::image type="content" source="./media/bastion-vm-copy-paste/clipboard-copy.png" alt-text="Screenshot shows the clipboard for text copied in Bastion." lightbox="./media/bastion-vm-copy-paste/clipboard-copy.png":::
 
-#### Copy text from the VM to your local device
+### Copy text from the VM to your local device
 
 1. In the remote session, copy the text you want to transfer.
 1. Open the clipboard tool palette by selecting the double-arrow icon (**>>**).
 1. The copied text appears in the text area. You can now paste it into any application on your local device.
+
+---
 
 ## Next steps
 
