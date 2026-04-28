@@ -3,7 +3,7 @@ title: Send VMware syslogs to log management server using Azure Logic Apps
 description: Learn how to use Azure Logic Apps to collect and send VMware syslogs from your Azure VMware Solution private cloud to any log management service of your choice.
 ms.topic: how-to 
 ms.service: azure-vmware
-ms.date: 6/27/2025
+ms.date: 04/27/2026
 ms.custom: engagement-fy25
 
 #Customer intent: As an Azure service administrator, I want to use Azure Logic Apps to send VMware syslogs from my Azure VMware Solution private cloud to my preferred log management service for centralized logging and analysis.
@@ -21,11 +21,11 @@ In this article, learn how to configure an Azure Logic Apps workflow to capture 
 
 ## Prerequisites
 
-Make sure you have an Azure VMware Solution private cloud set up that is streaming its syslogs to an Azure Event Hubs instance within an Azure Event Hubs namespace. **A valid instance of event hub within your Azure Event Hub namespace is required**. For setup guidance, visit [Configure VMware syslogs - Stream to Microsoft Azure Event Hubs](/azure/azure-vmware/configure-vmware-syslogs#stream-to-microsoft-azure-event-hubs).
+Make sure you have an Azure VMware Solution private cloud set up that's streaming the syslogs to an Azure Event Hubs instance within an Azure Event Hubs namespace. **A valid instance of event hub within your Azure Event Hub namespace is required**. For setup guidance, visit [Configure VMware syslogs - Stream to Microsoft Azure Event Hubs](/azure/azure-vmware/configure-vmware-syslogs#stream-to-microsoft-azure-event-hubs).
 
 ## Create an Azure Logic Apps instance
 
-1. From your Azure portal, select **Create a resource**, then search for **Logic App**. Find the one called **Logic App**, select **Create**, then click **Logic App**.
+1. From your Azure portal, select **Create a resource**, then search for **Logic App**. Find the one called **Logic App**, select **Create**, then select **Logic App**.
 
 :::image type="content" source="media/logs-to-logic-app/logs-to-logic-app-1.png" alt-text="Screenshot showing where to procure an instance of Azure Logic Apps." border="false"  lightbox="media/logs-to-logic-app/logs-to-logic-app-1.png":::
 
@@ -39,17 +39,17 @@ The default Windows plan is **Workflow Standard WS1 (210 total ACU, 3.5 Gb memor
 
 :::image type="content" source="media/logs-to-logic-app/logs-to-logic-app-3.png" alt-text="Screenshot showing the fields that need to be populated when creating an Azure Logic App." border="false"  lightbox="media/logs-to-logic-app/logs-to-logic-app-3.png":::
 
-4. Review the details of the Logic App instance. Select **Create**. Clicking this button initializes the deployment of the Logic App instance. Once complete, the deployment status will read "Your deployment is complete".
+4. Review the details of the Logic App instance. Select **Create**. Clicking this button initializes the deployment of the Logic App instance. Once complete, the deployment status reads "Your deployment is complete".
 
 :::image type="content" source="media/logs-to-logic-app/logs-to-logic-app-4.png" alt-text="Screenshot showing the summary of the Logic App creation." border="false"  lightbox="media/logs-to-logic-app/logs-to-logic-app-4.png":::
 
 ## Set up the Azure Logic App workflow
 
-1. Once deployed, navigate to the Logic App instance. Select **Workflows**, then click on **Workflows**. Select **Add**, then click on **Add from Template**. This action takes you to the template catalog available in Azure Logic Apps. 
+1. Once deployed, navigate to the Logic App instance. Select **Workflows**, then select **Workflows**. Select **Add**, then select **Add from Template**. This action takes you to the template catalog available in Azure Logic Apps. 
 
 :::image type="content" source="media/logs-to-logic-app/logs-to-logic-app-5.png" alt-text="Screenshot showing the Workflows blade of Azure Logic App." border="false"  lightbox="media/logs-to-logic-app/logs-to-logic-app-5.png":::
 
-2. In the search bar, search for **Azure VMware Solution**. Click on the option called **Azure VMware Solution: Export private cloud logs to log management solution**.
+2. In the search bar, search for **Azure VMware Solution**. Select the option called **Azure VMware Solution: Export private cloud logs to log management solution**.
 
 :::image type="content" source="media/logs-to-logic-app/logs-to-logic-app-6.png" alt-text="Screenshot showing Azure VMware Solution option under Workflow templates in the Logic App." border="false"  lightbox="media/logs-to-logic-app/logs-to-logic-app-6.png":::
 
@@ -57,33 +57,33 @@ The default Windows plan is **Workflow Standard WS1 (210 total ACU, 3.5 Gb memor
 
 :::image type="content" source="media/logs-to-logic-app/logs-to-logic-app-7.png" alt-text="Screenshot showing the Workflow name and State type for the Azure VMware Solution template." border="false"  lightbox="media/logs-to-logic-app/logs-to-logic-app-7.png":::
 
-4. Next, connect the Event Hub that houses the Azure VMware Solution logs to this Logic App instance. To do so, click **Connect**. Provide a name for Connection Name, Authentication Type will remain Access Key. For Connection String, you need to retrieve the Connection String from the Event Hub instance you intend to use. 
+4. Select **Connect** to connect the Event Hub that houses the Azure VMware Solution logs to this Logic App instance. Provide a name for Connection Name, Authentication Type will remain Access Key. For Connection String, you need to retrieve the Connection String from the Event Hub instance you intend to use. 
 
 :::image type="content" source="media/logs-to-logic-app/logs-to-logic-app-8.png" alt-text="Screenshot showing the Event Hubs connection portion of the Azure VMware Solution template." border="false"  lightbox="media/logs-to-logic-app/logs-to-logic-app-8.png":::
 
-5. In a separate browser tab, open the Event Hub instance that contains the log messages. Select **Settings**, then click on **Shared access policies**. Select **RootManagerSharedAccessKey** and click on the copy icon next to **Primary connection string**.
+5. In a separate browser tab, open the Event Hub instance that contains the log messages. Select **Settings**, then select **Shared access policies**. Select **RootManagerSharedAccessKey**, then select the copy icon next to **Primary connection string**.
     
 :::image type="content" source="media/logs-to-logic-app/logs-to-logic-app-9.png" alt-text="Screenshot showing the Primary connection string on Azure Event Hub." border="false"  lightbox="media/logs-to-logic-app/logs-to-logic-app-9.png":::
 
-6. Navigate back to the browser tab with the Logic App and paste what you just copied into the **Connection String** field. Click **Add Connection**.
+6. Navigate back to the browser tab with the Logic App and paste what you copied into the **Connection String** field. Select **Add Connection**.
 
 :::image type="content" source="media/logs-to-logic-app/logs-to-logic-app-10.png" alt-text="Screenshot showing the pasting of the Primary connection string on Azure Logic Apps template." border="false"  lightbox="media/logs-to-logic-app/logs-to-logic-app-10.png":::
 
-7.  If added successfully, the Status for the Event Hub should read **Connected**. At this point, click **Next** to proceed forward.
+7.  If added successfully, the Status for the Event Hub should read **Connected**. Select **Next** to proceed.
 
 :::image type="content" source="media/logs-to-logic-app/logs-to-logic-app-11.png" alt-text="Screenshot showing successful Connected message on Azure Logic Apps template." border="false"  lightbox="media/logs-to-logic-app/logs-to-logic-app-11.png":::
 
-8. Add the name of the event hub instance under **Event hub name**. The exact name of the Event hub can be found under **Entities**, then **Event Hubs** in your Event Hub tab. Add the URI of the log server you intend to use under **Log destination URI**. Click **Next**.
+8. Add the name of the event hub instance under **Event hub name**. The exact name of the Event hub can be found under **Entities** > **Event Hubs** in your Event Hub tab. Add the URI of the log server you intend to use under **Log destination URI**, then select **Next**.
 
 :::image type="content" source="media/logs-to-logic-app/logs-to-logic-app-12.png" alt-text="Screenshot showing the necessary parameters needed for the Azure Logic App template." border="false"  lightbox="media/logs-to-logic-app/logs-to-logic-app-12.png":::
 
-9. Review the information provided, then click **Create**. This action saves the workflow that can be used to send the log messages from Azure VMware Solution to any syslog endpoint.
+9. Review the information provided, then select **Create**. This action saves the workflow that can be used to send the log messages from Azure VMware Solution to any syslog endpoint.
 
 :::image type="content" source="media/logs-to-logic-app/logs-to-logic-app-13.png" alt-text="Screenshot showing the review page before creating the Azure Logic App template." border="false"  lightbox="media/logs-to-logic-app/logs-to-logic-app-13.png":::
 
 ## Integrating with Azure Virtual Network
 
-If your log management server is hosted in Azure - for example, your VMware Cloud Foundation Operations for Logs in your Azure VMware Solution private cloud - you will need to integrate your Azure Logic App with an Azure virtual network that can be reached by the log management server. This ensures the Logic App can communicate with endpoints that are only accessible within the virtual network. 
+If your log management server is hosted in Azure, for example, your VMware Cloud Foundation Operations for Logs in your Azure VMware Solution private cloud, you need to integrate your Azure Logic App with an Azure virtual network that can be reached by the log management server. This ensures the Logic App can communicate with endpoints that are only accessible within the virtual network. 
 
 For example - if you're deploying your log management server on an Azure VMware Solution private cloud, you will need an Azure Virtual Network that can be peered to the private cloud's network.
 ###Prerequisites
