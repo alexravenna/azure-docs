@@ -47,8 +47,8 @@ This pattern is used to deliver Azure Firewall inspection for the following high
 
 Additional more complex that can use use cases include:
 
-* Traffic between certain Virtual Networks should bypass inspection (routed via Virtual Hub router).
-* Traffic between certain Virtual Networks and on-premises should bypass inspection.
+* [Traffic between certain Virtual Networks should bypass inspection (routed via Virtual Hub router)](firewall-custom-bypass.md#virtual-network-to-virtual-network-selective-inspection).
+* [Traffic between certain Virtual Networks and on-premises should bypass inspection](firewall-custom-bypass.md#on-premises-to-virtual-network-selective-inspection).
 * [Traffic local to Virtual WAN hub is inspected via Azure Firewall, while inter-hub traffic bypasses inspection](static-routes-firewall-basic.md#local-hub-inspection-with-inter-hub-routed-directly).
 
 Other common use cases that require alternate approaches or are not supported: 
