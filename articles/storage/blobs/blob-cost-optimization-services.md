@@ -1,5 +1,5 @@
 ---
-title: Blob cost optimization services
+title: Azure Blob Storage Cost Optimization Services
 description: Compare Azure Blob Storage cost-optimization capabilities, including Lifecycle management, Azure storage actions, and Smart tiering, and learn when to use each.
 author: normesta
 ms.author: normesta
