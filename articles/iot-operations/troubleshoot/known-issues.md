@@ -91,7 +91,7 @@ Log signature: N/A
 
 ---
 
-Azure Device Registry namespace asset healthstate resources don't synchronize back to the cloud if they were created with an older API version than 2026-04-01. This is due to a missing k8s resource annotation that needs to be added for every resource.
+Azure Device Registry namespace asset healthstate resources don't synchronize back to the cloud if they were created with an API version older than 2026-04-01. This failure occurs because a required Kubernetes resource annotation is missing.
 
 The workaround for this is to [arc proxy connect to your k8s cluster](https://learn.microsoft.com/en-us/azure/azure-arc/kubernetes/quickstart-connect-cluster?tabs=azure-cli#connect-an-existing-kubernetes-cluster) and then run the correct [mediation script](https://github.com/Azure/azure-iot-operations/tree/main/scripts/known-issues/asset-health-status-reporting) for your platform (Windows Powershell or Linux Bash). This script will list all outdated namespace assets and ask for user confirmation to upgrade them all, then will perform the add annotation to all of the resources.
 
