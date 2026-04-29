@@ -1,13 +1,13 @@
 ---
-title: Azure Blob Storage Cost Optimization Services
-description: Compare Azure Blob Storage cost optimization services & capabilities: lifecycle management, Azure Storage Actions, and Smart tiering. Learn which service fits your scenario and reduce storage costs."
+title: "Azure Blob Storage Cost Optimization: Services & Capabilities"
+description: "Compare Azure Blob Storage cost optimization services: lifecycle management, Storage Actions, and Smart tiering. Choose the right solution for your scenario and reduce storage costs effectively."
 author: normesta
 ms.author: normesta
 ms.service: azure-blob-storage
 ms.topic: concept-article
 ms.date: 04/29/2026
 ms.reviewer: nachakra
-# Customer intent: As a cloud administrator, I want to understand which Azure services I can use to optimize my blob storage costs based on my needs and scenarios.
+# Customer intent: "As a cloud administrator, I want to understand which Azure services I can use to optimize my blob storage costs based on my needs and scenarios."
 ---
 
 # Azure Blob Storage cost optimization services and capabilities
