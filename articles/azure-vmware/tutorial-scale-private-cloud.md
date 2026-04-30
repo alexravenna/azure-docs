@@ -3,7 +3,7 @@ title: Tutorial - Scale clusters in a private cloud
 description: In this tutorial, you use the Azure portal to scale an Azure VMware Solution private cloud.
 ms.topic: tutorial
 ms.service: azure-vmware
-ms.date: 6/4/2025
+ms.date: 04/30/2026
 ms.custom:
   - engagement-fy23
   - sfi-image-nochange
