@@ -61,7 +61,7 @@ Verify you have an Azure VMware Solution private cloud set up that's streaming t
 
 :::image type="content" source="media/logs-to-logic-app/logs-to-logic-app-7.png" alt-text="Screenshot showing the Workflow name and State type for the Azure VMware Solution template." border="false"  lightbox="media/logs-to-logic-app/logs-to-logic-app-7.png":::
 
-4. Select **Connect** to connect the Event Hub that houses the Azure VMware Solution logs to this Logic App instance. Provide a name for Connection Name, Authentication Type will remain Access Key. For Connection String, you need to retrieve the Connection String from the Event Hub instance you intend to use. 
+4. Select **Connect** to connect the Event Hub that houses the Azure VMware Solution logs to this Logic App instance. Provide a name for **Connection Name**, **Authentication Type** remains Access Key. For **Connection String**, you need to retrieve the Connection String from the Event Hub instance you intend to use. 
 
 :::image type="content" source="media/logs-to-logic-app/logs-to-logic-app-8.png" alt-text="Screenshot showing the Event Hubs connection portion of the Azure VMware Solution template." border="false"  lightbox="media/logs-to-logic-app/logs-to-logic-app-8.png":::
 
