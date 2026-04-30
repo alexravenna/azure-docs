@@ -81,8 +81,9 @@ The following procedure edits the *function.json* and *local.settings.json* file
       "name": "outMessage",
       "tableName": "testTable",
       "connection": "<your-storage-account-name>_STORAGE"
+      }
   ```
-  
+
 - Open the *local.settings.json* file and make sure the following key-value pair is in this file: `<your-storage-account-name>_STORAGE: <your-storage-account-connection-string>`.
 
 ### Edit the Python code
