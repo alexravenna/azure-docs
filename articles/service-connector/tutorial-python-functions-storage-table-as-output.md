@@ -11,7 +11,7 @@ ms.date: 04/29/2026
 ---
 # Tutorial: Configure a Python function with Azure Table Storage output
 
-In this tutorial, you configure a Python function to use Azure Table Storage as an output binding. You deploy the function to Azure Functions and use Service Connector to connect the Azure Functions app with the Table Storage.
+In this tutorial, you configure a Python function to use Azure Table Storage as an output binding. You then deploy the function to Azure Functions and use Service Connector to connect the Azure Functions app with the Table Storage.
 
 You use Visual Studio Code to complete the following tasks:
 
@@ -20,7 +20,7 @@ You use Visual Studio Code to complete the following tasks:
 > * Add an Azure Storage Table output function binding.
 > * Run the function locally.
 > * Deploy the function to Azure.
-> * Use Azure CLI to create a connection between the Azure Functions app and Storage Table using Service Connector.
+> * Create a connection between the Azure Functions app and Storage Table using Service Connector.
 
 The Service Connector source service is Azure Functions and the target service is Azure Storage Table. The function binding uses an HTTP trigger with the storage table as output. The local and cloud authentication type is connection string.
 
@@ -31,21 +31,22 @@ The Service Connector source service is Azure Functions and the target service i
 
 - Basic understanding of [Azure Functions](/azure/azure-functions/functions-reference) and [how to connect to services in Azure Functions](/azure/azure-functions/add-bindings-existing-function).
 - An Azure subscription where you have Azure resource write permissions, in an Azure region that [supports Service Connector](concept-region-support.md). [Create an Azure account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- An [Azure Storage Account](/azure/storage/common/storage-account-create) in your Azure subscription, and a table named `testTable` created in the storage account.
+- An [Azure Storage Account](/azure/storage/common/storage-account-create) in your Azure subscription, and a table named `testtable` in the storage account.
 - [Visual Studio Code](https://code.visualstudio.com), with the following extensions installed:
   - [Python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)
   - [Azure CLI Tools](https://marketplace.visualstudio.com/items?itemName=ms-vscode.azurecli)
   - [Azure Functions](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions)
-    The Azure Functions extension configured to allow Programming Model V1, as follows:
+
+    To run this tutorial, the Azure Functions extension configured to allow Programming Model V1, as follows:
     1. In Visual Studio Code, select the **Settings** icon next to the **Azure Functions** extension and select **Settings**.
     1. On the **Settings** screen, select the checkbox next to **Azure Functions: Allow Programming Model Selection**.
     1. Close the **Settings** screen.
 
 ## Create the function project
 
-Create a Python function project with an HTTP trigger.
+In Visual Studio Code, create a Python function project with an HTTP trigger.
 
-1. In Visual Studio Code, press **F1** to open the command palette, and search for and select the command **Azure Functions: Create New Project**.
+1. Press **F1** to open the command palette, and search for and select the command **Azure Functions: Create New Project**.
 1. For **Select the folder that will contain your function project**, select **Browse**, and either create a new folder or choose an empty folder for the project workspace. Don't choose a project folder that's already part of a workspace.
 1. For **Select a project type**, select **Python**.
 1. For **Select a Python programming model**, select **Model V1**.
@@ -59,21 +60,34 @@ For more information, see [Create and deploy function code to Azure using Visual
 
 ## Add a storage table output binding
 
-Edit the *function.json* file to create a table output binding for your function.
+The following wizard edits the *function.json* and *local.settings.json* files to create a table output binding for your function. 
 
 1. Right-click the *function.json* file in your function folder and select **Add binding** from the context menu.
 1. In the command palette, for **Select binding direction**, select **out**.
 1. For **Select binding with direction "out"**, select **Azure Table Storage**.
 1. For **The name used to identify this binding in your code**, enter *outMessage*.
-1. For **Table name in storage account where data will be written**, enter *testTable*.
+1. For **Table name in storage account where data will be written**, enter *testtable*.
 1. For **Select the app setting with your Storage account connection string from "local.settings.json"**, select **Create new local app setting**.
 1. For **Select subscription**, select your Azure subscription.
 1. For **Select a storage account type for development**, select **Use Azure Storage for remote storage**.
-1. For **Select a storage account**, select the Azure Storage account you're using for output.
-1. To check the binding was added successfully:
-   - Open the *TableStorageOutputFunc/function.json* file and make sure a binding with `type: table` and `direction: out` is in this file.
-   - Open the *local.settings.json*` file and make sure the following key-value pair is in this file: `<your-storage-account-name>_STORAGE: <your-storage-account-connection-string>`.
-1. Open the *TableStorageOutputFunc/__init__.py* file and replace its contents with the following Python code:
+1. For **Select a storage account**, select the Azure Storage account to use for output.
+
+To check that the binding was added successfully:
+
+- Open the *TableStorageOutputFunc/function.json* file and make sure the table output binding is correctly added to the file. If any of the values differ, edit them to the following values:
+
+  ```json
+      {
+      "type": "table",
+      "direction": "out",
+      "name": "outMessage",
+      "tableName": "testtable",
+      "connection": "<your-storage-account-name>_STORAGE"
+  ```
+  
+- Open the *local.settings.json* file and make sure the following key-value pair is in this file: `<your-storage-account-name>_STORAGE: <your-storage-account-connection-string>`.
+
+Open the *TableStorageOutputFunc/__init__.py* file and replace its contents with the following code:
 
    ```python
    import logging
@@ -97,7 +111,7 @@ Edit the *function.json* file to create a table output binding for your function
 ## Run the function locally
 
 1. To run the function locally, press **F5**. If prompted to connect to a storage account, select an Azure storage account. This value is used for the Azure Functions runtime and can be, but doesn't have to be the same storage account you use for the function output.
-1. To verify that your function can write to your Azure Storage table, right click the **TableStorageOutputFunc** function in the **Workspace** view of the Activity bar, and select **Execute Function Now**. Check the function response to make sure it contains a `rowKey` value that was written to the table.
+1. While the function is running locally, verify that your function can write to your Azure Storage table by right-clicking the **TableStorageOutputFunc** function in the **Workspace** view of the Activity bar and selecting **Execute Function Now**. Check the function response to make sure it contains a `rowKey` value that was written to the table.
 
 ## Deploy your function to Azure
 
@@ -112,19 +126,19 @@ Create an Azure Functions app and deploy your function to Azure.
 1. For **Select a runtime stack**, select **Python 3.10**.
 1. For **Select resource authentication type**, select **Secrets**.
 
-   >[!IMPORTANT]
-   >The connection string authentication flow using secrets requires a high degree of trust in the application, and carries risks not present in other flows. You should use this flow only when more secure flows, such as managed identities, aren't viable.
+>[!IMPORTANT]
+>The connection string authentication flow using secrets requires a high degree of trust in the application, and carries risks not present in other flows. You should use this flow only when more secure flows, such as managed identities, aren't viable.
 
 ## Create a connection using Service Connector
 
-Once the Functions app is created, you can use Service Connector to connect the app to your Azure storage table, so your cloud function app can easily write output to your cloud storage account. The following command creates a Service Connector resource that configures an `AZURE_STORAGETABLE_CONNECTIONSTRING` variable in the function's App Settings.
+Once the Functions app is created, you can use Service Connector to connect the app to your Azure storage table, so your cloud function app can easily write output to your cloud storage account. The following command creates a Service Connector resource that configures the `AZURE_STORAGETABLE_CONNECTIONSTRING` variable in the function's App Settings. 
 
 The function binding consumes this app setting to connect to the storage so the function can write to the storage table. For more information, see [How Service Connector helps Azure Functions connect to services](how-to-use-service-connector-in-function.md).
 
-Run the following command in a Visual Studio Code terminal, or use [Azure Cloud Shell](https://shell.azure.com/) or [local Azure CLI](/cli/azure/install-azure-cli). Replace the placeholder values as follows:
+Run the following Azure CLI command in a Visual Studio Code terminal, or use [Azure Cloud Shell](https://shell.azure.com/) or [local Azure CLI](/cli/azure/install-azure-cli). Replace the placeholder values as follows:
 
 - `<function-resource-id>`: `/subscriptions/<your-subscription>/resourceGroups/<function-resource-group}/providers/Microsoft.Web/sites/<function-name>`
-- `<storage-resource-id>` format: `/subscriptions/<your-subscription>/resourceGroups/<storage-resource-group}/providers/Microsoft.Storage/storageAccounts/<storage-account>/tableServices/default`
+- `<storage-resource-id>`: `/subscriptions/<your-subscription>/resourceGroups/<storage-resource-group}/providers/Microsoft.Storage/storageAccounts/<storage-account>/tableServices/default`
 
 ```azurecli
 az functionapp connection create storage-table --source-id "<function-resource-id>" --target-id "<storage-resource-id>" --secret
