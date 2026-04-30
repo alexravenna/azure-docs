@@ -57,17 +57,17 @@ The following connectivity matrix summarizes Internet access in this scenario.
 
 ## Configuration
 
-### Static routes to route to indirect spoke
+### Static routes for indirect spokes
 
 The following static routes are configured by adding the static routes on the NVA virtual network connection directly, with **Propagate static route** set to **true**.
 
 | Hub | Connection | Prefix | Next hop IP address |
 |--|--|--|--|
 | Hub 1 | NVA Virtual Network Connection | 10.2.0.0/16 | 10.3.10.5 |
-| Hub 2 | NVA Virtual Network Connection | 10.4.0./16 | 10.4.10.5 |
+| Hub 2 | NVA Virtual Network Connection | 10.4.0.0/16 | 10.4.10.5 |
 
 
-### Static routes to route to Internet 
+### Static routes for internet egress
 
 The following static routes are configured by adding the static routes on the NVA virtual network connection directly, with **Propagate static route** set to **true**.
 
@@ -78,7 +78,7 @@ The following static routes are configured by adding the static routes on the NV
 
 ### Virtual WAN Routing configuration
 
-For both Virtual WAN hubs, all connections should propagate to all defaultRouteTables across the Virtual WAN. This configuration ensures all directly connected spoke workloads and static routes are propagated to all connections, ensuring full-mesh reachability. 
+For both Virtual WAN hubs, all connections should propagate to all defaultRouteTables across the Virtual WAN. This configuration ensures that all directly connected spoke workloads and static routes are propagated to all connections, providing full-mesh reachability.
 
 The following table describes the routing configuration of the Virtual WAN connections to Hub 1:
 
@@ -100,7 +100,7 @@ Virtual WAN only manages routing on virtual networks that are directly connected
 
 This user-defined route is required so that workloads in the indirect spoke virtual networks have a path back to the NVA and, therefore, to the rest of the Virtual WAN.
 
-In the example above, indirect spoke Virtual Networks on Hub 1 would need the following entries: 
+In the example above, indirect spoke virtual networks on Hub 1 would need the following entries:
 
 | Prefix | Next Hop IP address | Purpose|
 |--|--|--|
@@ -111,7 +111,7 @@ In the example above, indirect spoke Virtual Networks on Hub 1 would need the fo
 | 10.3.0.0/24| 10.3.10.5| Route to direct spokes on Hub 1|
 |10.4.0.0/24| 10.3.10.5| Route to direct spokes on Hub 2|
 
-Alternatively, configure aggregate routes, such as 10.0.0.0/8.
+Alternatively, you can configure aggregate routes such as 10.0.0.0/8.
 
 ## Additional considerations
 

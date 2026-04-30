@@ -20,16 +20,16 @@ These scenarios are useful when you need selected traffic between two virtual ne
 
 ## Virtual Network to Virtual Network selective inspection
 
-This design pattern allows trusted Virtual Networks to communicate directly, while all other traffic between branches and untrustdd Virtual Networks are routed directly.
+This design pattern allows trusted virtual networks to communicate directly, while all other traffic between branches and untrusted virtual networks is routed through Azure Firewall.
 
 ### Network diagram
 
 :::image type="content" source="./media/route-scenarios/bypass-trusted-virtual-networks.png" alt-text="Diagram that shows selective Azure Firewall bypass for trusted virtual network to virtual network traffic in a secure hub." lightbox="./media/route-scenarios/bypass-trusted-virtual-networks.png":::
 
-In the diagram before, Virtual Networks are split into two types:
+In the diagram above, virtual networks are split into two types:
 
-* Trusted Virtual Networks: trusted Virtual Networks are part of one domain that is able to communicate directly.
-* Un-trusted Virtual Networks: traffic within the untrusted domain and between the trust and untrusted domain requires inspection with Azure Firewall.
+* Trusted Virtual Networks: Trusted virtual networks are part of one domain that can communicate directly.
+* Untrusted Virtual Networks: Traffic within the untrusted domain, and traffic between the trusted and untrusted domains, requires inspection with Azure Firewall.
 
 
 ### Traffic flows
@@ -68,16 +68,16 @@ In the diagram before, Virtual Networks are split into two types:
 
 ## On-premises to Virtual Network selective inspection
 
-This design pattern builds on the previous design, by  allowing branches to directly access trusted Virtual Network. All other traffic patterns remain the same.
+This design pattern builds on the previous design by allowing branches to directly access trusted virtual networks. All other traffic patterns remain the same.
 
 ### Network diagram
 
 :::image type="content" source="./media/route-scenarios/bypass-trusted-branches.png" alt-text="Diagram that shows selective Azure Firewall bypass for trusted on-premises to virtual network traffic in a secure hub." lightbox="./media/route-scenarios/bypass-trusted-branches.png":::
 
-As before, Virtual Networks are split into two types:
+As before, virtual networks are split into two types:
 
-* Trusted Virtual Networks: trusted Virtual Networks are part of one domain that  on-premises connections are able to communicate with directly.
-* Un-trusted Virtual Networks: traffic from on-premises to untrusted Virtual Networks requires inspection with Azure Firewall.
+* Trusted Virtual Networks: Trusted virtual networks are part of one domain that on-premises connections can communicate with directly.
+* Untrusted Virtual Networks: Traffic from on-premises to untrusted virtual networks requires inspection with Azure Firewall.
 
 
 ### Traffic flows
@@ -99,14 +99,14 @@ As before, Virtual Networks are split into two types:
 | Route table name | Associated connections | Reasoning |
 |--|--|--|
 | defaultRouteTable | Branches and untrusted virtual networks | Used by connections that must forward traffic to Azure Firewall, including branch traffic to untrusted virtual networks and all traffic to or from untrusted virtual networks. |
-| trustedRouteTable | Trusted virtual networks branches| Used by trusted Virtual Networks. |
+| trustedRouteTable | Trusted virtual networks, branches | Used by trusted virtual networks, |
 
 
 #### Virtual WAN routing configuration
 
 | Connection | Associated route table | Propagated route table | Reasoning |
 |--|--|--|--|
-| Trusted virtual networks | trustedRouteTable | trustedRouteTable, defaultRouteTable | Trusted virtual networks associate and propagate to the trustedRouteTable to ensure that trusted Virtual Networks can communicate directly. Trusted Virtual Networks also propagate to the defaultRouteTable, to ensure branches can reach trusted Virtual Networks directly. |
+| Trusted virtual networks | trustedRouteTable | trustedRouteTable, defaultRouteTable | Trusted virtual networks associate with and propagate to trustedRouteTable so trusted virtual networks can communicate directly. Trusted virtual networks also propagate to defaultRouteTable so branches can reach trusted virtual networks directly. |
 | Untrusted virtual networks | defaultRouteTable | noneRouteTable | Untrusted virtual networks can only be reached via Azure Firewall. |
 | Selected branches | defaultRouteTable | trustedRouteTable, defaultRouteTable | Branch connections must associate to defaultRouteTable. Branches propagate to the trusted route table so branch-to-trusted-virtual-network traffic can bypass Azure Firewall. |
 

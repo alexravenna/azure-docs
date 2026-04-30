@@ -14,10 +14,7 @@ ms.custom:
 
 > [!NOTE]
 > This design pattern is compatible with any supported next hop security solution deployed in the Virtual WAN hub, including **Azure Firewall**, an **integrated NVA**, or a **SaaS solution**.
-
-
 ## Scenario overview
-
 
 This design pattern explains how to combine **routing intent and routing policies** with **static routes on a virtual network connection** in Azure Virtual WAN. This pattern is useful when you want a security solution deployed in the virtual hub to inspect traffic first, while still allowing selected destinations to be reached through a network virtual appliance (NVA) deployed in a spoke virtual network.
 
@@ -34,8 +31,8 @@ The following connectivity matrix summarizes the common traffic patterns in this
 
 | Source/Destination | Direct Spoke | On-premises | Indirect spoke and NVA connected sites  | Internet |
 |--|--|--|--|--|
-| Direct Spoke | Via routing intent next hop in the hub | Via routing intent next hop in the hub | Via routing intent next hop in the hub, then via the spoke NVA | Via routing intent next hop in the hub, then via the spoke NVA when the hub is configured in [forced tunnel mode](about-internet-routing.md#forced-tunnel-1) ,|
-| On-premises | Via routing intent next hop in the hub | Via routing intent next hop in the hub | Via routing intent next hop in the hub, then via the spoke NVA | Via routing intent next hop in the hub, then via the spoke NVA when the hub is configured in [forced tunnel mode](about-internet-routing.md#forced-tunnel-1), |
+| Direct Spoke | Via routing intent next hop in the hub | Via routing intent next hop in the hub | Via routing intent next hop in the hub, then via the spoke NVA | Via routing intent next hop in the hub, then via the spoke NVA when the hub is configured in [forced tunnel mode](about-internet-routing.md#forced-tunnel-1) |
+| On-premises | Via routing intent next hop in the hub | Via routing intent next hop in the hub | Via routing intent next hop in the hub, then via the spoke NVA | Via routing intent next hop in the hub, then via the spoke NVA when the hub is configured in [forced tunnel mode](about-internet-routing.md#forced-tunnel-1) |
 | Indirect spoke and NVA connected sites | Via the spoke NVA, then via routing intent next hop in the hub | Via the spoke NVA, then via routing intent next hop in the hub | Via the spoke NVA | Via the spoke NVA |
 
 
@@ -46,8 +43,8 @@ The following connectivity matrix summarizes the common traffic patterns in this
 In the diagram above, there are three types of spokes:
 
 * Directly connected spokes: connected directly to the Virtual WAN hub.
-* NVA spoke:  connected directly to the Virtual WAN hub, deployed with a NVA.
-* Indirect spoke: not connected directly to the Virtual WAN hub.The indirect spoke is peered to the NVA spoke. Traffic to and from these spokes must traverse the NVA before reaching any other connection to the Virtual WAN hub.
+* NVA spoke: connected directly to the Virtual WAN hub and deployed with an NVA.
+* Indirect spoke: not connected directly to the Virtual WAN hub. The indirect spoke is peered to the NVA spoke. Traffic to and from these spokes must traverse the NVA before reaching any other connection to the Virtual WAN hub.
 
 ## Configuration
 
@@ -59,7 +56,7 @@ The virtual hub must use routing intent. Use a **Private Traffic** routing polic
 ### Static routes on the spoke virtual network connection
 
 > [!NOTE]
-> When using routing intent, the only supported static route integration pattern is [Option 1 to configure Static routes in Azure Virtual WAN](static-routes.md#configuration-options).Configure static routes on the **virtual network connection** with **Propagate static route** set to **true**. 
+> When using routing intent, the only supported static route integration pattern is [Option 1 to configure Static routes in Azure Virtual WAN](static-routes.md#configuration-options). Configure static routes on the **virtual network connection** with **Propagate static route** set to **true**.
 
 
 | Prefix type | Example prefixes | Why it is used |

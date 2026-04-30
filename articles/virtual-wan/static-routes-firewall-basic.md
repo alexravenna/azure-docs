@@ -14,7 +14,7 @@ ms.custom:
 
 ## Overview
 
-This document summarizes basic scenarios regarding how to route traffic to route Virtual WAN traffic to Azure Firewall using static routes. The document also contains some notes on how Azure Firewall Manager configures routing when you secure both private and internet traffic with Azure Firewall Manager and set secure interhub to **Off** as well as how Azure Firewall Manager decides connections are **secure** or **not secured**. 
+This document summarizes basic scenarios for routing Virtual WAN traffic to Azure Firewall by using static routes. The document also contains notes on how Azure Firewall Manager configures routing when you secure both private and internet traffic with Azure Firewall Manager and set secure interhub to **Off**, as well as how Azure Firewall Manager determines whether connections are **secure** or **not secure**.
 
 ## Private traffic inspection: Branch-to-Virtual Network and Virtual Network-to-Virtual Network via Azure Firewall
 
@@ -43,7 +43,7 @@ Connection routing properties:
 ## Internet traffic inspection by Azure Firewall
 
 > [!NOTE]
-> In this configuration, Azure Firewall Manager expects the defaultRouteTable to have a route named **internet_traffic**. Additionally, for a connection to learn the default route (0.0.0.0/0) the Enable Internet Security setting or Propagate default route setting must be set to **true**. Azure Firewall manager using this setting to display whether a connection's Internet traffic is **secured**. 
+> In this configuration, Azure Firewall Manager expects the defaultRouteTable to have a route named **internet_traffic**. Additionally, for a connection to learn the default route (0.0.0.0/0), the Enable Internet Security setting or Propagate default route setting must be set to **true**. Azure Firewall Manager uses this setting to display whether a connection's internet traffic is **secured**.
 
 ### Traffic patterns
 
@@ -97,7 +97,7 @@ Use [routing intent and policies](how-to-routing-policies.md) to inspect inter-h
 * Internet traffic uses the local Azure Firewall for inspection and breakout.
 
 > [!NOTE]
-> Use Virtual WAN route table labels to group hubs across the Virtual WAN to make configurations easier and more scalable. Additionally, this set-up is **not** configurable via Azure Firewall Manager.
+> Use Virtual WAN route table labels to group hubs across the Virtual WAN to make configurations easier and more scalable. Additionally, this setup is **not** configurable via Azure Firewall Manager.
 
 
 ### Configuration Hub 1
