@@ -31,7 +31,7 @@ The following sections explain how traffic is routed to indirect spokes and the 
 
 The following connectivity matrix summarizes whether traffic flows directly through Virtual WAN or traverses an NVA in this scenario.
 
-| Source | Hub 1 Indirect Spokes | Hub 1 Direct Spokes | Hub 1 Branches | Hub 2 Indirect Spokes | Hub 2 Direct Spokes | Hub 2 Branches |
+| Source/Destination | Hub 1 Indirect Spokes | Hub 1 Direct Spokes | Hub 1 Branches | Hub 2 Indirect Spokes | Hub 2 Direct Spokes | Hub 2 Branches |
 |--|--|--|--|--|--|--|
 | Hub 1 Indirect Spokes | Via Hub 1 NVA | Via Hub 1 NVA | Via Hub 1 NVA | Via Hub 1 and Hub 2 NVAs | Via Hub 1 NVA | Via Hub 1 NVA |
 | Hub 1 Direct Spokes | Via Hub 1 NVA | Direct | Direct | Via Hub 2 NVA | Direct | Direct |

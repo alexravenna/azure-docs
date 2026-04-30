@@ -10,16 +10,17 @@ ms.author: wellee
 ms.custom:
 ---
 
-# Advanced: north-south inspection with NVAs
+# Advanced: North-south inspection with NVAs
 
 ## Scenario overview
+
+> [!NOTE]
+> All north-south inspection architectures in this document require using Option 2 from [static routes](static-routes.md#configuration-options) guidance, where a static route is configured in a Virtual WAN route table with the next hop set to the hub virtual network connection, plus a matching next hop IP on the virtual network connection.
 
 This document covers two specific design patterns:
 
 * **North-south branch-to virtual network via Shared services, DMZ for internet egress**: In this design, Virtual WAN routes private traffic that flows between branches and directly connected virtual networks to a spoke NVA that is dedicated to north-south traffic inspection. Internet-bound traffic from spoke Virtual Networks is routed directly to a separate spoke NVA that is dedicated to internet egress.
 * **Single spoke NVA for north-south and internet egress**: This pattern is useful when you want to use a single NVAs for centralized inspection of north-south traffic and internet egress and for Virtual WAN to manage all routing. In this design pattern, there are no additional Virtual Network peerings or user-defined routes needed.
-
-
 
 ## Design Pattern 1: Direct peering between Workloads and DMZ for internet egress
 
@@ -30,6 +31,7 @@ In this option, workload virtual networks are directly peered to the DMZ virtual
 :::image type="content" source="./media/route-scenarios/spoke-option-direct-peering.png" alt-text="Diagram that shows Option 1 routing with a shared services NVA for private traffic inspection and a DMZ NVA for internet egress." lightbox="./media/route-scenarios/spoke-option-direct-peering.png":::
 
 In the diagram above, there are a few special types of Virtual Networks:
+
 * DMZ Virtual Network: hosts NVA used for internet egress
 * Shared Services Virtual Network: hosts NVA used for north-south traffic inspection
 * Workload Virtual Network: any other Virtual Networks connected to Virtual WAN hub.
@@ -69,19 +71,25 @@ The architecture needs three different Virtual WAN route tables as there are thr
 
 ### Static Routes
 
-The following static routes are configured by adding the static routes on the NVA virtual network connection directly, with **Propagate static route** set to **true**. Static routes are automatically injected into the appropraite route tables (defaultRouteTAble and workloadRouteTable)
+The following static routes are configured on the NVA virtual network connection directly.
+
+> [!NOTE]: 
+> North-south inspection architecture requires overriding every on-premises prefix with a static route. The maximum number of static routes configured is 550. This limit is not adjustable. This inspection architecture is not intended for large scale deployments with a large on-premises route count.
+
+**Static routes configured on DMZ Virtual Network connection**:
 
 |Virtual Network connection| Address Prefix| Next hop IP address| Reasoning|
 |--|--|--|--|
-|DMZ |10.1.0.0/16 |10.4.0.5 | The shared services Virtual Network needs to attract traffic destined for  workload  prefix ranges. In this simple example, aggregate routes covering workload ranges are used.|
-|DMZ |10.2.0.0/16 |10.4.0.5 | The shared services Virtual Network needs to attract traffic destined for branch prefix ranges. In this simple example, aggregate routes covering branch ranges are used.|
+|DMZ |10.1.0.0/16 |10.4.0.5 | Used to send traffic destined for workload  prefix ranges to Shared Services NVA. Aggregate routes covering workload prefixes can be used and Virtual WAN  automaticallys route traffic destined for Virtual Networks to the NVA.|
+|DMZ |10.2.0.0./24, 10.2.10.0/24, 10.2.20.0/24| 10.4.0.5 | Used to send traffic destined for branch prefix ranges to the Shared Services NVA. In this case, specific static routes that are a longest-prefix (LPM) route with each on-premises route is required to redirect traffic destined to on-premises to the Shared Services NVA. Aggregate routes results in asymmetric routing.|
 
-Alternatively you can also use the following configuration if utilizing the legacy workflow:
 
+**Static routes configured on Virtual WAN route tables:**
+* 
 |Route Table| Destination | Next Hop| Next Hop IP (configured on Virtual Network connection)| Reasoning|
 |--|--|--|--|--|
-| defaultRouteTable|10.1.0.0/16|Shared Services|10.4.0.5| Aggregate range to ensure branches route to workload VNETs via Shared Service NVA.| 
-| workloadRouteTable|10.2.0.0/16|Shared Services|10.4.0.5|Aggregate range to ensure workload VNETs route to branches via Shared Service NVA.|
+| defaultRouteTable|10.1.0.0/16|Shared Services Virtual Network|10.4.0.5| Similar to routes on the Virtual Network connection, an aggregate range to ensure branches route to workload VNETs via Shared Services NVA is sufficient.| 
+| workloadRouteTable|10.2.0.0./24, 10.2.10.0/24, 10.2.20.0/24|Shared Services Virtual Network |10.4.0.5| Similar to routes on the VIrtual Network connection, specific static routes that are a longest-prefix (LPM) route with each on-premises route is required to redirect traffic destined to on-premisesto the Shared Services NVA. Aggregate routes results in asymmetric routing.|
 
 ### Additional workload virtual network configurations
 
@@ -130,7 +138,7 @@ The following sections explain how traffic is routed to indirect spokes and the 
 |--|--|--|
 | Workload Virtual Network | DMZ Virtual Network | Direct|
 | Workload Virtual Network | Branches | Via DMZ NVA |
-| Workload Virtual Network | Workload Virtual NETwork| Direct |
+| Workload Virtual Network | Workload Virtual Network| Direct |
 | Workload Virtual Network | Internet | Via DMZ NVA |
 | Branches | Shared Services Virtual Network | Direct |
 | Branches | Workload Virtual Network | Via DMZ NVA |
@@ -157,23 +165,25 @@ The architecture needs three different Virtual WAN route tables as there are thr
 
 ### Static Routes
 
-The following static routes are configured by adding the static routes on the NVA virtual network connection directly, with **Propagate static route** set to **true**. Static routes are automatically injected into the appropraite route tables (defaultRouteTAble and workloadRouteTable)
+> [!NOTE]: 
+> North-south inspection architecture requires overriding every on-premises prefix with a static route. The maximum number of static routes configured is 550. This limit is not adjustable. This inspection architecture is not intended for large scale deployments with a large on-premises route count.
+
+**Static routes on Virtual Network connections:**
 
 |Virtual Network connection| Address Prefix| Next hop IP address| Reasoning|
 |--|--|--|--|
-|Shared Services|10.1.0.0/16 |10.4.0.5 | The DMZ Virtual Network needs to attract traffic destined for  workload  prefix ranges. In this simple example, aggregate routes covering workload ranges are used.|
-|Shared Services|10.2.0.0/16 |10.4.0.5 | The DMZ Virtual Network needs to attract traffic destined for branch prefix ranges. In this simple example, aggregate routes covering branch ranges are used.|
+|DMZ|10.1.0.0/16 |10.4.0.5 | Used to send traffic destined for workload prefix ranges to the DMZ NVA. In this case, aggregate routes covering workload ranges are used to ensure traffic destined for workload VNETs is routed via the DMZ NVA. Virtual WAN ensures traffic destined for Virtual Networks to the DMZ NVA.|
+|DMZ|10.2.0.0/24, 10.2.10.0/24, 10.2.20.0/24 |10.4.0.5 |  Used to send traffic destined for branch prefix ranges to the Shared Services NVA. In this case, specific static routes that are a longest-prefix (LPM) route with each on-premises route is required to redirect traffic destined to on-premisesto the Shared Services NVA. Aggregate routes results in asymmetric routing.|
 |DMZ |0.0.0.0/0 |10.4.0.5 | The DMZ Virtual Network needs to attract traffic Internet traffic.|
 
-
-Alternatively you can also use the following configuration if utilizing the legacy workflow:
+**Static routes configured on Virtual WAN route tables:**
 
 |Route Table| Destination | Next Hop| Next Hop IP (configured on Virtual Network connection)| Reasoning|
 |--|--|--|--|--|
-| defaultRouteTable|10.1.0.0/16|DMZ|10.4.0.5| Aggregate range to ensure branches route to workload VNETs via DMZ NVA.| 
-| defaultRouteTable|0.0.0.0/0|DMZ|10.4.0.5| Default route to ensure branch to Internet traffic is routed via DMZ NVA.| 
-| workloadRouteTable|10.2.0.0/16|DMZ|10.4.0.5|Aggregate range to ensure workload VNETs route to branches via DMZ NVA.|
-| workloadRouteTable|0.0.0.0/0|DMZ|10.4.0.5| Default route to ensure branch to workload Virtual Network to Internet traffic is routed via DMZ NVA.|
+| defaultRouteTable|10.1.0.0/16|DMZ Virtual Network|10.4.0.5| Similar to routes on the Virtual Network connection, an aggregate range to ensure branches route to workload VNETs via the DMZ NVA is sufficient. | 
+| defaultRouteTable|0.0.0.0/0|DMZ Virtual Network|10.4.0.5| Similar to routes on the Virtual Network connection, a default route is required to ensure branch-to-Internet traffic is routed via the DMZ NVA. | 
+| workloadRouteTable|10.2.0.0/24, 10.2.10.0/24, 10.2.20.0/24|DMZ Virtual Network|10.4.0.5| Similar to routes on the Virtual Network connection, specific static routes that are a longest-prefix (LPM) match for each on-premises route are required to redirect workload traffic destined to on-premises to the DMZ NVA. Aggregate routes result in asymmetric routing. |
+| workloadRouteTable|0.0.0.0/0|DMZ Virtual Network|10.4.0.5| Similar to routes on the Virtual Network connection, a default route is required to ensure workload Virtual Network to Internet traffic is routed via the DMZ NVA. |
 
 ## Additional considerations
 

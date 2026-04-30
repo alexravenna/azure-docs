@@ -10,7 +10,7 @@ ms.author: wellee
 ms.custom:
 ---
 
-# Using static routes in  Virtual WAN
+# Static routes in  Virtual WAN
 
 In Virtual WAN, you can use static routes to direct traffic to a specific next-hop. In Virtual WAN, static routes are used for two main routing use cases: routing traffic through an Azure Firewall deployed in the Virtual WAN hub, or routing traffic to a designated IP address (often a load balancer in front of a Network Virtual Appliance) deployed in a spoke virtual network that's connected to the Virtual WAN hub.
 
@@ -19,6 +19,9 @@ The following document describe the different types of static routes in Virtual 
 ## Routing use cases
 
 ### Routing traffic to Azure Firewall
+
+>[!NOTE]
+> There are two disjoint ways to direct traffic to Azure Firewall, static routes and [routing intent](how-to-configure-routing-policies.md). This section only covers the static routing approach.
 
 #### Configuration
 
@@ -33,7 +36,7 @@ To configure static routes and associated/propagated route tables in secure hub 
 * Use aggregate ranges instead of specific ranges in static routes when possible. This minimizes the number of static routes configured.
 * All branches must associate to the **defaultRouteTable** and propagate to the **same set** of route table and route table labels.
 * Propagating a connection's routes to a route table implies that all connections associated to that route table can access the propagated routes directly. Ensure your routing configuration is consistent and reuslts in routing symmetry. For example, if branches propagate to a Virtual Network's route table, ensure that the same Virtual Networks propagate to the defaultRouteTable. The same holds if a connection **doesn't** propagate to another connection's route table.
-* Similarly, not propgating a connection to a route table typically implies that connections associated to that same route table won't be able to access that connection. A static route is required. 
+* Similarly, not propgating a connection to a route table typically implies that connections associated to that same route table won't be able to access that connection. A static route is required.
 
 #### Common use cases
 
@@ -62,12 +65,20 @@ Other common use cases that require alternate approaches or are not supported:
 
 ### Routing traffic to a NVA in a spoke Virtual Network
 
-#### Configuration
+#### Configuration options
 
 You can configure routing to an IP address in a spoke virtual network in two ways:
 
-* **Recommended**: Specify the static route on the virtual network connection, and set **Propagate static route** to **True**. In this model, the static route on the virtual network connection is propagated into the hub so the route can be used without adding a separate static route entry in the Virtual WAN route table. This method of configuration is more scalable, as Virtual WAN will automatically propagate the static routes according to the Virtual Network's propagated route tables and labels.
-* **Legacy:** Specify a static route in a Virtual WAN route table, with the next hop set to the **Hub virtual network connection**. In this model, there must also be a corresponding static route on the  virtual network connection that specifies the next hop IP address for the traffic. Additionally, you must add a static route for every remote Virtual WAN hub needs to use a NVA deployed in a local spoke Virtual network.
+* **Option 1: Specify the static route on the virtual network connection**. Set **Propagate static route** to **True**. In this model, the static route on the virtual network connection is propagated into the hub so the route can be used without adding a separate static route entry in the Virtual WAN route table. This method of configuration is more scalable, as Virtual WAN will automatically propagate the static routes according to the Virtual Network's propagated route tables and labels.
+* **Option 2:** Specify a static route in a Virtual WAN route table, with the next hop set to the **Hub virtual network connection**. In this model, there must also be a corresponding static route on the  virtual network connection that specifies the next hop IP address for the traffic. Additionally, you must add a static route for every remote Virtual WAN hub needs to use a NVA deployed in a local spoke Virtual network.
+
+The two configuration options support different routing patterns and have different available use cases:
+
+| Option | Overview| Supported Use Cases|Example Architectures | Unsupported Use Cases|
+|--|--|--|--|--|
+| Option 1 | Static route on the virtual network connection with **Propagate static route** set to **True** |Utilize spoke NVA as a source of routes for indirect spokes, VPN tunnels terminated on the NVA device or as an internet edge. Compatible with routing intent hubs. | [Indirect spoke architectures](indirect-spoke-architecture.md) and [route internet-bound traffic to spoke NVA for egress](indirect-spoke-architecture.md), [Hybrid scenarios](hybrid-firewall-spoke-static.md)|  This configuration option **can't be used** for inspection scenarios between two Virtual WAN connections.|
+| Option 2 |Static route in a Virtual WAN route table with next hop set to the hub virtual network connection, plus a matching next hop IP on the virtual network connection | Utilize spoke NVA as a source of routes for indirect spokes, VPN tunnels terminated on the NVA device or as an internet edge. Utilize for inspection scenarios between two Virtual WAN connections (on-premises to Virtual Network).  | [Indirect spoke architectures](indirect-spoke-architecture.md), [routing internet-bound traffic to spoke NVA for egress](indirect-spoke-architecture.md), [Hybrid scenarios](hybrid-firewall-spoke-static.md), **[On-premises to Virtual Network inspection](spoke-inspection-north-south.md)**. | Not compatible with hubs using routing intent.|
+
 
 When using static routes pointing to a Virtual Network connection, note the following best practices and considerations:
 

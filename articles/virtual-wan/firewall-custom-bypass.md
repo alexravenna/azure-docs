@@ -10,14 +10,13 @@ ms.author: wellee
 ms.custom:
 ---
 
-# Selective inspection in secure hub scenarios
+# Selective inspection with Azure Firewall
 
 ## Scenario overview
+
 This design pattern describes scenarios in a secure Virtual WAN hub where certain traffic flows can bypass Azure Firewall inspection, while other traffic continues to be inspected by Azure Firewall.
 
 These scenarios are useful when you need selected traffic between two virtual networks, or between on-premises and specific virtual networks, to use the Virtual WAN hub router directly instead of traversing Azure Firewall.
-
-
 
 ## Virtual Network to Virtual Network selective inspection
 

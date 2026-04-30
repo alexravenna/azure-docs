@@ -106,6 +106,8 @@
       href: spoke-inspection-north-south.md
     - name: Combining Azure Firewall and spoke NVAs
       href: hybrid-firewall-spoke-static.md
+    - name: Routing intent with static routes
+      href: routing-intent-static-route.md
   - name: BGP peering with virtual hub
     href: scenario-bgp-peering-hub.md
   - name: Application Gateway and backend pools
@@ -355,6 +357,8 @@
       href: how-to-routing-policies.md
     - name: Internet access with routing intent
       href: about-internet-routing.md
+    - name: Routing intent with static routes
+      href: routing-intent-static-route.md
   - name: Next hop IP support
     href: next-hop-ip.md
   - name: Route traffic from a virtual hub to an NVA (legacy)
