@@ -51,17 +51,17 @@ Set the `AzureWebJobsSecretStorageType` environment variable to choose a storage
 | **Container Apps secret store** | `containerapp` | Most workloads - no external dependencies (**Recommended**) | [Configure host keys](functions-secrets-host-keys.md#configure-the-container-apps-secret-store) |
 | **Azure Key Vault** | `keyvault` | Centralized governance, compliance auditing | [Configure host keys](functions-secrets-host-keys.md#configure-key-vault) |
 | **Azure Blob Storage** | `blob` | Legacy apps or existing `AzureWebJobsStorage` dependency | [Configure host keys](functions-secrets-host-keys.md#configure-blob-storage) |
+| **Local file system** | `files` | **Not recommended on Container Apps** - see warning | N/A |
 
 > [!WARNING]
-> The default backend is `files` (local file system). On Azure Container Apps, the file system is **ephemeral**. Host keys stored with `files` are lost on every restart, scale-to-zero event, or revision deployment. Always configure one of the three production backends listed here.
+> The Azure Functions host defaults to `files` (local file system) when `AzureWebJobsSecretStorageType` isn't set. On Azure Container Apps, the file system is **ephemeral**. Host keys stored with `files` are lost on every restart, scale-to-zero event, or revision deployment. Always configure one of the three production backends listed here.
 
-## Prerequisites
+## Next steps
 
-Both guides share these prerequisites:
+Choose the guide that matches the type of secret you need to manage:
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
-- [Azure CLI](/cli/azure/install-azure-cli) version 2.40.0 or higher.
-- An existing [Azure Functions app in Container Apps](functions-usage.md) or permissions to create one.
+- [Store app-level secrets for Functions on Container Apps](functions-secrets-app-level.md)
+- [Configure Functions host key storage on Container Apps](functions-secrets-host-keys.md)
 
 ## Related content
 

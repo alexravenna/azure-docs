@@ -50,24 +50,32 @@ The Functions runtime manages four types of keys:
 
 The naming convention for stored keys depends on the storage backend.
 
-### Key Vault and Blob Storage
+### Key Vault
 
-Key Vault and Blob Storage backends use a double-dash (`--`) convention:
+The Key Vault backend stores each key as an individual Key Vault secret using a double-dash (`--`) convention:
 
 | Key type | Secret name pattern | Example |
-|----------|--------------------|---------| 
-| Master key | `host--masterKey--master` | `host--masterKey--master` |
-| Host key (default) | `host--hostKey--default` | `host--hostKey--default` |
-| Host key (custom) | `host--hostKey--<name>` | `host--hostKey--MyCustomKey` |
-| Function key (default) | `host--functionKey--default` | `host--functionKey--default` |
-| Function key (custom) | `host--functionKey--<name>` | `host--functionKey--MyApiClient` |
+|--|--|--|--|
+| Master key | `host--masterKey--master` |`host--masterKey--master` |
+| Function key (default) |`host--functionKey--default` |`host--functionKey--default` |
+| Function key (custom) |`host--functionKey--<name>` | `host--functionKey--MyApiClient` |
 | System key | `host--systemKey--<extension>` | `host--systemKey--eventgrid_extension` |
+| Per-function key | `function--<functionName>--<keyName>` | `function--myhttpfunc--default` |
+
+### Blob Storage
+
+The Blob Storage backend stores keys as JSON files in the `azure-webjobs-secrets` blob container. All host-level keys (master, function keys, and system keys) are stored together in a single `host.json` blob. Per-function keys are stored in separate blobs named after each function.
+
+| Blob path | Contents |
+|-----------|----------|
+| `<siteSlotName>/host.json` | JSON file containing `masterKey`, `functionKeys`, and `systemKeys` |
+| `<siteSlotName>/<functionName>.json` | JSON file containing keys for a specific function |
 
 ### Container Apps secret store
 
-The Container Apps secret store uses a different convention. The Functions host reads keys from volume-mounted files at `/run/secrets/functions-keys/`. Each file uses a **dotted** name (for example, `host.master`), but Container Apps secret names only allow **lowercase alphanumeric characters and dashes**. The platform maps dashes in the secret name to dots in the file path automatically.
+The Container Apps secret store uses a different convention. The Functions host reads keys from volume-mounted files at `/run/secrets/functions-keys/`. Each file uses a **dotted** name (for example, `host.master`), but Container Apps secret names only allow **lowercase alphanumeric characters and dashes**. When you mount a secret volume, you must explicitly set the `path` field to the dotted file name the Functions host expects (for example, `secretRef: host-master` → `path: host.master`). The platform doesn't perform any automatic name translation.
 
-| Key type | Container Apps secret name (dashes) | Mounted file path (dots) |
+| Key type | Container Apps secret name (dashes) | Volume mount `path` (dots) |
 |----------|--------------------------|--------------------------|
 | Master key | `host-master` | `host.master` |
 | Default host key | `host-function-default` | `host.function.default` |
@@ -93,7 +101,7 @@ Set the `AzureWebJobsSecretStorageType` environment variable to control where th
 | **Azure Blob Storage** | `blob` | Yes | Storage account | Legacy apps or existing `AzureWebJobsStorage` account |
 
 > [!WARNING]
-> The default backend is `files` (local file system). On Azure Container Apps, the file system is **ephemeral**. Host keys stored with `files` are lost every time the app scales to zero, restarts, or deploys a new revision. Always set `AzureWebJobsSecretStorageType` to one of the three production backends.
+> Don't set `AzureWebJobsSecretStorageType` to `files`. On Azure Container Apps, the file system is **ephemeral**, so host keys stored with the `files` backend are lost every time the app scales to zero, restarts, or deploys a new revision. Always use one of the three production backends listed above.
 
 ## Configure the Container Apps secret store
 
@@ -182,7 +190,7 @@ az containerapp secret set \
 ---
 
 > [!NOTE]
-> Container Apps secret names only allow lowercase alphanumeric characters and dashes. The platform maps dashes in the secret name to dots in the mounted file path (for example, `host-master` becomes `host.master` at `/run/secrets/functions-keys/host.master`).
+> Container Apps secret names only allow lowercase alphanumeric characters and dashes. You must explicitly set the `path` field in the volume configuration to the dotted file name the Functions host expects (for example, `secretRef: host-master` → `path: host.master`). Without an explicit `path`, the file on disk retains the dashed name and the Functions host won't find the key.
 
 ### Step 3: Configure the volume mount
 
@@ -202,6 +210,8 @@ Mount the secrets as files at `/run/secrets/functions-keys/`.
     |---|---|
     | **Volume type** | **Secret** |
     | **Name** | `functions-keys` |
+
+1. For each secret, set the **Path** field to the dotted file name the Functions host expects (for example, set `host-master` to path `host.master`, and `host-function-default` to path `host.function.default`).
 
 1. Select **Add**.
 
@@ -238,6 +248,11 @@ properties:
     volumes:
       - name: functions-keys
         storageType: Secret
+        secrets:
+          - secretRef: host-master
+            path: host.master
+          - secretRef: host-function-default
+            path: host.function.default
     containers:
       - name: <CONTAINER_NAME>
         volumeMounts:
