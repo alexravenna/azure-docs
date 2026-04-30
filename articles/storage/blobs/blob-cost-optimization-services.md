@@ -5,7 +5,7 @@ author: normesta
 ms.author: normesta
 ms.service: azure-blob-storage
 ms.topic: concept-article
-ms.date: 04/29/2026
+ms.date: 04/30/2026
 ms.reviewer: nachakra
 # Customer intent: "As a cloud administrator, I want to understand which Azure services I can use to optimize my blob storage costs based on my needs and scenarios."
 ---
@@ -18,7 +18,7 @@ Azure Blob Storage provides built-in capabilities to help you reduce storage cos
 
 This article compares three Azure Storage capabilities for tiering and cost optimization:
 
-- **Lifecycle management** – Rule-based tiering and deletion policies configured per storage account
+- **Azure Blob Storage lifecycle management** – Rule-based tiering and deletion policies configured per storage account
 - **Azure Storage Actions** – Serverless orchestration for data management tasks across multiple storage accounts
 - **Smart tiering** – Microsoft-managed adaptive tiering based on observed access patterns
 
@@ -34,7 +34,7 @@ Use the following table to choose the Azure Blob Storage cost optimization capab
 
 ## Smart tiering: Microsoft-managed adaptive tiering
 
-Smart tiering is a fully managed solution that automatically moves data between hot, cool, and cold tiers based on access behavior. It minimizes manual configuration and adapts as data usage changes.
+Smart tiering is a fully managed solution that automatically moves data between hot, cool, and cold access tiers based on access behavior. It minimizes manual configuration and adapts as data usage changes.
 
 Key benefits include:
 
@@ -75,13 +75,13 @@ Azure Storage Actions is ideal for large-scale environments that require coordin
 
 ### Managing large volumes of data with varying access patterns
 
-Your enterprise accumulates terabytes of user-generated media and backup files monthly. Most files are accessed frequently for a short period, then rarely needed, but must be retained for compliance. Users must optimize costs of data storage by moving log files into appropriate access tiers. This challenge is exacerbated with larger data estates that support multiple workloads.
+An enterprise accumulates terabytes of user-generated media and backup files monthly. Most files are accessed frequently for a short period, then rarely needed, but must be retained for compliance. Users must optimize costs of data storage by moving log files into appropriate access tiers. This challenge is exacerbated with larger data estates that support multiple workloads.
 
 Azure Blob Storage lifecycle management allows you and other users to create a set of rules to move objects to cost-efficient storage tiers based on age or access. You can set up a policy to move objects to the cool tier 15 days after creation, to the archive tier 90 days after creation, or delete objects after one year without manual intervention.
 
 ### Dynamic retention policies with parameterized conditions
 
-Your enterprise has a multi-petabyte data lake with ingestion containers that house raw, processed, and *gold* curated datasets. Only the raw partitions should age out after 30 days. The *gold/* and *curated/* paths must always be excluded from cleanup and tiering jobs. They need to selectively perform operations on specific blobs while ensuring flawless functionality and by avoiding bugs.
+An enterprise has a multi-petabyte data lake with ingestion containers that house raw, processed, and *gold* curated datasets. Only the raw partitions should age out after 30 days. The *gold/* and *curated/* paths must always be excluded from cleanup and tiering jobs. They need to selectively perform operations on specific blobs while ensuring flawless functionality and by avoiding bugs.
 
 Storage Actions can help you achieve this goal. You and other users can create a parameterized rule that deletes blobs that are older than a specified number of days which is configurable in the blob tags (for example, 30, 60, or 90). You can make the task more targeted by adding rules based on the name using wildcards. Finally, applying prefix exclusions for *gold/* and *curated/* ensures the objects in those containers aren't processed.
 
@@ -123,18 +123,18 @@ When you turn on smart tiering at the account scope, the service automatically a
 
 | Feature | Azure Blob Storage lifecycle management | Azure Storage Actions | Smart tiering |
 |--------|----------------------|----------------------|---------------|
-| Best for | Simple conditions, recurring data tiering and retention needs, automating routine cost and compliance tasks.| Complex, conditional, and organization-wide data management scenarios - such as applying custom governance policies, orchestrating multistep operations, or integrating with business processes - without the need for custom development | Hands-off data tiering when you don’t know or don’t want to manage access patterns |
+| Best for | Simple conditions, recurring data tiering and retention needs, automating routine cost and compliance tasks.| Complex, conditional, and organization-wide data management scenarios such as applying custom governance policies, orchestrating multistep operations, or integrating with business processes without the need for custom development | Hands-off data tiering when you don’t know or don’t want to manage access patterns |
 | Deployment | Policy per account, runs automatically, no control on schedule | Task with multiple assignments. Each assignment can be run on-demand or set to a specific schedule. | Account-level enablement |
 | Access controls | Native storage feature | Managed identity. Admins can define one managed identity with locked down permissions, which can be reused across task definitions, making role-based access control (RBAC) policy enforcement easier. | Native storage feature |
 | Service charge | Free (transactions and early delete charges apply) | Paid. <br> Service fees are described [here](../../storage-actions/overview.md). Pay for the storage, listing, tiering, and other transactions, and any early deletion penalties. | Monitoring fee <br> described [here](access-tiers-smart.md). No extra charges for tier transitions, early deletion, or data retrieval |
 | Predicates | Time-based, path prefixes, and tags | Object and container metadata with support for parameterization plus path prefixes exclusion | N/A. Smart tiering applies to all objects in the account that infers their tier.  |
-| Monitoring | Basic - storage Logs and Event Grid | Advanced – Dashboard, Detailed reports, Conditions Preview | Storage Logs, Free metrics for each smart tier enabled storage accounts for both object count and size distribution across smart tier |
+| Monitoring | Basic - storage logs and Event Grid | Advanced – Dashboard, Detailed reports, Conditions Preview | Storage Logs, Free metrics for each smart tier enabled storage accounts for both object count and size distribution across smart tier |
 | Operations | Tiering, deletion | Multi-operation. Full list of [supported operations](../../storage-actions/storage-tasks/storage-task-operations.md#supported-operations) | N/A |
 
 ## Known limitations
 
 - Tiering isn't supported for append blobs and page blobs.
-- Tiering to or from Premium accounts isn't supported.
+- Tiering to or from premium accounts isn't supported.
 - Smart tiering is account-level only and can only manage objects that infer the tier from the storage account. Objects with explicit tiers set aren't managed. [Learn more](access-tiers-smart.md).
 - Smart tiering doesn't delete objects.
 - Azure Blob Storage lifecycle management can't act on smart-tier-managed objects.
