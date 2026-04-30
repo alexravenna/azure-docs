@@ -36,8 +36,8 @@ Verify you have an Azure VMware Solution private cloud set up that's streaming t
 3. In the **Create Logic App (Workflow Service Plan)** > **Basics** tab, fill out the **Project Details**.
 	- Enter the **Subscription** you want to use and the **Resource Group** chosen to house this instance.
 	- Under **Instance Details**, enter the **Logic App name**, **Region**, and **Windows Plan**.
-	>[!NOTE]
-	>If your log management server is hosted in Azure (including within your Azure VMware Solution private cloud), ensure you select the same region as the Azure Virtual Network connected to your log management server. Otherwise, the integration will fail. The default **Windows plan** is Workflow Standard WS1 (210 total ACU, 3.5 Gb memory, 1 vCPU) which should be enough to handle log volumes from large workloads. This option can always be adjusted later as needed.
+	> [!NOTE]
+	> If your log management server is hosted in Azure (including within your Azure VMware Solution private cloud), ensure you select the same region as the Azure Virtual Network connected to your log management server. Otherwise, the integration will fail. The default **Windows plan** is Workflow Standard WS1 (210 total ACU, 3.5 Gb memory, 1 vCPU) which should be enough to handle log volumes from large workloads. This option can always be adjusted later as needed.
 
 	- After filling in the Project Details, select **Review + Create**.
 
