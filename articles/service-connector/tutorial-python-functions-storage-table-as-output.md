@@ -87,7 +87,7 @@ The following procedure edits the *function.json* and *local.settings.json* file
 
 ### Edit the Python code
 
-Open the *TableStorageOutputFunc/__init__.py* file and replace its contents with the following code:
+Open the *TableStorageOutputFunc/\_\_init\_\_.py* file and replace its contents with the following code:
 
 ```python
 import logging
