@@ -21,7 +21,7 @@ The following document describe the different types of static routes in Virtual 
 ### Routing traffic to Azure Firewall
 
 >[!NOTE]
-> There are two disjoint ways to direct traffic to Azure Firewall, static routes and [routing intent](how-to-configure-routing-policies.md). This section only covers the static routing approach.
+> There are two disjoint ways to direct traffic to Azure Firewall, static routes and [routing intent](how-to-routing-policies.md). This section only covers the static routing approach.
 
 #### Configuration
 

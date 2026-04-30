@@ -73,7 +73,7 @@ The architecture needs three different Virtual WAN route tables as there are thr
 
 The following static routes are configured on the NVA virtual network connection directly.
 
-> [!NOTE]: 
+> [!NOTE]
 > North-south inspection architecture requires overriding every on-premises prefix with a static route. The maximum number of static routes configured is 550. This limit is not adjustable. This inspection architecture is not intended for large scale deployments with a large on-premises route count.
 
 **Static routes configured on DMZ Virtual Network connection**:
@@ -85,7 +85,7 @@ The following static routes are configured on the NVA virtual network connection
 
 
 **Static routes configured on Virtual WAN route tables:**
-* 
+
 |Route Table| Destination | Next Hop| Next Hop IP (configured on Virtual Network connection)| Reasoning|
 |--|--|--|--|--|
 | defaultRouteTable|10.1.0.0/16|Shared Services Virtual Network|10.4.0.5| Similar to routes on the Virtual Network connection, an aggregate range to ensure branches route to workload VNETs via Shared Services NVA is sufficient.| 
@@ -165,7 +165,7 @@ The architecture needs three different Virtual WAN route tables as there are thr
 
 ### Static Routes
 
-> [!NOTE]: 
+> [!NOTE]
 > North-south inspection architecture requires overriding every on-premises prefix with a static route. The maximum number of static routes configured is 550. This limit is not adjustable. This inspection architecture is not intended for large scale deployments with a large on-premises route count.
 
 **Static routes on Virtual Network connections:**
