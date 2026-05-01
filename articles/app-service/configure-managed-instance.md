@@ -236,7 +236,7 @@ Yes, instances receive routine platform updates and maintenance. Preinstalled ap
 
 ### Which programming languages are installed on Managed Instance on Azure App Service?
 
-Microsoft .NET Framework 3.5, 4.8, and Microsoft .NET 8.0. If you require other runtimes, you can install them using a configuration script. These will not be maintained by the platform and must be updated manually.
+Microsoft .NET Framework 3.5, 4.8, and Microsoft .NET 8.0. If you require other runtimes, you can install them using a configuration script. These won't be maintained by the platform and must be updated manually.
 
 ### What are limitations on the configuration (install) scripts?
 
@@ -306,7 +306,7 @@ No, there's no limit on the number of storage or registry adapters. You can only
 
 ### Which regions have support for Managed Instance on App Service?
 
-Currently support for Managed Instance on App Service is limited to East US, West Central US, East Asia, North Europe, Australia East, Central India and South India. More regions will be added to the preview over time. To get an updated list of regions, you can use the following CLI command (You must be using Azure CLI version 2.82.0 or higher).
+Currently support for Managed Instance on App Service is limited to East US, West Central US, East Asia, North Europe, Australia East, Central India, and South India. More regions will be added to the preview over time. To get an updated list of regions, you can use the following CLI command (You must be using Azure CLI version 2.82.0 or higher).
 
 ```azurecli
 az appservice list-locations --managed-instance-enabled --sku <Pv4 or PmV4 sku your require, for example P1v4>
