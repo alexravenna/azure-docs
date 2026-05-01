@@ -14,6 +14,7 @@ ms.custom:
 
 > [!NOTE]
 > This design pattern is compatible with any supported next hop security solution deployed in the Virtual WAN hub, including **Azure Firewall**, an **integrated NVA**, or a **SaaS solution**.
+
 ## Scenario overview
 
 This design pattern explains how to combine **routing intent and routing policies** with **static routes on a virtual network connection** in Azure Virtual WAN. This pattern is useful when you want a security solution deployed in the virtual hub to inspect traffic first, while still allowing selected destinations to be reached through a network virtual appliance (NVA) deployed in a spoke virtual network.
