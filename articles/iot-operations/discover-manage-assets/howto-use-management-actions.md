@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 Management actions let you invoke operations on southbound assets connected to your Azure IoT Operations instance. You can call methods, write values, and read values on assets such as OPC UA servers, ONVIF cameras, and MQTT devices. Management actions use Azure Event Grid to route requests and responses between the cloud and the internal MQTT broker. The connector subscribes to a known topic on the internal MQTT broker and then executes the operation on the target asset. You can invoke management actions either locally by using MQTT or from the cloud by using Azure Resource Manager APIs. Cloud-initiated management actions let you use bicep files, ARM templates, and the CLI to send commands and configurations to your assets at scale. 
 
 Key features of management actions include: 
-- Defining management groups that group actions and properties together
+- **Management groups** that bundle related actions and properties together.
 - ADR Namespace mapping to Event Grid instance for consistent data routing and management operations
 - Actions routed through Event Grid to provide reliable, event-driven messaging between ARM and Azure IoT Operations
 - User can invoke actions on Assets using ARM and can deploy/replicate via ARM templates or Bicep files
