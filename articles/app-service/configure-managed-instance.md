@@ -236,7 +236,7 @@ Yes, instances receive routine platform updates and maintenance. Preinstalled ap
 
 ### Which programming languages are installed on Managed Instance on Azure App Service?
 
-Microsoft .NET Framework 3.5, 4.8, and Microsoft .NET 8.0. If you require other runtimes, you can install them using a configuration script. These won't be maintained by the platform and must be updated manually.
+Microsoft .NET Framework 3.5, 4.8, and Microsoft .NET 8.0. If you require other runtimes, you can install them using a configuration script. Additional runtimes won't be maintained by the platform and must be updated manually.
 
 ### What are limitations on the configuration (install) scripts?
 
