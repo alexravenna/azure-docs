@@ -20,7 +20,7 @@ Key features of management actions include:
 - **Azure Device Registry namespace mapping** to an Event Grid instance for consistent data routing and management operations.
 - **Event Grid–based routing** that provides reliable, event-driven messaging between Azure Resource Manager and Azure IoT Operations.
 - **Azure Resource Manager-based invocation** that lets users invoke actions on assets and deploy or replicate them through Azure Resource Manager templates or Bicep files.
-- RBAC control and Managed Identity (MI) access 
+- **RBAC control and managed identity** for access  control.
 - Activity logs for auditing, monitoring, etc.
 
 When you enable management actions, the Azure CLI provisions the infrastructure that connects Event Grid to the MQTT broker. This infrastructure includes an Event Grid data flow endpoint, a request data flow that uses a WebAssembly (WASM) module to process incoming messages, a response data flow that routes replies back through Event Grid, and the required topic spaces and permission bindings. After the infrastructure is in place, you can execute actions on any asset that has a management group and action defined.
