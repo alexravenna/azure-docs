@@ -5,7 +5,7 @@ ms.topic: overview
 ms.date: 05/01/2026
 author: craigshoemaker
 ms.author: cshoe
-ms.service: container-apps
+ms.service: azure-container-apps
 ---
 
 # Azure Container Apps express overview
