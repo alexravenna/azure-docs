@@ -15,7 +15,7 @@ ms.custom:
 ## Scenario overview
 
 > [!NOTE]
-> All north-south inspection architectures in this document require using Option 2 from [static routes](static-routes.md#configuration-options) guidance, where a static route is configured in a Virtual WAN route table with the next hop set to the hub virtual network connection, plus a matching next hop IP on the virtual network connection.
+> All north-south inspection architectures in this document require using Option 2 from [static routes](static-routes.md#configuration-options) guidance, where a static route is configured in a Virtual WAN route table with the next hop set to the hub virtual network connection, plus a matching next hop IP on the virtual network connection. Option 1 is **not** supported.
 
 This document covers two specific design patterns:
 
@@ -66,7 +66,7 @@ The architecture needs three different Virtual WAN route tables because there ar
 | Connection | Associated route table | Propagated route table | Reasoning |
 |--|--|--|--|
 | Branches | defaultRouteTable | defaultRouteTable, dmzRouteTable | Branches must propagate to the DMZ route table so the DMZ NVA learns branch prefixes and can return north-south and internet-bound traffic correctly. Branches also propagate to the default route table for standard branch reachability. Branches do **not** propagate to virtual networks to ensure north-south traffic is inspected by the DMZ NVA.|
-| Workload Virtual Networks | workloadRouteTable | workloadRouteTable, dmzRouteTable | Workload virtual networks must propagate to the DMZ route table so the DMZ NVA learns workload prefixes and can return both virtual network and internet traffic correctly. Workload virtual networks also propagate to the workload route table for workload-to-workload reachability. Workload VNets do **not** propagate to defaultRouteTable to ensure north-south traffic is inspected by the DMZ NVA. |
+| Workload Virtual Networks | workloadRouteTable | workloadRouteTable, dmzRouteTable | Workload virtual networks must propagate to the DMZ route table so the DMZ NVA learns workload prefixes and can return  virtual network traffic correctly. Workload virtual networks also propagate to the workload route table for workload-to-workload reachability. Workload VNets do **not** propagate to defaultRouteTable to ensure north-south traffic is inspected by the DMZ NVA. |
 | DMZ Virtual Network | dmzRouteTable | dmzRouteTable, defaultRouteTable, workloadRouteTable | The DMZ virtual network must propagate to both the branch-facing and workload-facing route tables because the DMZ NVA is the centralized point for north-south traffic inspection and internet egress in this option. |
 
 ### Static Routes
@@ -81,7 +81,7 @@ The following static routes are configured on the NVA virtual network connection
 |Virtual Network connection| Address Prefix| Next hop IP address| Reasoning|
 |--|--|--|--|
 |DMZ |10.1.0.0/16 |10.4.0.5 | Used to send traffic destined for workload prefix ranges to the Shared Services NVA. Aggregate routes covering workload prefixes can be used, and Virtual WAN automatically routes traffic destined for virtual networks to the NVA.|
-|DMZ |10.2.0.0./24, 10.2.10.0/24, 10.2.20.0/24| 10.4.0.5 | Used to send traffic destined for branch prefix ranges to the Shared Services NVA. In this case, specific static routes that provide a longest-prefix match (LPM) for each on-premises route are required to redirect traffic destined for on-premises networks to the Shared Services NVA. Aggregate routes result in asymmetric routing.|
+|DMZ |10.2.0.0./24, 10.2.10.0/24, 10.2.20.0/24| 10.4.0.5 | Used to send traffic destined for branch prefix ranges to the Shared Services NVA. In this case, specific static routes that provide a longest-prefix match (LPM) for each on-premises route are required to redirect traffic destined for on-premises networks to the Shared Services NVA. Using aggregate routes results in asymmetric routing.|
 
 
 **Static routes configured on Virtual WAN route tables:**
@@ -93,7 +93,7 @@ The following static routes are configured on the NVA virtual network connection
 
 ### Additional workload virtual network configurations
 
-Virtual WAN only manages routing on virtual networks that are directly connected to the Virtual WAN hub. Add user-defined routes on the workload virtual networks to route internet traffic to the DMZ virtual network.
+In this design, Internet-bound traffic isn't routed via the Virtual WAN hub. Instead, it is routed directly from the workload virtual networks to the DMZ virtual network NVA for inspection. Add user-defined routes on the workload virtual networks to route internet traffic to the DMZ virtual network.
 
 In the example above, workload virtual networks would need the following entry:
 
@@ -106,7 +106,7 @@ Return traffic from the Internet is routed directly from the DMZ NVA to the work
 
 ## Design Pattern 2: Utilize Virtual WAN routing to route traffic to DMZ
 
-In this design pattern, workload virtual networks are **not** directly peered to the DMZ virtual network for internet egress. Instead, Virtual WAN routing is used to send internet traffic from workload virtual networks and on-premises to the DMZ virtual network NVA for inspection. Traffic between workload virtual networks and on-premises is still inspected by the DMZ NVA.
+In this design pattern, workload virtual networks are **not** directly peered to the DMZ virtual network for internet egress. Instead, Virtual WAN routing is used to send internet traffic from workload virtual networks and on-premises to the DMZ virtual network NVA for inspection. Traffic between workload virtual networks and on-premises is also inspected by the DMZ NVA.
 
 
 ## Traffic flows
@@ -116,10 +116,10 @@ The following sections explain how traffic is routed to indirect spokes and the 
 | Source | Destination | Routing |
 |--|--|--|
 | Workload Virtual Network | Shared Services Virtual Network | Direct|
-| Workload Virtual Network | Branches | Via Shared Services NVA |
+| Workload Virtual Network | Branches | Via DMZ NVA |
 | Workload Virtual Network | Internet | Via DMZ NVA |
 | Branches | Shared Services Virtual Network | Direct |
-| Branches | Workload Virtual Network | Via Shared Services NVA |
+| Branches | Workload Virtual Network | Via DMZ NVA |
 | Branches | Internet | Via DMZ NVA |
 
 ### Network diagram
@@ -150,7 +150,7 @@ The architecture needs three different Virtual WAN route tables because there ar
 
 | Route Table Name| Associated Connections| Reasoning|
 |--|--|--|
-|defaultRouteTable| branches| Branches must use the defaultRouteTable to route workload virtual network and internet-bound traffic to the DMZ NVA.|
+|defaultRouteTable| Branches| Branches must use the defaultRouteTable to route workload virtual network and internet-bound traffic to the DMZ NVA.|
 |workloadRouteTable| Workload virtual networks| Used by workload virtual networks to route on-premises traffic and internet-bound traffic to the DMZ NVA.|
 |dmzRouteTable |  DMZ Virtual Network|Used by the DMZ NVA to route on-premises and workload virtual network traffic to the appropriate destination. |
  

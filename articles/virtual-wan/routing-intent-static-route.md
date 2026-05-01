@@ -53,16 +53,16 @@ In the diagram above, there are three types of spokes:
 The virtual hub must use routing intent. Use a **Private Traffic** routing policy with next hop set to the security solution deployed in the virtual hub, such as Azure Firewall, a supported integrated NVA, or a SaaS security solution.
 
 
-### Static routes on the spoke virtual network connection
+### Static routes on the NVA virtual network connection
 
 > [!NOTE]
-> When using routing intent, the only supported static route integration pattern is [Option 1 to configure Static routes in Azure Virtual WAN](static-routes.md#configuration-options). Configure static routes on the **virtual network connection** with **Propagate static route** set to **true**.
+> When using routing intent, the only supported static route integration pattern is [static route configuration option 1](static-routes.md#configuration-options). Configure static routes on the **virtual network connection** with **Propagate static route** set to **true**.
 
 
-| Prefix type | Example prefixes | Why it is used |
+| Prefix type | Example prefixes | Reasoning |
 |--|--|--|
-| Indirect spoke prefixes | `10.20.0.0/16` | Allows traffic inspected in the hub to be forwarded to prefixes that are reachable behind the spoke NVA. |
-| SDWAN prefixes | `192.168.0.0/24` | Allows traffic inspected in the hub to be forwarded to SDWAN-connected sites or prefixes that are reachable through tunnels terminated on the spoke NVA. |
+| Indirect spoke prefixes | 10.20.0.0/16 | Allows traffic inspected in the hub to be forwarded to prefixes that are reachable behind the spoke NVA. |
+| SDWAN prefixes | 192.168.0.0/24 | Allows traffic inspected in the hub to be forwarded to SDWAN-connected sites or prefixes that are reachable through tunnels terminated on the spoke NVA. |
 
 
 ## Additional considerations

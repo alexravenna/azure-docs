@@ -14,9 +14,7 @@ ms.custom:
 
 ## Scenario overview
 
-This routing scenario explains how to configure Azure Virtual WAN to route traffic to a network virtual appliance (NVA) deployed in a Virtual WAN spoke virtual network. In this design, the NVA inspects traffic and then forwards it either to the **Internet** or to **virtual networks that are indirectly connected to the virtual hub** (but peered with the NVA virtual network).
-
-This pattern is useful when you want to use a spoke-based security appliance to control or inspect traffic before it reaches indirectly connected spokes or exits to the Internet.
+This routing scenario explains how to configure Azure Virtual WAN to route traffic to a network virtual appliance (NVA) deployed in a Virtual WAN spoke virtual network. In this design, the NVA inspects traffic and then forwards it either to the **Internet**, **virtual networks that are indirectly connected to the virtual hub** (but peered with the NVA virtual network), or **VPN/SDWAN tunnels** terminated on the NVA.
 
 ## Network diagram
 
@@ -33,7 +31,7 @@ The following connectivity matrix summarizes whether traffic flows directly thro
 
 | Source/Destination | Hub 1 Indirect Spokes | Hub 1 Direct Spokes | Hub 1 Branches | Hub 2 Indirect Spokes | Hub 2 Direct Spokes | Hub 2 Branches |
 |--|--|--|--|--|--|--|
-| Hub 1 Indirect Spokes | Via Hub 1 NVA | Via Hub 1 NVA | Via Hub 1 NVA | Via Hub 1 and Hub 2 NVAs | Via Hub 1 NVA | Via Hub 1 NVA |
+| Hub 1 Indirect Spokes | Via Hub 1 NVA | Via Hub 1 NVA | Via Hub 1 NVA | Via Hub 1,2 NVA |  Via Hub 1 NVA |  Via Hub 1 NVA |
 | Hub 1 Direct Spokes | Via Hub 1 NVA | Direct | Direct | Via Hub 2 NVA | Direct | Direct |
 | Hub 1 Branches | Via Hub 1 NVA | Direct | Direct | Via Hub 2 NVA | Direct | Direct |
 | Hub 2 Indirect Spokes | Via Hub 1 and Hub 2 NVAs | Via Hub 2 NVA | Via Hub 2 NVA | Via Hub 2 NVA | Via Hub 2 NVA | Via Hub 2 NVA |
@@ -57,14 +55,16 @@ The following connectivity matrix summarizes Internet access in this scenario.
 
 ## Configuration
 
+The configuration in this section uses [option 1 static route configuration](static-routes.md#configuration-options). Option 2 can also be used, but requires additional configuration to add static routes with next hop NVA Virtual Network connections in all defaultRouteTable across the Virtual WAN.
+
 ### Static routes for indirect spokes
 
 The following static routes are configured by adding the static routes on the NVA virtual network connection directly, with **Propagate static route** set to **true**.
 
 | Hub | Connection | Prefix | Next hop IP address |
 |--|--|--|--|
-| Hub 1 | NVA Virtual Network Connection | 10.2.0.0/16 | 10.3.10.5 |
-| Hub 2 | NVA Virtual Network Connection | 10.4.0.0/16 | 10.4.10.5 |
+| Hub 1 | NVA Virtual Network Connection (Hub1) | 10.2.0.0/16 | 10.3.10.5 |
+| Hub 2 | NVA Virtual Network Connection (Hub2)| 10.4.0.0/16 | 10.4.10.5 |
 
 
 ### Static routes for internet egress
@@ -73,8 +73,8 @@ The following static routes are configured by adding the static routes on the NV
 
 | Hub | Connection | Prefix | Next hop IP address |
 |--|--|--|--|
-| Hub 1 | NVA Virtual Network Connection | 0.0.0.0/0 | 10.3.10.5 |
-| Hub 2 | NVA Virtual Network Connection | 0.0.0.0/0 | 10.4.10.5 |
+| Hub 1 | NVA Virtual Network Connection (Hub 1) | 0.0.0.0/0 | 10.3.10.5 |
+| Hub 2 | NVA Virtual Network Connection (Hub 2) | 0.0.0.0/0 | 10.4.10.5 |
 
 ### Virtual WAN Routing configuration
 
@@ -111,7 +111,7 @@ In the example above, indirect spoke virtual networks on Hub 1 would need the fo
 | 10.3.0.0/24| 10.3.10.5| Route to direct spokes on Hub 1|
 |10.4.0.0/24| 10.3.10.5| Route to direct spokes on Hub 2|
 
-Alternatively, you can configure aggregate routes such as 10.0.0.0/8.
+Alternatively, configure aggregate routes such as 10.0.0.0/8.
 
 ## Additional considerations
 

@@ -15,7 +15,7 @@ ms.custom:
 ## Scenario overview
 
 > [!NOTE]
-> This architecture doesn't support double-inspection scenarios. Double-inspection scenarios are use cases where packets are routed to and inspected by Azure Firewall in the Virtual WAN hub and then forwarded to an NVA in a spoke virtual network. This architecture is supported only with Virtual WAN hubs that use routing intent together with static routes on virtual network connections and **Propagate static route** set to **true**.
+> This architecture doesn't support double-inspection scenarios. Double-inspection scenarios are use cases where packets are routed to and inspected by Azure Firewall in the Virtual WAN hub and then forwarded to an NVA in a spoke virtual network. This [architecture](routing-intent-static-routes.md) is supported with Virtual WAN hubs that use routing intent together with static routes on virtual network connections and **Propagate static route** set to **true**.
 
 This design pattern uses a combination of static routes to send private traffic, such as traffic between on-premises networks and virtual networks, to Azure Firewall for inspection. At the same time, internet-bound traffic is sent to a network virtual appliance (NVA) deployed in a spoke virtual network for inspection and breakout.
 
@@ -37,7 +37,7 @@ The following connectivity matrix summarizes the traffic flows in this scenario.
 | Source | Workload Virtual Network | DMZ Virtual Network | On-premises | Internet |
 |--|--|--|--|--|
 | Workload Virtual Network | Via Azure Firewall | Via Azure Firewall | Via Azure Firewall | Via DMZ NVA |
-| DMZ Virtual Network | Direct | Direct | Via Azure Firewall | Direct |
+| DMZ Virtual Network | Direct | Direct | Direct | Direct |
 | On-premises | Via Azure Firewall | Via Azure Firewall | Direct | Via DMZ NVA |
 
 
@@ -49,7 +49,7 @@ The following connectivity matrix summarizes the traffic flows in this scenario.
 |--|--|--|
 | defaultRouteTable | branches | Used for branch connectivity and to ensure on-premises traffic is steered to Azure Firewall for private traffic inspection and to the DMZ NVA for internet egress. |
 | workloadRouteTable | Workload virtual networks | Used by workload virtual networks to route private traffic to Azure Firewall and internet-bound traffic to the DMZ virtual network. |
-| dmzRouteTable | DMZ virtual network | Used by the DMZ virtual network to learn branch and workload prefixes so the NVA can return traffic correctly after inspection and breakout. |
+| dmzRouteTable | DMZ virtual network | Used by the DMZ virtual network to learn branch and workload prefixes so the NVA can directly return traffic after inspection and breakout. |
 
 ### Virtual WAN routing configuration
 
@@ -61,7 +61,7 @@ The following connectivity matrix summarizes the traffic flows in this scenario.
 
 ### Static routes
 
-The following static routes are configured by adding the static routes directly on the NVA virtual network connection, with **Propagate static route** set to **true**. Static routes are automatically injected into the appropriate route tables (defaultRouteTable and workloadRouteTable).
+The following static routes are configured by adding the static routes directly on the NVA virtual network connection, with **Propagate static route** set to **true** ([Option 1 static routing model](static-routes.md#configuration-options)). Static routes are automatically injected into the appropriate route tables (defaultRouteTable and workloadRouteTable).
 
 | Virtual network connection | Address prefix | Next hop IP address | Reasoning |
 |--|--|--|--|
@@ -71,10 +71,10 @@ The following static routes are needed to route traffic from on-premises network
 
 | Route Table | Address prefix | Next hop  | Reasoning |
 |--|--|--|--|
-| workloadRouteTable | 10.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12 | Azure Firewall| Sends virtual network traffic destined for on-premises networks to Azure Firewall for inspection. |
-| defaultRouteTable | 10.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12 | Azure Firewall| Sends on-premises traffic destined for workload virtual networks to Azure Firewall for inspection. |
+| workloadRouteTable | 10.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12 | Azure Firewall| Sends virtual network traffic destined for on-premises networks to Azure Firewall for inspection. The 0.0.0.0/0 route is **not required** as the 0.0.0.0/0 route is automatically propagated because of the **propagate static route** setting on the NVA virtual network connection. |
+| defaultRouteTable | 10.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12 | Azure Firewall| Sends on-premises traffic destined for workload virtual networks to Azure Firewall for inspection.The 0.0.0.0/0 route is **not required** as the 0.0.0.0/0 route is automatically propagated because of the **propagate static route** setting on the NVA virtual network connection.|
 
-If using the **legacy** static routing model, add additional static routes in the route tables:
+If using [Option 2 static routing model](static-routes.md#configuration-options), add additional static routes in the route tables:
 
 | Route Table | Address prefix | Next hop  | Reasoning |
 |--|--|--|--|
