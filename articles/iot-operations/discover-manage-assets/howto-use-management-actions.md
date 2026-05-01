@@ -17,7 +17,7 @@ Management actions let you invoke operations on southbound assets connected to y
 
 Key features of management actions include: 
 - **Management groups** that bundle related actions and properties together.
-- ADR Namespace mapping to Event Grid instance for consistent data routing and management operations
+- **Azure Device Registry namespace mapping** to an Event Grid instance for consistent data routing and management operations.
 - Actions routed through Event Grid to provide reliable, event-driven messaging between ARM and Azure IoT Operations
 - User can invoke actions on Assets using ARM and can deploy/replicate via ARM templates or Bicep files
 - RBAC control and Managed Identity (MI) access 
