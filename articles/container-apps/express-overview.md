@@ -1,27 +1,26 @@
 ---
-title: Azure Container Apps Express overview
-description: Learn about Azure Container Apps Express, a developer-first platform that lets you deploy containerized web apps to Azure with minimal configuration and rapid provisioning.
+title: Azure Container Apps Express Overview
+description: Learn about Azure Container Apps express, a developer-first platform that lets you deploy containerized web apps to Azure with minimal configuration and rapid provisioning.
 ms.topic: overview
 ms.date: 05/01/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.service: container-apps
-ms.custom: devx-track-container-apps
 ---
 
-# Azure Container Apps Express overview
+# Azure Container Apps express overview
 
-Azure Container Apps Express gives you the fastest way to deploy containerized web applications to Azure. With opinionated defaults and a minimal configuration surface, Express is a developer-first and agent-first platform designed to get your web apps running in the cloud as fast as possible. Rapid provisioning and scale-from-zero make Express an ideal host for AI-powered applications and agent backends.
+Azure Container Apps express provides the fastest way to deploy containerized web applications to Azure. With opinionated defaults and a minimal configuration surface, express is a developer-first and agent-first platform designed to get your web apps running in the cloud as fast as possible. Rapid provisioning and scale-from-zero make express an ideal host for AI-powered applications and agent backends.
 
 ## Key capabilities
 
-Express removes infrastructure decisions so you can focus on building your application.
+The express deployment model removes infrastructure decisions so you can focus on building your application.
 
 | Capability | Details |
 |---|---|
 | **High-speed launch** | Deploy in minutes with no infrastructure tuning required. Scaling behavior is built in from the start. |
 | **Simple, powerful apps** | Run HTTP-first workloads including APIs, SaaS frontends, AI gateways, and event-driven web backends. |
-| **Automatic elasticity** | Scale from zero to hyperscale automatically. Express is designed for unpredictable traffic patterns, and scaling is handled for you. |
+| **Automatic elasticity** | Scale from zero to hyperscale automatically. The platform is designed for unpredictable traffic patterns, and scaling is handled for you. |
 | **Scale from zero** | Your app scales down to zero when idle and back up on demand, so you only pay for what you use. |
 | **High-speed startup** | Optimized cold start ensures your app is ready to serve traffic quickly. |
 | **Opinionated defaults** | Sensible defaults are applied automatically so you don't have to configure infrastructure settings. |
@@ -30,7 +29,7 @@ Express removes infrastructure decisions so you can focus on building your appli
 
 ## Common scenarios
 
-Express is ideal for HTTP-based web workloads where speed of deployment and simplicity are priorities.
+The express deployment model is ideal for HTTP-based web workloads where speed of deployment and simplicity are priorities.
 
 - **SaaS applications**: Launch SaaS products without worrying about scaling infrastructure.
 - **AI app frontends**: Deploy AI-powered interfaces and gateways that scale with demand.
@@ -39,21 +38,22 @@ Express is ideal for HTTP-based web workloads where speed of deployment and simp
 - **Startups and new projects**: Go from idea to production in minutes. Prototype fast, and scale as you grow.
 - **Rapid prototyping**: Build and validate ideas quickly, then keep running in production without replatforming.
 
-## How Express works
+## How express works
 
-Express simplifies the deployment experience by removing the need to create and manage a Container Apps environment. You deploy your app directly, and the platform provisions the underlying resources for you.
+The express deployment model simplifies the deployment experience by removing the need to create and manage a Container Apps environment. You deploy your app directly, and the platform provisions the underlying resources for you.
 
-- **No environment to manage**: Deploy your container app without creating or configuring an environment. Express handles infrastructure allocation automatically.
-- **Consumption-based compute**: Express runs on consumption CPU with pay-as-you-go pricing. Your apps scale to zero when idle, so you only pay for the compute your app uses.
-- **Opinionated defaults**: Configuration decisions like scaling rules, networking, and resource allocation are handled by the platform with production-ready defaults.
+- **No environment to manage**: Deploy your container app without creating or configuring an environment. The platform handles infrastructure allocation automatically. This environment-less model reduces setup steps and makes it easy to get started.
+- **Consumption-based compute**: Express apps run on consumption CPU with pay-as-you-go pricing. Your apps scale to zero when idle, so you only pay for the compute your app uses.
+- **Opinionated defaults**: The platform handles configuration decisions like scaling rules, networking, and resource allocation with production-ready defaults.
 - **Request-driven duration**: Compute runs when your app receives requests and scales down when traffic stops.
-- **Optimized cold start**: Express automatically optimizes cold-start behavior, so your app is ready to serve traffic quickly after scaling from zero.
+- **Optimized cold start**: The platform automatically optimizes cold-start behavior, so your app is ready to serve traffic quickly after scaling from zero.
+- **Dedicated management UI**: Express apps are managed [through a dedicated UI](https://containerapps.azure.com/) separate from the Azure portal. When you create or manage an express app, the platform directs you to this streamlined interface instead of the standard Azure portal experience.
 
-## When to use Express
+## When to use express
 
-Use the following table to determine if Express is the right fit for your workload.
+Use the following table to determine if express is the right fit for your workload.
 
-| Scenario | Use Express | Alternative |
+| Scenario | Use express | Alternative |
 |---|---|---|
 | Web apps and REST APIs | ✅ Yes | |
 | SaaS frontends and AI gateways | ✅ Yes | |
@@ -66,16 +66,16 @@ Use the following table to determine if Express is the right fit for your worklo
 
 ## Considerations
 
-Keep these important points in mind when using Express:
+Keep these important points in mind when using express:
 
 - **HTTP workloads only**: Express supports web apps and APIs that communicate over HTTP. TCP-based workloads aren't supported.
-- **Consumption CPU compute**: Express runs on consumption-based CPU compute. GPU workloads require standard Container Apps with [dedicated workload profiles](workload-profiles-overview.md).
-- **Opinionated configuration**: Express uses opinionated defaults with a minimal configuration surface. If you need fine-grained control over compute, networking, or cold-start behavior, use standard Container Apps with a [workload profiles environment](environment.md).
-- **Feature availability**: Express offers a focused set of features at launch. Some capabilities available in standard Container Apps environments, such as custom virtual networks, Dapr integration, and built-in service discovery, aren't available in Express.
+- **Consumption CPU compute**: Express apps run on consumption-based CPU compute. GPU workloads require standard Container Apps with [dedicated workload profiles](workload-profiles-overview.md).
+- **Opinionated configuration**: The express model uses opinionated defaults with a minimal configuration surface. If you need fine-grained control over compute, networking, or cold-start behavior, use standard Container Apps with a [workload profiles environment](environment.md).
+- **Feature availability**: Express offers a focused set of features at launch. Some capabilities available in standard Container Apps environments, such as custom virtual networks, Dapr integration, and built-in service discovery, aren't available in express.
 
 ## Supported features
 
-Express launches with the following set of supported features. This list is updated as new capabilities are enabled.
+The express deployment model launches with the following set of supported features. This list is updated as new capabilities are enabled.
 
 ### Supported features
 
@@ -92,54 +92,60 @@ Express launches with the following set of supported features. This list is upda
 
 ### Unsupported features
 
-The following features aren't available in Express at launch:
+The following features aren't available in express at launch:
 
-- Secrets
-- Secrets from Key Vault
-- Autoscale (KEDA-based)
-- Managed identity (app runtime)
-- Managed identity (image pull)
-- Virtual network (VNet) integration
-- Quota management
-- Health probes
-- Exec access
-- Easy Auth
-- Metrics (Azure Monitor)
-- Custom domain (managed certificate)
-- IP restrictions
-- CORS
-- Logs (Azure Monitor)
-- Session affinity
-- Sidecar containers
-- Init containers
-- Volume mounts
-- Ephemeral storage
-- GPU
-- Insecure HTTP ingress
-- Additional ports
-- App-to-app communication
-- Debug console
-- Deployment labels
-- Language stacks
-- Multi revision/traffic splitting
-- Resiliency policies
-- Source-to-cloud deployment
-- TCP protocol
-- Aspire
-- Maintenance windows
-- OpenTelemetry
-- Premium ingress
-- Private endpoints
-- Workload profiles
-- Peer-to-peer encryption
-- Jobs
-- Single revision management
-- Custom domain (bring your own certificate)
-- Environment custom domain suffix
-- Azure file storage
-- Zone redundancy
-- App-to-app internal FQDN
-- Internal vs. external apps
+:::row:::
+   :::column:::
+   - Additional ports
+   - App-to-app communication
+   - App-to-app internal FQDN
+   - Aspire
+   - Autoscale (KEDA-based)
+   - Azure file storage
+   - CORS
+   - Custom domain (bring your own certificate)
+   - Custom domain (managed certificate)
+   - Debug console
+   - Deployment labels
+   - Easy Auth
+   - Ephemeral storage
+   - Environment custom domain suffix
+   - Exec access
+   - GPU
+   - Health probes
+   - Init containers
+   - Insecure HTTP ingress
+   - Internal vs. external apps
+   - IP restrictions
+   - Jobs
+   - Language stacks
+   :::column-end:::
+   :::column:::
+   - Logs (Azure Monitor)
+   - Maintenance windows
+   - Managed identity (app runtime)
+   - Managed identity (image pull)
+   - Metrics (Azure Monitor)
+   - Multi revision/traffic splitting
+   - OpenTelemetry
+   - Peer-to-peer encryption
+   - Premium ingress
+   - Private endpoints
+   - Quota management
+   - Resiliency policies
+   - Secrets
+   - Secrets from Key Vault
+   - Session affinity
+   - Sidecar containers
+   - Single revision management
+   - Source-to-cloud deployment
+   - TCP protocol
+   - Virtual network (VNet) integration
+   - Volume mounts
+   - Workload profiles
+   - Zone redundancy
+   :::column-end:::
+:::row-end:::
 
 ## Region availability
 
@@ -149,15 +155,6 @@ During the initial preview, Express is available only in the **West Central US**
 
 To deploy your first Express container app, see [Quickstart: Deploy a container app with the Azure CLI](quickstart-container-apps.md).
 
-For issues or feedback during the preview, file an issue on the [Azure Container Apps GitHub repository](https://github.com/microsoft/azure-container-apps/). Start the issue title with **[EPP]** to identify it as an Express Preview issue.
+For issues or feedback during the preview, file an issue on the [Azure Container Apps GitHub repository](https://github.com/microsoft/azure-container-apps/). Start the issue title with **[EPP]** to identify it as an express Preview issue.
 
 Example: `[EPP] Deployment fails when using custom environment variables`
-
-## Next steps
-
-> [!div class="nextstepaction"]
-> [Quickstart: Deploy a container app with the Azure CLI](quickstart-container-apps.md)
-
-- Learn about [Container Apps environments](environment.md)
-- Explore [Container Apps jobs](jobs.md)
-- Review [Container Apps billing](billing.md)
