@@ -1,6 +1,5 @@
 ---
-title: Post-processing
-titleSuffix: Business Process Solutions
+title: Post-processing in Business Process Solutions
 description: Learn how to import lakehouse views, reset checkpoints for delta tables, and configure semantic model refresh in Business Process Solutions.
 author: ritikesh-vali
 ms.service: sap-on-azure
