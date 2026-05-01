@@ -43,7 +43,7 @@ The following are the important dates to note for Basic, Standard, and Premium t
 | October 1, 2026 | Creating new caches in Basic, Standard or Premium tiers is blocked for existing customers. |
 | October 1, 2028 | Remaining caches in Basic, Standard or Premium tiers are turned off.                       |
 
-The following are important dates to note for Basic, Standard, and Premium tiers in **US and China Sovereign Cloud**:
+The following are important dates to note for Basic, Standard, and Premium tiers in **Azure Government** and **Microsoft Azure operated by 21Vianet (Azure in China)**:
 
 | Date            | Description                                                                                |
 |-----------------|--------------------------------------------------------------------------------------------|
