@@ -68,7 +68,7 @@ The `llm-token-limit` policy prevents large language model (LLM) API usage spike
 
 * This policy can be used multiple times per policy definition.
 * This policy can optionally be configured when adding an LLM API using the portal.
-* The value of `remaining-quota-tokens-variable-name` or `remaining-quota-tokens-header-name` is an estimate and may be larger than expected based on actual token consumption. For more information, see [About token counts and estimation](#considertations-for-token-counts-and-estimation).
+* The value of `remaining-quota-tokens-variable-name` or `remaining-quota-tokens-header-name` is an estimate and may be larger than expected based on actual token consumption. For more information, see [Considerations for token counts and estimation](#considerations-for-token-counts-and-estimation).
 * [!INCLUDE [api-management-rate-limit-key-scope](../../includes/api-management-rate-limit-key-scope.md)]
 * [!INCLUDE [api-management-rate-limit-implementation-v2](../../includes/api-management-rate-limit-implementation-v2.md)]
 * [!INCLUDE [api-management-token-limit-gateway-counts](../../includes/api-management-token-limit-gateway-counts.md)]
