@@ -239,7 +239,7 @@ We encountered an unexpected error while processing your HTTPS request. Please t
 
 1. **Do I need a Certificate Authority Authorization record with my DNS provider?**
 
-        No, you don't currently need a Certificate Authority Authorization record. However, if you have one, it must include DigiCert as a valid CA.
+    No, you don't currently need a Certificate Authority Authorization record. However, if you have one, it must include DigiCert as a valid CA.
 
 ## Clean up resources
 
