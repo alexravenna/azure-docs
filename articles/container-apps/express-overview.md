@@ -2,7 +2,7 @@
 title: Azure Container Apps Express Overview
 description: Learn about Azure Container Apps express, a developer-first platform that lets you deploy containerized web apps to Azure with minimal configuration and rapid provisioning.
 ms.topic: overview
-ms.date: 05/01/2026
+ms.date: 05/04/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.service: azure-container-apps
@@ -31,7 +31,7 @@ The express deployment model removes infrastructure decisions so you can focus o
 
 ## Common scenarios
 
-The express deployment model is ideal for HTTP-based web workloads where speed of deployment and simplicity are priorities.
+The express deployment model works best for HTTP-based web workloads where speed of deployment and simplicity matter most.
 
 - **SaaS applications**: Launch SaaS products without worrying about scaling infrastructure.
 
@@ -92,7 +92,7 @@ Keep these important points in mind when using express:
 
 ## Supported features
 
-The express deployment model launches with the following set of supported features. This list is updated as new capabilities are enabled.
+The express deployment model supports the following features. This list is updated as Microsoft enables new capabilities.
 
 ### Supported features
 
@@ -167,11 +167,3 @@ The following features aren't available in express at launch:
 ## Region availability
 
 During the initial preview, Express is available only in the **West Central US** region. Support for more regions will be added in future releases.
-
-## Get started
-
-To deploy your first Express container app, see [Quickstart: Deploy a container app with the Azure CLI](get-started.md).
-
-For issues or feedback during the preview, file an issue on the [Azure Container Apps GitHub repository](https://github.com/microsoft/azure-container-apps/). Start the issue title with **[EPP]** to identify it as an express Preview issue.
-
-Example: `[EPP] Deployment fails when using custom environment variables`
