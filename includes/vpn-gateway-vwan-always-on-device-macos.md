@@ -17,7 +17,7 @@
 > - Disconnecting an Always On profile disables the Always On feature for that profile.
 
 1. Open the Azure VPN Client for Mac.
-1. Select the profile you want to configure for Always On. If there isn't a client profile downloaded, follow the steps in **[this document](/articles/vpn-gateway/point-to-site-entra-vpn-client-mac.md)** to configure a profile for your VPN client.
+1. Select the profile you want to configure for Always On. If there isn't a client profile downloaded, follow the steps in **[this document](/articles/vpn-gateway/vpn-gateway-howto-always-on-device-tunnel-macos.md)** to configure a profile for your VPN client.
 1. Ensure the connection is in disconnected mode.
 1. Select the checkbox for **Connect-Automatically**. 
 1. Select **Connect** to establish the VPN connection.
@@ -37,6 +37,3 @@ Always on was disabled because connection cannot be established even after max r
 Some unexpected error was hit. Try one of these mitigations: 
 1. Disable and re-enable ‘Connect Automatically’ 
 2. Remove profile and then import again 
-
-### Useful resources
-Use [Troubleshoot Azure VPN Client](/articles/vpn-gateway/troubleshoot-azure-vpn-client.md) and [Troubleshoot VPN Point-to-Site Connection Problems](/articles/vpn-gateway/vpn-gateway-troubleshoot-vpn-point-to-site-connection-problems.md) to help troubleshoot issues.
