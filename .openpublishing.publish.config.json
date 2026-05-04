@@ -327,6 +327,24 @@
             "branch_mapping": {}
         },
         {
+            "path_to_root": "functions-event-hub-azd-java",
+            "url": "https://github.com/Azure-Samples/functions-quickstart-java-azd-eventhub",
+            "branch": "main",
+            "branch_mapping": {}
+        },
+        {
+            "path_to_root": "functions-event-hub-azd-javascript",
+            "url": "https://github.com/Azure-Samples/functions-quickstart-javascript-azd-eventhub",
+            "branch": "main",
+            "branch_mapping": {}
+        },
+        {
+            "path_to_root": "functions-event-hub-azd-powershell",
+            "url": "https://github.com/Azure-Samples/functions-quickstart-powershell-azd-eventhub",
+            "branch": "main",
+            "branch_mapping": {}
+        },
+        {
             "path_to_root": "azure-functions-templates-v3",
             "url": "https://github.com/Azure/azure-functions-templates",
             "branch": "v3.x",
