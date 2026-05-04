@@ -71,7 +71,7 @@ Our [GitHub repository](https://github.com/microsoft/AziHSM-Guest) has customer 
 - Windows guest support only 
     - Windows guest image with WS2025 or WS2022 can support AziHSM. Visit our [GitHub](https://github.com/microsoft/AziHSM-Guest) page for more instructions on installing the guest driver and the key service provider required for interfacing with the device.
 - Requires customer opt‑in—not enabled by default for all SKUs.
-    - For more information on how to opt in, see our [how to deploy documentation](./how-to-deploy-azure-integrated-hsm).
+    - For more information on how to opt in, see our [how to deploy documentation](/how-to-deploy-azure-integrated-hsm).
 - Supported on select VM SKUs only
     - [Dasv7-series](/azure/virtual-machines/sizes/general-purpose/dasv7-series), [Dadsv7-series](/azure/virtual-machines/sizes/general-purpose/dadsv7-series), [Easv7-series](/azure/virtual-machines/sizes/memory-optimized/easv7-series), and [Eadsv7-series](/azure/virtual-machines/sizes/memory-optimized/eadsv7-series)
 - Minimum VM size requirement

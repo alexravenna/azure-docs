@@ -17,7 +17,7 @@ Azure Integrated HSM is a Hardware Security Module (HSM) cache and crypto accele
 For customers who heavily rely on cryptography and have performance-intensive workloads, Azure Integrated HSM provides a secure way to store cryptographic keys for quick and secure retrieval. 
 
 > [!NOTE]
-> \* In order for a VM to use Azure Integrated HSM, include a tag `platformsettings.host_environment.AzureIntegratedHSM=True` *at the time of deployment*. Adding the tag to the VM post deployment will result in the VM not being able to use Azure Integrated HSM.
+> In order for a VM to use Azure Integrated HSM, include a tag `platformsettings.host_environment.AzureIntegratedHSM=True` *at the time of deployment*. Adding the tag to the VM post deployment will result in the VM not being able to use Azure Integrated HSM.
 
 ## 1. Enroll in Azure Integrated HSM flag for your subscription
 
@@ -38,7 +38,7 @@ An Azure resource group is a logical container into which Azure resources are de
 The following example creates a resource group named `myResourceGroup` in the `eastus2` location:
 
 > [!NOTE]
-> \* AMD v7 VMs aren't available in all locations. For currently supported locations, see which VM products are available by Azure region.
+> AMD v7 VMs aren't available in all locations. For currently supported locations, see which VM products are available by Azure region.
 
 ```powershell
 az group create --name myResourceGroup --location eastus2
