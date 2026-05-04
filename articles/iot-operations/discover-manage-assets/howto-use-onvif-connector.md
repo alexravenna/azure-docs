@@ -23,9 +23,9 @@ The following table summarizes the features the connector for ONVIF supports:
 | Feature | Supported | Notes |
 |---------|:---------:|-------|
 | Username/password authentication | Yes | |
-| X.509 client certificates | No | |
+| X.509 user certificates | No | |
 | Anonymous access | Yes | For testing purposes |
-| Certificate trust list | Yes | For secure TLS connections to ONVIF cameras |
+| Southbound certificate trust list | Yes | For secure TLS connections to ONVIF cameras |
 | OpenTelemetry integration | Yes | |
 | Device discovery | Yes | Discovers ONVIF cameras on the network |
 | Capability discovery | Yes | Discovers PTZ and other device capabilities |
@@ -303,9 +303,13 @@ To create an ONVIF asset for event management and control:
 
 To interact with the ONVIF camera, you can publish MQTT messages that the connector for ONVIF subscribes to. The message format is based on the [ONVIF network interface specifications](https://www.onvif.org/profiles/specifications/).
 
-The [Azure IoT Operations connector for ONVIF PTZ Demo](https://github.com/Azure-Samples/explore-iot-operations/tree/main/samples/aio-onvif-connector-ptz-demo) sample application shows how to use the connector for ONVIF to:
+To publish MQTT messages to interact with the camera, options include:
 
-- Use the media asset definition to retrieve a profile token from the camera's media service.
-- Use the profile token when you use the camera's PTZ capabilities control its position and orientation.
+- Management actions CLI commands. To learn more, see[Enable and run management actions](howto-use-management-actions.md).
 
-The sample application uses the Azure IoT Operations MQTT broker to send commands to interact with the connector for ONVIF. To learn more, see [Publish and subscribe MQTT messages using MQTT broker](../manage-mqtt-broker/overview-broker.md).
+- Programmatically. The [Azure IoT Operations connector for ONVIF PTZ Demo](https://github.com/Azure-Samples/explore-iot-operations/tree/main/samples/aio-onvif-connector-ptz-demo) sample application shows how to use the connector for ONVIF to:
+
+    - Use the media asset definition to retrieve a profile token from the camera's media service.
+    - Use the profile token when you use the camera's PTZ capabilities control its position and orientation.
+
+    The sample application uses the Azure IoT Operations MQTT broker to send commands to interact with the connector for ONVIF. To learn more about using the MQTT broker, see [Azure IoT Operations built-in local MQTT broker](../manage-mqtt-broker/overview-broker.md).
