@@ -314,12 +314,15 @@ You can review the code that defines the Timer trigger function:
 You can review the complete template project [here](https://github.com/Azure-Samples/functions-quickstart-dotnet-azd-timer).
 ::: zone-end  
 ::: zone pivot="programming-language-java"  
-:::code language="java" source="~/functions-azd-timer-java/src/src/main/java/com/function/TimerFunction.java" range="1-25" :::
+:::code language="java" source="~/functions-azd-timer-java/src/src/main/java/com/function/TimerFunction.java" range="1-11,26-37" :::
 
 You can review the complete template project [here](https://github.com/Azure-Samples/functions-quickstart-java-azd-timer).
 ::: zone-end  
 ::: zone pivot="programming-language-javascript"  
-:::code language="javascript" source="~/functions-azd-timer-javascript/src/src/functions/timerFunction.js" :::
+:::code language="javascript" source="~/functions-azd-timer-javascript/src/src/functions/timerFunction.js" range="1,12-24" :::
+
+> [!TIP]
+> The `runOnStartup` option is useful during development and testing because the function runs immediately when the host starts. In production, you should set this to `false` to avoid unexpected executions during deployments or restarts.
 
 You can review the complete template project [here](https://github.com/Azure-Samples/functions-quickstart-javascript-azd-timer).
 ::: zone-end  
@@ -329,7 +332,9 @@ You can review the complete template project [here](https://github.com/Azure-Sam
 You can review the complete template project [here](https://github.com/Azure-Samples/functions-quickstart-typescript-azd-timer).
 ::: zone-end  
 ::: zone pivot="programming-language-powershell"  
-You can review the code that defines the Timer trigger in the [timerFunction/run.ps1 project file](https://github.com/Azure-Samples/functions-quickstart-powershell-azd-timer/blob/main/src/timerFunction/run.ps1) and the corresponding [function.json](https://github.com/Azure-Samples/functions-quickstart-powershell-azd-timer/blob/main/src/timerFunction/function.json).
+:::code language="powershell" source="~/functions-azd-timer-powershell/src/timerFunction/run.ps1" :::
+
+The timer trigger is defined in the corresponding [function.json](https://github.com/Azure-Samples/functions-quickstart-powershell-azd-timer/blob/main/src/timerFunction/function.json).
 
 You can review the complete template project [here](https://github.com/Azure-Samples/functions-quickstart-powershell-azd-timer).
 ::: zone-end  
