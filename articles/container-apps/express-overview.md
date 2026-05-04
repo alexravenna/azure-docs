@@ -170,7 +170,7 @@ During the initial preview, Express is available only in the **West Central US**
 
 ## Get started
 
-To deploy your first Express container app, see [Quickstart: Deploy a container app with the Azure CLI](quickstart-container-apps.md).
+To deploy your first Express container app, see [Quickstart: Deploy a container app with the Azure CLI](get-started.md).
 
 For issues or feedback during the preview, file an issue on the [Azure Container Apps GitHub repository](https://github.com/microsoft/azure-container-apps/). Start the issue title with **[EPP]** to identify it as an express Preview issue.
 
