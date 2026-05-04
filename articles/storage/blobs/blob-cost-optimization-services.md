@@ -17,10 +17,10 @@ As data estates grow, organizations must manage and optimize storage across bill
 Azure Blob Storage provides built-in capabilities to help you reduce storage costs by automating data tiering, retention, and large-scale management. You can use these capabilities independently or combine them to meet different operational and cost-optimization needs.
 
 This article compares three Azure Storage capabilities for tiering and cost optimization:
-
+- **Smart tiering** – Microsoft-managed adaptive tiering based on observed access patterns
 - **Azure Blob Storage lifecycle management** – Rule-based tiering and deletion policies configured per storage account
 - **Azure Storage Actions** – Serverless orchestration for data management tasks across multiple storage accounts
-- **Smart tiering** – Microsoft-managed adaptive tiering based on observed access patterns
+
 
 ## Quick decision guide
 
@@ -28,27 +28,29 @@ Use the following table to choose the Azure Blob Storage cost optimization capab
 
 | If you need… | Use |
 |-------------|-----|
-| Hands-off, Microsoft-managed adaptive tiering when access patterns are unknown | **Smart tiering** |
+| Microsoft-managed adaptive tiering when access patterns are unknown or you don't want to manage transitions | **Smart tiering** |
 | Deterministic, age-based tiering or retention within a single storage account | **Lifecycle management** |
 | Dynamic targeting, multi-account execution, or multiple operations in a single workflow | **Azure Storage Actions** |
 
 ## Smart tiering: Microsoft-managed adaptive tiering
 
-Smart tiering is a fully managed solution that automatically moves data between hot, cool, and cold access tiers based on access behavior. It minimizes manual configuration and adapts as data usage changes.
+[Smart tiering](access-tiers-smart.md) is a fully managed solution that automatically moves data between hot, cool, and cold access tiers based on access behavior. It minimizes manual configuration and adapts as data usage changes.
 
 Key benefits include:
 
 - **Automatic cost optimization** – Objects transition between tiers based on observed access patterns, without requiring policy rules.
-- **Minimal operational overhead** – Well suited for scenarios where access patterns are unknown or change frequently.
+- **Minimal operational overhead** – Well suited for scenarios where access patterns are unknown or change frequently or you do not want to manage tier transitions.
 - **Predictable billing model** – You pay capacity at the resident tier and standard hot-tier transaction costs. There are no early deletion, rehydration, or tier transition charges for smart-tiered objects.
 
 By default, new objects start in the hot tier. As data ages without access, it moves to cooler tiers and automatically returns to hot when accessed again. Tier-specific performance and service-level characteristics still apply.
 
-Smart tiering includes a monitoring fee per 10,000 monitored objects.
+Smart tiering includes a monitoring fee per 10,000 monitored objects per month for objects larger than 125KiB. 
+> NOTE
+> It may be more cost effective to keep objects smaller than 125KiB in the hot tier to avoid impact from minimum objects size billing in cooler tiers. [Learn more](access-tiers-overview#minimum-billable-object-size-on-cooler-tiers.md)
 
 ## Azure Blob Storage lifecycle management: Rule-based tiering and retention
 
-Lifecycle management provides policy-based automation for transitioning or deleting blob data based on time-based conditions such as creation date, last modification, or last access.
+[Azure Blob Storage lifecycle management overview](lifecycle-management-overview.md) provides policy-based automation for transitioning tiers or deleting blob data based on time-based conditions such as creation date, last modification, or last access.
 
 Key benefits include:
 
@@ -59,7 +61,7 @@ Lifecycle management is best suited for predictable retention and compliance sce
 
 ## Azure Storage Actions: serverless data management at scale
 
-Azure Storage Actions provides a fully managed, no-code framework for orchestrating complex data management workflows across large storage environments.
+[Azure Storage Actions](../../storage-actions/overview.md) provides a fully managed, no-code framework for orchestrating complex data management workflows across large storage environments.
 
 Key benefits include:
 
