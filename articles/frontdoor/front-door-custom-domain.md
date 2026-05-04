@@ -59,11 +59,11 @@ To create a CNAME record by using the afdverify subdomain:
     | afdverify.www.contoso.com | CNAME | afdverify.contoso-frontend.azurefd.net |
 
         
-    - Source: Enter your custom domain name, including the `afdverify` subdomain, in the following format: `afdverify.<custom domain name>`. For example, `afdverify.www.contoso.com`. If you're mapping a wildcard domain, like `*.contoso.com`, the source value is the same as it would be without the wildcard: `afdverify.contoso.com`.
+    - **Source:** Enter your custom domain name, including the `afdverify` subdomain, in the following format: `afdverify.<custom domain name>`. For example, `afdverify.www.contoso.com`. If you're mapping a wildcard domain, like `*.contoso.com`, the source value is the same as it would be without the wildcard: `afdverify.contoso.com`.
 
-    - Type: Enter *CNAME*.
+    - **Type:** Enter *CNAME*.
 
-        - Destination: Enter your default Front Door frontend host, including the afdverify subdomain, in the following format: `afdverify.<endpoint name>.azurefd.net`. For example, `afdverify.contoso-frontend.azurefd.net`.
+    - **Destination:** Enter your default Front Door frontend host, including the afdverify subdomain, in the following format: `afdverify.<endpoint name>.azurefd.net`. For example, `afdverify.contoso-frontend.azurefd.net`.
 
 1. Save your changes.
 
