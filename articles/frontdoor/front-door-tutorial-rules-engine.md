@@ -16,8 +16,7 @@ ms.custom: devx-track-azurecli
 
 **Applies to:** :heavy_check_mark: Front Door (classic)
 
-> [!IMPORTANT]
-> Azure Front Door (classic) doesn't support profile creation, new domain onboarding, or managed certificates and retires on March 31, 2027. To avoid service disruption, ⁠[migrate to Azure Front Door Standard or Premium](/azure/frontdoor/tier-migration). ⁠[Learn more](https://azure.microsoft.com/updates?id=azure-front-door-classic-will-be-retired-on-31-march-2027).
+[!INCLUDE [Azure Front Door (classic) retirement notice](../../includes/front-door-classic-retirement.md)]
 
 This tutorial shows how to create a Rules engine configuration and your first rule in both Azure portal and CLI.
 

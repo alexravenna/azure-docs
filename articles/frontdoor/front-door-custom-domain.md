@@ -14,8 +14,7 @@ ms.date: 05/04/2026
 
 **Applies to:** :heavy_check_mark: Front Door (classic)
 
-> [!IMPORTANT]
-> Azure Front Door (classic) doesn't support profile creation, new domain onboarding, or managed certificates and retires on March 31, 2027. To avoid service disruption, ⁠[migrate to Azure Front Door Standard or Premium](/azure/frontdoor/tier-migration). ⁠[Learn more](https://azure.microsoft.com/updates?id=azure-front-door-classic-will-be-retired-on-31-march-2027).
+[!INCLUDE [Azure Front Door (classic) retirement notice](../../includes/front-door-classic-retirement.md)]
 
 This article shows how to add a custom domain to your Front Door. When you use Azure Front Door for application delivery, a custom domain is necessary if you want your own domain name to be visible in your end-user request. Having a visible domain name can be convenient for your customers and useful for branding purposes.
 
