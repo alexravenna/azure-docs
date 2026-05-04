@@ -4,9 +4,8 @@ description: Azure Health Data Services Private Link configuration made easy. Le
 services: healthcare-apis
 author: EXPEkesheth
 ms.service: azure-health-data-services
-ms.subservice: fhir
 ms.topic: tutorial
-ms.date: 04/24/2026
+ms.date: 05/04/2026
 ms.author: kesheth
 ms.custom: sfi-image-nochange
 ---
@@ -36,7 +35,7 @@ In this tutorial, you:
 
 Before you create a private endpoint, create the following Azure resources:
 
-- [An active Azure account](https://az deployed in the workspaceure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- [An active Azure account](https://azure.microsoft.com/free/).
 - **Resource Group** – The Azure resource group that contains the workspace, virtual network, and private endpoint.
 - [An Azure Health Data Services workspace](healthcare-apis-quickstart.md):  You need the workspace to create the private endpoint. You create the private endpoint at the workspace level, and it applies to all services within the workspace. 
 - A [FHIR service](fhir/fhir-portal-quickstart.md) or [DICOM service](dicom/deploy-dicom-services-in-azure.md) deployed in the workspace: The Azure Health Data Services resource that you want to connect to over the private endpoint. You don't need these resources to create the private endpoint, but you need them to test the private endpoint connectivity.
@@ -134,7 +133,7 @@ When you use manual approval, you can't integrate with a private DNS zone as par
 
 If you use the auto approval method, you can integrate with Azure Private DNS zones as part of the private endpoint creation process. If you use the manual approval method and want to integrate with Azure Private DNS zones, you need to manually create a private DNS zone and link it to your virtual network. For more information, see [Private endpoint DNS configuration](#private-endpoint-dns-configuration).
 
-You can choose whether to have the private endpoint automatically integrate with a private DNS zone. If you choose to integrate with a private DNS zone, two private DNS zones are created, one for the workspace and FHIR services and one for DICOM services. The private DNS zones are automatically linked to the virtual network that you selected for the private endpoint.
+If you choose to integrate with a private DNS zone, two private DNS zones are created, one for the workspace and FHIR services and one for DICOM services. The private DNS zones are automatically linked to the virtual network that you selected for the private endpoint.
 
 :::image type="content" source="media/private-link/create-private-endpoint-dns-tab.png" alt-text="Screenshot of create private endpoint DNS tab." lightbox="media/private-link/create-private-endpoint-dns-tab.png":::
 
@@ -151,7 +150,7 @@ To add tags, enter a name and value for each tag you want to apply to the privat
 
 ### Review and create
 
-Use this tab to review all the configuration settings you have selected for the private endpoint. The result of the validation is shown at the top of the tab. If there are any issues with the configuration, or you need to make changes, select the appropriate tab to go back and update the settings before creating the private endpoint.
+Use this tab to review all the configuration settings you selected for the private endpoint. The result of the validation appears at the top of the tab. If there are any issues with the configuration, or you need to make changes, select the appropriate tab to go back and update the settings before creating the private endpoint.
 
 Select **Create** to create the private endpoint.
 
@@ -159,11 +158,13 @@ Select **Create** to create the private endpoint.
 
 ## Private endpoint DNS configuration
 
-After the deployment finishes, select the private endpoint resource in the resource group. Open **Settings** > **DNS configuration**. You see the IP address assignments for each service connected to the private endpoint. If you chose to integrate your private endpoint with Azure Private DNS zones, the private DNS zone configurations and the DNS records for each service are listed.
+If you integrate your private endpoint with a private DNS zone during the creation of the private endpoint, Azure automatically creates the necessary DNS A records in the private DNS zone so that the private endpoint can resolve the service IP addresses correctly. If you don't integrate with a private DNS zone, see [manual DNS configuration](#manual-dns-configuration).
+
+After the deployment finishes, select the private endpoint resource in the resource group. Open **Settings** > **DNS configuration**. You see the IP address assignments for each service connected to the private endpoint and the private DNS zones that Azure automatically created and configured for the private endpoint.
 
 :::image type="content" source="media/private-link/private-link-dns-configuration.png" alt-text="Screenshot of private endpoint DNS Configuration." lightbox="media/private-link/private-link-dns-configuration.png":::
 
-Select a private DNS zone to see the configuration for the zone. Select **DNS Management** > **Virtual Network Links**. See that the private DNS zone is linked to the virtual network. Make sure you associate only a single virtual network with the DNS zone. Associating multiple virtual networks with the same private DNS zone can cause DNS resolution conflicts that prevent the private endpoint from resolving the service IP addresses correctly.
+Select a private DNS zone to see the configuration for the zone. Select **DNS Management** > **Virtual Network Links**. You see that the private DNS zone is linked to the virtual network. Make sure you associate only a single virtual network with the DNS zone. Associating multiple virtual networks with the same private DNS zone can cause DNS resolution conflicts that prevent the private endpoint from resolving the service IP addresses correctly.
 
 If you need to support multiple virtual networks, you must create separate DNS zones in different resource groups. During the setup, confirm that the Private Endpoint and Private DNS Zone aren't shared across multiple virtual networks. This common misconfiguration can lead to IP resolution problems and access failures that result in HTTP 403 errors on the service.
 
@@ -171,14 +172,29 @@ Select **DNS Management** > **Recordsets** to view DNS records for that zone. Yo
 
 After the private endpoint is created, newly created services in the workspace automatically have DNS records added to the appropriate private DNS zone.
 
-## Test private endpoint
+### Manual DNS configuration
 
-To verify that your service isn't receiving public traffic after disabling public network access, select the `/metadata` endpoint for your FHIR service, or the `/health/check` endpoint of the DICOM service, and you receive the message 403 Forbidden. 
+If you don't integrate your private endpoint with Azure Private DNS zones during the creation of the private endpoint, you must manually create the appropriate DNS A records in your custom DNS zone so that the private endpoint can resolve the service IP addresses correctly.  
 
-It can take up to five minutes after updating the public network access flag before public traffic is blocked.
+If you want to use Azure Private DNS instead of a custom DNS zone, you need to:
+
+1. [Create a private DNS zone](../dns/private-dns-getstarted-portal.md#create-a-private-dns-zone). 
+1. [Link your private DNS zone to the virtual network](../dns/private-dns-getstarted-portal.md#link-the-virtual-network).
+1. Add your DNS zone to the Private Endpoint configuration:
+    1. Go to the Private Endpoint resource in the Azure portal, select **Settings** > **DNS configuration**.
+    1. Select **+ Add configuration**.
+    1. Select the private DNS zone you created earlier from the list and save the configuration.
+1. [Add DNS A records](../dns/private-dns-getstarted-portal.md#create-another-dns-record) for each service in your workspace to the private DNS zone so that the private endpoint can resolve the service IP addresses correctly. 
 
 > [!IMPORTANT]
-> Every time you add a new service into the Private Link enabled workspace, you need to add a DNS record to your private DNS zone or your custom DNS zone. If DNS A records aren't added in your private DNS zone, requests fail with a 403 Forbidden error. 
+> If you manually add private DNS zones, every time you add a new service into the Private Link enabled workspace, you need to [add a DNS record](../dns/private-dns-getstarted-portal.md#create-another-dns-record) to your private DNS zone or your custom DNS zone. If DNS A records aren't added in your private DNS zone, requests to the new service fail with a 403 Forbidden error. 
+
+## Test private endpoint
+
+
+To verify that your service isn't receiving public traffic after disabling public network access, open a browser or use a tool like `curl` from a machine outside of your virtual network and attempt to access the service endpoints over the public network. For example, attempt to access the `/metadata` endpoint for your FHIR service, or the `/health/check` endpoint of the DICOM service, and you receive the message 403 Forbidden. 
+
+It can take up to five minutes after updating the public network access flag before public traffic is blocked.
 
 To ensure your Private Endpoint can send traffic to your server:
 
@@ -188,7 +204,7 @@ To ensure your Private Endpoint can send traffic to your server:
 
 ## FAQ
 
-### 1. FHIR service configured with private endpoints is missing its private link DNS entries, what should I do?
+### FHIR service configured with private endpoints is missing its private link DNS entries, what should I do?
 If a FHIR service configured with a private endpoint is missing private link DNS entries, it resolves through the public CNAME path instead of resolving to the private IP address via `*.private link.fhir.azurehealthcareapis.com`. This problem can intermittently occur during provisioning and might prevent the correct configuration of the private link DNS entries.
 Due to this problem, services might be unreachable from the virtual network, which can result in connectivity failures for applications relying on private network access.
 
@@ -202,7 +218,7 @@ To resolve the problem, follow these steps:
 1. Re-create the private endpoint by using the same configuration.
 1. Verify that DNS resolution returns the private IP address.
 
-### 2. Logs show that requests fail with HTTP 403. The failures aren't due to bad tokens but instead Private Links rejects the requests because their origin isn't allowed to access the FHIR service.
+### Logs show that requests fail with HTTP 403. The failures aren't due to bad tokens but instead Private Links rejects the requests because their origin isn't allowed to access the FHIR service.
 
 Validate the following points:
 
