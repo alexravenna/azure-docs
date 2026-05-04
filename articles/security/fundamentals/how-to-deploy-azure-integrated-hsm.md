@@ -1,6 +1,6 @@
 ---
 title: How to deploy a Virtual Machine with Azure Integrated HSM enabled
-description: This article provides an how to deploy a VM with Azure Integrated HSM enabled at boot.
+description: This article provides how to deploy a VM with Azure Integrated HSM enabled at boot.
 services: security
 author: simranparkhe
 ms.service: security
@@ -17,8 +17,7 @@ Azure Integrated HSM is a Hardware Security Module (HSM) cache and crypto accele
 For customers who heavily rely on cryptography and have performance-intensive workloads, Azure Integrated HSM provides a secure way to store cryptographic keys for quick and secure retrieval. 
 
 > [!NOTE]
-> \* In order for a VM to use Azure Integrated HSM, include a tag `platformsettings.host_environment.AzureIntegratedHSM=True` *at the time of deployment*.
-Adding the tag to the VM post deployment will result in the VM not being able to use Azure Integrated HSM.
+> \* In order for a VM to use Azure Integrated HSM, include a tag `platformsettings.host_environment.AzureIntegratedHSM=True` *at the time of deployment*. Adding the tag to the VM post deployment will result in the VM not being able to use Azure Integrated HSM.
 
 ## 1. Enroll in Azure Integrated HSM flag for your subscription
 
@@ -38,8 +37,8 @@ Create a resource group with the `az group create` command.
 An Azure resource group is a logical container into which Azure resources are deployed and managed.
 The following example creates a resource group named `myResourceGroup` in the `eastus2` location:
 
-(**Note:** AMD v7 VMs aren't available in all locations.
-For currently supported locations, see which VM products are available by Azure region.)
+> [!NOTE]
+> \* AMD v7 VMs aren't available in all locations. For currently supported locations, see which VM products are available by Azure region.
 
 ```powershell
 az group create --name myResourceGroup --location eastus2
@@ -54,7 +53,7 @@ Create a VM with the `az vm create` command.
 The following example creates a VM named `myVM` and adds a user account named `azureuser`.
 Azure Integrated HSM is supported only on specific VM SKUs; see the [supported SKUs](/azure/security/fundamentals/azure-integrated-hsm-overview) documentation for more on which SKUs are supported.
 
-The VMs must support TrustedLaunch and secure boot in order to support Azure Integrated HSM.
+The VMs must support TrustedLaunch and Secure Boot in order to support Azure Integrated HSM.
 
 ```powershell
 az vm create `
@@ -98,7 +97,8 @@ az deployment group create `
 
 ### Option 3 - Azure SDK
 
-There are many different languages supported by the Azure SDK. For this sample, we use python.
+There are many different languages supported by the Azure SDK.
+As an example, we will use the [AziHSM Python SDK example](https://github.com/microsoft/AziHSM-Guest/tree/main/azure_sdk/python) to deploy an AziHSM-enabled VM.
 
 Navigate to [azure_sdk/python](https://github.com/microsoft/AziHSM-Guest/tree/main/azure_sdk/python) and create a python virtual environment and install the Azure SDK:
 

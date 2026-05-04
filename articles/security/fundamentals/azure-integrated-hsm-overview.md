@@ -13,7 +13,7 @@ ms.author: simranparkhe
 
 [Azure Integrated HSM](https://techcommunity.microsoft.com/blog/AzureInfrastructureBlog/securing-azure-infrastructure-with-silicon-innovation/4293834) is a hardware security module (HSM) cache and crypto offload designed to enhance the security and performance of cryptographic operations in virtual machines. For customers who heavily rely on cryptography and have performance-intensive workloads, Azure Integrated HSM provides a secure hardware-backed way to store cryptographic keys for fast and secure usage.
 
-Starting with new Azure server hardware [AMD D and E Series v7](/azure/virtual-machines/sizes/general-purpose/dasv7-series), Microsoft-designed HSM chips are embedded directly on servers, meeting Federal Information Processing Standards (FIPS) 140-3 Level 3 standards. These tamper-resistant chips keep encryption keys within secure hardware boundaries, eliminating latency and exposure risks. The integrated HSM operates transparently by default for supported services like Azure Key Vault and Azure Storage encryption, providing hardware-enforced trust without more configuration. This integration ensures that cryptographic operations benefit from hardware-level security isolation while maintaining the performance and scalability of cloud services.
+Starting with new Azure server hardware [AMD D Series v7](/azure/virtual-machines/sizes/general-purpose/dasv7-series) and [AMD E series v7](/azure/virtual-machines/sizes/memory-optimized/easv7-series), Microsoft-designed HSM chips are embedded directly on servers, meeting Federal Information Processing Standards (FIPS) 140-3 Level 3 standards. These tamper-resistant chips keep encryption keys within secure hardware boundaries, eliminating latency and exposure risks. The integrated HSM operates transparently by default for supported services like Azure Key Vault and Azure Storage encryption, providing hardware-enforced trust without more configuration. This integration ensures that cryptographic operations benefit from hardware-level security isolation while maintaining the performance and scalability of cloud services.
 
 ## Benefits of Azure Integrated HSM
 
@@ -71,7 +71,7 @@ Our [GitHub repository](https://github.com/microsoft/AziHSM-Guest) has customer 
 - Windows guest support only 
     - Windows guest image with WS2025 or WS2022 can support AziHSM. Visit our [GitHub](https://github.com/microsoft/AziHSM-Guest) page for more instructions on installing the guest driver and the key service provider required for interfacing with the device.
 - Requires customer opt‑in—not enabled by default for all SKUs.
-    - For more information on how to opt in, see our [how to deploy documentation](/how-to-deploy-azihsm).
+    - For more information on how to opt in, see our [how to deploy documentation](./how-to-deploy-azure-integrated-hsm).
 - Supported on select VM SKUs only
     - [Dasv7-series](/azure/virtual-machines/sizes/general-purpose/dasv7-series), [Dadsv7-series](/azure/virtual-machines/sizes/general-purpose/dadsv7-series), [Easv7-series](/azure/virtual-machines/sizes/memory-optimized/easv7-series), and [Eadsv7-series](/azure/virtual-machines/sizes/memory-optimized/eadsv7-series)
 - Minimum VM size requirement
@@ -79,8 +79,8 @@ Our [GitHub repository](https://github.com/microsoft/AziHSM-Guest) has customer 
 - Trusted Launch security type supported only
     - This feature is only available for Trusted Launch security type. Standard and Confidential aren't supported.
 - No persistence of locally cached keys across VM deallocation and reboot scenarios
-    - Azure Integrated HSM is a local key cache that is designed to support ephemeral cryptographic operations. Keys aren't to remain persisted across reboots of the virtual machine.
+    - Azure Integrated HSM is a local key cache that is designed to support ephemeral cryptographic operations. Keys will not persist across reboots of the virtual machine.
 
 ## What's next
 
-- [How to deploy with Azure Integrated HSM enabled](/azure/security/fundamentals/how-to-deploy-azihsm)
+- [How to deploy with Azure Integrated HSM enabled](/azure/security/fundamentals/how-to-deploy-azure-integrated-hsm)
