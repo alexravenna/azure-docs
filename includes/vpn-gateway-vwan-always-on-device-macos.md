@@ -25,25 +25,18 @@
 
 ![Diagram showing the always on feature in client.](./media/vpn-gateway-vwan-always-on-device-macos/app-settings-menu-macos-always-on.png)
 
-## Understanding pop-up windows
-### Disabling Always-On
-![Diagram showing the disabling always-on popup.](./media/vpn-gateway-vwan-always-on-device-macos/disabling-always-on.png)
-
-You need to connect manually by selecting **Connect** button so that VPN configuration is saved for Always-On connect functionality to work. At this point, you should select the **Disconnect** button and then enabling the Always-On checkbox should work. 
-
-### Configuration changed
-![Diagram showing the configuration changed popup.](./media/vpn-gateway-vwan-always-on-device-macos/configuration-changed-always-on.png)
-
-Since the configuration was modified, you need to connect manually by selecting **Connect** button** so that new VPN configuration is saved for Always-On connect functionality to work. Select the **Disconnect** button and enabling the Always-On checkbox should work with the updated configuration. 
-
-### Connection failed - Nonretryable error
-![Diagram showing the connection failed non-retryable error popup.](./media/vpn-gateway-vwan-always-on-device-macos/connection-failed-always-on.png)
-
-Always on was disabled due to nonretryable error. You need to connect manually by selecting **Connect** button. Selecting the **Disconnect** button and then enabling Always-On checkbox should work. 
-
+## Troubleshooting Always On VPN
 ### Connection failed - Repeated connection failures
 ![Diagram showing the connection failed repeated connection failures popup.](./media/vpn-gateway-vwan-always-on-device-macos/connection-failed-repeated-always-on.png)
 
-Always on was disabled because connection can't be established after max retry attempts is exceeded. You need to fix the VPN profile configuration. Use [Troubleshoot Azure VPN Client](/articles/vpn-gateway/troubleshoot-azure-vpn-client.md) and [Troubleshoot VPN Point-to-Site Connection Problems](/articles/vpn-gateway/vpn-gateway-troubleshoot-vpn-point-to-site-connection-problems.md) to help troubleshoot the issue.
+Always on was disabled because connection cannot be established even after max retry attempts. It could mean gateway isn’t reachable, incorrect connection configuration, etc. Admins should check the VPN configuration, validate gateway is up, and then try to re-enable connect-automatically. 
 
-Once fixed, selecting the **Disconnect** button and then enabling Always-On checkbox should work. 
+### Always On Checkbox enabled but connection remains disconnected
+![Diagram showing the connection failed repeated connection failures popup.](./media/vpn-gateway-vwan-always-on-device-macos/disconnected-connect-automatically-checked.png)
+
+Some unexpected error was hit. Try one of these mitigations: 
+1. Disable and re-enable ‘Connect Automatically’ 
+2. Remove profile and then import again 
+
+### Useful resources
+Use [Troubleshoot Azure VPN Client](/articles/vpn-gateway/troubleshoot-azure-vpn-client.md) and [Troubleshoot VPN Point-to-Site Connection Problems](/articles/vpn-gateway/vpn-gateway-troubleshoot-vpn-point-to-site-connection-problems.md) to help troubleshoot issues.
