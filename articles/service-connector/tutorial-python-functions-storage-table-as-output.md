@@ -1,31 +1,28 @@
 ---
-title: Configure a Python function with Table Storage output
-description: Learn to configure a Python Azure Functions app to use Azure Storage Table output and use Service Connector to connect the services.
+title: Configure a Python function with Azure Table Storage output
+description: Learn to configure a Python Azure Functions app to use Azure Table Storage output, and use Service Connector to connect the services.
 author: houk-ms
 ms.author: honc
 ms.service: service-connector
 ms.custom: devx-track-python
 ms.topic: tutorial
-ms.date: 04/30/2026
+ms.date: 05/04/2026
 #customer intent: As a Python developer who uses Azure Functions, I want to learn how to use Service Connector to connect my functions to other Azure services so I can easily bind the services to my function apps.
 ---
 # Tutorial: Configure a Python function with Azure Table Storage output
 
-In this tutorial, you configure a Python function to use Azure Table Storage as an output binding. You then deploy the function to Azure Functions and use Service Connector to connect the Azure Functions app with the Table Storage.
+In this tutorial, you configure a Python function to use Azure Table Storage as an output binding. You then deploy the function to Azure Functions and use Service Connector to connect the Azure Functions app with Table Storage.
 
 You use Visual Studio Code to complete the following tasks:
 
 > [!div class="checklist"]
 > * Create a Python function project.
-> * Add an Azure Storage Table output function binding.
+> * Add a Table Storage output function binding.
 > * Run the function locally.
 > * Deploy the function to Azure.
-> * Create a connection between the Azure Functions app and Storage Table using Service Connector.
+> * Create a connection between the Azure Functions app and Table Storage using Service Connector.
 
-The Service Connector source service is Azure Functions and the target service is Azure Storage Table. The function binding uses an HTTP trigger with the storage table as output. The local and cloud authentication type is connection string.
-
->[!IMPORTANT]
->The connection string authentication flow requires a high degree of trust in the application, and carries risks not present in other flows. You should use this flow only when more secure flows, such as managed identities, aren't viable.
+The Service Connector source service is Azure Functions and the target service is Azure Table Storage. The function binding uses an HTTP trigger with the storage table as output. The local and cloud authentication type is connection string.
 
 ## Prerequisites
 
@@ -48,13 +45,13 @@ In Visual Studio Code, create a Python function project with an HTTP trigger.
 1. For **Select the folder that will contain your function project**, select **Browse**, and either create a new folder or choose an empty folder for the project workspace. Don't choose a project folder that's already part of a workspace.
 1. For **Select a project type**, select **Python**.
 1. For **Select a Python programming model**, select **Model V1**.
-1. For **Select a Python interpreter to create a virtual environment**, select **Manually enter Python interpreter or full path** and enter the full path to your *python.exe* executable.
+1. For **Select a Python interpreter to create a virtual environment**, select **Manually enter Python interpreter or full path** and enter the full path to your Python executable.
 1. For **Select a template for your project's first function**, select **HTTP trigger**.
 1. For **Provide a function name**, enter *TableStorageOutputFunc*.
-1. For **Authorization level**, enter **Anonymous**.
+1. For **Authorization level**, select **Anonymous**.
 1. For **Select how you would like to open your project**, select **Open in current window**.
 
-For more information, see [Create and deploy function code to Azure using Visual Studio Code](/azure/azure-functions/how-to-create-function-vs-code?pivot=programming-language-python?pivots=python-mode-configuration).
+For more information, see [Create and deploy function code to Azure using Visual Studio Code](/azure/azure-functions/how-to-create-function-vs-code?pivots=programming-language-python).
 
 ## Add a storage table output binding
 
@@ -76,11 +73,11 @@ The following procedure edits the *function.json* and *local.settings.json* file
 
   ```json
       {
-      "type": "table",
-      "direction": "out",
-      "name": "outMessage",
-      "tableName": "testTable",
-      "connection": "<your-storage-account-name>_STORAGE"
+        "type": "table",
+        "direction": "out",
+        "name": "outMessage",
+        "tableName": "testtable",
+        "connection": "<your-storage-account-name>_STORAGE"
       }
   ```
 
@@ -111,9 +108,9 @@ def main(req: func.HttpRequest, outMessage: func.Out[str]) -> func.HttpResponse:
 
 ## Run the function locally
 
-To run the function locally, press **F5**. If prompted to connect to a storage account, select an Azure storage account. This value is used for the Azure Functions runtime and can be, but doesn't have to be the same storage account you use for the function output.
+To run the function locally, press **F5**. If prompted to connect to a storage account, select an Azure Storage account. This value is used for the Azure Functions runtime and can be, but doesn't have to be the same storage account you use for the function output.
 
-While the function is running, verify that it can write to your Azure Storage table by right-clicking the **TableStorageOutputFunc** function in the **Workspace** view of the Activity bar and selecting **Execute Function Now**. Check the function response to make sure it contains a `rowKey` value that was written to the table.
+While the function is running, verify that it can write to your Table Storage table by right-clicking the **TableStorageOutputFunc** function in the **Workspace** view of the Activity bar and selecting **Execute Function Now**. Check the function response to make sure it contains a `rowKey` value that was written to the table.
 
 ## Deploy your function to Azure
 
@@ -133,11 +130,11 @@ Create an Azure Functions app and deploy your function to Azure.
 
 ## Create a connection using Service Connector
 
-Once the cloud Functions app is created, you can use Service Connector to connect the app to your Azure Storage table, so your app can easily write output to your cloud storage account. The following command creates a Service Connector resource that configures the `AZURE_STORAGETABLE_CONNECTIONSTRING` variable in the function's App Settings. 
+After you create the Functions app, you can use Service Connector to connect the app to your Table Storage table, so your app can easily write output to your storage account. The following command creates a Service Connector resource that configures the `AZURE_STORAGETABLE_CONNECTIONSTRING` variable in the function's App Settings. 
 
-The function binding consumes this app setting to connect to the storage so the function can write to the storage table. For more information, see [How Service Connector helps Azure Functions connect to services](how-to-use-service-connector-in-function.md).
+The function binding consumes this app setting to connect to the storage account so the function can write to the storage table. For more information, see [How Service Connector helps Azure Functions connect to services](how-to-use-service-connector-in-function.md).
 
-To create the connection, you can run the following Azure CLI command in Visual Studio, or use [Azure Cloud Shell](https://shell.azure.com/) or [local Azure CLI](/cli/azure/install-azure-cli). Replace the placeholder values as follows:
+To create the connection, you can run the following Azure CLI command in Visual Studio Code, or use [Azure Cloud Shell](https://shell.azure.com/) or [local Azure CLI](/cli/azure/install-azure-cli). Replace the placeholder values as follows:
 
 - `<function-resource-id>`:<br>`/subscriptions/<your-subscription>/resourceGroups/<function-resource-group>/providers/Microsoft.Web/sites/<function-name>`
 
@@ -149,15 +146,15 @@ az functionapp connection create storage-table --source-id "<function-resource-i
 
 ## Troubleshoot
 
-If you get errors related to the storage host, such as `No such host is known (<account-name>.table.core.windows.net:443)`, make sure the connection string used to connect to Azure Storage contains the table endpoint. If not, go to the Azure Storage page, copy the connection string from **Access keys** under **Security + networking**, and replace the value.
+If you get errors related to the storage host, such as `No such host is known (<account-name>.table.core.windows.net:443)`, make sure the connection string used to connect to Table Storage contains the table endpoint. If not, go to the Azure Storage page, copy the connection string from **Access keys** under **Security + networking**, and replace the value.
 
-If this error occurs when you run locally, check the *local.settings.json* file. If the error occurs when you deploy your function to the cloud, check the cloud function's App Settings.
+If this error occurs when you run locally, check the *local.settings.json* file. If the error occurs when you deploy your function to Azure, check the Functions app's App Settings.
 
 ## Clean up resources
 
 If you no longer want the Azure resources you created for this tutorial, you can delete them. 
 
-- In the Azure portal, open the Function App or Storage account resource and select **Delete** from the top menu bar. Enter the resource name and select **Delete**.
+- In the Azure portal, open the Functions app or Storage account resource and select **Delete** from the top menu bar. Enter the resource name and select **Delete**.
 - In Azure CLI, run one or both of the following commands, replacing the placeholders with your own information.
 
   ```azurecli
