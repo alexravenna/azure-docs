@@ -158,7 +158,7 @@ Select **Create** to create the private endpoint.
 
 ## Private endpoint DNS configuration
 
-If you integrate your private endpoint with a private DNS zone during the creation of the private endpoint, Azure automatically creates the necessary DNS A records in the private DNS zone so that the private endpoint can resolve the service IP addresses correctly. If you don't integrate with a private DNS zone, see [manual DNS configuration](#manual-dns-configuration).
+If you integrate your private endpoint with  private DNS zones during the creation of the private endpoint, Azure automatically creates Azure Private DNS zones and the necessary DNS A records in those zones so that the endpoint can resolve the service IP addresses correctly. If you don't integrate with private DNS zones during the creation of the private endpoint, see [manual DNS configuration](#manual-dns-configuration).
 
 After the deployment finishes, select the private endpoint resource in the resource group. Open **Settings** > **DNS configuration**. You see the IP address assignments for each service connected to the private endpoint and the private DNS zones that Azure automatically created and configured for the private endpoint.
 
