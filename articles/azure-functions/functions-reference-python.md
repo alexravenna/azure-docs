@@ -229,7 +229,9 @@ app = func.FunctionApp()
 
 @app.route(route="products/{product_id}", methods=["GET"])
 def get_product(req: func.HttpRequest) -> func.HttpResponse:
-    product_id = req.route_params.get("product_id", "")
+    product_id = req.route_params.get("product_id")
+    if not product_id:
+        return func.HttpResponse("Missing route parameter: product_id", status_code=400)
     return func.HttpResponse(f"Product: {product_id}")
 ```
 
