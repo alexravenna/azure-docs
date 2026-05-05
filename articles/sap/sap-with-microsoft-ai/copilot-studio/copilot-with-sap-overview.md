@@ -7,7 +7,7 @@ ms.subservice: center-sap-solutions
 ms.topic: overview
 ms.custom: microsoft-ai
 ms.date: 05/03/2026
-ms.author: hobru
+ms.author: hobruche
 ---
 
 # Copilots with SAP
@@ -24,7 +24,7 @@ Developing Copilot Agents with SAP data depends very much on the infrastructure,
 
 ## Building an Agent
 > [!Note]
-> This section is from  https://learn.microsoft.com/training/modules/ai-agent-fundamentals/3-agent-development
+> This section is from [Options for agent development](/training/modules/ai-agent-fundamentals/3-agent-development)
 
 ### Choosing an agent development solution covers multiple facets. 
 
@@ -101,7 +101,7 @@ Microsoft 365 Agents Toolkit is a suite of tools for building enterprise-ready a
 
 Microsoft 365 Agents Toolkit is an evolution of Teams Toolkit.
 
-https://learn.microsoft.com/microsoft-365/developer/overview-m365-agents-toolkit
+[Microsoft 365 Agents Toolkit](/microsoft-365/developer/overview-m365-agents-toolkit)
 Seamless integration with Microsoft 365 Agents SDK to build self-hosted agents.
 
 
@@ -154,17 +154,17 @@ For pro-code integrations via Azure AI Foundry or the Agent Toolkit, HTTP(S) cal
 
 
 ### BAPI / RFC
-Copilot Studio already provides a well-proven [SAP ERP Connector](https://learn.microsoft.com/power-platform/sap/roles-guidance/power-platform-app-maker#using-sap-rfcs-and-bapis) (for BAPI and RFCs) that allows users to connect to older systems. The support is done using the on-premises Data Gateway together with the [SAP .NET Connector](https://support.sap.com/en/product/connectors/msnet.html) which has to be downloaded with a so called S-User.  
+Copilot Studio already provides a well-proven [SAP ERP Connector](/power-platform/sap/roles-guidance/power-platform-app-maker#using-sap-rfcs-and-bapis) (for BAPI and RFCs) that allows users to connect to older systems. The support is done using the on-premises Data Gateway together with the [SAP .NET Connector](https://support.sap.com/en/product/connectors/msnet.html) which has to be downloaded with a so called S-User.  
 
-The [SAP ERP Connector](https://learn.microsoft.com/power-platform/sap/roles-guidance/power-platform-app-maker#using-sap-rfcs-and-bapis) in Copilot Studio also supports single sign-on / Principal Propagation via Kerberos and X.509 certificates. 
+The [SAP ERP Connector](/power-platform/sap/roles-guidance/power-platform-app-maker#using-sap-rfcs-and-bapis) in Copilot Studio also supports single sign-on / Principal Propagation via Kerberos and X.509 certificates. 
 
 ### RPA with SAP GUI in Power Automate Desktop
-You can use Power Automate Desktop to build from simple to highly sophisticated end-to-end automation. Check out https://learn.microsoft.com/power-automate/guidance/rpa-sap-playbook/action-based-sap-gui-automation-manually-overview for more details.
+You can use Power Automate Desktop to build from simple to highly sophisticated end-to-end automation. Check out [Use low-code RPA with SAP GUI in Power Automate Desktop](/power-automate/guidance/rpa-sap-playbook/action-based-sap-gui-automation-manually-overview) for more details.
 
 ### MCP
 MCP, the [Model Context Protocol](https://github.com/modelcontextprotocol), is an open protocol that enables seamless integration between LLM applications, like Copilot, and external data sources and tools. In contrast to the simple API based integration mentioned above, an MCP based integration enables the Copilot to identify and create the required payload to retrieve data from the SAP system in a dynamic and efficient way. 
 
-Hundreds of open source MCP servers are already available (the [Azure MCP Registry](https://mcp.azure.com/) not only provides a list of first curated MCP servers, but also offers customers a possibility to create their own in-house MCP servers), and tools like [Azure API Management](https://learn.microsoft.com/azure/api-management/export-rest-mcp-server) enable you to create new MCP servers out of existing APIs. 
+Hundreds of open source MCP servers are already available (the [Azure MCP Registry](https://mcp.azure.com/) not only provides a list of first curated MCP servers, but also offers customers a possibility to create their own in-house MCP servers), and tools like [Azure API Management](/azure/api-management/export-rest-mcp-server) enable you to create new MCP servers out of existing APIs. 
 
 
 ### Integration & Connectivity Infrastructure
@@ -223,4 +223,3 @@ The following list provides an overview of reference architectures. There isn't 
 * [Leveraging SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)](architecture-btp-apim.md)
 * [Leveraging on-premises data gateway with access to BAPI / RFCs and OData Services](architecture-opdg.md)
 * [Leveraging Azure API Management and vnet Peering (for example, SAP S/4HANA Private Cloud or Native)](architecture-apim-vnet.md)
-* Leveraging Azure Logic Apps for additional configuration (coming soon)
