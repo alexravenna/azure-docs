@@ -6,7 +6,7 @@ author: dlepow
 
 ms.service: azure-api-management
 ms.topic: reference
-ms.date: 07/23/2024
+ms.date: 05/05/2026
 ms.author: danlep
 ---
 
@@ -43,6 +43,12 @@ Both system-assigned identity and any of the multiple user-assigned identities c
 - [**Policy sections:**](./api-management-howto-policies.md#understanding-policy-configuration) inbound
 - [**Policy scopes:**](./api-management-howto-policies.md#scopes) global, product, API, operation
 - [**Gateways:**](api-management-gateways-overview.md) classic, v2, consumption, self-hosted
+
+### Usage notes
+
+- If this policy is defined at the global scope, the token obtained will be available in the policy execution context for all APIs, including those in workspaces. If the token should only be available to specific APIs, consider applying the policy at a narrower scope (for example, product or API level) rather than the global policy.
+
+- Token forwarding is the customer's responsibility. When evaluating this policy, API Management obtains a token from Microsoft Entra ID and forwards it to the backend as-is in the `Authorization` header. API Management doesn't validate which backend the token is sent to. It is the customer's responsibility to ensure that tokens are only forwarded to intended and trusted backend services. Configure [backend entities](backends.md) and other policies carefully to prevent tokens from being sent to unintended destinations.
 
 ## Examples
 
