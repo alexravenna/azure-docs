@@ -223,11 +223,11 @@ az identity create \
 
 #### Assign the Key Vault Crypto Service Encryption User role
 
-You can assign the **Key Vault Crypto Service Encryption User** role by using the Azure portal, PowerShell, or Azure CLI.
+Assign the **Key Vault Crypto Service Encryption User** role to the user-assigned managed identity you created by using the Azure portal, PowerShell, or Azure CLI.
 
 ##### [Azure portal](#tab/portal)
 
-To assign the **Key Vault Crypto Service Encryption User** role by using the Azure portal, follow these steps:
+To assign the **Key Vault Crypto Service Encryption User** role to the user-assigned managed identity by using the Azure portal, follow these steps:
 
 1. Go to your Key Vault in the Azure portal.
 1. From the service menu, select **Access control (IAM)**.
@@ -235,12 +235,13 @@ To assign the **Key Vault Crypto Service Encryption User** role by using the Azu
 1. Search for and select **Key Vault Crypto Service Encryption User**, and then select **Next**.
 1. Under **Assign access to**, select **Managed identity**.
 1. Under **Members**, choose **+Select members**.
-1. Search for and select the user-assigned managed identity for your storage account, and then choose **Select**.
+1. The **Select managed identities** window opens. Under **Managed identity**, select **User-assigned managed identity**.
+1. Select the user-assigned managed identity that you created, and then choose **Select**.
 1. Select **Review + assign**, and then **Review + assign** again.
 
 ##### [PowerShell](#tab/powershell)
 
-To assign the **Key Vault Crypto Service Encryption User** role by using Azure PowerShell, run the following cmdlet. Replace `<resource-group>`, `<identity-name>`, and `<key-vault-name>` with your own values.
+To assign the **Key Vault Crypto Service Encryption User** role to the user-assigned managed identity by using Azure PowerShell, run the following cmdlet. Replace `<resource-group>`, `<identity-name>`, and `<key-vault-name>` with your own values.
 
 ```azurepowershell
 $identity = Get-AzUserAssignedIdentity `
@@ -257,7 +258,7 @@ New-AzRoleAssignment `
 
 ##### [Azure CLI](#tab/cli)
 
-To assign the **Key Vault Crypto Service Encryption User** role by using Azure CLI, run the following commands. Replace `<resource-group>`, `<identity-name>`, and `<key-vault-name>` with your own values.
+To assign the **Key Vault Crypto Service Encryption User** role to the user-assigned managed identity by using Azure CLI, run the following commands. Replace `<resource-group>`, `<identity-name>`, and `<key-vault-name>` with your own values.
 
 ```azurecli
 # Get the principal ID of the managed identity
