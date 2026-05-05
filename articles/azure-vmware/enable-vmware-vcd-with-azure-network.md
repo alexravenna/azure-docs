@@ -4,7 +4,7 @@ description: This article explains how to enable network for VMware Cloud direct
 ms.topic: how-to
 author: rdutt
 ms.service: azure-vmware
-ms.date: 4/24/2025
+ms.date: 5/05/2026
 # Customer intent: "As a network administrator managing VMware Cloud Director tenants on Azure VMware Solution, I want to establish secure internet and Azure service connectivity, so that I can ensure efficient and scalable operations for our virtual data centers."
 ---
 
