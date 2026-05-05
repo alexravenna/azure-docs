@@ -91,3 +91,8 @@ To roll back the policy assignment, delete the policy assignment. For a more gra
 
 ## Is any action needed after the tag expires on May 31, 2027?
 No action is required after May 31, 2027. However, we recommend removing the policy assignment from all associated subscriptions.
+
+## Related content
+- [Accelerated Networking Overview](https://aka.ms/accelnet)
+- [How Accelerated Networking works in Linux and FreeBSD VMs](/azure/virtual-network/accelerated-networking-how-it-works)
+- [Microsoft Azure Network Adapter (MANA) support for existing VM Sizes](./accelerated-networking-mana-existing-sizes.md)
