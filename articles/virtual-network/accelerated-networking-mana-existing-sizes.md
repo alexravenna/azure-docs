@@ -22,7 +22,7 @@ Newer VM series are built and optimized with MANA in mind and are designed to ta
 However, you can continue running workloads on your existing VM series. These VM series remain supported and can run on both Mellanox (previous generation) and MANA‑enabled hardware until the series is retired. While most workloads are expected to transition to MANA-capable hardware without issue, you should ensure that your workload is compatible with MANA for optimal networking performance.
 
 ## Applicable VM series
-The following VM series may land on MANA‑capable hardware after a new deployment, stop‑deallocate and start operation or maintenance event.
+The VM series listed below are eligible to land on MANA-capable hardware and may require additional validation to fully benefit from networking improvements.
 | Family | Series |
 | --- | --- |
 | A-family | Av2* |
@@ -42,14 +42,12 @@ Use the following steps to verify that your workload is compatible with the Micr
 > [!NOTE]
 > If Accelerated Networking is not enabled on your VM, no action is required. While your VM may still be placed on MANA-capable hardware, your workload will continue to run as expected without changes.
 
-1.  **Check operating system support**<br>Ensure your VM is running an operating system that supports MANA.
+1.  **Check OS support**<br>Ensure your VM is running an operating system that supports MANA. If your OS supports MANA, no further action is needed.
     -  Linux: See [Linux VMs with MANA](./accelerated-networking-mana-linux.md)
     -  Windows: See [Windows VMs with MANA](./accelerated-networking-mana-windows.md)
-2.  **Resize Intel-based workloads if possible**<br>Intel-based workloads are recommended to resize to Intel v6 or later VM series, which are compatible with MANA regardless of the operating system.
-3. **Update operating system if resizing is not possible**<br>
-If you are running on Arm or cannot resize your VM, ensure your operating system is updated to a version that supports MANA.
-> [!NOTE]
-> When configuring your VM to support MANA, ensure that the operating system supports NVIDIA `ConnectX‑3`, `ConnectX‑4 Lx`, `ConnectX‑5`, and `MANA`.
+2.  **Resize Intel-based workloads if possible**<br>Intel-based workloads are recommended to resize to Intel v6 or later VM series, which support MANA regardless of the operating system.
+3. **Update operating system to support MANA if resizing is not possible**<br>
+If you are running Arm-based workloads and/or cannot resize your VM, update your operating system to support `MANA`. MANA-eligible VM series can run on both hardware with Mellanox (`ConnectX-3`, `ConnectX-4 Lx`, `ConnectX-5`) and MANA NICs, so existing `mlx4` and `mlx5` support still needs to be present. 
     - Linux: [Use a supported kernel version](./accelerated-networking-mana-linux.md)
     - Windows: [Install the required MANA drivers](./accelerated-networking-mana-windows.md)
 4. **Validate workload behavior**<br>After deployment or resizing, verify that your workload performs as expected.
@@ -74,7 +72,7 @@ To learn more about MANA, visit the [Microsoft Azure Network Adapter (MANA) Over
 
 ### Will my existing VM be deployed on MANA hardware?
 Both existing and newly created VMs in the supported series may be placed on MANA-capable hardware.
-- Existing VMs can land on MANA-capable hardware after a stop-deallocate and start operation or a redeploy.
+- Existing VMs can land on MANA-capable hardware after a "stop-deallocate and start" operation or standard Azure maintenance event.
 - New VMs created in the supported VM series are also eligible to be deployed on MANA capable hardware.
 
 ### How can I check if my VM is deployed on MANA capable hardware? 
