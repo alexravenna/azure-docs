@@ -45,7 +45,7 @@ Export history supports two modes:
 
 - [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0) or later
 - A [Durable Task Scheduler](durable-task-scheduler.md) task hub (or the local emulator)
-- An Azure Storage account (or [Azurite](https://learn.microsoft.com/azure/storage/common/storage-use-azurite) for local development)
+- An Azure Storage account (or [Azurite](../../storage/common/storage-use-azurite.md) for local development)
 - The following NuGet packages:
   - `Microsoft.DurableTask.ExportHistory`
   - `Microsoft.DurableTask.Client.AzureManaged`

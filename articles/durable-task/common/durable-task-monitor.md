@@ -52,10 +52,15 @@ The Durable Task SDKs example demonstrates job status monitoring with configurab
 * [Complete the quickstart article](../../azure-functions/durable-functions/quickstart-python-vscode.md)
 * [Clone or download the samples project from GitHub](https://github.com/Azure/azure-functions-durable-python/tree/main/samples/)
 
----
+# [PowerShell](#tab/powershell)
 
-> [!NOTE]
-> PowerShell and Java samples for Durable Functions are not yet available. See the Durable Task SDKs pivot for Java samples.
+PowerShell samples for Durable Functions aren't yet available for this scenario.
+
+# [Java](#tab/java)
+
+Java samples for Durable Functions aren't yet available for this scenario. See the Durable Task SDKs pivot.
+
+---
 
 ::: zone-end
 
@@ -75,6 +80,10 @@ The Durable Task SDKs example demonstrates job status monitoring with configurab
 
 * Python 3.9 or later
 * Access to Azure Durable Task Scheduler or the local emulator
+
+# [PowerShell](#tab/powershell)
+
+This sample is shown for .NET, JavaScript, Java, and Python.
 
 # [Java](#tab/java)
 
@@ -100,6 +109,14 @@ This sample monitors a location's current weather conditions and alerts a user b
 # [Python](#tab/python)
 
 This sample monitors the count of issues in a GitHub repo and alerts the user if there are more than 3 open issues. You could use a regular timer-triggered function to request the opened issue counts at regular intervals. However, one problem with this approach is **lifetime management**. If only one alert should be sent, the monitor needs to disable itself after 3 or more issues are detected.
+
+# [PowerShell](#tab/powershell)
+
+PowerShell samples for Durable Functions aren't yet available for this scenario.
+
+# [Java](#tab/java)
+
+Java samples for Durable Functions aren't yet available for this scenario. See the Durable Task SDKs pivot.
 
 ---
 
@@ -165,6 +182,14 @@ The C#/JavaScript samples call a weather API to check current conditions. You ne
 ### Configuring Twilio integration
 
 [!INCLUDE [functions-twilio-integration](../../../includes/functions-twilio-integration.md)]
+
+# [PowerShell](#tab/powershell)
+
+PowerShell samples for Durable Functions aren't yet available for this scenario.
+
+# [Java](#tab/java)
+
+Java samples for Durable Functions aren't yet available for this scenario. See the Durable Task SDKs pivot.
 
 ---
 
