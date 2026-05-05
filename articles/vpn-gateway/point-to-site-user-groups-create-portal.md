@@ -6,7 +6,7 @@ author: cherylmc
 ms.author: cherylmc
 ms.service: azure-vpn-gateway
 ms.topic: how-to
-ms.date: 04/29/2026
+ms.date: 05/05/2026
 ---
 
 # Assign IP addresses from defined pools to P2S VPN users - Azure portal (Preview)
@@ -60,7 +60,7 @@ You can create multiple user groups, each with different authentication types. T
 
    * To create and manage Microsoft Entra groups, see [Manage Microsoft Entra groups and group membership](../active-directory/fundamentals/how-to-manage-groups.md).
 
-   :::image type="content" source="./media/point-to-site-user-groups-create/groups.png" alt-text="Diagram of Microsoft Entra groups and Object IDs" lightbox="./media/point-to-site-user-groups-create/groups.png":::
+   :::image type="content" source="./media/point-to-site-user-groups-create/groups.png" alt-text="Diagram of Microsoft Entra groups and Object IDs." lightbox="./media/point-to-site-user-groups-create/groups.png":::
 
    * The Microsoft Entra user group **object ID** (and not the group name) needs to be specified as part of the point-to-site configuration. For this example, we'll use:
 
@@ -112,7 +112,7 @@ The following steps use these authentication options:
 
 1. Next, go to the **Virtual network gateway -> Point-to-site configuration** page **Root certificate** section. This section is only visible if you selected **Azure certificate** for the authentication type. Complete the values as shown in the following example.
 
-   :::image type="content" source="media/point-to-site-user-groups-create-portal/public-certificate-data.png" alt-text="Azure portal showing address pool and authentication options" lightbox="media/point-to-site-user-groups-create-portal/public-certificate-data.png":::
+   :::image type="content" source="media/point-to-site-user-groups-create-portal/public-certificate-data.png" alt-text="Azure portal showing address pool and authentication options." lightbox="media/point-to-site-user-groups-create-portal/public-certificate-data.png":::
 
    * For the Root certificates **Name** field, enter a name for the root certificate. This name is used to identify the certificate in the portal and doesn't need to match any value in the certificate itself.
    * For **Public certificate data** field, paste the data you copied from the .cer file in the previous step.
@@ -151,8 +151,8 @@ Putting the details together, the policy groups and members are configured with 
 |-------------|---------------------------- |-----------------------|
 | member1     | Certificate: Group ID       | marketing.contoso.com |
 | member2     | Certificate: Group ID       | sale.contoso.com      |
-| member3     | AAD: Group ID               | {ObjectId1}           |
-| member4     | AAD: Group ID               | {ObjectId2}           |
+| member3     | Azure AD: Group ID          | {ObjectId1}           |
+| member4     | Azure AD: Group ID          | {ObjectId2}           |
 
 The breakdown values of the policy groups and members are as follows:
 
