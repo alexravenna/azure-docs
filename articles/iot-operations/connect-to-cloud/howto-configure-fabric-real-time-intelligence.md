@@ -372,9 +372,7 @@ In this example, assume a configuration file with the following content:
           "method": "UserAssignedManagedIdentity",
           "userAssignedManagedIdentitySettings": {
             "clientId": "<ID>",
-            "tenantId": "<ID>",
-            // Optional
-            "scope": "https://<Scope_Url>"
+            "tenantId": "<ID>"
           }
         },
         "tls": {
@@ -383,6 +381,8 @@ In this example, assume a configuration file with the following content:
     }
 }
 ```
+
+The `scope` property is optional. If needed, set it to the audience for the Kafka broker, such as `https://<BootstrapServerAddress>`.
 
 # [Bicep](#tab/bicep)
 
