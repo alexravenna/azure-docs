@@ -1,13 +1,13 @@
 ---
 title: About SAP with Microsoft AI
 description: Learn what Microsoft AI with SAP is, why organizations use it, and how to get started with Joule, Copilot Studio, Azure AI Foundry.
-author: hobruche
+author: hobru
 ms.service: sap-on-azure
 ms.subservice: center-sap-solutions
 ms.topic: overview
 ms.custom: microsoft-ai
 ms.date: 05/03/2026
-ms.author: hobruche
+ms.author: hobru
 ---
 
 # About SAP with Microsoft AI
@@ -56,26 +56,25 @@ Microsoft offers three complementary layers for bringing AI to SAP environments:
 
 The managed integration between **SAP Joule** and **Microsoft 365 Copilot** provides a prebuilt, bi-directional connection. Users in Microsoft 365 Copilot or Teams can ask SAP-related questions, and the request is routed to SAP Joule for processing — no custom development required.
 
-→ [Learn more about Joule & Copilot](./Joule/Joule-Copilot-Overview.md)
+→ [Learn more about Joule & Copilot](./joule/joule-copilot-overview.md)
 
 ### 2. Extend with Custom Agents: Copilot Studio
 
 **Copilot Studio** enables you to build company-specific agents that access SAP data through connectors, APIs, or custom plugins. These agents can be deployed in Microsoft Teams, Microsoft 365 Copilot, websites, or other channels. Options range from low-code (Agent Builder) to pro-code (Microsoft 365 Agents SDK).
 
-→ [Learn more about Copilot Studio & SAP](./CopilotStudio/Copilot-with-SAP-Overview.md)
+→ [Learn more about Copilot Studio & SAP](./copilot-studio/copilot-with-sap-overview.md)
 
 ### 3. Build Enterprise AI Solutions: Azure AI Foundry
 
 **Azure AI Foundry** is the full AI platform for advanced scenarios — custom models, multi-agent orchestration, MCP tools, and deep integration with SAP APIs (OData, RFC, BAPIs). Build sophisticated agents that can reason, plan, and execute complex multi-step workflows.
 
-→ [Learn more about Foundry AI & SAP](./Foundry/FoundryAI-SAP.md)
+→ [Learn more about Foundry AI & SAP](./foundry/foundry-ai-sap.md)
 
 
 ## How These Pieces Fit Together
 
 ![SAP with Microsoft AI - How the pieces fit together](about-sap-with-microsoft-ai.png)
 
-> 📥 [Download editable draw.io diagram](about-sap-with-microsoft-ai.drawio)
 
 ## How to Get Started
 
@@ -85,7 +84,7 @@ The managed integration between **SAP Joule** and **Microsoft 365 Copilot** prov
 
 If your organization has Microsoft 365 Copilot licenses and SAP Joule enabled, the managed integration gets you started without custom development. Users can ask SAP questions directly in Teams or Copilot Chat.
 
-📖 [Joule & Copilot setup guide](./Joule/Joule-Copilot-Overview.md#setup--configuration)
+📖 [Joule & Copilot setup guide](./joule/joule-copilot-overview.md#setup--configuration)
 
 ### Starting Point 2: "I want to build a custom agent using low-code for a specific process that needs information from an SAP system"
 
@@ -93,7 +92,7 @@ If your organization has Microsoft 365 Copilot licenses and SAP Joule enabled, t
 
 Use Copilot Studio to build agents tailored to your business processes. Connect to SAP via OData connectors, custom connectors, or Power Platform connectors. Deploy to Teams, Microsoft 365 Copilot, or websites.
 
-📖 [Copilot Studio & SAP architecture options](./CopilotStudio/Copilot-with-SAP-Overview.md)
+📖 [Copilot Studio & SAP architecture options](./copilot-studio/copilot-with-sap-overview.md)
 
 ### Starting Point 3: "I want advanced AI agents with multi-step workflows that include SAP systems"
 
@@ -101,7 +100,7 @@ Use Copilot Studio to build agents tailored to your business processes. Connect 
 
 For complex scenarios involving multi-agent orchestration, custom models, or deep SAP integration (BAPIs, RFCs, multi-step transactions), Azure AI Foundry provides the full platform.
 
-📖 [Foundry AI & SAP overview](./Foundry/FoundryAI-SAP.md)
+📖 [Foundry AI & SAP overview](./foundry/foundry-ai-sap.md)
 
 
 
@@ -109,9 +108,9 @@ For complex scenarios involving multi-agent orchestration, custom models, or dee
 
 | Question | If Yes → |
 | --- | --- |
-| Do you have Microsoft 365 Copilot + SAP Joule already? | Start with [Joule ↔ Copilot](./Joule/Joule-Copilot-Overview.md) |
-| Do you need a custom agent for a specific process? | Start with [Copilot Studio](./CopilotStudio/Copilot-with-SAP-Overview.md) |
-| Do you need multi-agent orchestration or complex workflows? | Start with [Azure AI Foundry](./Foundry/FoundryAI-SAP.md) |
+| Do you have Microsoft 365 Copilot + SAP Joule already? | Start with [Joule ↔ Copilot](./joule/joule-copilot-overview.md) |
+| Do you need a custom agent for a specific process? | Start with [Copilot Studio](./copilot-studio/copilot-with-sap-overview.md) |
+| Do you need multi-agent orchestration or complex workflows? | Start with [Azure AI Foundry](./foundry/foundry-ai-sap.md) |
 | Do you want all of these? | Combine them — they work together |
 
 ## Key Principles

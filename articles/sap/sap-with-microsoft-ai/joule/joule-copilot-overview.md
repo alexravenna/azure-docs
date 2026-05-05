@@ -1,13 +1,13 @@
 ---
 title: Joule & Microsoft 365 Copilot Integration
 description: How SAP Joule and Microsoft 365 Copilot integrate bi-directionally, including setup, architecture, and troubleshooting.
-author: hobruche
+author: hobru
 ms.service: sap-on-azure
 ms.subservice: center-sap-solutions
 ms.topic: overview
 ms.custom: microsoft-ai
 ms.date: 05/03/2026
-ms.author: hobruche
+ms.author: hobru
 ---
 
 # Joule & Microsoft 365 Copilot Integration
@@ -15,7 +15,7 @@ ms.author: hobruche
 SAP Joule and Microsoft 365 Copilot provide a bi-directional integration that allows end-users to access SAP capabilities directly from within Microsoft 365 Copilot and Microsoft Teams — without the need to build a custom agent. This page covers what the integration does, how to set it up, and how to troubleshoot it.
 
 > [!Note]
-> This integration is a managed SAP & Microsoft feature. It is different from building custom Copilot agents with Copilot Studio or Azure AI Foundry that access SAP data. For custom agent scenarios, see the [Copilots with SAP](../CopilotStudio/Copilot-with-SAP-Overview.md) documentation.
+> This integration is a managed SAP & Microsoft feature. It is different from building custom Copilot agents with Copilot Studio or Azure AI Foundry that access SAP data. For custom agent scenarios, see the [Copilots with SAP](../copilot-studio/copilot-with-sap-overview.md) documentation.
 
 ## What Is the Joule ↔ Copilot Integration?
 
@@ -64,9 +64,8 @@ Before setting up the integration, ensure you have:
 
 The integration follows a trust-based architecture:
 
-![Joule and Copilot Architecture](Joule-Copilot-Architecture.png)
+![Joule and Copilot Architecture](joule-copilot-architecture.png)
 
-> 📥 [Download editable draw.io diagram](Joule-Copilot-Architecture.drawio)
 
 ### Key Components
 

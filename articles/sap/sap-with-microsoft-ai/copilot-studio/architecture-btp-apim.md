@@ -1,13 +1,13 @@
 ---
 title: Architecture - SAP BTP with API Management and Cloud Connector
 description: Copilot Studio integration with SAP using SAP Business Technology Platform, SAP API Management, and SAP Cloud Connector.
-author: hobruche
+author: hobru
 ms.service: sap-on-azure
 ms.subservice: center-sap-solutions
 ms.topic: overview
 ms.custom: microsoft-ai
 ms.date: 05/03/2026
-ms.author: hobruche
+ms.author: hobru
 ---
 
 # Leveraging SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)
@@ -26,7 +26,7 @@ In most cases the Copilot would call a REST based API (OData, REST, SOAP). This 
 
 SAP BTP then forwards the request via the SAP Cloud Connector to the SAP Backend System. 
 
-![Architecture](./APIM+CloudConnector-BTP+APIM.jpg)
+![Architecture](./apim-cloud-connector-btp-apim.jpg)
 
 (This architecture only depicts one path; You can use multiple variations for the connection)
 
@@ -37,8 +37,8 @@ For this scenario in most cases the SAP Business Technology platform is  in plac
 In Copilot Studio, use the SAP OData Connector or the HTTP Connector to connect to the service exposed on BTP. You can either use the connectors directly from Copilot Studio, or use a Power Automate flow to add extra logic before / after calling the API. 
 Using the SAP OData Connector you can also implement single sign-on from Entra ID to the SAP Business Technology Platform.
 
-* [Get started with the SAP OData Connector](https://learn.microsoft.com/en-us/power-platform/sap/connect/sap-odata-connector)
-* [What is Microsoft Power Platform integration with SAP?](https://learn.microsoft.com/en-us/power-platform/sap/explore/power-platform-and-sap-integration)
+* [Get started with the SAP OData Connector](https://learn.microsoft.com/power-platform/sap/connect/sap-odata-connector)
+* [What is Microsoft Power Platform integration with SAP?](https://learn.microsoft.com/power-platform/sap/explore/power-platform-and-sap-integration)
 * [Power Platform + SAP: Updates via SAP OData services](https://youtu.be/mez5qIZmrfM?si=b22hyxSTlspy-HR_)
 
 ### Authentication
@@ -54,7 +54,6 @@ The easiest way to expose APIs from your SAP backend system, is via the SAP Inte
 
 * [Principal Propagation via Entra Id](https://api.sap.com/policytemplate/Principal_Propagation_via_Entra_ID)
 * [SuccessFactors Principal Propagation via Entra ID](https://api.sap.com/policytemplate/SuccessFactors_Principal_Propagation_via_Entra_Id)
-* [Introducing SAP API Management](https://learning.sap.com/learning-journeys/developing-with-sap-integration-suite/introducing-sap-api-management_dd668e10-08ab-4763-9342-3e6cc7e74c18)
 
 ### Proxy / Connectivity
 When connecting to a public facing SAP System (for example, SAP SuccessFactors, SAP S/4HANA Cloud, Public Edition), the SAP API Management solution can connect directly to the backend system. 
@@ -69,4 +68,3 @@ If no fitting APIs are available, you can create your own services using the RES
 
 * [SAP Business Accelerator Hub](https://api.sap.com/)
 * [ABAP RESTful Application Programming Model - Creating an OData Service](https://help.sap.com/docs/abap-cloud/abap-rap/creating-odata-service)
-* [Managing an SAP Gateway Service](https://learning.sap.com/learning-journeys/building-odata-services-with-sap-gateway/managing-an-sap-gateway-service)
