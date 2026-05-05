@@ -22,7 +22,7 @@ Many customers are running their SAP Systems on Azure, either operating it by th
 In both cases, the fact that the SAP system is running in an Azure virtual network (vnets), enables other Azure services to connect to the SAP system without the need to go over the internet. Different vnets can be connected / peered so that internal IP addresses of the SAP system can be exposed to other Azure services
 
 > [!Note]
-> It is important to point out that the setup also works if you SAP system is not running on Azure. In this case you can still use Azure API Management, but vnet peering is obviously not possible. In case you need to combine this setup with a proxy like the [on-premises data gateway](./architecture-opdg.md)
+> It is important to point out that the setup also works if you SAP system is not running on Azure. In this case you can still use Azure API Management, but vnet peering is obviously not possible. In case you need to combine this setup with a proxy like the [on-premises data gateway](./architecture-on-premises-data-gateway.md)
 
 Some of the Azure services frequently used are Logic Apps and Azure API Management. Especially Azure API Management enables SAP customer not only to expose their APIs in a secure and managed way, but also expose them as MCP servers (currently in preview). In addition, sophisticated authentication flows to enable single sign-on / Principal propagation are also documented and tested with lots of customers. 
 

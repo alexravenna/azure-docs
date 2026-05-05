@@ -29,7 +29,7 @@ This setup can be used if you want to connect to BAPIs/RFC or are also using oth
 
 ## Setup & Configuration
 To enable access to the SAP backend system, the on-premises data gateway has to be installed on a Windows server, which has access to your SAP system. This could be your client on which also the SAP GUI is running (which isn't recommended for a production use) or a dedicated machine that is connected to the SAP system.
-![on-premises data Gateway installed next to the SAP GUI](./opdg-installed.jpg)
+![on-premises data Gateway installed next to the SAP GUI](./on-premises-data-gateway-installed.jpg)
 
 During the installation you have to log in with a user from your Power Platform environment to establish the trust and connection with this environment. Afterwards the gateway and connection status can be seen in your environment. 
 ![Connectivity status of OPDG in Power Platform environment](./registered-gateway.jpg)

@@ -10,9 +10,9 @@ items:
     - name: Leveraging Azure API Management and vnet Peering
       href: copilot-studio/architecture-apim-vnet.md
     - name: Leveraging On-premises data gateway with access to BAPI / RFCs and OData Services
-      href: copilot-studio/architecture-opdg.md
+      href: copilot-studio/architecture-on-premises-data-gateway.md
     - name: Leveraging SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)
-      href: copilot-studio/architecture-btp-apim.md
+      href: copilot-studio/architecture-business-technology-platform-api.md
     - name: Demo scenario (public SAP system)
       href: copilot-studio/architecture-demo.md
   - name: Foundry AI and SAP Overview
