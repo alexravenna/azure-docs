@@ -6,7 +6,7 @@ ms.author: sethm
 ms.service: azure-iot-operations
 ms.subservice: azure-data-flows
 ms.topic: how-to
-ms.date: 06/25/2025
+ms.date: 05/05/2026
 ai-usage: ai-assisted
 ms.custom:
   - sfi-image-nochange
@@ -40,14 +40,14 @@ This method uses the managed identity of the Azure IoT Operations instance to au
 1. The connection details are in the Fabric portal under the **Sources** section of your event stream. 
 1. In the details panel for the custom endpoint, select **Kafka** protocol.
 1. Select the **Entra ID Authentication** section to view the connection details.
-1. Copy the details for the values for the **Bootstrap server**, **Topic name**, and **Connection string-primary key**. You use these values to configure the data flow endpoint.
+1. Copy the details for the values for the **Bootstrap server** and **Topic name**. You use these values to configure the data flow endpoint.
 
     :::image type="content" source="media/howto-configure-fabric-real-time-intelligence/event-stream-kafka-entra-id.png" alt-text="Screenshot in Microsoft Fabric that has the custom endpoint connection details.":::
     
     | Settings              | Description                                                                           |
     |-----------------------|---------------------------------------------------------------------------------------|
     | Bootstrap server      | The bootstrap server address is used for the hostname property in data flow endpoint. |
-    | Topic name            | The event hub name is used as the Kafka topic and is of the the format *es_aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb*. |
+    | Topic name            | The event hub name is used as the Kafka topic and is in the format *es_aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb*. |
 
 
 # [SASL authentication](#tab/sasl)
@@ -62,7 +62,7 @@ This method uses the managed identity of the Azure IoT Operations instance to au
     | Settings              | Description                                                                           |
     |-----------------------|---------------------------------------------------------------------------------------|
     | Bootstrap server      | The bootstrap server address is used for the hostname property in data flow endpoint. |
-    | Topic name            | The event hub name is used as the Kafka topic and is of the the format *es_aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb*. |
+    | Topic name            | The event hub name is used as the Kafka topic and is in the format *es_aaaaaaaa-0000-1111-2222-bbbbbbbbbbbb*. |
     | Connection string-primary key | The connection string with the primary key. |
 
 ---
@@ -95,7 +95,7 @@ Microsoft Fabric Real-Time Intelligence supports Simple Authentication and Secur
 
     Select **Add reference** to create a new or choose an existing Key Vault reference for the username and password references.
 
-    For **Username reference of token secret**, the secret value must be exactly the literal string **$ConnectionString** not an environmentent variable reference.
+    For **Username reference of token secret**, the secret value must be exactly the literal string **$ConnectionString** not an environment variable reference.
 
     :::image type="content" source="media/howto-configure-fabric-real-time-intelligence/username-reference.png" alt-text="Screenshot to create a username reference in Azure Key Vault.":::
 
@@ -216,13 +216,16 @@ The following authentication methods are available for Fabric Real-Time Intellig
 
 ### System-assigned managed identity
 
-Before you configure the data flow endpoint, assign a role to the Azure IoT Operations managed identity that grants permission to connect to the Kafka broker:
+Before you configure the data flow endpoint, give the Azure IoT Operations managed identity access to the Fabric workspace that contains your event stream. Fabric event stream custom endpoints authorize managed identities through Fabric workspace access, not through Azure portal IAM on an Azure resource.
 
 1. In Azure portal, go to your Azure IoT Operations instance and select **Overview**.
 1. Copy the name of the extension listed after **Azure IoT Operations Arc extension**. For example, *azure-iot-operations-xxxx7*.
-1. Go to the cloud resource you need to grant permissions. For example, go to the Event Hubs namespace > **Access control (IAM)** > **Add role assignment**.
-1. On the **Role** tab, select an appropriate role.
-1. On the **Members** tab, for **Assign access to**, select **User, group, or service principal** option, then select **+ Select members** and search for the Azure IoT Operations managed identity. For example, *azure-iot-operations-xxxx7*.
+1. In Microsoft Fabric, go to the workspace that contains your event stream.
+1. Select **Manage access** > **Add people or groups**.
+1. Search for the Azure IoT Operations Arc extension identity that you copied. For example, *azure-iot-operations-xxxx7*.
+1. Assign **Contributor** or higher workspace permission to the identity.
+
+For more information, see [Assign Fabric Workspace Permissions](/fabric/real-time-intelligence/event-streams/connect-using-managed-identity#step-2-assign-fabric-workspace-permissions).
 
 Then, configure the data flow endpoint with system-assigned managed identity settings.
 
@@ -291,11 +294,14 @@ kafkaSettings:
 
 To use user-assigned managed identity for authentication, you must first deploy Azure IoT Operations with secure settings enabled. Then you need to [set up a user-assigned managed identity for cloud connections](../deploy-iot-ops/howto-enable-secure-settings.md#set-up-a-user-assigned-managed-identity-for-cloud-connections). To learn more, see [Enable secure settings in Azure IoT Operations deployment](../deploy-iot-ops/howto-enable-secure-settings.md).
 
-Before you configure the data flow endpoint, assign a role to the user-assigned managed identity that grants permission to connect to the Kafka broker:
+Before you configure the data flow endpoint, give the user-assigned managed identity access to the Fabric workspace that contains your event stream. Fabric event stream custom endpoints authorize managed identities through Fabric workspace access, not through Azure portal IAM on an Azure resource.
 
-1. In Azure portal, go to the cloud resource you need to grant permissions. For example, go to the Event Grid namespace > **Access control (IAM)** > **Add role assignment**.
-1. On the **Role** tab, select an appropriate role.
-1. On the **Members** tab, for **Assign access to**, select **Managed identity** option, then select **+ Select members** and search for your user-assigned managed identity.
+1. In Microsoft Fabric, go to the workspace that contains your event stream.
+1. Select **Manage access** > **Add people or groups**.
+1. Search for your user-assigned managed identity.
+1. Assign **Contributor** or higher workspace permission to the identity.
+
+For more information, see [Assign Fabric Workspace Permissions](/fabric/real-time-intelligence/event-streams/connect-using-managed-identity#step-2-assign-fabric-workspace-permissions).
 
 Then, configure the data flow endpoint with user-assigned managed identity settings.
 
