@@ -67,7 +67,7 @@ You can update skill information at any time:
 
 ## Synchronize skills from a Git repository
 
-To automate skill registration and keep your inventory up to date, you can integrate a Git repository with your API center. For more information, see [Synchronize AI assets from a Git repo](synchronize-assets-git.md).
+To automate skill registration and keep your inventory up to date, you can integrate a Git repository with your API center. For more information, see [Synchronize API assets from a Git repo](synchronize-assets-git.md).
 
 ## Discover skills in the API Center portal
 
@@ -117,7 +117,7 @@ You can then view assessment results for each skill on the skill details page in
 
 ## Related content
 
-* [Synchronize AI assets from a Git repo](synchronize-assets-git.md)
+* [Synchronize API assets from a Git repo](synchronize-assets-git.md)
 * [Register and discover MCP servers in your API inventory](register-discover-mcp-server.md)
 * [Set up your API Center portal](set-up-api-center-portal.md)
 * [Key concepts in Azure API Center](key-concepts.md)

@@ -1,6 +1,6 @@
 ---
-title: Synchronize AI Assets from a Git Repository
-description: Learn how to integrate a Git repository with Azure API Center to automatically synchronize AI assets into your API inventory.
+title: Synchronize API Assets from a Git Repository
+description: Learn how to integrate a Git repository with Azure API Center to automatically synchronize API assets into your API inventory.
 ms.service: azure-api-center
 ms.topic: how-to
 ms.date: 05/05/2026
@@ -12,9 +12,9 @@ ms.update-cycle: 180-days
 ms.custom:
 ---
 
-# Synchronize AI assets from a Git repo
+# Synchronize API assets from a Git repo
 
-This article describes how to integrate a Git repository with Azure API Center to automatically synchronize AI assets—currently [skills](https://agentskills.io/home)—into your API inventory. By connecting a Git repository, you can keep your API center inventory up to date without manually registering or updating each asset.
+This article describes how to integrate a Git repository with Azure API Center to automatically synchronize API assets such as [skills](register-discover-skills.md) into your API inventory. By connecting a Git repository, you can keep your API center inventory up to date without manually registering or updating each asset.
 
 When you integrate a Git repository:
 
