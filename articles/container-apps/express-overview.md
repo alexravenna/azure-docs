@@ -1,18 +1,18 @@
 ---
-title: Azure Container Apps Express Overview
+title: Azure Container Apps Express Overview (preview)
 description: Learn about Azure Container Apps express, a developer-first platform that lets you deploy containerized web apps to Azure with minimal configuration and rapid provisioning.
 ms.topic: overview
-ms.date: 05/04/2026
+ms.date: 05/05/2026
 author: craigshoemaker
 ms.author: cshoe
 ms.service: azure-container-apps
 ---
 
-# Azure Container Apps express overview
+# Azure Container Apps express overview (preview)
 
 Azure Container Apps express provides the fastest way to deploy containerized web applications to Azure. With opinionated defaults and a minimal configuration surface, express is a developer-first and agent-first platform designed to get your web apps running in the cloud as fast as possible.
 
-With express, you can directly create a container app without having to create a environment first. The rapid provisioning and scale-from-zero features make express an ideal host for AI-powered applications and agent backends.
+By using express, you can create a container app directly without having to create an environment first. The rapid provisioning and scale-from-zero features make express an ideal host for AI-powered applications and agent backends.
 
 :::image type="content" source="media/express-overview/azure-container-apps-express-welcome.png" alt-text="Screenshot of the Azure Container Apps express welcome screen.":::
 
@@ -96,76 +96,72 @@ Keep these important points in mind when using express:
 
 The express deployment model supports the following features. This list is updated as Microsoft enables new capabilities.
 
-### Supported features
-
-- Scale to zero
-- Image deployment (anonymous and token-based)
-- Multi replica
-- Environment variables
-- Enable ingress
-- Portal experience
-- Log streaming
-- Region restriction
-- Logs (Log Analytics)
-- Rolling updates (partial support)
-
-### Unsupported features
-
-The following features aren't available in express at launch:
-
-:::row:::
-   :::column:::
-   - Additional ports
-   - App-to-app communication
-   - App-to-app internal FQDN
-   - Aspire
-   - Autoscale (KEDA-based)
-   - Azure file storage
-   - CORS
-   - Custom domain (bring your own certificate)
-   - Custom domain (managed certificate)
-   - Debug console
-   - Deployment labels
-   - Easy Auth
-   - Ephemeral storage
-   - Environment custom domain suffix
-   - Exec access
-   - GPU
-   - Health probes
-   - Init containers
-   - Insecure HTTP ingress
-   - Internal vs. external apps
-   - IP restrictions
-   - Jobs
-   - Language stacks
-   :::column-end:::
-   :::column:::
-   - Logs (Azure Monitor)
-   - Maintenance windows
-   - Managed identity (app runtime)
-   - Managed identity (image pull)
-   - Metrics (Azure Monitor)
-   - Multi revision/traffic splitting
-   - OpenTelemetry
-   - Peer-to-peer encryption
-   - Premium ingress
-   - Private endpoints
-   - Quota management
-   - Resiliency policies
-   - Secrets
-   - Secrets from Key Vault
-   - Session affinity
-   - Sidecar containers
-   - Single revision management
-   - Source-to-cloud deployment
-   - TCP protocol
-   - Virtual network (VNet) integration
-   - Volume mounts
-   - Workload profiles
-   - Zone redundancy
-   :::column-end:::
-:::row-end:::
+| Feature | Supported |
+|---|---|
+| Scale to zero | ✅ Yes |
+| Image deployment (anonymous and token-based) | ✅ Yes |
+| Multi replica | ✅ Yes |
+| Environment variables | ✅ Yes |
+| Enable ingress | ✅ Yes |
+| New portal experience | ✅ Yes |
+| Log streaming | ✅ Yes |
+| Region restriction | ✅ Yes |
+| Logs (Log Analytics) | ✅ Yes |
+| Rolling updates | ⚠️ Partial |
+| Secrets | ❌ No |
+| Billing | ❌ No |
+| Secrets from Key Vault | ❌ No |
+| Autoscale (KEDA-based) | ❌ No |
+| Managed identity (app runtime) | ❌ No |
+| Managed identity (image pull) | ❌ No |
+| VNet integration | ❌ No |
+| Quota | ❌ No |
+| Health probes | ❌ No |
+| Exec access | ❌ No |
+| Easy Auth | ❌ No |
+| Metrics (Azure Monitor) | ❌ No |
+| Custom domain (managed certificate) | ❌ No |
+| IP restrictions | ❌ No |
+| CORS | ❌ No |
+| Logs (Azure Monitor) | ❌ No |
+| Session affinity | ❌ No |
+| Sidecar container | ❌ No |
+| Init container | ❌ No |
+| Volume mount | ❌ No |
+| Ephemeral storage | ❌ No |
+| GPU | ❌ No |
+| Insecure HTTP ingress | ❌ No |
+| Additional ports | ❌ No |
+| App-to-app communication | ❌ No |
+| Debug console | ❌ No |
+| Deployment label | ❌ No |
+| Language stack | ❌ No |
+| Multi revision / traffic splitting | ❌ No |
+| Resiliency | ❌ No |
+| Source-to-cloud deployment | ❌ No |
+| TCP protocol | ❌ No |
+| Aspire | ❌ No |
+| Maintenance window | ❌ No |
+| OpenTelemetry | ❌ No |
+| Premium ingress | ❌ No |
+| Private endpoint | ❌ No |
+| Workload profiles | ❌ No |
+| Peer-to-peer encryption | ❌ No |
+| Job | ❌ No |
+| Single revision management | ❌ No |
+| Custom domain (BYOC) | ❌ No |
+| Environment custom domain suffix (BYOC) | ❌ No |
+| Environment custom domain suffix (managed certificate) | ❌ No |
+| Azure file storage | ❌ No |
+| Zone redundancy | ❌ No |
+| App-to-app (internal FQDN) | ❌ No |
+| Internal vs. external apps | ❌ No |
 
 ## Region availability
 
-During the initial preview, Express is available only in the **West Central US** region. Support for more regions will be added in future releases.
+During preview, express is available only in the **West Central US** region. Support for more regions will be added in future releases.
+
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Deploy an express container app using the Azure CLI](deploy-express-cli.md)
