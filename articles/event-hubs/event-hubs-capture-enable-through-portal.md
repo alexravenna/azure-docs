@@ -6,23 +6,20 @@ ms.date: 05/04/2026
 ms.custom:
   - mode-ui
   - sfi-image-nochange
-# Customer intent: I want to enable capturing of events for an Azure event hub. 
+# Customer intent: I want to enable capturing of events for an Azure event hub.
 ---
 
 # Quickstart: Enable capturing of events streaming through Azure Event Hubs
-In this quickstart, you learn how to use the Azure portal to enable capturing of events to Azure Storage or Azure Data Lake Store.
 
-Azure [Event Hubs Capture][capture-overview] enables you to automatically deliver the streaming data in Event Hubs to an [Azure Blob storage](https://azure.microsoft.com/services/storage/blobs/) or [Azure Data Lake Storage Gen 2](https://azure.microsoft.com/services/data-lake-store/) account of your choice. You can configure capture settings using the [Azure portal](https://portal.azure.com) when creating an event hub or for an existing event hub. For conceptual information on this feature, see [Event Hubs Capture overview][capture-overview].
+In this quickstart, you use the Azure portal to enable capturing of events to Azure Storage or Azure Data Lake Storage Gen 2. Event Hubs Capture automatically delivers streaming data in Event Hubs to a storage account of your choice.
 
+You can configure capture settings when creating an event hub or for an existing event hub. For conceptual information on this feature, see [Event Hubs Capture overview][capture-overview].
 
 ## Prerequisites
 
 - An Azure subscription. If you don't have one, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
-- If you're new to Azure Event Hubs, read through [Event Hubs overview](event-hubs-about.md) and [Event Hubs features](event-hubs-features.md).
-- Learn about Event Hubs capture by reading the [Event Hubs Capture overview][capture-overview].
-
-> [!IMPORTANT]
-> Event Hubs only supports **Premium** Storage account with **Block Blob** support. 
+- An Event Hubs namespace (Standard tier or higher). If you need to create one, see [Create an Event Hubs namespace](event-hubs-create.md#create-an-event-hubs-namespace). The Basic tier doesn't support the Capture feature.
+- An Azure Storage account (Premium tier with Block Blob support), or an Azure Data Lake Storage Gen 2 account.
 
 
 ## Enable Capture when you create an event hub
@@ -111,6 +108,16 @@ You can configure Capture on existing event hubs that are in Event Hubs namespac
 1. To configure other settings, see the sections: 
     - [Capture data to Azure Storage](#capture-data-to-azure-storage)
     - [Capture data to Azure Data Lake Storage Gen 2](#capture-data-to-azure-data-lake-storage-gen-2)    
+
+## Clean up resources
+
+If you no longer need the resources you created, delete them to avoid incurring charges:
+
+1. Navigate to your Event Hubs namespace in the Azure portal.
+1. Select the event hub you created.
+1. Select **Delete** to remove the event hub.
+
+To delete all resources at once, delete the resource group that contains the namespace.
     
 ## Related content
 You can use a system-assigned or a user-assigned managed identity when capturing event data. First, you enable a managed identity for a namespace, grant the identity an appropriate role on the target storage for capturing events, and then configure the event hub to capture events using the managed identity. For more information, see the following articles:

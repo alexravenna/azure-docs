@@ -1,14 +1,16 @@
 ---
-title: Troubleshoot connectivity issues - Azure Event Hubs | Microsoft Docs
-description: This article provides information on troubleshooting connectivity issues with Azure Event Hubs. 
-ms.topic: article
-ms.date: 07/29/2024
+title: Troubleshoot Azure Event Hubs connectivity issues
+description: Diagnose and resolve permanent and transient connectivity issues with Azure Event Hubs, including firewall settings, connection strings, and network configuration.
+ms.topic: troubleshooting-general
+ms.date: 05/04/2026
+#customer intent: As a developer or IT administrator, I want to troubleshoot Event Hubs connectivity issues so that I can restore access to my event hubs.
 ---
 
 # Troubleshoot connectivity issues - Azure Event Hubs
-There are various reasons for client applications not able to connect to an event hub. The connectivity issues might be permanent or transient. 
 
-If the issue happens all the time (**permanent**), check these settings and other options mentioned in the [Troubleshoot permanent connectivity issues](#troubleshoot-permanent-connectivity-issues) section in this article.
+If your client application can't connect to an event hub, use this article to diagnose and resolve the issue. Connectivity problems fall into two categories: permanent issues (the connection never succeeds) and transient issues (intermittent failures).
+
+For **permanent issues**, check these settings and other options mentioned in the [Troubleshoot permanent connectivity issues](#troubleshoot-permanent-connectivity-issues) section:
 
 - Connection string
 - Your organization's firewall settings

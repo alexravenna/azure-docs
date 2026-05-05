@@ -1,16 +1,17 @@
 ---
-title: Authorize access with shared access signatures
-description: This article provides information about authorizing access to Azure Event Hubs resources by using Shared Access Signatures (SAS).
+title: Shared access signature authorization for Event Hubs
+description: Learn about authorizing access to Azure Event Hubs resources using shared access signatures (SAS), including authorization rules, policies, and best practices.
 ms.topic: concept-article
-ms.date: 06/26/2024
-#customer intent: As an Azure Event Hubs user, I want to know how to authorize requests to event hubs using Shared Access Signatures (SAS).
+ms.date: 05/04/2026
+#customer intent: As an Azure Event Hubs user, I want to understand how SAS authorization works so that I can securely control access to my event hubs.
 ---
 
-# Authorizing access to Event Hubs resources using Shared Access Signatures
-A shared access signature (SAS) provides you with a way to grant limited access to resources in your Event Hubs namespace. SAS guards access to Event Hubs resources based on authorization rules. These rules are configured either on a namespace, or an event hub. This article provides an overview of the SAS model, and reviews SAS best practices.
+# Shared access signature authorization for Event Hubs
+
+A shared access signature (SAS) provides you with a way to grant limited access to resources in your Event Hubs namespace. SAS guards access to Event Hubs resources based on authorization rules. These rules are configured either on a namespace or an event hub. This article provides an overview of the SAS model and reviews SAS best practices.
 
 > [!NOTE]
-> This article covers authorizing access to Event Hubs resources using SAS. To learn about **authenticating** access to Event Hubs resources using SAS, see [Authenticate with SAS](authorize-access-shared-access-signature.md). 
+> This article covers authorizing access to Event Hubs resources using SAS. To learn about **authenticating** access to Event Hubs resources using SAS, see [Authenticate with SAS](authenticate-shared-access-signature.md). 
 
 ## What are shared access signatures?
 A shared access signature (SAS) provides delegated access to Event Hubs resources based on authorization rules. An authorization rule has a name, is associated with specific rights, and carries a pair of cryptographic keys. You use the rule’s name and key via the Event Hubs clients or in your own code to generate SAS tokens. A client can then pass the token to Event Hubs to prove authorization for the requested operation.
