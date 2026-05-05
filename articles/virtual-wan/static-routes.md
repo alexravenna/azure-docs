@@ -20,7 +20,7 @@ Virtual WAN static routes are used to direct traffic to a specific next-hop. Sta
 * Route traffic through an Azure Firewall deployed in the Virtual WAN hub
 * Route traffic to a designated IP address (often a load balancer in front of a Network Virtual Appliance) deployed in a spoke virtual network that's connected to the Virtual WAN hub.
 
-At a high level, the following static route configurations are needed for the two main use cases.
+At a high level, the following static route configurations are needed for the two main use cases mentioned above.
 
 | Use case| Configuration| Detailed use case documentation|
 |--|--|--|
@@ -52,19 +52,28 @@ To configure static routes and [associated](about-virtual-hub-routing.md#associa
 
 #### Common use cases
 
+:::image type="content" source="./media/route-scenarios/firewall-static-route-diagram.png" alt-text="Diagram that shows static routes sending same-hub branch, virtual network, and internet traffic through Azure Firewall in a Virtual WAN hub." lightbox="./media/route-scenarios/firewall-static-route-diagram.png":::
+
 One common use case for static routes in Virtual WAN is to send same-hub private traffic through an Azure Firewall deployed in the virtual hub. In this design, the firewall acts as the next hop for traffic that would otherwise flow directly to the final destination.
 
 This pattern is used to deliver Azure Firewall inspection for the following high-level use cases:
 
-* [Traffic between on-premises branches and virtual networks connected to the same virtual hub](static-routes-firewall-basic.md).
-* [Traffic between virtual networks that are connected to the same virtual hub](static-routes-firewall-basic.md).
-* [Traffic between the virtual hub's locally connected on-premises branches and Virtual Networks and the internet](static-routes-firewall-basic.md).
+| Diagram Traffic Flow | Description |
+|--|--|
+| 1 | [Traffic between on-premises branches and virtual networks connected to the same virtual hub](static-routes-firewall-basic.md). |
+| 2 | [Traffic between virtual networks that are connected to the same virtual hub](static-routes-firewall-basic.md). |
+| 3 | [Traffic between the virtual hub's locally connected on-premises branches and Virtual Networks and the internet](static-routes-firewall-basic.md). |
 
 Additional, more complex use cases include:
 
-* [Traffic between certain Virtual Networks should bypass inspection (routed via Virtual Hub router)](firewall-custom-bypass.md#virtual-network-to-virtual-network-selective-inspection).
-* [Traffic between certain Virtual Networks and on-premises should bypass inspection](firewall-custom-bypass.md#on-premises-to-virtual-network-selective-inspection).
-* [Traffic local to Virtual WAN hub is inspected via Azure Firewall, while inter-hub traffic bypasses inspection](static-routes-firewall-basic.md#local-hub-inspection-with-inter-hub-routed-directly).
+:::image type="content" source="./media/route-scenarios/bypass-firewall-diagram.png" alt-text="Diagram that shows selected Virtual WAN traffic bypassing Azure Firewall while other traffic is inspected by Azure Firewall." lightbox="./media/route-scenarios/bypass-firewall-diagram.png":::
+
+
+| Diagram Traffic Flow | Description |
+|--|--|
+| 1 | [Traffic between certain Virtual Networks should bypass inspection (routed via Virtual Hub router)](firewall-custom-bypass.md#virtual-network-to-virtual-network-selective-inspection). |
+| 2 | [Traffic between certain Virtual Networks and on-premises should bypass inspection](firewall-custom-bypass.md#on-premises-to-virtual-network-selective-inspection). |
+| 3 | [Traffic local to Virtual WAN hub is inspected via Azure Firewall, while inter-hub traffic bypasses inspection](static-routes-firewall-basic.md#local-hub-inspection-with-inter-hub-routed-directly). |
 
 Other common use cases that require alternate approaches or are not supported with static routes: 
 
@@ -101,9 +110,13 @@ When using static routes to route traffic to a Virtual Network connection in Vir
 
 #### Common use cases
 
-* [Routing traffic to indirect spokes. Indirect spokes are virtual networks that are peered to Virtual WAN spokes, but not directly connected to the Virtual WAN hub](indirect-spoke-architecture.md).
-* [Route on-premises traffic destined to a spoke Virtual Network to a NVA deployed in a different spoke VNET for inspection](spoke-inspection-north-south.md).
-* [Route internet-bound traffic to a spoke NVA for inspection and egress. Commonly used in scenarios where you don't want to use a Firewall solution directly deployed in the Virtual WAN hub](indirect-spoke-architecture.md).  
+:::image type="content" source="./media/route-scenarios/spoke-appliance-diagram.png" alt-text="Diagram that shows Virtual WAN static routes sending traffic to a Network Virtual Appliance in a spoke virtual network." lightbox="./media/route-scenarios/spoke-appliance-diagram.png":::
+
+| Diagram Traffic Flow | Description |
+|--|--|
+| 1 | [Routing traffic to indirect spokes. Indirect spokes are virtual networks that are peered to Virtual WAN spokes, but not directly connected to the Virtual WAN hub](indirect-spoke-architecture.md). |
+| 2 | [Route on-premises traffic destined to a spoke Virtual Network to a NVA deployed in a different spoke VNET for inspection](spoke-inspection-north-south.md). |
+| 3 | [Route internet-bound traffic to a spoke NVA for inspection and egress. Commonly used in scenarios where you don't want to use a Firewall solution directly deployed in the Virtual WAN hub](indirect-spoke-architecture.md). |
 
 Some common use cases that require alternative approaches or are not supported in Virtual WAN:
 
@@ -116,9 +129,13 @@ Some common use cases that require alternative approaches or are not supported i
 
 You can also combine static routes that point to Azure Firewall in the virtual hub with static routes that point to a virtual network connection. This design is useful when you want different next hops for different traffic classes within the same Virtual WAN deployment.
 
-Common use cases include:
+#### Common use cases include:
 
-* [Use Azure Firewall in the virtual hub to inspect internal traffic between branches and virtual networks, or between virtual networks connected to the same hub, while using an NVA in a spoke virtual network for internet-bound traffic](hybrid-firewall-spoke-static.md).
+:::image type="content" source="./media/route-scenarios/hybrid-diagram.png" alt-text="Diagram that shows Azure Firewall inspecting local traffic while a spoke Network Virtual Appliance handles selected traffic such as internet-bound egress." lightbox="./media/route-scenarios/hybrid-diagram.png":::
+
+| Diagram Traffic Flow | Description |
+|--|--|
+| 1 and 2| [Use Azure Firewall in the virtual hub to inspect internal traffic between branches and virtual networks (1), or between virtual networks connected to the same hub (1), while using an NVA in a spoke virtual network for internet-bound traffic (2)](hybrid-firewall-spoke-static.md). |
 
 Other common use cases that require alternate approaches or are not supported with static routes: 
 
