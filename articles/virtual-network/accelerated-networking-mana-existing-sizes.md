@@ -23,6 +23,7 @@ However, you can continue running workloads on your existing VM series. These VM
 
 ## Applicable VM series
 The VM series listed below are eligible to land on MANA-capable hardware and may require additional validation to fully benefit from networking improvements.
+
 | Family | Series |
 | --- | --- |
 | A-family | Av2* |
@@ -45,11 +46,14 @@ Use the following steps to verify that your workload is compatible with the Micr
 1.  **Check OS support**<br>Ensure your VM is running an operating system that supports MANA. If your OS supports MANA, no further action is needed.
     -  Linux: See [Linux VMs with MANA](./accelerated-networking-mana-linux.md)
     -  Windows: See [Windows VMs with MANA](./accelerated-networking-mana-windows.md)
+  
 2.  **Resize Intel-based workloads if possible**<br>Intel-based workloads are recommended to resize to Intel v6 or later VM series, which support MANA regardless of the operating system.
+
 3. **Update operating system to support MANA if resizing is not possible**<br>
 If you are running Arm-based workloads and/or cannot resize your VM, update your operating system to support `MANA`. MANA-eligible VM series can run on both hardware with Mellanox (`ConnectX-3`, `ConnectX-4 Lx`, `ConnectX-5`) and MANA NICs, so existing `mlx4` and `mlx5` support still needs to be present. 
     - Linux: [Use a supported kernel version](./accelerated-networking-mana-linux.md)
     - Windows: [Install the required MANA drivers](./accelerated-networking-mana-windows.md)
+
 4. **Validate workload behavior**<br>After deployment or resizing, verify that your workload performs as expected.
 
 ### Custom images
