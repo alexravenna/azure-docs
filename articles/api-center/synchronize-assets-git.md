@@ -8,7 +8,7 @@ ai-usage: ai-assisted
 
 ms.collection: ce-skilling-ai-copilot
 ms.update-cycle: 180-days
-# Customer intent: As an API program manager, I want to synchronize AI assets from a Git repository into my API Center inventory so that my inventory stays up to date automatically.
+# Customer intent: As an API program manager, I want to synchronize API assets from a Git repository into my API Center inventory so that my inventory stays up to date automatically.
 ms.custom:
 ---
 
@@ -18,13 +18,13 @@ This article describes how to integrate a Git repository with Azure API Center t
 
 When you integrate a Git repository:
 
-* Your API center creates an [environment](key-concepts.md#environment) that represents the repository as a source of AI assets.
+* Your API center creates an [environment](key-concepts.md#environment) that represents the repository as a source of assets.
 * API Center regularly synchronizes asset information from the repository to your API center inventory.
 
 ## Prerequisites
 
 - An API center. If you don't have an API center yet, see the quickstart to [Create an API center](set-up-api-center.md).
-- A Git repository containing the AI assets you want to synchronize.
+- A Git repository containing the assets you want to synchronize.
 - For non-public repositories, a personal access token (PAT) to access the repository. The PAT must have appropriate permissions to read the repository content. To create a PAT for GitHub, see [Create a fine-grained personal access token](https://docs.github.com/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token).
 - An Azure key vault to store the PAT, if one is used for access. If you need to create a key vault, see [Quickstart: Create a key vault using the Azure portal](/azure/key-vault/general/quick-create-portal). To add or manage secrets in the key vault, you need at least the **Key Vault Secrets Officer** role or equivalent permissions.
 - For Azure CLI:
