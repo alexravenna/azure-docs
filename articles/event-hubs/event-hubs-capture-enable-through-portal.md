@@ -1,8 +1,8 @@
 ---
-title: Event Hubs - Capture streaming events using Azure portal
-description: This article describes how to enable capturing of events streaming through Azure Event Hubs by using the Azure portal.
+title: 'Quickstart: Enable event capture using the Azure portal'
+description: Enable capturing of streaming events in Azure Event Hubs to Azure Storage or Azure Data Lake Storage Gen 2 using the Azure portal.
 ms.topic: quickstart
-ms.date: 12/12/2024
+ms.date: 05/04/2026
 ms.custom:
   - mode-ui
   - sfi-image-nochange
