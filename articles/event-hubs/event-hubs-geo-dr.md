@@ -18,7 +18,7 @@ The all-active Azure Event Hubs cluster model with [availability zone support](/
 The concepts and workflow described in this article apply to disaster scenarios, not temporary outages. For a detailed discussion of disaster recovery in Microsoft Azure, see [Disaster recovery for Azure applications](/azure/architecture/resiliency/disaster-recovery-azure-applications). With geo-disaster recovery, you can initiate a once-only failover move from the primary to the secondary at any time. The failover move points the chosen alias name for the namespace to the secondary namespace. After the move, the pairing is removed. The failover is nearly instantaneous once initiated.
 
 > [!IMPORTANT]
-> - The feature enables instantaneous continuity of operations with the same configuration, but **does not replicate the event data**. Unless the disaster caused the loss of all zones, the event data that is preserved in the primary Event Hub after failover is recoverable and the historic events can be obtained from there once access is restored. For replicating event data and operating corresponding namespaces in active/active configurations to cope with outages and disasters, don't lean on this geo-disaster recovery feature set, but follow the [replication guidance](event-hubs-federation-overview.md).
+> - The feature enables instantaneous continuity of operations with the same configuration, but **does not replicate the event data**. Unless the disaster caused the loss of all zones, the event data that is preserved in the primary event hub after failover is recoverable and the historic events can be obtained from there once access is restored. For replicating event data and operating corresponding namespaces in active/active configurations to cope with outages and disasters, don't lean on this geo-disaster recovery feature set, but follow the [replication guidance](event-hubs-federation-overview.md).
 > - Microsoft Entra role-based access control (RBAC) assignments to entities in the primary namespace aren't replicated to the secondary namespace. Create role assignments manually in the secondary namespace to secure access to them.
 
 To set up geo-disaster recovery pairing and initiate failover, see [Configure geo-disaster recovery](configure-geo-disaster-recovery.md).
@@ -80,7 +80,7 @@ If you try to create a pairing between a primary namespace with a private endpoi
 > [!NOTE]
 > When you try to pair the primary namespace with a private endpoint and a secondary namespace, the validation process only checks whether a private endpoint exists on the secondary namespace. It doesn't check whether the endpoint works or will work after failover. It's your responsibility to ensure that the secondary namespace with private endpoint works as expected after failover.
 >
-> To test that the private endpoint configurations are the same on primary and secondary namespaces, send a read request (for example: [Get Event Hub](/rest/api/eventhub/get-event-hub)) to the secondary namespace from outside the virtual network, and verify that you receive an error message from the service.
+> To test that the private endpoint configurations are the same on primary and secondary namespaces, send a read request (for example: [`Get Event Hub`](/rest/api/eventhub/get-event-hub)) to the secondary namespace from outside the virtual network, and verify that you receive an error message from the service.
 
 ### Existing pairings
 
