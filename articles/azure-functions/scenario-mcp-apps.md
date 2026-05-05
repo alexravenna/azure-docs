@@ -92,7 +92,7 @@ Use the Azure Developer CLI to create an Azure Functions code project from a tem
     azd init --template remote-mcp-functions-dotnet -e mcpweather-dotnet
     ```
 
-    This command pulls the project files from the [template repository](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) and initializes the project in the current folder. The -e flag sets a name for the current environment. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in names of the resources you create in Azure.  
+    This command pulls the project files from the [template repository](https://github.com/Azure-Samples/remote-mcp-functions-dotnet) and initializes the project in the current folder. The `-e` flag sets a name for the current environment. In `azd`, the environment maintains a unique deployment context for your app, and you can define more than one. It's also used in names of the resources you create in Azure.  
 ::: zone-end  
 ::: zone pivot="programming-language-java,programming-language-python,programming-language-typescript" 
 2. Press <kbd>F1</kbd> to open the command palette. Search for and run `Azure Developer CLI (azd): init`.
