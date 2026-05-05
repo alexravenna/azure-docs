@@ -163,12 +163,41 @@ az iot ops dataflow endpoint apply --resource-group myResourceGroupName --instan
 Create a Bicep `.bicep` file with the following content.
 
 ```bicep
-kafkaSettings: {
-  authentication: {
-    method: 'Sasl' // Or ScramSha256, ScramSha512
-    saslSettings: {
-      saslType: 'Plain' // Or ScramSha256, ScramSha512
-      secretRef: '<SECRET_NAME>'
+param aioInstanceName string = '<AIO_INSTANCE_NAME>'
+param customLocationName string = '<CUSTOM_LOCATION_NAME>'
+param endpointName string = '<ENDPOINT_NAME>'
+param hostName string = '<BOOTSTRAP_SERVER_ADDRESS>'
+param secretName string = '<SECRET_NAME>'
+
+resource customLocation 'Microsoft.ExtendedLocation/customLocations@2021-08-31-preview' existing = {
+  name: customLocationName
+}
+
+resource aioInstance 'Microsoft.IoTOperations/instances@2024-11-01' existing = {
+  name: aioInstanceName
+}
+
+resource fabricRealtimeEndpoint 'Microsoft.IoTOperations/instances/dataflowEndpoints@2024-11-01' = {
+  parent: aioInstance
+  name: endpointName
+  extendedLocation: {
+    name: customLocation.id
+    type: 'CustomLocation'
+  }
+  properties: {
+    endpointType: 'Kafka'
+    kafkaSettings: {
+      host: hostName
+      authentication: {
+        method: 'Sasl'
+        saslSettings: {
+          saslType: 'Plain' // Or ScramSha256, ScramSha512
+          secretRef: secretName
+        }
+      }
+      tls: {
+        mode: 'Enabled'
+      }
     }
   }
 }
@@ -193,12 +222,22 @@ kubectl create secret generic <SECRET_NAME> -n azure-iot-operations \
 Create a Kubernetes manifest `.yaml` file with the following content.
 
 ```yaml
-kafkaSettings:
-  authentication:
-    method: Sasl
-    saslSettings:
-      saslType: Plain # Or ScramSha256, ScramSha512
-      secretRef: <SECRET_NAME>
+apiVersion: connectivity.iotoperations.azure.com/v1
+kind: DataflowEndpoint
+metadata:
+  name: <ENDPOINT_NAME>
+  namespace: azure-iot-operations
+spec:
+  endpointType: Kafka
+  kafkaSettings:
+    host: <BOOTSTRAP_SERVER_ADDRESS>
+    authentication:
+      method: Sasl
+      saslSettings:
+        saslType: Plain # Or ScramSha256, ScramSha512
+        secretRef: <SECRET_NAME>
+    tls:
+      mode: Enabled
 ```
 
 Then apply the manifest file to the Kubernetes cluster.
@@ -315,7 +354,7 @@ In the operations experience data flow endpoint settings page, select the **Basi
 Use the [az iot ops dataflow endpoint create](/cli/azure/iot/ops/dataflow/endpoint/create) command with the `--auth-type` parameter set to `UserAssignedManagedIdentity` for with user-assigned managed identity authentication.
 
 ```azurecli
-az iot ops dataflow endpoint create <Command> --auth-type UserAssignedManagedIdentity --client-id <ClientId> --tenant-id <TenantId> --resource-group <ResourceGroupName> --instance <AioInstanceName> --name <EndpointName>
+az iot ops dataflow endpoint create fabric-realtime --auth-type UserAssignedManagedIdentity --client-id <ClientId> --tenant-id <TenantId> --resource-group <ResourceGroupName> --instance <AioInstanceName> --name <EndpointName> --host "<BootstrapServerAddress>"
 ```
 
 #### Create or change
@@ -328,6 +367,7 @@ In this example, assume a configuration file with the following content:
 {
     "endpointType": "Kafka",
     "kafkaSettings": {
+        "host": "<BootstrapServerAddress>",
         "authentication": {
           "method": "UserAssignedManagedIdentity",
           "userAssignedManagedIdentitySettings": {
@@ -336,6 +376,9 @@ In this example, assume a configuration file with the following content:
             // Optional
             "scope": "https://<Scope_Url>"
           }
+        },
+        "tls": {
+            "mode": "Enabled"
         }
     }
 }
@@ -401,7 +444,7 @@ Enter the following settings for the endpoint:
 Use the [az iot ops dataflow endpoint create](/cli/azure/iot/ops/dataflow/endpoint/create) command with the `--auth-type` parameter set to `Sasl` for SASL authentication.
 
 ```azurecli
-az iot ops dataflow endpoint create <Command> --auth-type Sasl --sasl-type <SaslType> --secret-name <SecretName> --resource-group <ResourceGroupName> --instance <AioInstanceName> --name <EndpointName>
+az iot ops dataflow endpoint create fabric-realtime --auth-type Sasl --sasl-type <SaslType> --secret-name <SecretName> --resource-group <ResourceGroupName> --instance <AioInstanceName> --name <EndpointName> --host "<BootstrapServerAddress>"
 ```
 
 #### Create or change
@@ -414,12 +457,16 @@ In this example, assume a configuration file with the following content:
 {
     "endpointType": "Kafka",
     "kafkaSettings": {
+        "host": "<BootstrapServerAddress>",
         "authentication": {
           "method": "Sasl",
           "saslSettings": {
             "saslType": "<SaslType>",
             "secretRef": "<SecretName>"
           }
+        },
+        "tls": {
+            "mode": "Enabled"
         }
     }
 }
@@ -430,7 +477,7 @@ In this example, assume a configuration file with the following content:
 ```bicep
 kafkaSettings: {
   authentication: {
-    method: 'Sasl' // Or ScramSha256, ScramSha512
+    method: 'Sasl'
     saslSettings: {
       saslType: 'Plain' // Or ScramSha256, ScramSha512
       secretRef: '<SECRET_NAME>'
