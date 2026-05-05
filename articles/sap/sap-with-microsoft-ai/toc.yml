@@ -1,0 +1,17 @@
+items:
+  - name: Overview
+    href: about-sap-with-microsoft-ai.md
+  - name: SAP Joule and Microsoft 365 Copilot 
+    href: sap-joule-microsoft-365-copilot.md
+  - name: Copilot Studio and SAP 
+    items:
+    - name: Copilot Studio overview
+      href: copilot-studio-overview.md
+    - name: Leveraging Azure API Management and vnet Peering (e.g. SAP S/4HANA Private Cloud or Native)
+      href: Architecture-APIM+vnet.md
+    - name: Leveraging On-premises data gateway with access to BAPI / RFCs and OData Services
+      href: Architecture-OPDG.md
+    - name: Leveraging SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)
+      href: Architecture-BTP+APIM.md
+  - name: Foundry AI and SAP Overview
+    href: FoundryAI-SAP.md
