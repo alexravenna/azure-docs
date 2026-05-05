@@ -17,7 +17,7 @@ For **permanent issues**, check these settings and other options mentioned in th
 - IP firewall settings
 - Network security settings (service endpoints, private endpoints, and more)  
 
-For **transient issues**, try the following options that can help with troubleshooting the issues. For more information, see [Troubleshoot transient connectivity issues](#troubleshoot-transient-connectivity-issues).
+For **transient issues**, try the following options that can help with troubleshooting the issues. For more information, see [Troubleshoot transient connectivity problems](#troubleshoot-transient-connectivity-problems).
 
 - Upgrade to latest version of the SDK
 - Run commands to check dropped packets
@@ -51,7 +51,7 @@ By default, Event Hubs namespaces are accessible from internet as long as the re
 
 The IP firewall rules are applied at the Event Hubs namespace level. Therefore, the rules apply to all connections from clients using any supported protocol. Any connection attempt from an IP address that doesn't match an allowed IP rule on the Event Hubs namespace is rejected as unauthorized. The response doesn't mention the IP rule. IP filter rules are applied in order, and the first rule that matches the IP address determines the accept or reject action.
 
-For more information, see [Configure IP firewall rules for an Azure Event Hubs namespace](event-hubs-ip-filtering.md). To check whether you have IP filtering, virtual network, or certificate chain issues, see [Troubleshoot network related issues](#troubleshoot-network-related-issues).
+For more information, see [Configure IP firewall rules for an Azure Event Hubs namespace](event-hubs-ip-filtering.md). To check whether you have IP filtering, virtual network, or certificate chain issues, see [Troubleshoot network-related problems](#troubleshoot-network-related-problems).
 
 ### Check if the namespace can be accessed using only a private endpoint
 If the Event Hubs namespace is configured to be accessible only via private endpoint, confirm that the client application is accessing the namespace over the private endpoint. 
