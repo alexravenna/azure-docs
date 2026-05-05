@@ -5,7 +5,7 @@ services: logic-apps
 ms.suite: integration
 ms.reviewer: estfan, azla
 ms.topic: how-to
-ms.date: 07/08/2025
+ms.date: 05/04/2026
 ms.custom:
   - engagement-fy23
   - sfi-image-nochange
@@ -143,11 +143,17 @@ Scheduling overhead exists when running actions, while waiting time between acti
 
 * Consumption workflows run on multitenant Azure Logic Apps, so other customers' workloads might negatively affect your workflow's performance.
 
-* For more predictable performance, you might consider creating [Standard workflows](single-tenant-overview-compare.md), which run in single-tenant Azure Logic Apps. You'll have more control to scale up or out to improve performance.
+* For more predictable performance, you might consider creating [Standard workflows](single-tenant-overview-compare.md), which run in single-tenant Azure Logic Standard. You'll have more control to scale up or out to improve performance.
 
 ### My action times out after 2 minutes. How can I increase the timeout value?
 
 The action timeout value can't be changed and is fixed at 2 minutes. If you're using the HTTP action, and you own the service called by the HTTP action, you can change your service to avoid the 2-minute timeout by using the asynchronous pattern. For more information, see [Perform long-running tasks with the polling action pattern](logic-apps-create-api-app.md#perform-long-running-tasks-with-the-polling-action-pattern).
+
+### My Logic Apps Standard host memory stays elevated after processing messages. Is there a memory leak?
+
+Elevated memory usage does not necessarily mean there is a memory leak. Logic App Standard runs with .NET Server Garbage Collection (GC), which is optimized for throughput, not minimal memory footprint. Server GC retains managed heap segments for future allocations rather than returning them to the operating system. Memory can stay elevated for hours or days even during idle periods between processing cycles.  
+
+For a true memory leak, the memory usage would keep increasing under similar traffic load until the system eventually crashes with out-of-memory exception. And you shall be able to observe this pattern repeatedly.  
 
 ## Common problems - Standard logic apps
 
