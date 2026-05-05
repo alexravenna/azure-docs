@@ -15,8 +15,7 @@ ms.author: v-gajeronika
 This article summarizes the supported components and settings for disaster recovery of on-premises Hyper-V VMs to Azure by using [Azure Site Recovery](site-recovery-overview.md).
 
 >[!NOTE]
-> - Site Recovery does not move or store customer data out of the target region, in which disaster recovery has been setup for the source machines. Customers may select a Recovery Services Vault from a different region if they so choose. The Recovery Services Vault contains metadata but no actual customer data.
-> - [!INCLUDE [hyper-v-to-azure-region-limitations.md](./includes/hyper-v-to-azure-region-limitations.md)]
+> Site Recovery does not move or store customer data out of the target region, in which disaster recovery has been setup for the source machines. Customers may select a Recovery Services Vault from a different region if they so choose. The Recovery Services Vault contains metadata but no actual customer data.
 
 ## Supported scenarios
 
@@ -129,6 +128,8 @@ Exclude disk | Yes | Yes
 Multi-path (MPIO) | Yes | Yes
 
 ## Azure Storage
+
+[!INCLUDE [hyper-v-to-azure-region-limitations.md](./includes/hyper-v-to-azure-region-limitations.md)]
 
 **Component** | **Hyper-V with Virtual Machine Manager** | **Hyper-V without Virtual Machine Manager**
 --- | --- | ---
