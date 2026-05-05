@@ -39,7 +39,7 @@ API Management implements rate limiting differently depending on whether your in
 
 While the overall behavior of rate limiting is similar across API Management tiers, the differences in implementation affect some usage details of rate limiting policies such as `rate-limit-by-key` and `llm-token-limit`. 
 
-The token bucket implementation uses an initial bucket size equal to the number of calls (or tokens) specified in the policies. For `rate-limit` policies this value is assigned to the `limit-call` attribute; for the `llm-token-limit` policy it is assigned to the `tokens-per-minute` attribute.
+In the v2 tiers, the token bucket implementation uses an initial bucket size equal to the number of calls (or tokens) specified in the policies. For `rate-limit` policies this value is assigned to the `limit-call` attribute; for the `llm-token-limit` policy it is assigned to the `tokens-per-minute` attribute.
 
 The following example describes a scenario where the number of calls is set to 6 with a renewal-period of 60 seconds on the `rate-limit-by-key` policy.
 
