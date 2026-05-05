@@ -69,7 +69,7 @@ The following static routes are configured by adding the static routes on the NV
 
 ### Static routes for internet egress
 
-The following static routes are configured by adding the static routes on the NVA virtual network connection directly, with **Propagate static route** set to **true**.
+The following static routes are configured by adding the static routes on the NVA virtual network connection directly, with **Propagate static route** set to **true** ([option 1 static routing model](static-routes.md#configuration-options)).
 
 | Hub | Connection | Prefix | Next hop IP address |
 |--|--|--|--|

@@ -13,7 +13,7 @@ ms.custom:
 # Basic: Use routing intent with static routes
 
 > [!NOTE]
-> This design pattern is compatible with any supported next hop security solution deployed in the Virtual WAN hub, including **Azure Firewall**, an **integrated NVA**, or a **SaaS solution**.
+> This design pattern is compatible with any supported next hop security solution deployed in the Virtual WAN hub, including **Azure Firewall**, an **integrated NVA**, or a **SaaS solution**. Additionally, use [static route configuration option 1](static-routes.md#configuration-options) when configuring static routes on the virtual network connection to ensure proper propagation of the static routes to the hub and other connected spokes. Configuration option 2 is **not supported** when using routing intent.
 
 ## Scenario overview
 

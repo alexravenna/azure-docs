@@ -12,6 +12,9 @@ ms.custom:
 
 # Selective inspection with Azure Firewall
 
+> [!NOTE]
+> This article applies to secure Virtual WAN hubs that use static routes to route traffic to Azure Firewall. Custom bypass scenarios are **not** supported when using [routing intent](how-to-routing-policies.md).
+
 ## Scenario overview
 
 This design pattern describes scenarios in a secure Virtual WAN hub where certain traffic flows bypass Azure Firewall inspection, while other traffic continues to be inspected by Azure Firewall.

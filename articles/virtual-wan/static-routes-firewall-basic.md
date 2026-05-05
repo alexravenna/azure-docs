@@ -14,7 +14,11 @@ ms.custom:
 
 ## Overview
 
-This document summarizes basic scenarios for routing Virtual WAN traffic to Azure Firewall using static routes. The document also contains notes on how Azure Firewall Manager configures routing when you secure both private and internet traffic with Azure Firewall Manager (with secure interhub set to **Off**), as well as how Azure Firewall Manager determines whether connections are **secure** or **not secure**.
+This document summarizes basic scenarios for routing Virtual WAN traffic to Azure Firewall using static routes. The document **doesn't cover** [routing intent](how-to-routing-policies.md).
+
+The document also contains notes on how [Azure Firewall Manager configures routing in Virtual WAN](https://learn.microsoft.com/azure/firewall-manager/secure-cloud-network). There are two configurable routing modes in Azure Firewall Manager:
+* **Inter-hub set to off**: Utilizes static routes to direct traffic to Azure Firewall within the local Virtual Hub **without** routing intent. This configuration is covered by this document.
+* **Inter-hub set to on**: Enables [routing intent](how-to-routing-policies.md) on the Virtual WAN hub. This configuration is **not** covered by this document.
 
 ## Private traffic inspection: Branch-to-Virtual Network and Virtual Network-to-Virtual Network via Azure Firewall
 
@@ -69,10 +73,16 @@ Connection routing properties:
 
 ## Private and Internet traffic inspection
 
+> [!NOTE]
+> In this configuration, Azure Firewall Manager expects the defaultRouteTable to have a single static route named **all_traffic**.
+
+To ensure inter-hub and branch-to-branch traffic is inspected by Azure Firewall, use [routing intent and policies](how-to-routing-policies.md).
+
 ### Traffic patterns
 
 * Private (between on-premises and Virtual Networks) traffic is inspected by Azure Firewall.
 * Internet traffic is inspected by Azure Firewall.
+* Branch-to-branch traffic is **not** inspected by Azure Firewall.
 
 ### Configuration
 
@@ -96,7 +106,7 @@ To ensure inter-hub traffic is inspected by Azure Firewall, use [routing intent 
 
 ### Traffic patterns
 
-* Inter-hub traffic bypasses Azure Firewall (routed directly) via Virtual WAN hub.
+* Inter-hub traffic bypasses Azure Firewall (routed directly) via Virtual WAN hub. 
 * Local (same-hub) traffic between Virtual Networks and on-premises inspected by Azure Firewall.
 * Internet traffic uses the local Azure Firewall for inspection and breakout.
 

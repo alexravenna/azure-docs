@@ -116,6 +116,7 @@ The following sections explain how traffic is routed to indirect spokes and the 
 | Source | Destination | Routing |
 |--|--|--|
 | Workload Virtual Network | Shared Services Virtual Network | Direct|
+| Workload Virtual Network | Workload Virtual Network| Direct |
 | Workload Virtual Network | Branches | Via DMZ NVA |
 | Workload Virtual Network | Internet | Via DMZ NVA |
 | Branches | Shared Services Virtual Network | Direct |
@@ -130,19 +131,6 @@ In the diagram above, there are two special types of Virtual Networks:
 * DMZ Virtual Network: Hosts the NVA used for internet egress and north-south traffic inspection.
 * Workload Virtual Network: Any other virtual network connected to the Virtual WAN hub.
 
-### Traffic flows
-
-The following sections explain how traffic is routed to indirect spokes and the Internet using Virtual WAN static routes.
-
-| Source | Destination | Routing |
-|--|--|--|
-| Workload Virtual Network | DMZ Virtual Network | Direct|
-| Workload Virtual Network | Branches | Via DMZ NVA |
-| Workload Virtual Network | Workload Virtual Network| Direct |
-| Workload Virtual Network | Internet | Via DMZ NVA |
-| Branches | Shared Services Virtual Network | Direct |
-| Branches | Workload Virtual Network | Via DMZ NVA |
-| Branches| Internet| Via DMZ NVA|
 
 ### Virtual WAN Route Tables
 

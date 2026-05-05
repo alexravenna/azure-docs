@@ -15,7 +15,7 @@ ms.custom:
 ## Scenario overview
 
 > [!NOTE]
-> This architecture doesn't support double-inspection scenarios. Double-inspection scenarios are use cases where packets are routed to and inspected by Azure Firewall in the Virtual WAN hub and then forwarded to an NVA in a spoke virtual network. This [architecture](routing-intent-static-route.md) is supported with Virtual WAN hubs that use routing intent together with static routes on virtual network connections and **Propagate static route** set to **true**.
+> This architecture doesn't support double-inspection scenarios. Double-inspection scenarios are use cases where packets are routed to and inspected by Azure Firewall in the Virtual WAN hub and then forwarded to an NVA in a spoke virtual network. The [double-inspection architecture](routing-intent-static-route.md) is supported with Virtual WAN hubs that use routing intent together with static routes on virtual network connections and **Propagate static route** set to **true**.
 
 This design pattern uses a combination of static routes to send private traffic, such as traffic between on-premises networks and virtual networks, to Azure Firewall for inspection. At the same time, internet-bound traffic is sent to a network virtual appliance (NVA) deployed in a spoke virtual network for inspection and breakout.
 
