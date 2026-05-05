@@ -18,7 +18,7 @@ The all-active Azure Event Hubs cluster model with [availability zone support](/
 The concepts and workflow described in this article apply to disaster scenarios, not temporary outages. For a detailed discussion of disaster recovery in Microsoft Azure, see [Disaster recovery for Azure applications](/azure/architecture/resiliency/disaster-recovery-azure-applications). With geo-disaster recovery, you can initiate a once-only failover move from the primary to the secondary at any time. The failover move points the chosen alias name for the namespace to the secondary namespace. After the move, the pairing is removed. The failover is nearly instantaneous once initiated.
 
 > [!IMPORTANT]
-> - The feature enables instantaneous continuity of operations with the same configuration, but **does not replicate the event data**. Unless the disaster caused the loss of all zones, the event data that is preserved in the primary Event Hub after failover will be recoverable and the historic events can be obtained from there once access is restored. For replicating event data and operating corresponding namespaces in active/active configurations to cope with outages and disasters, don't lean on this geo-disaster recovery feature set, but follow the [replication guidance](event-hubs-federation-overview.md).
+> - The feature enables instantaneous continuity of operations with the same configuration, but **does not replicate the event data**. Unless the disaster caused the loss of all zones, the event data that is preserved in the primary Event Hub after failover is recoverable and the historic events can be obtained from there once access is restored. For replicating event data and operating corresponding namespaces in active/active configurations to cope with outages and disasters, don't lean on this geo-disaster recovery feature set, but follow the [replication guidance](event-hubs-federation-overview.md).
 > - Microsoft Entra role-based access control (RBAC) assignments to entities in the primary namespace aren't replicated to the secondary namespace. Create role assignments manually in the secondary namespace to secure access to them.
 
 To set up geo-disaster recovery pairing and initiate failover, see [Configure geo-disaster recovery](configure-geo-disaster-recovery.md).
@@ -49,19 +49,19 @@ The following combinations of primary and secondary namespaces are supported:
 
 ## Failover considerations
 
-Note the following considerations when planning for failover:
+When planning for failover, consider the following points:
 
-- By design, Event Hubs geo-disaster recovery doesn't replicate data, and therefore you can't reuse the old offset value of your primary event hub on your secondary event hub. We recommend restarting your event receiver with one of the following methods:
+- By design, Event Hubs geo-disaster recovery doesn't replicate data. Therefore, you can't reuse the old offset value of your primary event hub on your secondary event hub. Restart your event receiver by using one of the following methods:
 
-   - *EventPosition.FromStart()* - If you wish to read all data on your secondary event hub.
-   - *EventPosition.FromEnd()* - If you wish to read all new data from the time of connection to your secondary event hub.
-   - *EventPosition.FromEnqueuedTime(dateTime)* - If you wish to read all data received in your secondary event hub starting from a given date and time.
+   - *EventPosition.FromStart()* - If you want to read all data on your secondary event hub.
+   - *EventPosition.FromEnd()* - If you want to read all new data from the time of connection to your secondary event hub.
+   - *EventPosition.FromEnqueuedTime(dateTime)* - If you want to read all data received in your secondary event hub starting from a given date and time.
 
-- In your failover planning, you should also consider the time factor. For example, if you lose connectivity for longer than 15 to 20 minutes, you might decide to initiate the failover.
+- Consider the time factor in your failover planning. For example, if you lose connectivity for longer than 15 to 20 minutes, you might decide to initiate the failover.
 
-- The fact that no data is replicated means that current active sessions aren't replicated. Additionally, duplicate detection and scheduled messages might not work. New sessions, scheduled messages, and new duplicates will work.
+- Because no data is replicated, current active sessions aren't replicated. Additionally, duplicate detection and scheduled messages might not work. New sessions, scheduled messages, and new duplicates work.
 
-- Failing over a complex distributed infrastructure should be [rehearsed](/azure/architecture/reliability/disaster-recovery#disaster-recovery-plan) at least once.
+- You should [rehearse](/azure/architecture/reliability/disaster-recovery#disaster-recovery-plan) failing over a complex distributed infrastructure at least once.
 
 - Synchronizing entities can take some time, approximately 50-100 entities per minute.
 
@@ -75,7 +75,7 @@ This section provides considerations when using geo-disaster recovery with names
 
 ### New pairings
 
-If you try to create a pairing between a primary namespace with a private endpoint and a secondary namespace without a private endpoint, the pairing fails. The pairing succeeds only if both primary and secondary namespaces have private endpoints. We recommend that you use the same configurations on the primary and secondary namespaces and on virtual networks in which private endpoints are created.
+If you try to create a pairing between a primary namespace with a private endpoint and a secondary namespace without a private endpoint, the pairing fails. The pairing succeeds only if both primary and secondary namespaces have private endpoints. Use the same configurations on the primary and secondary namespaces and on virtual networks where you create private endpoints.
 
 > [!NOTE]
 > When you try to pair the primary namespace with a private endpoint and a secondary namespace, the validation process only checks whether a private endpoint exists on the secondary namespace. It doesn't check whether the endpoint works or will work after failover. It's your responsibility to ensure that the secondary namespace with private endpoint works as expected after failover.
@@ -84,27 +84,27 @@ If you try to create a pairing between a primary namespace with a private endpoi
 
 ### Existing pairings
 
-If pairing between primary and secondary namespace already exists, private endpoint creation on the primary namespace fails. To resolve, create a private endpoint on the secondary namespace first and then create one for the primary namespace.
+If a pairing between primary and secondary namespace already exists, private endpoint creation on the primary namespace fails. To resolve the error, create a private endpoint on the secondary namespace first and then create one for the primary namespace.
 
 > [!NOTE]
-> While we allow read-only access to the secondary namespace, updates to the private endpoint configurations are permitted.
+> While you can access the secondary namespace as read-only, you can update the private endpoint configurations.
 
 ### Recommended configuration
 
-When creating a disaster recovery configuration for your application and Event Hubs namespaces, you must create private endpoints for both primary and secondary Event Hubs namespaces against virtual networks hosting both primary and secondary instances of your application.
+When you create a disaster recovery configuration for your application and Event Hubs namespaces, create private endpoints for both primary and secondary Event Hubs namespaces. These private endpoints connect to virtual networks that host both primary and secondary instances of your application.
 
 Let's say you have two virtual networks: `VNET-1`, `VNET-2` and these primary and secondary namespaces: `EventHubs-Namespace1-Primary`, `EventHubs-Namespace2-Secondary`. You need to do the following steps:
 
-- On `EventHubs-Namespace1-Primary`, create two private endpoints that use subnets from `VNET-1` and `VNET-2`
+Suppose you have two virtual networks, `VNET-1` and `VNET-2`, and these primary and secondary namespaces: `EventHubs-Namespace1-Primary` and `EventHubs-Namespace2-Secondary`. Complete the following steps:
 - On `EventHubs-Namespace2-Secondary`, create two private endpoints that use the same subnets from `VNET-1` and `VNET-2`
 
 ![Private endpoints and virtual networks](./media/event-hubs-geo-dr/private-endpoints-virtual-networks.png)
 
-Advantage of this approach is that failover can happen at the application layer independent of Event Hubs namespace. Consider the following scenarios:
+The advantage of this approach is that failover can happen at the application layer independent of Event Hubs namespace. Consider the following scenarios:
 
-**Application-only failover:** Here, the application won't exist in `VNET-1` but will move to `VNET-2`. As both private endpoints are configured on both `VNET-1` and `VNET-2` for both primary and secondary namespaces, the application will just work.
+**Application-only failover:** In this scenario, the application doesn't exist in `VNET-1` but moves to `VNET-2`. As both private endpoints are configured on both `VNET-1` and `VNET-2` for both primary and secondary namespaces, the application just works.
 
-**Event Hubs namespace-only failover**: Here again, since both private endpoints are configured on both virtual networks for both primary and secondary namespaces, the application will just work.
+**Event Hubs namespace-only failover**: In this scenario, since both private endpoints are configured on both virtual networks for both primary and secondary namespaces, the application just works.
 
 > [!NOTE]
 > For guidance on geo-disaster recovery of a virtual network, see [Virtual Network - Business Continuity](../virtual-network/virtual-network-disaster-recovery-guidance.md).

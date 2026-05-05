@@ -37,15 +37,15 @@ When you design a consumer in a distributed environment, the scenario must handl
 
 ## Event processor or consumer client
 
-You don't need to build your own solution to meet these requirements. The Azure Event Hubs SDKs provide this functionality. In .NET or Java SDKs, you use an event processor client (`EventProcessorClient`), and in Python and JavaScript SDKs, you use `EventHubConsumerClient`. In the old version of SDK, it was the event processor host (`EventProcessorHost`) that supported these features.
+You don't need to build your own solution to meet these requirements. The Azure Event Hubs SDKs provide this functionality. In .NET or Java SDKs, use an event processor client (`EventProcessorClient`). In Python and JavaScript SDKs, use `EventHubConsumerClient`. In the old version of SDK, the event processor host (`EventProcessorHost`) supported these features.
 
-For most production scenarios, we recommend that you use the event processor client for reading and processing events. The processor client is intended to provide a robust experience for processing events across all partitions of an event hub in a performant and fault tolerant manner while providing a means to checkpoint its progress. Event processor clients can work cooperatively within the context of a consumer group for a given event hub. Clients will automatically manage distribution and balancing of work as instances become available or unavailable for the group.
+For most production scenarios, use the event processor client for reading and processing events. The processor client provides a robust experience for processing events across all partitions of an event hub in a performant and fault-tolerant manner while providing a means to checkpoint its progress. Event processor clients can work cooperatively within the context of a consumer group for a given event hub. Clients automatically manage distribution and balancing of work as instances become available or unavailable for the group.
 
 ## Partition ownership 
 
-An event processor instance typically owns and processes events from one or more partitions. Ownership of partitions is evenly distributed among all the active event processor instances associated with an event hub and consumer group combination. 
+An event processor instance typically owns and processes events from one or more partitions. The system evenly distributes ownership of partitions among all the active event processor instances associated with an event hub and consumer group combination. 
 
-Each event processor is given a unique identifier and claims ownership of partitions by adding or updating an entry in a checkpoint store. All event processor instances communicate with this store periodically to update its own processing state and to learn about other active instances. This data is then used to balance the load among the active processors. New instances can join the processing pool to scale up. When instances go down, either because of failures or to scale down, partition ownership is gracefully transferred to other active processors.
+Each event processor has a unique identifier and claims ownership of partitions by adding or updating an entry in a checkpoint store. All event processor instances communicate with this store periodically to update their own processing state and to learn about other active instances. The system uses this data to balance the load among the active processors. New instances can join the processing pool to scale up. When instances go down, either because of failures or to scale down, the system gracefully transfers partition ownership to other active processors.
 
 Partition ownership records in the checkpoint store keep track of Event Hubs namespace,  event hub name, consumer group, event processor identifier (also known as owner), partition ID, and the last modified time.
 
@@ -60,21 +60,21 @@ Partition ownership records in the checkpoint store keep track of Event Hubs nam
 |                                    |                | :                  |                                      |              |                     |
 | mynamespace.servicebus.windows.net | myeventhub     | myconsumergroup    | 844bd8fb-1f3a-4580-984d-6324f9e208af | 15           | 2020-01-15T01:22:00 |
 
-Each event processor instance acquires ownership of a partition and starts processing the partition from last known [checkpoint](#checkpoint). If a processor fails (VM shuts down), then other instances detect it by looking at the last modified time. Other instances try to get ownership of the partitions previously owned by the inactive instance. The checkpoint store guarantees that only one of the instances succeeds in claiming ownership of a partition. So, at any given point of time, there is at most one processor that receives events from a partition.
+Each event processor instance acquires ownership of a partition and starts processing the partition from last known [checkpoint](#checkpoint). If a processor fails (VM shuts down), other instances detect the failure by looking at the last modified time. Other instances try to get ownership of the partitions previously owned by the inactive instance. The checkpoint store guarantees that only one of the instances succeeds in claiming ownership of a partition. So, at any given point in time, there's at most one processor that receives events from a partition.
 
 ## Receive messages
 
-When you create an event processor, you specify functions that process events and errors. Each call to the function that processes events delivers a single event from a specific partition. It's your responsibility to handle this event. If you want to make sure the consumer processes every message at least once, you need to write your own code with retry logic. But be cautious about poisoned messages.
+When you create an event processor, specify functions that process events and errors. Each call to the function that processes events delivers a single event from a specific partition. You must handle this event. If you want to make sure the consumer processes every message at least once, write your own code with retry logic. But be cautious about poisoned messages.
 
-We recommend that you do things relatively fast. That is, do as little processing as possible. If you need to write to storage and do some routing, it's better to use two consumer groups and have two event processors.
+Process events relatively fast. That is, do as little processing as possible. If you need to write to storage and do some routing, it's better to use two consumer groups and have two event processors.
 
 ## Checkpoint
 
-*Checkpointing* is a process by which an event processor marks or commits the position of the last successfully processed event within a partition. Marking a checkpoint is typically done within the function that processes the events and occurs on a per-partition basis within a consumer group. 
+*Checkpointing* is a process by which an event processor marks or commits the position of the last successfully processed event within a partition. Marking a checkpoint typically happens within the function that processes the events and occurs on a per-partition basis within a consumer group. 
 
-If an event processor disconnects from a partition, another instance can resume processing the partition at the checkpoint that was previously committed by the last processor of that partition in that consumer group. When the processor connects, it passes the offset to the event hub to specify the location at which to start reading. In this way, you can use checkpointing to both mark events as "complete" by downstream applications and to provide resiliency when an event processor goes down. It's possible to return to older data by specifying a lower offset from this checkpointing process. 
+If an event processor disconnects from a partition, another instance can resume processing the partition at the checkpoint that the last processor of that partition in that consumer group previously committed. When the processor connects, it passes the offset to the event hub to specify the location at which to start reading. In this way, you can use checkpointing to both mark events as "complete" by downstream applications and to provide resiliency when an event processor goes down. You can return to older data by specifying a lower offset from this checkpointing process. 
 
-When the checkpoint is performed to mark an event as processed, an entry in checkpoint store is added or updated with the event's offset and sequence number. Users should decide the frequency of updating the checkpoint. Updating after each successfully processed event can have performance and cost implications  as it triggers a write operation to the underlying checkpoint store. Also, checkpointing every single event is indicative of a queued messaging pattern for which a Service Bus queue might be a better option than an event hub. The idea behind Event Hubs is that you get "at least once" delivery at great scale. By making your downstream systems idempotent, it's easy to recover from failures or restarts that result in the same events being received multiple times.
+When the checkpoint marks an event as processed, it adds or updates an entry in the checkpoint store with the event's offset and sequence number. Decide the frequency of updating the checkpoint. Updating after each successfully processed event can have performance and cost implications  as it triggers a write operation to the underlying checkpoint store. Also, checkpointing every single event is indicative of a queued messaging pattern for which a Service Bus queue might be a better option than an event hub. The idea behind Event Hubs is that you get "at least once" delivery at great scale. By making your downstream systems idempotent, it's easy to recover from failures or restarts that result in the same events being received multiple times.
 
 
 [!INCLUDE [storage-checkpoint-store-recommendations](./includes/storage-checkpoint-store-recommendations.md)]
@@ -82,10 +82,10 @@ When the checkpoint is performed to mark an event as processed, an entry in chec
 
 ## Thread safety and processor instances
 
-By default, the function that processes events is called sequentially for a given partition. Subsequent events and calls to this function from the same partition queue up behind the scenes as the event pump continues to run in the background on other threads. Events from different partitions can be processed concurrently and any shared state that is accessed across partitions have to be synchronized.
+By default, the function that processes events is called sequentially for a given partition. Subsequent events and calls to this function from the same partition queue up behind the scenes as the event pump continues to run in the background on other threads. Events from different partitions can be processed concurrently. You must synchronize any shared state that's accessed across partitions.
 
 ## Related content
-See the following quick starts:
+See the following quickstarts:
 
 - [.NET Core](event-hubs-dotnet-standard-getstarted-send.md)
 - [Java](event-hubs-java-get-started-send.md)
