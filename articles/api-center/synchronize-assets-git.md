@@ -12,7 +12,7 @@ ms.update-cycle: 180-days
 ms.custom:
 ---
 
-# Synchronize API assets from a Git repo
+# Synchronize API assets from a Git repo to Azure API Center
 
 This article describes how to integrate a Git repository with Azure API Center to automatically synchronize API assets such as [skills](register-discover-skills.md) into your API inventory. By connecting a Git repository, you can keep your API center inventory up to date without manually registering or updating each asset.
 
@@ -26,7 +26,7 @@ When you integrate a Git repository:
 - An API center. If you don't have an API center yet, see the quickstart to [Create an API center](set-up-api-center.md).
 - A Git repository containing the AI assets you want to synchronize.
 - For non-public repositories, a personal access token (PAT) to access the repository. The PAT must have appropriate permissions to read the repository content. To create a PAT for GitHub, see [Create a fine-grained personal access token](https://docs.github.com/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-fine-grained-personal-access-token).
-- An Azure key vault to store the PAT. If you need to create one, see [Quickstart: Create a key vault using the Azure portal](/azure/key-vault/general/quick-create-portal). To add or manage secrets in the key vault, you need at least the **Key Vault Secrets Officer** role or equivalent permissions.
+- An Azure key vault to store the PAT, if one is used for access. If you need to create a key vault, see [Quickstart: Create a key vault using the Azure portal](/azure/key-vault/general/quick-create-portal). To add or manage secrets in the key vault, you need at least the **Key Vault Secrets Officer** role or equivalent permissions.
 - For Azure CLI:
     [!INCLUDE [include](~/reusable-content/azure-cli/azure-cli-prepare-your-environment-no-header.md)]
 
