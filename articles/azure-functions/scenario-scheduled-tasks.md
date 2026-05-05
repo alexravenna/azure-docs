@@ -341,8 +341,10 @@ You can review the complete template project [here](https://github.com/Azure-Sam
 You can review the complete template project [here](https://github.com/Azure-Samples/functions-quickstart-python-azd-timer).
 ::: zone-end  
 
+::: zone pivot="programming-language-csharp,programming-language-javascript,programming-language-typescript,programming-language-powershell,programming-language-python"
 > [!TIP]
 > The `runOnStartup` option is useful during development and testing because the function runs immediately when the host starts. In production, you should set this to `false` to avoid unexpected executions during deployments or restarts.
+::: zone-end
 
 After you verify your function locally, it's time to publish it to Azure. 
 
