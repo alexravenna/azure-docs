@@ -3,7 +3,7 @@ title: Prepare Azure resources for Hyper-V disaster recovery by using Azure Site
 description: Learn how to prepare Azure resources for disaster recovery of on-premises Hyper-V VMs by using Azure Site Recovery
 ms.service: azure-site-recovery
 ms.topic: tutorial
-ms.date: 12/22/2022
+ms.date: 05/05/2026
 ms.custom: MVC, engagement-fy23
 ms.author: v-gajeronika
 author: Jeronika-MS
@@ -50,6 +50,8 @@ To complete these tasks, your account should be assigned the Virtual Machine Con
 To manage Site Recovery operations in a vault, your account should be assigned the Site Recovery Contributor built-in role.
 
 ## Create a storage account
+
+[!INCLUDE [hyper-v-to-azure-region-limitations.md](./includes/hyper-v-to-azure-region-limitations.md)]
 
 Images of replicated machines are held in an Azure storage account. Azure VMs are created from the storage account when you fail over from on-premises to Azure. The storage account must be in the same region as your Recovery Services vault.
 

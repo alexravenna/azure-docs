@@ -3,7 +3,7 @@ title: Support for disaster recovery of Hyper-V VMs to Azure with Azure Site Rec
 description: Summarizes the supported components and requirements for Hyper-V VM disaster recovery to Azure with Azure Site Recovery
 ms.service: azure-site-recovery
 ms.topic: concept-article
-ms.date: 02/27/2026
+ms.date: 05/05/2026
 author: Jeronika-MS
 ms.author: v-gajeronika
 # Customer intent: As a IT admin managing on-premises Hyper-V VMs, I want to implement disaster recovery to Azure, so that I can ensure business continuity and data protection in case of on-premises failures.
@@ -15,7 +15,8 @@ ms.author: v-gajeronika
 This article summarizes the supported components and settings for disaster recovery of on-premises Hyper-V VMs to Azure by using [Azure Site Recovery](site-recovery-overview.md).
 
 >[!NOTE]
-> Site Recovery does not move or store customer data out of the target region, in which disaster recovery has been setup for the source machines. Customers may select a Recovery Services Vault from a different region if they so choose. The Recovery Services Vault contains metadata but no actual customer data.
+> - Site Recovery does not move or store customer data out of the target region, in which disaster recovery has been setup for the source machines. Customers may select a Recovery Services Vault from a different region if they so choose. The Recovery Services Vault contains metadata but no actual customer data.
+> - [!INCLUDE [hyper-v-to-azure-region-limitations.md](./includes/hyper-v-to-azure-region-limitations.md)]
 
 ## Supported scenarios
 
