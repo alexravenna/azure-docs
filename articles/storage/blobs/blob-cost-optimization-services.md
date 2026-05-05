@@ -46,7 +46,7 @@ By default, new objects start in the hot tier. As data ages without access, it m
 
 Smart tiering includes a monitoring fee per 10,000 monitored objects per month for objects larger than 125KiB. 
 > NOTE
-> It may be more cost effective to keep objects smaller than 125KiB in the hot tier to avoid impact from minimum objects size billing in cooler tiers. [Learn more](access-tiers-overview#minimum-billable-object-size-on-cooler-tiers.md)
+> It may be more cost effective to keep objects smaller than 125KiB in the hot tier to avoid impact from minimum objects size billing in cooler tiers. [Learn more](access-tiers-overview.md)
 
 ## Azure Blob Storage lifecycle management: Rule-based tiering and retention
 
