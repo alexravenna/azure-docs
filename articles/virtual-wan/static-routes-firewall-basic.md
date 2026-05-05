@@ -16,7 +16,7 @@ ms.custom:
 
 This document summarizes basic scenarios for routing Virtual WAN traffic to Azure Firewall using static routes. The document **doesn't cover** [routing intent](how-to-routing-policies.md).
 
-The document also contains notes on how [Azure Firewall Manager configures routing in Virtual WAN](https://learn.microsoft.com/azure/firewall-manager/secure-cloud-network). There are two configurable routing modes in Azure Firewall Manager:
+The document also contains notes on how [Azure Firewall Manager configures routing in Virtual WAN](../firewall-manager/secure-cloud-network.md). There are two configurable routing modes in Azure Firewall Manager:
 * **Inter-hub set to off**: Utilizes static routes to direct traffic to Azure Firewall within the local Virtual Hub **without** routing intent. This configuration is covered by this document.
 * **Inter-hub set to on**: Enables [routing intent](how-to-routing-policies.md) on the Virtual WAN hub. This configuration is **not** covered by this document.
 
