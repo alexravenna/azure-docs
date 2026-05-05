@@ -150,13 +150,6 @@ The sub-agent starts the Java diagnostics workflow and returns findings with rec
 
 You can also route alert-driven investigations to the sub-agent so Azure SRE Agent can start a Java diagnostics run as part of an automated response flow.
 
-## Enable early access features
-
-The Java profiling capability is currently in early access. To enable early access features:
-
-1. Open Azure SRE Agent.
-1. Go to **Settings** > **Basics**.
-1. Turn on **Early access to features**.
 
 ## Interpret diagnostic results
 
