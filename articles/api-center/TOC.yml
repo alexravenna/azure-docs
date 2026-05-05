@@ -72,11 +72,11 @@
         href: register-discover-skills.md
     - name: Integrate API sources
       items:
-      - name: Synchronize APIs from API Management
+      - name: Synchronize assets from API Management
         href: synchronize-api-management-apis.md
-      - name: Synchronize APIs from Amazon API Gateway
+      - name: Synchronize assets from Amazon API Gateway
         href: synchronize-aws-gateway-apis.md
-      - name: Synchronize AI assets from a Git repository
+      - name: Synchronize assets from a Git repository
         href: synchronize-assets-git.md
 - name: API governance
   items:
