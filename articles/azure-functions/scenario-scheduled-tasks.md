@@ -321,9 +321,6 @@ You can review the complete template project [here](https://github.com/Azure-Sam
 ::: zone pivot="programming-language-javascript"  
 :::code language="javascript" source="~/functions-azd-timer-javascript/src/src/functions/timerFunction.js" range="1,12-24" :::
 
-> [!TIP]
-> The `runOnStartup` option is useful during development and testing because the function runs immediately when the host starts. In production, you should set this to `false` to avoid unexpected executions during deployments or restarts.
-
 You can review the complete template project [here](https://github.com/Azure-Samples/functions-quickstart-javascript-azd-timer).
 ::: zone-end  
 ::: zone pivot="programming-language-typescript" 
@@ -343,6 +340,9 @@ You can review the complete template project [here](https://github.com/Azure-Sam
 
 You can review the complete template project [here](https://github.com/Azure-Samples/functions-quickstart-python-azd-timer).
 ::: zone-end  
+
+> [!TIP]
+> The `runOnStartup` option is useful during development and testing because the function runs immediately when the host starts. In production, you should set this to `false` to avoid unexpected executions during deployments or restarts.
 
 After you verify your function locally, it's time to publish it to Azure. 
 
