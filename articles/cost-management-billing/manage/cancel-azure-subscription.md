@@ -146,8 +146,6 @@ The **Delete subscription** option isn't available until **3 days** after you ca
 ![Screenshot of 3 days delay for deleting subscriptions.](media/cancel-azure-subscription/cancel-subscription-3-days.png)
 
 
-
-
 1. If necessary, type the name of the subscription and then select **Delete**.
     - When all required conditions are met, you can delete the subscription.  
     :::image type="content" source="./media/cancel-azure-subscription/type-name-delete.png" alt-text="Screenshot showing where you type the subscription name and Delete." lightbox="./media/cancel-azure-subscription/type-name-delete.png" :::
