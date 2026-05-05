@@ -96,3 +96,7 @@ No. AKS instances aren't impacted and will continue to perform as expected when 
 
 ### Is VNet encryption impacted?
 No. VNet encryption will continue to perform as expected if VMs are deployed on MANA hardware.
+
+## Related content
+- [Accelerated Networking Overview](https://aka.ms/accelnet)
+- [How Accelerated Networking works in Linux and FreeBSD VMs](/azure/virtual-network/accelerated-networking-how-it-works)
