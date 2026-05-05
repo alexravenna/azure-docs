@@ -350,10 +350,7 @@ After you verify your function locally, it's time to publish it to Azure.
 
 ## Deploy to Azure
  
-This project is configured to use the `azd up` command to deploy your code to a new function app in a Flex Consumption plan in Azure.
-
->[!TIP]
->This project includes a set of Bicep files that `azd` uses to create a secure deployment to a Flex consumption plan that follows best practices.
+This project uses Bicep files and the `azd up` command to create a secure deployment to a new function app in a Flex Consumption plan that follows best practices.
 
 1. Run this command to have `azd` create the required Azure resources in Azure and deploy your code project to the new function app:
 
