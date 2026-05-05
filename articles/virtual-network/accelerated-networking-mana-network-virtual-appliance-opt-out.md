@@ -34,7 +34,7 @@ Your NVA VMs running on [existing VM series](./accelerated-networking-mana-exist
 You can apply the `LegacyVMNVA` tag to temporarily avoid placement on MANA‑enabled hardware. This tag prevents NVA VMs and Virtual Machine Scale Sets from landing on MANA hardware while you complete your migration. Follow the steps below to apply the tag.
 
 > [!IMPORTANT]
-> The `LegacyVMNVA` tag must be applied before August 1, 2026. VMs that are created or tagged after this date may be placed on MANA-capable hardware. After May 31, 2027, the tag is ignored and all eligible NVAs will be placed on MANA-capable hardware.
+> The `LegacyVMNVA` tag must be applied before August 1, 2026. VMs that are created or tagged after this date may be placed on MANA-capable hardware. After May 31, 2027, the tag is ignored and all [MANA-eligible VM series](./accelerated-networking-mana-existing-sizes.md) will be placed on MANA-capable hardware.
 
 1. Open the `LegacyVMNVA` [Azure Policy](https://ms.portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetail.ReactView/id/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Fe87a87f5-e6dd-4919-be21-abb0a4ea4630/version/1.0.0/scopes~/%5B%22%2Fsubscriptions%2F12015272-f077-4945-81de-a5f607d067e1%22%2C%22%2Fsubscriptions%2F0ba674a6-9fde-43b4-8370-a7e16fdf0641%22%5D/contextRender~/false).
      - This will automatically apply the tag across your environment at scale and cover individual VM workloads and Virtual Machine Scale Set scenarios.
@@ -88,3 +88,6 @@ You can use Azure Policy exemption capabilities. For more information, [Azure Po
 
 ### How can I roll back the `LegacyVMNVA` policy assignment?
 To roll back the policy assignment, delete the policy assignment. For a more gradual rollback, update the policy resource selector to incrementally remove regions. If the `LegacyVMNVA` tag is present on applied to existing VMs, delete the tag using your Azure client of choice and redeploy the VMs.
+
+## Is any action needed after the tag expires on May 31, 2027?
+No action is required after May 31, 2027. However, we recommend removing the policy assignment from all associated subscriptions.
