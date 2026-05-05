@@ -45,7 +45,18 @@ Application rules allow or deny traffic based on the application layer. The foll
 | Aspire Dashboard | `https://<YOUR-CONTAINERAPP-REGION>.ext.azurecontainerapps.dev` | This FQDN is required when using Aspire dashboard in an environment configured with a virtual network. Please update the FQDN with your container app's region. |
 | Docker Hub Registry | `hub.docker.com`, `registry-1.docker.io`, `production.cloudflare.docker.com` | If you're using [Docker Hub registry](https://docs.docker.com/desktop/allow-list/) and want to access it through the firewall, you need to add these FQDNs to the firewall. |
 | Azure Service Bus | `*.servicebus.windows.net` | This FQDN is required when using Azure Service Bus with Azure Container Apps and Azure Firewall. |
-| Azure China | `mcr.azure.cn`, `*.data.mcr.azure.cn` | Azure Container Apps in the Azure China environment use these Microsoft Container Registry (MCR) endpoints to pull container images. When using Azure Firewall, you must allow either the corresponding application rules or network rules for MCR. This requirement applies only to the **Azure China environment**. |
+| Azure China - MCR | `mcr.azure.cn`, `*.data.mcr.azure.cn` | These Microsoft Container Registry (MCR) endpoints are used to pull container images in the Azure China environment. |
+| Azure China - AKS Infrastructure | `mcr.azk8s.cn`, `mirror.azk8s.cn` | These China-specific AKS mirrors are used to download Kubernetes binaries and container images. |
+| Azure China - ACR | `*.azurecr.cn` | Required when using Azure Container Registry in the Azure China environment. |
+| Azure China - Managed Identity | `*.identity.azure.cn`, `login.chinacloudapi.cn`, `*.login.chinacloudapi.cn` | These FQDNs are required when using managed identity in the Azure China environment. |
+| Azure China - Key Vault | `*.vault.azure.cn`, `login.chinacloudapi.cn` | Required when using Azure Key Vault in the Azure China environment. |
+| Azure China - Azure Management | `management.chinacloudapi.cn`, `*.blob.core.chinacloudapi.cn` | Required for Azure Resource Manager API calls and platform-managed storage accounts in the Azure China environment. |
+| Azure China - Monitoring | `*.servicebus.chinacloudapi.cn`, `mooncake.warmpath.chinacloudapi.cn` | Required for platform monitoring and telemetry ingestion in the Azure China environment. |
+| Azure China - Container Apps Platform | `*.chinacloudsites.cn`, `*.ext.azurecontainerapps-dev.cn` | Required for the Container Apps regional control plane and extensions API in the Azure China environment. |
+| Azure China - Aspire Dashboard | `*.azurecontainerapps.cn` | Required when using Aspire Dashboard or app FQDNs in the Azure China environment. |
+
+> [!NOTE]
+> The Azure China FQDNs listed above apply only to the **Azure China environment** (Mooncake). Docker Hub FQDNs are the same globally, but access from China may be unreliable. Consider mirroring images to Azure Container Registry (`*.azurecr.cn`) instead.
 
 ## Network rules
 
