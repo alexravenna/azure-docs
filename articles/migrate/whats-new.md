@@ -18,7 +18,7 @@ ms.custom: mvc, engagement-fy25
 
 ## Update (April 2026)
  
-- Public preview: Azure Migrate now supports **Reserved tags** that help enrich discovered data with business context, such as **environment** and **migration intent**. You can use the Environment reserved tag to classify workloads as Prod, Dev, test, and UAT. You can also use the Migration Intent reserved tag to indicate the intended action for workloads, such as Migrate, Retain, or Retire. Reserved tags influence how Azure Migrate performs assessments, calculates target SKUs, estimates pricing and sizing, and plans workloads for migration to Azure.
+- Public preview: Azure Migrate now supports **Reserved tags** that help enrich discovered data with business context, such as **environment** and **migration intent**. You can use the Environment reserved tag to classify workloads as Prod, Dev, Test, and UAT. You can also use the Migration Intent reserved tag to indicate the intended action for workloads, such as Migrate, Retain, or Retire. Reserved tags influence how Azure Migrate performs assessments, calculates target SKUs, estimates pricing and sizing, and plans workloads for migration to Azure.
 
 You can apply reserved tags from:
 
