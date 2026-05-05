@@ -214,12 +214,12 @@ The following list provides an overview of reference architectures. There isn't 
 
 ### Recommendation Matrix
 - Are you running your SAP system on Azure including RISE? Do you have a good Azure practice in-house? [Leveraging Azure API Management and vnet Peering (for example, SAP S/4HANA Private Cloud or Native)](architecture-apim-vnet.md)
-- Do you want to use BAPI / RFC? Take a look at [Leveraging on-premises data gateway with access to BAPI / RFCs and OData Services](architecture-opdg.md)
-- Are you already using SAP Business Technology Platform and have connected your SAP backend system to it? [Leveraging SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)](architecture-btp-apim.md)
+- Do you want to use BAPI / RFC? Take a look at [Leveraging on-premises data gateway with access to BAPI / RFCs and OData Services](architecture-on-premises-data-gateway.md)
+- Are you already using SAP Business Technology Platform and have connected your SAP backend system to it? [Leveraging SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)](architecture-business-technology-platform-api.md)
 
 ### Overview
 
 * [SAP System publically available (most likely a demo scenario)](architecture-demo.md)
-* [Leveraging SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)](architecture-btp-apim.md)
-* [Leveraging on-premises data gateway with access to BAPI / RFCs and OData Services](architecture-opdg.md)
+* [Leveraging SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)](architecture-business-technology-platform-api.md)
+* [Leveraging on-premises data gateway with access to BAPI / RFCs and OData Services](architecture-on-premises-data-gateway.md)
 * [Leveraging Azure API Management and vnet Peering (for example, SAP S/4HANA Private Cloud or Native)](architecture-apim-vnet.md)

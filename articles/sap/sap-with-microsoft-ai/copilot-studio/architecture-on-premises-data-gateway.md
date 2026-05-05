@@ -7,7 +7,7 @@ ms.subservice: center-sap-solutions
 ms.topic: overview
 ms.custom: microsoft-ai
 ms.date: 05/03/2026
-ms.author: hobru
+ms.author: hobruche
 ---
 
 # Leveraging On-premises data gateway with access to BAPI / RFCs and OData Services

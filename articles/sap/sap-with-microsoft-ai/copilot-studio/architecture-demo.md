@@ -20,7 +20,7 @@ Unlike the other architectures described here, this is your Quick-Start architec
 ## Why would you use this scenario?
 The assumption is that you have already an SAP OData Service, that's accessible from the internet. In most cases, this is probably not the case or you have other means of protecting your endpoints already in place. 
 
-In the following steps, we'll use the public SAP Gateway Development system. This is a public hosted system from SAP, that exposes the Enterprise Procurement Model (EPM) via the GWSAMPLE_BASIC OData service. [See also](https://developers.sap.com/tutorials/odata-02-exploration-epm.html) If you don't have access yet, you can register for the [SAP Gateway Demo System here](https://developers.sap.com/tutorials/gateway-demo-signup.html)
+In the following steps, we'll use the public SAP Gateway Development system. This is a public hosted system from SAP, that exposes the Enterprise Procurement Model (EPM) via the GWSAMPLE_BASIC OData service. If you don't have access yet, you can register for the [SAP Gateway Demo System here](https://developers.sap.com/tutorials/gateway-demo-signup.html)
 
 > [!Note]
 > Since the SAP Gateway Development system is being [decommissioned](https://community.sap.com/t5/technology-blog-posts-by-sap/sap-gateway-demo-system-will-be-de-commissioned/ba-p/13353480) the recommendation for now is just to use any other public OData service (e.g. https://services.odata.org/v4/TripPinServiceRW). An alternative is to use the SAP Business Accelerator Hub, register and use an OData service for Read-only scenarios. 
