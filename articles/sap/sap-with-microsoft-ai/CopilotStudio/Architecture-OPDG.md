@@ -7,7 +7,7 @@ ms.subservice: center-sap-solutions
 ms.topic: overview
 ms.custom: microsoft-ai
 ms.date: 05/03/2026
-ms.author: hobru
+ms.author: hobruche
 ---
 
 # Leveraging On-premises data gateway with access to BAPI / RFCs and OData Services
@@ -25,28 +25,28 @@ Often BAPIs and RFC are used to fetch and update information in the SAP system. 
 Similar like the SAP Cloud Connector, the on-premises data gateway enables the access to the SAP system from Power Platform and Copilot Studio, even if there are firewalls in place. 
 
 This setup can be used if you want to connect to BAPIs/RFC or are also using other SAP integration from the Power Platform. 
-![Architecture - On-Premises Data Gateway](./apim-cloud-connector-on-premises.jpg)
+![Architecture - On-Premises Data Gateway](./APIM+CloudConnector-OPDG.jpg)
 
 ## Setup & Configuration
 To enable access to the SAP backend system, the on-premises data gateway has to be installed on a Windows server, which has access to your SAP system. This could be your client on which also the SAP GUI is running (which isn't recommended for a production use) or a dedicated machine that is connected to the SAP system.
-![on-premises data Gateway installed next to the SAP GUI](./opdg-installed.jpg)
+![on-premises data Gateway installed next to the SAP GUI](./OPDG-installed.jpg)
 
 During the installation you have to log in with a user from your Power Platform environment to establish the trust and connection with this environment. Afterwards the gateway and connection status can be seen in your environment. 
-![Connectivity status of OPDG in Power Platform environment](./registered-gateway.jpg)
+![Connectivity status of OPDG in Power Platform environment](./RegisteredGateway.jpg)
 
 In addition to the on-premises data gateway, the SAP .NET Connector has to be installed as well, if you want to integrate with BAPIs and RFCs. The SAP .NET Connector translates the incoming HTTP requests in the DIAG protocol used by SAPs proprietary APIs. 
-![Installation of SAP .Net Connector](./sap-net-connector.jpg)
+![Installation of SAP .Net Connector](./SAPNetConnector.jpg)
 
 * [Download on-premises data Gateway](https://www.microsoft.com/en-us/download/details.aspx?id=53127&msockid=08f9467b101a6a152949535411a26b2f) 
 
 
 ### Agent & Copilot Development 
 For this setup, Copilot agents are most likely developed using Copilot Studio, which has access not only to the on-premises data gateway, but also comes with several SAP ERP Connectors, that provide access to the BAPIs and RFCs exposed by the SAP System. 
-![SAP ERP Connector in Copilot Studio](./sap-erp-connectors.jpg)
+![SAP ERP Connector in Copilot Studio](./SAPERPConnectors.jpg)
 
 > [!Note]
 > Although we see SAP and the on-premises data gateway mainly used for BAPI and RFCs, you can also use it to expose SAP OData services.  
-![SAP OData Connector in Copilot Studio](./sap-odata-connector.jpg)
+![SAP OData Connector in Copilot Studio](./SAPODataConnector.jpg)
 
 ### Authentication
 With BAPIs and RFC an authentication using Kerberos and X.509 certificates is possible. This enables users to authenticate to  Copilot Studio with their "normal" Entra-ID credentials and then access their SAP system with the propagated user credentials. 

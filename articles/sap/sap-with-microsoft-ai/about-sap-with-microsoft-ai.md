@@ -7,7 +7,7 @@ ms.subservice: center-sap-solutions
 ms.topic: overview
 ms.custom: microsoft-ai
 ms.date: 05/03/2026
-ms.author: hobru
+ms.author: hobruche
 ---
 
 # About SAP with Microsoft AI
@@ -122,7 +122,7 @@ For complex scenarios involving multi-agent orchestration, custom models, or dee
 
 ## Links & Resources
 
-- [SAP & Microsoft Partnership](https://www.microsoft.com/en-us/industry/sap)
+- [SAP & Microsoft Partnership](/training/modules/microsoft-sap-partnership/)
 - [Azure AI Foundry](https://ai.azure.com/)
 - [Microsoft Copilot Studio](https://www.microsoft.com/en-us/microsoft-copilot/microsoft-copilot-studio)
 - [Microsoft Fabric](https://www.microsoft.com/en-us/microsoft-fabric)

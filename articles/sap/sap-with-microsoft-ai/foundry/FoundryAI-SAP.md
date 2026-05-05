@@ -1,13 +1,13 @@
 ---
 title: Azure AI Foundry & SAP Overview
 description: How Azure AI Foundry integrates with SAP to enable agentic AI scenarios, multi-agent orchestration, and enterprise-grade AI solutions.
-author: hobru
+author: hobruche
 ms.service: sap-on-azure
 ms.subservice: center-sap-solutions
 ms.topic: overview
 ms.custom: microsoft-ai
 ms.date: 05/03/2026
-ms.author: hobruche
+ms.author: hobrucheche
 ---
 
 # Foundry AI and SAP Overview
@@ -133,8 +133,9 @@ Users interact through a single natural language interface in Teams or Copilot C
 
 A typical Foundry + SAP architecture combines multiple data paths:
 
-![Foundry AI and SAP Architecture](foundry-ai-sap-architecture.png)
+![Foundry AI and SAP Architecture](FoundryAI-SAP-Architecture.png)
 
+> 📥 [Download editable draw.io diagram](FoundryAI-SAP-Architecture.drawio)
 
 ### SAP Data Sources
 
@@ -173,7 +174,7 @@ Azure AI Foundry includes a **Control Plane** for governing the full AI lifecycl
 
 - [Azure AI Foundry](https://ai.azure.com/)
 - [Copilot Studio](https://www.microsoft.com/en-us/microsoft-copilot/microsoft-copilot-studio)
-- [Business Process Solutions in Fabric](/azure/sap/business-process-solutions/about-business-process-solutions)
+- [Business Process Solutions in Fabric](https://learn.microsoft.com/en-us/fabric/enterprise/business-process-solutions-overview)
 - [Model Context Protocol (MCP)](https://modelcontextprotocol.io/)
-- [Employee Self-Service Agent](/microsoft-365/copilot/employee-self-service/overview)
-- [Integrate SuccessFactors with Employee Self-Service](/microsoft-365/copilot/employee-self-service/sapsuccessfactors)
+- [Employee Self-Service Agent](https://learn.microsoft.com/en-us/microsoft-copilot-studio/microsoft-365-copilot/copilot-studio-agent-employee-self-service)
+- [Integrate SuccessFactors with Employee Self-Service](https://learn.microsoft.com/en-us/microsoft-copilot-studio/microsoft-365-copilot/copilot-studio-agent-employee-self-service-successfactors)
