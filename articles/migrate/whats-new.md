@@ -22,9 +22,9 @@ ms.custom: mvc, engagement-fy25
 
 You can apply reserved tags from:
 
-    - The inventory pane in the Azure portal.
-    - Dedicated columns during CSV export and import.
-    - Natural language interactions with the Azure Copilot migration agent.
+  - The inventory pane in the Azure portal.
+  - Dedicated columns during CSV export and import.
+  - Natural language interactions with the Azure Copilot migration agent.
 
 If no tags are applied, workloads default to Production for the environment type and Migrate for the migration intent. [Learn more](resource-tagging.md).
 
