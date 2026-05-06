@@ -43,9 +43,14 @@ To enable application logs for Windows apps in the [Azure portal](https://portal
 
 1. Go to your app and select **Monitoring** > **App Service logs**.
 
-1. Select **On** for **Application logging (Filesystem)**. This option is for temporary debugging purposes. It turns itself off in 12 hours.
+    Select **On** for either or both of these options:
 
-1. Select the level of details to log. The following table shows the log categories included in each level:
+   - **Application logging (Filesystem)**: This option is for temporary debugging purposes. It turns itself off in 12 hours.
+   - **Application logging (Blob)**: This option is for long-term logging. It needs a blob storage container to write logs to.
+
+    The **Blob** option includes additional information in the log messages, such as the ID of the origin virtual machine instance of the log message (`InstanceId`), the thread ID (`Tid`), and a more granular time stamp ([`EventTickCount`](/dotnet/api/system.datetime.ticks)).
+
+1. For **Level**, select the level of details to log. The following table shows the log categories included in each level:
 
    | Level | Included categories |
    |:-|:-|
@@ -73,13 +78,17 @@ Currently, only .NET application logs can be written to blob storage. Java, PHP,
 
 If you [regenerate your storage account's access keys](../storage/common/storage-account-create.md), you must reset the respective logging configuration to use the updated access keys:
 
+1. On the **Configure** tab, set the respective logging feature to **Off**. Save your setting.
+
+1. Enable logging to the storage account's blob again. Save your setting.
+
 ## <a name = "enable-application-logging-linuxcontainer"></a> Enable application logging (Linux or container)
 
 To enable application logging for Linux apps or custom containers in the [Azure portal](https://portal.azure.com):
 
 1. Go to your app and select **Monitoring** > **App Service logs**.
 
-1. For **Web server logging**, select **File System**.
+In **Application logging**, select **File System**.
 
 1. In **Quota (MB)**, specify the disk quota for the application logs.
 
@@ -89,7 +98,7 @@ To enable application logging for Linux apps or custom containers in the [Azure 
 
 ## Log detailed errors
 
-To save the error page or failed request traces for apps in the [Azure portal](https://portal.azure.com):
+To save the error page or failed request traces for Windows apps in the [Azure portal](https://portal.azure.com):
 
 1. Go to your app and select **Monitoring** > **App Service logs**.
 
@@ -181,7 +190,7 @@ For a list of supported log types and their descriptions, see [Supported resourc
 
 ## <a name = "networking-considerations"></a> Network considerations
 
-For information about restrictions for diagnostic settings, see [Destination limits](/azure/azure-monitor/essentials/diagnostic-settings##destinations).
+For destinations supported by diagnostic settings, see [Destinations](/azure/azure-monitor/essentials/diagnostic-settings#destinations).
 
 ## <a name="nextsteps"></a> Related content
 
