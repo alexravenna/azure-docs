@@ -68,7 +68,9 @@ The `$bulk-delete` operation supports using FHIR service supported search parame
 
 #### Bulk delete resources with references
 
-Use `$bulk-delete` with `_include` and `_revinclude` to bulk delete resources that have references. For more information about `_include` and `_revinclude` as search result parameters, see [Include and RevInclude](https://learn.microsoft.com/azure/healthcare-apis/fhir/overview-of-search#search-result-parameters). Here are some examples of using `$bulk-delete` with `_include` and `_revinclude`:
+Use `$bulk-delete` with `_include` and `_revinclude` to bulk delete resources that have references. For more information about `_include` and `_revinclude` as search result parameters, see [Include and RevInclude](../fhir/overview-of-search.md#search-result-parameters). 
+
+Here are some examples of using `$bulk-delete` with `_include` and `_revinclude`:
 
 The following example uses `_revinclude` to bulk delete all Patient resources that were last updated before December 18, 2021, and all resources that reference those patients: 
 
