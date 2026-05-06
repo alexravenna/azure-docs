@@ -64,7 +64,7 @@ To restore the database, follow these steps:
 
 3. Open command prompt and navigate to the `bin` directory of the downloaded MySQL community version folder.
 
-4. Now specify the data directory using `--datadir` by running following command in command prompt.
+4. Specify the data directory using `--datadir` by running following command in command prompt.
 
 ```azurecli
 mysqld --datadir=<path to data folder of the restore files downloaded>
