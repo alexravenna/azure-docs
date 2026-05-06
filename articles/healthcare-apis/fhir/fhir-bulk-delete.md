@@ -18,7 +18,7 @@ ms.author: kesheth
 
 You can use the various features of `$bulk-delete` together to satisfy different use cases. The following example shows how to use `$bulk-delete` for data retention.  
 
-Suppose you want to delete Patient data that's older than three years, along with all data that references that patient. You also want to delete Practitioner resources that are no longer referenced by any Patient resources. 
+Suppose you want to delete Patient data that's older than three years, along with all data that references that patient. You also want to delete Practitioner resources that no Patient resources reference. 
 
 You can achieve this use case with these two calls.  
 
@@ -28,7 +28,7 @@ First, delete all Patient resources that are older than three years, along with 
 DELETE [base] /Patient/$bulk-delete?_lastUpdated=lt{date}&_revinclude=*:* 
 ```
 
-Next, delete all Practitioner resources that aren't referenced by any Patient resources.
+Next, delete all Practitioner resources that no Patient resources reference.
 
 ```rest
 DELETE [base]/Practitioner/$bulk-delete?_not-referenced=Patient:*
