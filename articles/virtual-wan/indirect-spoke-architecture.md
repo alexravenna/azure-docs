@@ -98,7 +98,7 @@ The following table describes the routing configuration of the Virtual WAN conne
 
 ### Additional indirect spoke routing configuration
 
-Virtual WAN only manages routing on virtual networks that are directly connected to the Virtual WAN hub. Add user-defined routes on the indirect spoke virtual networks to route traffic to the correct NVA IP address.
+Virtual WAN only configures routes on virtual networks that are directly connected to the Virtual WAN hub. Add user-defined routes on the indirect spoke virtual networks to route traffic to the correct NVA IP address.
 
 This user-defined route is required so that workloads in the indirect spoke virtual networks have a path back to the NVA and, therefore, to the rest of the Virtual WAN.
 

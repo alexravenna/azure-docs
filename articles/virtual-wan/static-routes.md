@@ -117,14 +117,14 @@ When using static routes to route traffic to a Virtual Network connection in Vir
 | Diagram Traffic Flow | Description |
 |--|--|
 | 1 | [Routing traffic to indirect spokes. Indirect spokes are virtual networks that are peered to Virtual WAN spokes, but not directly connected to the Virtual WAN hub](indirect-spoke-architecture.md). |
-| 2 | [Route on-premises traffic destined to a spoke Virtual Network to an NVA deployed in a different spoke VNET for inspection](spoke-inspection-north-south.md). |
+| 2 | [Route on-premises traffic destined to a spoke Virtual Network to an NVA deployed in a different spoke virtual network for inspection](spoke-inspection-north-south.md). |
 | 3 | [Route internet-bound traffic to a spoke NVA for inspection and egress. Commonly used in scenarios where you don't want to use a Firewall solution directly deployed in the Virtual WAN hub](indirect-spoke-architecture.md). |
 
 Some common use cases that require alternative approaches or are not supported in Virtual WAN:
 
 | Use Case| Alternative Approaches|
 |--|--|
-| Utilize an NVA to inspect Virtual Network to Virtual Network traffic via an NVA deployed in a third Virtual WAN spoke.| Not supported. Utilize an [indirect spoke architecture](indirect-spoke-architecture.md) where spoke VNETs are peered to the NVA spoke and **not** the Virtual WAN hub. Alternatively, deploy an NVA in the [Virtual WAN hub](about-nva-hub.md), connect all spoke Virtual Networks to the Virtual WAN hub and utilize routing intent.| 
+| Utilize an NVA to inspect Virtual Network to Virtual Network traffic via an NVA deployed in a third Virtual WAN spoke.| Not supported. Utilize an [indirect spoke architecture](indirect-spoke-architecture.md) where spoke virtual networks are peered to the NVA spoke and **not** the Virtual WAN hub. Alternatively, deploy an NVA in the [Virtual WAN hub](about-nva-hub.md), connect all spoke Virtual Networks to the Virtual WAN hub and utilize routing intent.| 
 |Utilize an NVA in the spoke to inspect Branch-to-branch traffic. | Not supported. Deploy an NVA in the [Virtual WAN hub](about-nva-hub.md) and utilize routing intent.|
 
 ### Combining two types of static routes

@@ -51,13 +51,13 @@ In the diagram above, there are three types of spokes:
 
 ### Routing intent and routing policies
 
-The virtual hub must use routing intent. Use a **Private Traffic** routing policy with next hop set to the security solution deployed in the virtual hub, such as Azure Firewall, a supported integrated NVA, or a SaaS security solution.
+The virtual hub must use routing intent. Use a **Private Traffic** routing policy with next hop set to the security solution deployed in the virtual hub, such as Azure Firewall, a supported integrated NVA, or an SaaS security solution.
 
 
 ### Static routes on the NVA virtual network connection
 
 > [!NOTE]
-> When using routing intent, the only supported static route integration pattern is [static route configuration option 1](static-routes.md#configuration-options). Configure static routes on the **virtual network connection** with **Propagate static route** set to **true**.
+> For routing intent hubs, the only supported static route integration pattern is [static route configuration option 1](static-routes.md#configuration-options). Configure static routes on the **virtual network connection** with **Propagate static route** set to **true**.
 
 
 | Prefix type | Example prefixes | Reasoning |
