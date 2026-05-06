@@ -51,8 +51,6 @@ To manage Site Recovery operations in a vault, your account should be assigned t
 
 ## Create a storage account
 
-[!INCLUDE [hyper-v-to-azure-region-limitations.md](./includes/hyper-v-to-azure-region-limitations.md)]
-
 Images of replicated machines are held in an Azure storage account. Azure VMs are created from the storage account when you fail over from on-premises to Azure. The storage account must be in the same region as your Recovery Services vault.
 
 1. In the [Azure portal](https://portal.azure.com) portal, select **Create a resource**.
@@ -79,6 +77,8 @@ Images of replicated machines are held in an Azure storage account. Azure VMs ar
 > :::image type="content" source="media/tutorial-prepare-azure/create-legacy-storage-account.png" alt-text="Screenshot that shows the Create a legacy storage account link.":::
 
 ## Create a Recovery Services vault
+
+[!INCLUDE [hyper-v-to-azure-region-limitations.md](./includes/hyper-v-to-azure-region-limitations.md)]
 
 1. In the [Azure portal](https://portal.azure.com), select **Create a resource**.
 1. Search Azure Marketplace for *Recovery Services*.
