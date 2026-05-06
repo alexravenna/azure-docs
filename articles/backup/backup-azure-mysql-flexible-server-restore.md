@@ -70,7 +70,7 @@ To restore the database, follow these steps:
 mysqld --datadir=<path to data folder of the restore files downloaded>
 ```
 
->[!Note]
+   >[!Note]
 >You can either add the `bin` folder path to the environment variables and execute `mysqld` directly; or navigate to `bin` folder path in command prompt and then execute `mysqld` 
 
 5. Connect to the database using any supported client.
