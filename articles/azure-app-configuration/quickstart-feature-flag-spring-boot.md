@@ -15,7 +15,7 @@ ms.custom: devx-track-java, mode-other
 
 In this quickstart, you'll create a feature flag in Azure App Configuration and use it to dynamically control Spring Boot apps to create an end-to-end implementation of feature management.
 
-The feature management support extends the dynamic configuration feature in App Configuration. These examples in the quickstart build on the Spring Boot app introduced in the dynamic configuration tutorial. Before you continue, finish the [quickstart](./quickstart-java-spring-app.md) and the [tutorial](./enable-dynamic-configuration-java-spring-app.md) to create Spring Boot apps with dynamic configuration first.
+The App Configuration feature management libraries extend Spring Boot by providing feature flag support. These examples in the quickstart build on the Spring Boot app introduced in the dynamic configuration tutorial. Before you continue, finish the [quickstart](./quickstart-java-spring-app.md) and the [tutorial](./enable-dynamic-configuration-java-spring-app.md) to create Spring Boot apps with dynamic configuration first.
 
 The Spring Boot Feature Management libraries do **not** have a dependency on any Azure libraries. They seamlessly integrate with App Configuration through its Spring Boot configuration provider.
 
@@ -33,7 +33,7 @@ Add a feature flag called *Beta* to the App Configuration store and leave **Labe
 > [!div class="mx-imgBorder"]
 > ![Screenshot of enable feature flag named Beta.](media/add-beta-feature-flag.png)
 
-## Console applications
+## Create a console app
 
 1. Create a new Spring Boot project:
 
@@ -80,7 +80,7 @@ Add a feature flag called *Beta* to the App Configuration store and leave **Labe
 
 1. Navigate to the `resources` directory of your app and open the `application.properties` or `application.yaml` file.
 
-    You use the `DefaultAzureCredential` to authenticate to your App Configuration store. Follow the [instructions](./concept-enable-rbac.md#authentication-with-token-credentials) to assign your credential the **App Configuration Data Reader** role. Be sure to allow sufficient time for the permission to propagate before running your application.
+    You use the `DefaultAzureCredential` to authenticate to your App Configuration store. For authorization to work, you need to grant the **App Configuration Data Reader** role to the credential that your app uses. For instructions, see [Authentication with token credentials](./concept-enable-rbac.md#authentication-with-token-credentials).Be sure to allow sufficient time for the permission to propagate before running your application.
 
     ### [Properties](#tab/properties)
 
