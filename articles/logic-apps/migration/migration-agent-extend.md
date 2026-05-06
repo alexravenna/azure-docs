@@ -10,7 +10,7 @@ ms.reviewers: estfan, azla
 ms.topic: how-to
 ai-usage: ai-assisted
 ms.update-cycle: 365-days
-ms.date: 04/27/2026
+ms.date: 05/06/2026
 # Customer intent: As a developer who works with enterprise integration platforms, I want to extend Azure Logic Apps (Standard) Migration Agent support to other integration platforms so I can migrate my integration solutions to Azure Logic Apps (Standard).
 ---
 
@@ -46,7 +46,7 @@ To add platform support to the migration agent, use the following approaches:
 
 | Approach | Recommended | Description |
 |----------|-------------|-------------|
-| **Built-in parser** (contribute to the [extension's GitHub repository](https://go.microsoft.com/fwlink/?linkid=2363903)) | Yes | Add a parser and skills directly to the project. Full integration with all five migration stages. This approach is recommended because built-in parsers ship with the extension, use the same CI/CD pipeline, and can access all internal APIs. |
+| **Built-in parser**: Contribute to the [extension's GitHub repository](https://go.microsoft.com/fwlink/?linkid=2363903) | Yes | Add a parser and skills directly to the project. Full integration with all five migration stages. This approach is recommended because built-in parsers ship with the extension, use the same CI/CD pipeline, and can access all internal APIs. |
 | **External parser extension** | No | Create a separate Visual Studio Code extension that registers parsers through the plugin API. Covers only the Discovery stage. |
 
 All parsers transform source platform artifacts into a common IR format as a JSON document. The migration agent uses the IR format in the planning, conversion, and validation stages. The parser registry supports both built-in and external parser plugins:
