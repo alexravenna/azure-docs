@@ -41,7 +41,7 @@ Before you start, make sure to meet the following requirements:
 | [Azure subscription - Get a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) | Deployment to Azure (Stage 5) |
 | [Azure CLI](/cli/azure/install-azure-cli) | Azure resource provisioning and deployment |
 | [Visual Studio Code 1.85.0 or later](https://code.visualstudio.com/download) | Local development experience |
-| [Azure Logic Apps Migration Agent extension]() | Required extension with migration agent for Visual Studio Code |
+| [Azure Logic Apps Migration Agent extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.logicapps-migration-agent) | Required extension with migration agent for Visual Studio Code |
 | [Azure Logic Apps (Standard) extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurelogicapps) | Required dependency for the Azure Logic Apps Migration Agent extension |
 | [Azure Functions extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions) | Local functions runtime and development tasks |
 | [Azure Functions Core Tools](/azure/azure-functions/functions-run-local) | Local runtime host for Azure Logic Apps (Standard) |
