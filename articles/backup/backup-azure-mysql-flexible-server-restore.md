@@ -53,9 +53,11 @@ To restore the database, follow these steps:
 
 ## Create a MySQL - Flexible server from restored recovery point
 
-To access data from the recovery point, follow these steps:
+After the restore job completes successfully, you will see the restored files in the target storage account. You will need to copy these restored files to a MySQL server to access the restored data.
 
 ### Access data from restored recovery point
+
+To access data from the recovery point, follow these steps:
 
 1. Download the restored files from Azure Storage Account using [Azure Storage explorer](../storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer.md).
 
@@ -68,9 +70,9 @@ To access data from the recovery point, follow these steps:
 
 4. Specify the data directory using `--datadir` by running following command in command prompt.
 
-```azurecli
-mysqld --datadir=<path to data folder of the restore files downloaded>
-```
+    ```azurecli
+    mysqld --datadir=<path to data folder of the restore files downloaded>
+    ```
 
    >[!Note]
    >You can either add the `bin` folder path to the environment variables and run the `mysqld` command directly; or go to the `bin` folder path in command prompt and then run `mysqld` 
