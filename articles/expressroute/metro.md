@@ -41,6 +41,7 @@ The following diagram allows for a comparison between the standard ExpressRoute 
 :::image type="content" source="./media/metro/standard-versus-metro.png" alt-text="Diagram of a standard ExpressRoute circuit and a ExpressRoute Metro circuit.":::
 
 ## ExpressRoute Metro locations
+| Metro location | Location address | Zone | Local Azure Region | ER Direct | Service Provider |
 |--|--|--|--|--|--|
 | Amsterdam Metro | Equinix AM5<br>Digital Realty AMS8 | 1 | West Europe | &check; | Colt<br>DE-CIX<br>Digital Realty<br>Equinix<br>euNetworks<br>Eurofiber<br>Megaport<br>NL-IX<br>SURF<br>GTT<sup>1</sup> |
 | Atlanta Metro | Equinix AT1<br>Digital Realty ATL14 | 1 | &cross; | &check; |  Equinix<br>Megaport<br>|
