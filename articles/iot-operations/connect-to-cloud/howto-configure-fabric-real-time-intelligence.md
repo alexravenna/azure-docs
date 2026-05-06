@@ -69,12 +69,6 @@ This method uses a managed identity to authenticate with the event stream. Use e
 
 ## Create a Microsoft Fabric Real-Time Intelligence data flow endpoint
 
-Microsoft Fabric Real-Time Intelligence supports three authentication methods for data flow endpoints:
-
-- **System-assigned managed identity**: Use the Azure IoT Operations Arc extension identity to authenticate with the event stream. Before you create the endpoint, add the extension identity to the Fabric workspace with **Contributor** or higher permissions. To learn more, see [System-assigned managed identity](#system-assigned-managed-identity).
-- **User-assigned managed identity**: Use a user-assigned managed identity configured for Azure IoT Operations cloud connections. Before you create the endpoint, add the user-assigned managed identity to the Fabric workspace with **Contributor** or higher permissions. To learn more, see [User-assigned managed identity](#user-assigned-managed-identity).
-- **SASL**: Use the Fabric event stream custom endpoint connection string. This method requires SASL settings and a synced Kubernetes secret with the username and password values. To learn more, see [SASL](#sasl).
-
 # [Operations experience](#tab/portal)
 
 1. In the IoT Operations experience portal, select the **Data flow endpoints** tab.
@@ -88,6 +82,12 @@ Microsoft Fabric Real-Time Intelligence supports three authentication methods fo
     | Name                  | The name of the data flow endpoint.                                                                                                                                                                                       |
     | Host                  | The hostname of the event stream custom endpoint in the format `<bootstrap-server>.servicebus.windows.net:9093`. Use the bootstrap server address noted previously.                                                       |
     | Authentication method | The method used for authentication. Choose [*System assigned managed identity*](#system-assigned-managed-identity), [*User assigned managed identity*](#user-assigned-managed-identity), or [*SASL*](#sasl).              |
+
+    Use the authentication method that matches how you want Azure IoT Operations to connect to the Fabric event stream custom endpoint:
+
+    - **System-assigned managed identity**: Use the Azure IoT Operations Arc extension identity to authenticate with the event stream. Before you create the endpoint, add the extension identity to the Fabric workspace with **Contributor** or higher permissions. To learn more, see [System-assigned managed identity](#system-assigned-managed-identity).
+    - **User-assigned managed identity**: Use a user-assigned managed identity configured for Azure IoT Operations cloud connections. Before you create the endpoint, add the user-assigned managed identity to the Fabric workspace with **Contributor** or higher permissions. To learn more, see [User-assigned managed identity](#user-assigned-managed-identity).
+    - **SASL**: Use the Fabric event stream custom endpoint connection string. This method requires SASL settings and a synced Kubernetes secret with the username and password values. To learn more, see [SASL](#sasl).
 
 1. Select **Apply** to provision the endpoint.
 
