@@ -22,6 +22,9 @@ Backup data is stored in the Backup vault as a blob within the Microsoft tenant.
 
 ## Restore the Azure Database for MySQL - Flexible Server
 
+>[!Note]
+> You can restore the recovery point for a MySQL – flexible server database as files only.
+
 To restore the database, follow these steps:
 
 1. Go to the Backup vault, and then select **Backup instances**.
@@ -47,6 +50,30 @@ To restore the database, follow these steps:
    This action restores the selected database backups in the target storage account.
 
    :::image type="content" source="./media/backup-azure-mysql-flexible-server-restore/review-restore.png" alt-text="Screenshot that shows how to trigger restore operation." lightbox="./media/backup-azure-mysql-flexible-server-restore/review-restore.png":::
+
+## Create MySQL server from restored recovery point
+
+### Steps to access data from restored recovery point
+
+1. Download the restored files from Azure Storage Account using [Azure Storage explorer](../storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer.md).
+
+2. Install the MySQL community version from [here](https://dev.mysql.com/downloads/)
+
+>[!Note]
+>The downloaded MySQL version must be same or compatible with the version of the restored files.
+
+3. Open command prompt and navigate to the `bin` directory of the downloaded MySQL community version folder.
+
+4. Now specify the data directory using `--datadir` by running following command in command prompt.
+
+```azurecli
+mysqld --datadir=<path to data folder of the restore files downloaded>
+```
+
+>[!Note]
+>You can either add the `bin` folder path to the environment variables and execute `mysqld` directly; or navigate to `bin` folder path in command prompt and then execute `mysqld` 
+
+5. Connect to the database using any supported client.
 
 ## Next steps
 
