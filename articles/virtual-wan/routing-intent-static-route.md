@@ -51,7 +51,7 @@ In the diagram above, there are three types of spokes:
 
 ### Routing intent and routing policies
 
-The virtual hub must use routing intent. Use a **Private Traffic** routing policy with next hop set to the security solution deployed in the virtual hub, such as Azure Firewall, a supported integrated NVA, or an SaaS security solution.
+The virtual hub must use routing intent. Use a **Private Traffic** routing policy with next hop set to the security solution deployed in the virtual hub, such as Azure Firewall, a supported integrated NVA, or a software-as-a-service (SaaS) security solution.
 
 
 ### Static routes on the NVA virtual network connection
