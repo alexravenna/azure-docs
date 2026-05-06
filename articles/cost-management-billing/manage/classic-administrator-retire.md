@@ -6,7 +6,7 @@ ms.reviewer: mijeffer
 ms.service: cost-management-billing
 ms.subservice: billing
 ms.topic: how-to
-ms.date: 04/28/2026
+ms.date: 05/06/2026
 ms.author: mijeffer
 ms.custom: sfi-ga-nochange
 service.tree.id: b69a7832-2929-4f60-bf9d-c6784a865ed8

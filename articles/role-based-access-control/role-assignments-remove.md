@@ -4,7 +4,7 @@ description: Learn how to remove access to Azure resources for users, groups, se
 author: rolyon
 ms.author: rolyon
 manager: pmwongera
-ms.date: 04/28/2026
+ms.date: 05/06/2026
 ms.service: role-based-access-control
 ms.topic: how-to
 ms.custom:
