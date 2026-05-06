@@ -155,7 +155,6 @@ Elevated memory usage doesn't always mean a memory leak. During an actual memory
 
 Azure Logic Apps (Standard) runs with .NET Server Garbage Collection (GC), which is optimized for throughput, not minimal memory footprint. This garbage collection keeps managed heap segments for future allocation, rather than returns them to the operating system. Memory might stay elevated for hours or even days during idle periods between processing cycles. 
 
-For a true memory leak, the memory usage would keep increasing under similar traffic load until the system eventually crashes with out-of-memory exception. And you shall be able to observe this pattern repeatedly.  
 
 ## Common problems - Standard logic apps
 
