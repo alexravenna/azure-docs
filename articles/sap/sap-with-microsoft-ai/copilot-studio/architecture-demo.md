@@ -41,7 +41,7 @@ The easiest way to get started is with Copilot Studio. You can start a free tria
 The [Microsoft 365 Agents Toolkit](/microsoft-365/developer/overview-m365-agents-toolkit) also enables you to access external APIs, like the GWSAMPLE_BASIC OData service, via [API Plugins](/microsoft-365-copilot/extensibility/overview-api-plugins). Since there's no native OData support, you might need to convert the OData specification into an OpenAPI specification. You can follow the instructions of the online tool [here](https://convert.odata-openapi.net/) to do that. Then you can use the instruction [here](/microsoft-365-copilot/extensibility/build-api-plugins-existing-api) using the OpenAPI specification. 
 
 ### Integration and connectivity infrastructure
-In this scenario, the OData services are accessible directly from the internet. Because of this no extra integration layer is required. In a productive environment, you would probably use an API Management solution (like [SAP API Management](./architecture-business-technology-platform-api.md) or [Azure API Management](./architecture-apim-virtual_network.md) solution)
+In this scenario, the OData services are accessible directly from the internet. Because of this no extra integration layer is required. In a productive environment, you would probably use an API Management solution (like [SAP API Management](./architecture-business-technology-platform-api.md) or [Azure API Management](./architecture-apim-virtual-network.md) solution)
 
 ### Backend systems and data sources
 In our case, the SAP Gateway Demo system is an SAP ECC System. However, you can also access SAP S/4HANA Systems, for example the Sandbox systems provided via the [SAP Business Accelerator Hub](https://hub.sap.com/) 
