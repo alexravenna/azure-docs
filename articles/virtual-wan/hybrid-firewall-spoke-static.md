@@ -74,7 +74,7 @@ The following static routes are needed to route traffic from on-premises network
 | Route Table | Address prefix | Next hop  | Reasoning |
 |--|--|--|--|
 | workloadRouteTable | 10.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12 | Azure Firewall| Sends virtual network traffic destined for on-premises networks to Azure Firewall for inspection. The 0.0.0.0/0 route is **not required** as the 0.0.0.0/0 route is automatically propagated because of the **propagate static route** setting on the NVA virtual network connection. |
-| defaultRouteTable | 10.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12 | Azure Firewall| Sends on-premises traffic destined for workload virtual networks to Azure Firewall for inspection.The 0.0.0.0/0 route is **not required** as the 0.0.0.0/0 route is automatically propagated because of the **propagate static route** setting on the NVA virtual network connection.|
+| defaultRouteTable | 10.0.0.0/8, 192.168.0.0/16, 172.16.0.0/12 | Azure Firewall| Sends on-premises traffic destined for workload virtual networks to Azure Firewall for inspection. The 0.0.0.0/0 route is **not required** as the 0.0.0.0/0 route is automatically propagated because of the **propagate static route** setting on the NVA virtual network connection.|
 
 If using [Option 2 static routing model](static-routes.md#configuration-options), add additional static routes in the route tables:
 

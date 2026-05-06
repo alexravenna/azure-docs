@@ -21,7 +21,7 @@ This design pattern explains how to combine **routing intent and routing policie
 
 Typical examples include sending traffic to:
 
-* Indirect spokes that are peered to the spoke NVA virtual network, but not directly connected to the Virtual WAN hub.
+* Indirect spokes that are peered to the NVA virtual network, but not directly connected to the Virtual WAN hub.
 * VPN or SDWAN tunnels terminating on the NVA in the spoke virtual network.
 * Internet-bound traffic ([forced tunnel](about-internet-routing.md#forced-tunnel-1))
 
@@ -51,7 +51,7 @@ In the diagram above, there are three types of spokes:
 
 ### Routing intent and routing policies
 
-The virtual hub must use routing intent. Use a **Private Traffic** routing policy with next hop set to the security solution deployed in the virtual hub, such as Azure Firewall, a supported integrated NVA, or an SaaS security solution.
+The virtual hub must use routing intent. Use a **Private Traffic** routing policy with next hop set to the security solution deployed in the virtual hub, such as Azure Firewall, a supported integrated NVA, or a SaaS security solution.
 
 
 ### Static routes on the NVA virtual network connection
@@ -62,8 +62,8 @@ The virtual hub must use routing intent. Use a **Private Traffic** routing polic
 
 | Prefix type | Example prefixes | Reasoning |
 |--|--|--|
-| Indirect spoke prefixes | 10.20.0.0/16 | Allows traffic inspected in the hub to be forwarded to prefixes that are reachable behind the spoke NVA. |
-| SDWAN prefixes | 192.168.0.0/24 | Allows traffic inspected in the hub to be forwarded to SDWAN-connected sites or prefixes that are reachable through tunnels terminated on the spoke NVA. |
+| Indirect spoke prefixes | 10.20.0.0/16 | Allows traffic inspected in the hub to be forwarded to prefixes that are reachable behind the NVA deployed in the spoke. |
+| SDWAN prefixes | 192.168.0.0/24 | Allows traffic inspected in the hub to be forwarded to SDWAN-connected sites or prefixes that are reachable through tunnels terminated on the NVA deployed in the spoke. |
 
 
 ## Additional considerations
@@ -71,5 +71,5 @@ The virtual hub must use routing intent. Use a **Private Traffic** routing polic
 * For deployments where static routes are specified on a virtual network connection with **Propagate static route** enabled, the **bypass next hop IP** behavior is ignored when routing intent is applied. For more information, see [Bypass next hop IP for workloads within this VNet](howto-connect-vnet-hub.md#bypassexplained).
 * If there are multiple static routes configured where the destination CIDRs are **not** in IANA RFC1918, all static routes with non-RFC1918 destinations must use the **same next hop IP address**.
 * Routing intent is the only supported mechanism in Virtual WAN to inspect **inter-hub** traffic through security solutions deployed in the virtual hub.
-* If you need a design where an NVA deployed in a spoke is used only for Internet breakout, while the virtual hub security solution inspects private traffic, see [Combining Azure Firewall and NVAs deployed in spokes](hybrid-firewall-spoke-static.md). In this scenario, Internet traffic is only inspected by the spoke NVA.
+* If you need a design where an NVA deployed in a spoke is used only for Internet breakout, while the virtual hub security solution inspects private traffic, see [Combining Azure Firewall and NVAs deployed in spokes](hybrid-firewall-spoke-static.md). In this scenario, Internet traffic is only inspected by the NVA deployed in the spoke.
 * If you need a design where an NVA deployed in a spoke is used to route traffic to indirect spokes or the Internet without routing intent, see [Route traffic to indirect spokes](indirect-spoke-architecture.md).

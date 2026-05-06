@@ -25,7 +25,7 @@ At a high level, the following static route configurations are needed for the tw
 | Use case| Configuration| Detailed use case documentation|
 |--|--|--|
 |Route traffic through Azure Firewall deployed in Virtual WAN hub |Static routes in Virtual WAN route table with next hop Azure Firewall resource ID.| [Route traffic to secure hub Azure Firewall with Virtual WAN static routes](static-routes.md#common-use-cases). |
-|Route traffic to desginated IP address in a spoke Virtual Network |**Option 1:**  Static routes on the Virtual Network connection with next hop set to the IP address of the NVA or load balancer in the spoke Virtual Network. Propagate static route set to **true**.<br> **Option 2:**  Configure a static route in Virtual WAN route table with next hop spoke Virtual Network connection. Configure corresponding static route on Virtual Network connection with next hop set to the IP address of the NVA or load balancer in the spoke Virtual Network.| [Route traffic to spoke Virtual Networks using Virtual WAN static routes ](static-routes.md#common-use-cases-1)|
+|Route traffic to designated IP address in a spoke Virtual Network |**Option 1:**  Static routes on the Virtual Network connection with next hop set to the IP address of the NVA or load balancer in the spoke Virtual Network. Propagate static route set to **true**.<br> **Option 2:**  Configure a static route in Virtual WAN route table with next hop spoke Virtual Network connection. Configure corresponding static route on Virtual Network connection with next hop set to the IP address of the NVA or load balancer in the spoke Virtual Network.| [Route traffic to spoke Virtual Networks using Virtual WAN static routes ](static-routes.md#common-use-cases-1)|
 
 ## Routing use cases
 
@@ -84,7 +84,7 @@ Other common use cases that require alternate approaches or are not supported wi
 | Route traffic to an NVA deployed inside of the Virtual WAN hub| Inspecting traffic with an NVA deployed in the hub requires using [routing intent and policies](how-to-routing-policies.md).|
 | Inspect inter-hub traffic | Use [routing intent and policies](how-to-routing-policies.md).|
 | Inspect branch-to-branch traffic (ExpressRoute, Site-to-site VPN and Point-to-site VPN)|Branch-to-branch traffic inspection requires using [routing intent and policies](how-to-routing-policies.md).|
-| Virtual Network isolation with secure hubs.| Utilize **Azure Firewall network rules** to block traffic between Virtual Networks that shouldn't be able to communicate. Virtual WAN routing, even when propagations and associations are properly configured, can't guarantee that two Virtual Networks are isolated from a routing perspective. For example, two Virtual Networks that don't propagate to each other can still communicate via Azure Firewll if an aggregate route (such as a 10.0.0.0/8 or 0.0.0.0/0) is configured as a static route pointing to Azure Firewall in the hub on the Virtual Network's associated Virtual WAN route table. |
+| Virtual Network isolation with secure hubs.| Utilize **Azure Firewall network rules** to block traffic between Virtual Networks that shouldn't be able to communicate. Virtual WAN routing, even when propagations and associations are properly configured, can't guarantee that two Virtual Networks are isolated from a routing perspective. For example, two Virtual Networks that don't propagate to each other can still communicate via Azure Firewall if an aggregate route (such as a 10.0.0.0/8 or 0.0.0.0/0) is configured as a static route pointing to Azure Firewall in the hub on the Virtual Network's associated Virtual WAN route table. |
 
 ### Routing traffic to an NVA in a spoke Virtual Network
 
@@ -105,7 +105,7 @@ The two configuration options support different routing patterns and have differ
 
 When using static routes to route traffic to a Virtual Network connection in Virtual WAN, note the following best practices and considerations:
 
-* Utilize configuration **option 1** over configuration **option 2** whenever possible, as **option 1** ensures thatstatic routes are automatically advertised to the relevant Virtual WAN route tables.This significantly reduces the operational overhead of static route management across multiple Virtual WAN route tables and hubs.
+* Utilize configuration **option 1** over configuration **option 2** whenever possible, as **option 1** ensures that static routes are automatically advertised to the relevant Virtual WAN route tables. This significantly reduces the operational overhead of static route management across multiple Virtual WAN route tables and hubs.
 * The [bypass next-hop IP address](howto-connect-vnet-hub.md#bypassexplained) setting determines how traffic destined for IP addresses in the same Virtual Network as the NVA is routed. Align this setting with your intended network pattern. Often, setting this value to **true** is critical to routing NVA management traffic correctly to the expected NVA interface or instance.
 * If there are multiple static routes configured where the destination CIDRs  are **not** in IANA RFC1918, all static routes with non-RFC1918 destinations must use the **same next hop IP address**.
 * For scenarios where the NVA is used to inspect traffic between on-premises and other Virtual Networks, the NVA's Virtual Network will typically be associated with a **custom** route table different from the branches or other Virtual Networks, while all the other connections will propagate to the NVA Virtual Network's **custom route table**. For an example, see the common use cases section below.
@@ -143,4 +143,4 @@ Other common use cases that require alternate approaches or are not supported wi
 
 | Use case | Alternative approach |
 |--|--|
-|Double-inspection scenarios: inspect traffic destined for indirect spoke or Internet with Azure Firewall deploye in a secure hub. Then, forward traffic to NVA in spoke for breakout or access to an indirect spoke.| Use [routing intent and policies](how-to-routing-policies.md) and static routes on Virtual Networks connection with **Propagate static routes** set to **true**.|
+|Double-inspection scenarios: inspect traffic destined for indirect spoke or Internet with Azure Firewall deployed in a secure hub. Then, forward traffic to NVA in spoke for breakout or access to an indirect spoke.| Use [routing intent and policies](how-to-routing-policies.md) and static routes on Virtual Networks connection with **Propagate static routes** set to **true**.|
