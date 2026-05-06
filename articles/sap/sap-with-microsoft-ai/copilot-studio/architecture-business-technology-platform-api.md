@@ -10,7 +10,7 @@ ms.date: 05/03/2026
 ms.author: hobruche
 ---
 
-# Leveraging SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)
+# Leverage SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)
 
 > [!Important]
 > When consuming SAP APIs and interfaces, always ensure your usage complies with [SAP's API Policy](https://help.sap.com/doc/sap-api-policy/latest/en-US/API_Policy_latest.pdf). Please check with your SAP contact or account team if you have questions about permitted API usage in your specific scenario.
@@ -26,14 +26,14 @@ In most cases the Copilot would call a REST based API (OData, REST, SOAP). This 
 
 SAP BTP then forwards the request via the SAP Cloud Connector to the SAP Backend System. 
 
-![Architecture](./apim-cloud-connector-business-process-api-management.jpg)
+![Diagram showing the SAP Business Technology Platform API management architecture.](../media/apim-cloud-connector-business-process-api-management.jpg)
 
 (This architecture only depicts one path; You can use multiple variations for the connection)
 
-## Setup & Configuration
+## Setup and configuration
 For this scenario in most cases the SAP Business Technology platform is  in place and also the SAP Cloud Connector is already installed.
 
-### Agent & Copilot Development 
+### Agent and Copilot development 
 In Copilot Studio, use the SAP OData Connector or the HTTP Connector to connect to the service exposed on BTP. You can either use the connectors directly from Copilot Studio, or use a Power Automate flow to add extra logic before / after calling the API. 
 Using the SAP OData Connector you can also implement single sign-on from Entra ID to the SAP Business Technology Platform.
 
@@ -49,20 +49,20 @@ For all integration scenarios via the SAP Business Technology Platform Principal
 * [Principal propagation in a multicloud solution between Microsoft Azure and SAP, Part IV: SSO with a Power Virtual Agents Chatbot and on-premises Data Gateway](https://community.sap.com/t5/technology-blog-posts-by-members/principal-propagation-in-a-multi-cloud-solution-between-microsoft-azure-and/ba-p/13519225)
 * [Power Platform + SAP OData - single sign-on - Happy path](https://youtu.be/NSE--fVLdUg?si=eYnXYX5DLuyMwuY3)
 
-### Integration & Connectivity Infrastructure
+### Integration and connectivity infrastructure
 The easiest way to expose APIs from your SAP backend system, is via the SAP Integration Suite. In this example, we're using the SAP API Management. The policy of the API Proxy can also be enhanced to support the Principal Propagation Flow to enable single sign-on from the Copilot Agent to the SAP backend system. 
 
 * [Principal Propagation via Entra Id](https://api.sap.com/policytemplate/Principal_Propagation_via_Entra_ID)
 * [SuccessFactors Principal Propagation via Entra ID](https://api.sap.com/policytemplate/SuccessFactors_Principal_Propagation_via_Entra_Id)
 
-### Proxy / Connectivity
+### Proxy / connectivity
 When connecting to a public facing SAP System (for example, SAP SuccessFactors, SAP S/4HANA Cloud, Public Edition), the SAP API Management solution can connect directly to the backend system. 
 If the SAP System is behind a firewall (for example, running on-premises), then the SAP Cloud Connector can be used to link your on-premises system with SAP API Management
 
 * [Cloud Connector](https://help.sap.com/docs/connectivity/sap-btp-connectivity-cf/cloud-connector)
 
 
-### Backend Systems & Data Sources
+### Backend systems and data sources
 For available SAP OData and REST APIs, check the SAP Business Accelerator Hub. 
 If no fitting APIs are available, you can create your own services using the RESTful Application Programming Model or use the SAP Gateway Service Builder.  
 

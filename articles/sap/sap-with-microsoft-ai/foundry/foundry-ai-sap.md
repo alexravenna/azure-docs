@@ -10,7 +10,7 @@ ms.date: 05/03/2026
 ms.author: hobruche
 ---
 
-# Foundry AI and SAP Overview
+# Foundry AI and SAP overview
 
 > [!Important]
 > When consuming SAP APIs and interfaces, always ensure your usage complies with [SAP's API Policy](https://help.sap.com/doc/sap-api-policy/latest/en-US/API_Policy_latest.pdf). Please check with your SAP contact or account team if you have questions about permitted API usage in your specific scenario.
@@ -22,7 +22,7 @@ This page covers how Azure AI Foundry and the broader Microsoft AI stack integra
 > [!Important]
 > Prior to implementing an SAP AI scenario review the SAP API Policy for usage guidelines and restrictions [SAP API Policy](https://help.sap.com/doc/sap-api-policy/latest/en-US/API_Policy_latest.pdf) documentation.
 
-## The AI Innovation Layers for SAP
+## The AI innovation layers for SAP
 
 Microsoft offers three complementary layers for bringing AI to SAP environments:
 
@@ -34,11 +34,11 @@ Microsoft offers three complementary layers for bringing AI to SAP environments:
 
 These layers aren't mutually exclusive — most organizations use a combination depending on the business process and complexity involved.
 
-## Integration Patterns
+## Integration patterns
 
 There are three primary patterns for connecting AI agents to SAP data:
 
-### Pattern 1: Direct API Consumption
+### Pattern 1: Direct API consumption
 
 The agent calls SAP OData or REST APIs in real-time via HTTP connectors or plugins.
 
@@ -47,7 +47,7 @@ The agent calls SAP OData or REST APIs in real-time via HTTP connectors or plugi
 - **Pros:** Real-time data, simple setup, no data pipeline needed
 - **Cons:** Limited to what the API exposes; not ideal for complex analytics or historical comparisons
 
-### Pattern 2: Data Lake + Semantic Model
+### Pattern 2: Data lake + semantic model
 
 SAP data is extracted into Microsoft Fabric, modeled as a semantic model, and consumed by agents via Fabric Data Agents.
 
@@ -56,7 +56,7 @@ SAP data is extracted into Microsoft Fabric, modeled as a semantic model, and co
 - **Pros:** Rich analytics, governed data, combines SAP with non-SAP sources, supports Power BI dashboards
 - **Cons:** Not real-time (batch/scheduled), requires Fabric setup
 
-### Pattern 3: MCP Tools (Model Context Protocol)
+### Pattern 3: MCP tools (Model Context Protocol)
 
 Agents connect to SAP backends via MCP servers — lightweight tool endpoints that expose SAP functions as callable tools for AI agents.
 
@@ -68,9 +68,9 @@ Agents connect to SAP backends via MCP servers — lightweight tool endpoints th
 > [!Tip]
 > These patterns can be combined. For example, an agent might use **direct API calls** for real-time PO status checks, a **Fabric Data Agent** for spend analysis dashboards, and **MCP tools** for multi-step approval workflows — all within the same Copilot experience.
 
-## Agent Scenarios for SAP
+## Agent scenarios for SAP
 
-### Finance — Record to Report
+### Finance — Record to report
 
 A CFO Financial Assistant that queries SAP financial data and triggers actions:
 
@@ -80,7 +80,7 @@ A CFO Financial Assistant that queries SAP financial data and triggers actions:
 - Trigger approval workflows and notify finance teams via Teams
 - Post accounting documents via BAPIs (BAPI_ACC_DOCUMENT_POST, BAPI_ACC_DOCUMENT_CHECK)
 
-### Procurement — Procure to Pay
+### Procurement — Procure to pay
 
 Agents that provide procurement insights and streamline purchasing workflows:
 
@@ -89,7 +89,7 @@ Agents that provide procurement insights and streamline purchasing workflows:
 - Monitor PO status, pending approvals, and supplier payments
 - Combine Ariba data with S/4HANA procurement data in Fabric for unified spend analysis
 
-### HR — Hire to Retire
+### HR — Hire to retire
 
 SuccessFactors integration for employee self-service and HR operations:
 
@@ -98,7 +98,7 @@ SuccessFactors integration for employee self-service and HR operations:
 - Surface leaves summaries and balances in natural language
 - Integrate with Microsoft 365 Copilot Employee Self-Service agent
 
-### SAP CoE Assistant
+### SAP CoE assistant
 
 A multi-function agent for SAP operations and development teams:
 
@@ -107,7 +107,7 @@ A multi-function agent for SAP operations and development teams:
 - Query customer balances and outstanding amounts
 - Combine finance, procurement, and technical SAP functions in a single agent
 
-### Finance Shared Services
+### Finance shared services
 
 AI-enabled process automation for complex financial accounting workflows:
 
@@ -116,7 +116,7 @@ AI-enabled process automation for complex financial accounting workflows:
 - Multi-agent orchestration: SAP Agent + P2P Agent + Data Agent + Finance Expert agent
 - Integration with SAP BAPIs for document posting and workflow completion
 
-## Multi-Agent Orchestration
+## Multi-agent orchestration
 
 A key pattern emerging from enterprise deployments is **multi-agent orchestration** — where Microsoft 365 Copilot acts as the front-end and orchestrates multiple specialized agents:
 
@@ -129,14 +129,14 @@ A key pattern emerging from enterprise deployments is **multi-agent orchestratio
 
 Users interact through a single natural language interface in Teams or Copilot Chat, while the orchestrator routes requests to the appropriate agent behind the scenes.
 
-## Architecture & Data Flow
+## Architecture and data flow
 
 A typical Foundry + SAP architecture combines multiple data paths:
 
-![Foundry AI and SAP Architecture](foundry-ai-sap-architecture.png)
+![Diagram showing the Foundry AI and SAP architecture.](../media/foundry-ai-sap-architecture.png)
 
 
-### SAP Data Sources
+### SAP data sources
 
 | Source Type | Examples |
 | --- | --- |
@@ -146,7 +146,7 @@ A typical Foundry + SAP architecture combines multiple data paths:
 | **BAPIs / RFCs** | Function modules for transactional operations |
 | **Raw files** | PDF, XML, Excel, text documents from SAP systems |
 
-### Business Process Solutions (BPS)
+### Business process solutions (BPS)
 
 Microsoft provides **prebuilt data templates** for common SAP business processes through Business Process Solutions:
 
@@ -160,7 +160,7 @@ Microsoft provides **prebuilt data templates** for common SAP business processes
 
 BPS provides prebuilt data mappings from SAP (and non-SAP) systems, integrated with Fabric Open Mirroring for data acquisition, and prebuilt Power BI dashboards — delivering consistent, accurate business data to Copilot agents.
 
-## Governance & Security
+## Governance and security
 
 Azure AI Foundry includes a **Control Plane** for governing the full AI lifecycle:
 
@@ -169,7 +169,7 @@ Azure AI Foundry includes a **Control Plane** for governing the full AI lifecycl
 - **Evaluations** — Continuous, fleet-wide governance with automated quality checks
 - **Security** — Enterprise-grade compliance with Microsoft Security integrations, role-based access, and data privacy controls
 
-## Links & Resources
+## Links and resources
 
 - [Azure AI Foundry](https://ai.azure.com/)
 - [Copilot Studio](https://www.microsoft.com/en-us/microsoft-copilot/microsoft-copilot-studio)

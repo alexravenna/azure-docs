@@ -1,5 +1,5 @@
 ---
-title: Copilot Studio & SAP Overview
+title: Copilot Studio and SAP Overview
 description: Overview of building Copilot agents with SAP data using Copilot Studio, including architecture options, connectors, and integration patterns.
 author: hobru
 ms.service: sap-on-azure
@@ -22,7 +22,7 @@ Developing Copilot Agents with SAP data depends very much on the infrastructure,
 
 👉 **To get started, take a look at the [recommended architecture options](#recommendation-matrix)**
 
-## Building an Agent
+## Building an agent
 > [!Note]
 > This section is from [Options for agent development](/training/modules/ai-agent-fundamentals/3-agent-development)
 
@@ -46,17 +46,17 @@ When building Copilot Agents (whether integrated in Microsoft 365 Copilot or aut
 - Proxy / Connectivity
 - Backend Systems / Data Sources
 
-![High Level Overview](./high-level-overview.jpg)
+![Diagram showing a high-level overview of Copilot with SAP.](../media/high-level-overview.jpg)
 
 Microsoft and SAP provide a wide range of integration options to realize this end-to-end flow. The choice on which flow to use depends very much on the approach and available skill set, but also on the existing setup that you already have in place: Are you using the SAP Business Technology Platform? Do you use Azure Integration Services? Is your SAP system already running on Azure? 
 
 These and more questions can influence the recommended integration architecture. 
 
-## High-level Architecture
-### User Interfaces & Entry Points
+## High-level architecture
+### User interfaces and entry points
 Although the adoption of autonomous agents is growing, many agents are still accessed by a human and need to show-up "somewhere". One goal of Copilot agents for SAP is that the user should be able to stay within their flow of work. In many cases, this flow of work is a Microsoft 365 application (Outlook, Teams, Excel, ...), but it can also be another website, collaboration tool or (almost) anything else.    
 
-![User Interfaces and Entry Points](./user-interfaces-entry-points.jpg)
+![Diagram showing user interfaces and entry points.](../media/user-interfaces-entry-points.jpg)
 
 #### Microsoft 365 Copilot
 For Copilot, there's the Microsoft 365 Copilot application app, which gives you access to all your Microsoft 365 data and also access to your agents. 
@@ -82,9 +82,9 @@ SAP and Microsoft have been working on a dedicated, bi-directional integration o
 
 
 
-### Agent & Copilot Development 
+### Agent and Copilot development 
 Depending on the skill set and complexity of the Copilot Agent that you want to build, Microsoft offers different tools to get you started. From no-code tools like Agent Builder to pro code tools like the Microsoft 365 Agents Toolkit in Visual Studio Code. 
-![Agent & Copilot Development](agent-copilot-development.jpg)
+![Diagram showing agent and Copilot development.](../media/agent-copilot-development.jpg)
 
 #### Agent Builder
 Microsoft Agent Builder is a low-code tool within Microsoft Copilot Studio that allows users to create Copilots using natural language or manual configuration. Designed for business users, IT professionals, and developers alike, Agent Builder enables the rapid development of agents that can automate workflows, answer questions, and integrate with Microsoft 365 apps and enterprise systems. With built-in support for knowledge sources, templates, and extensibility, it simplifies the creation of customized AI experiences that enhance productivity and streamline business processes.
@@ -113,12 +113,12 @@ The following table provides an overview of the different tools and their featur
 | **Foundation models**         | Built-in LLMs (same models behind M365 Copilot, e.g., GPT-4 or other managed models)  | Configurable models (BYOM through AI Foundry) + agent-specific fine-tuning                            | Maximum model flexibility (Foundry model catalog, custom models, and FT models)                      |
 | **Pre-built tools**           | Minimal toolset for RAG from connected knowledge sources                              | Large tool library through pre-built connectors to extend agent actions                               | Extensive and extensible tool integrations (1st party tools, connectors to LoBs, and custom)         |
 | **Tool use via MCP**          | N/A – not supported for end users                                                     | Available through marketplace with pre-built 1P/3P MCP servers                                        | Fully support MCP for pre-built 1P/3P MCP servers and custom MCP servers                             |
-| **Memory & learning**         | Short term memory within the same chat session                                       | Short term memory of the session                                                                      | Extensive stateful short/long-term memory                                                            |
+| **Memory and learning**         | Short term memory within the same chat session                                       | Short term memory of the session                                                                      | Extensive stateful short/long-term memory                                                            |
 |                               | Not persistent across sessions                                                        | Extensible with external storage                                                                      | Integrated retrieval                                                                                  |
-| **Orchestrator & MAS**        | Not supported – only single stand-alone agent                                        | Multi-agent orchestration with an orchestrator pattern + connected agents                             | Built-in multi-agent orchestration supporting various conversational patterns                         |
+| **Orchestrator and MAS**        | Not supported – only single stand-alone agent                                        | Multi-agent orchestration with an orchestrator pattern + connected agents                             | Built-in multi-agent orchestration supporting various conversational patterns                         |
 
 
-### Integration Protocols
+### Integration protocols
 Depending on the kind of backend system and the skills available, you can connect to your SAP system using different protocols. 
 
 
@@ -130,7 +130,7 @@ Depending on the kind of backend system and the skills available, you can connec
 
 * MCP, the Model Context Protocol, provides a new interesting way to expose APIs in a standardized way. Similar to OData services, services exposed as MCP servers can be consumed by any MCP Client.  
 
-![Integration Protocols](./protocols.jpg)
+![Diagram showing integration protocols.](../media/protocols.jpg)
 
 ### OData
 OData is the Go-to protocol for transactional SAP applications. SAP Fiori, SAP ECC, SAP S/4HANA; SAP SuccessFactors, SAP Ariba, SAP Concur, ... all support OData. The [SAP Business Accelerator Hub](https://api.sap.com/) lists thousands of out of the box OData Services. The [SAP Fiori Reference App Library](https://fioriappslibrary.hana.ondemand.com/sap/fix/externalViewer/) shows other OData services available and supported out of the box by SAP. 
@@ -147,7 +147,7 @@ For Copilot scenarios, there's a common support across all tools.
 * Azure AI Foundry supports OData services both via a low-code connector and via pro-code development extensions 
 * The Agent Toolkit allows developers to use multiple libraries to connect to OData services
 
-### HTTP (SOAP & REST)
+### HTTP (SOAP and REST)
 Many older or acquired SAP Systems support SOAP and REST services. These protocols are support via an HTTP Connector or a custom connector in Copilot Studio. Via these connectors also other HTTP(S) protocols are supported. 
 
 For pro-code integrations via Azure AI Foundry or the Agent Toolkit, HTTP(S) calls can be done via commonly available packages. 
@@ -167,12 +167,12 @@ MCP, the [Model Context Protocol](https://github.com/modelcontextprotocol), is a
 Hundreds of open source MCP servers are already available (the [Azure MCP Registry](https://mcp.azure.com/) not only provides a list of first curated MCP servers, but also offers customers a possibility to create their own in-house MCP servers), and tools like [Azure API Management](/azure/api-management/export-rest-mcp-server) enable you to create new MCP servers out of existing APIs. 
 
 
-### Integration & Connectivity Infrastructure
+### Integration and connectivity infrastructure
 Whether to have one single point of entry or to be able to control access to the backend system, a lot of customers are using an Integration and Connectivity layer to route the calls from Copilot to the SAP backend system. 
 
 The SAP Business Technology Platform or Azure Integration Services are two common components in these integrations. 
 
-![Integration & Connectivity Infrastructure](./integration.jpg)
+![Diagram showing integration and connectivity infrastructure.](../media/integration.jpg)
 
 #### SAP Business Technology Platform
 Many customers already have services like SAP API Management or SAP Integration Suite as part of the SAP Business Technology Platform, BTP in place. The BTP is then often already connected to SAP backend systems, which obviously simplify the connection from Copilot to SAP. 
@@ -181,26 +181,26 @@ All Copilot tools can use APIs that are exposed via SAP Business Technology Plat
 #### Azure Integration Services
 Azure provides several tools to integrate with backend systems like SAP. Most prominent in the Copilot Studio scenario is Azure API Management and Azure Logic Apps. Both provide an easy way to connect to APIs (in the case of Logic Apps both HTTPs and BAPIs) and control the access to the SAP system. A huge benefit of this setup is if your SAP System is also running on Azure. In this case the connectivity can be further secured by using virtual network peering. 
 
-### Proxies / Connectivity
+### Proxies / connectivity
 In a lot of cases the SAP System is protected by a Firewall. This means access from the internet (for example, from Microsoft 365 Copilot) isn't possible directly. Instead, a proxy needs to be installed. 
-![Proxies and connectivity infrastructure](./proxy.jpg)
+![Diagram showing proxies and connectivity infrastructure.](../media/proxy.jpg)
 
 #### SAP Cloud Connector
 For a lot of SAP customers, the SAP Business Technology Platform with either SAP Integration Suite or a simple App Router is already in place. In this case, the SAP Cloud Connector is probably used to bridge the Firewall-Protection and to be able to connect to the SAP system (either on-premises or in a cloud)
 
-#### On-premises Data Gateway
+#### On-premises data gateway
 The on-premises data gateway (OPDG) has been around for many years, mainly in the context of the Power Platform. OPDG not only allows you to bridge the Firewall-Protection, but it also enables you to translate the SAP DIAG protocol used by BAPI / RFCs into HTTP calls that can be used by Copilot Studio / Power Platform. 
 
 If you're looking to use BAPI / RFC, you have to install the OPDG along with the SAP .NET Connector (download here, SAP User is required). This won't only allow you to access the SAP system behind a firewall, but also use BAPIs / RFCs in your system. 
 If you want to connect to OData services behind a firewall, the OPDG - similar like the SAP Cloud Connector - also allows you to do that. 
 
-#### Virtual network Peering
-If you're running your SAP System on Azure (either native or on RISE), you can also benefit from peering your vnets with Azure. This would allow your Azure API Management to access the SAP system without the need of an extra proxy like SAP Cloud Connector or on-premises data gateway. The SAP system doesn't have to expose any IP to the internet, but Azure API Management (or other Azure services) can just access the SAP system via internal IPs. 
+#### Virtual network peering
+If you're running your SAP System on Azure (either native or on RISE), you can also benefit from peering your virtual networks with Azure. This would allow your Azure API Management to access the SAP system without the need of an extra proxy like SAP Cloud Connector or on-premises data gateway. The SAP system doesn't have to expose any IP to the internet, but Azure API Management (or other Azure services) can just access the SAP system via internal IPs. 
 The on-premises data gateway (OPDG) has been around for many years mainly in the context of the Power Platform. OPDG not only allows you to bridge the Firewall-Protection, but it also enables you to translate the SAP DIAG protocol used by BAPI / RFCs into HTTP(S) calls that can be used by Copilot Studio / Power Platform. 
 This provides not only the best security, but also reduces the number of hops and latency. 
 
 
-### Backend Systems & Data Sources
+### Backend systems and data sources
 Since the tools and protocols mentioned above are indifferent of the actual backend system, the integration of Copilots to SAP ranges from SAP S/4HANA Public Cloud systems (using OData) to old SAP R/3 system that can expose their data either via RFC/BAPI or with a standalone SAP Gateway that exposes an OData Service. Authentication options vary on the used protocol and application. Here's a first overview of integration options
 | Application | Potential Protocols | Authentication |
 | --- | --- | --- |
@@ -209,11 +209,11 @@ Since the tools and protocols mentioned above are indifferent of the actual back
 | S/4HANA public cloud | OData | OAuth |
 | SAP SuccessFactors | OData / HTTPS | OAuth |
 
-## Recommended  Integration Patterns
+## Recommended integration patterns
 The following list provides an overview of reference architectures. There isn't only one, because it depends very much on your existing infrastructure and what components you're using. In the simplest form (for a first POC), you can just use Copilot Studio, use the SAP OData Connector and connect directly to your SAP system in the cloud ([Option #1](https://github.com/hobru/Microsoft-Learning/blob/main/architecture-demo.md))
 
-### Recommendation Matrix
-- Are you running your SAP system on Azure including RISE? Do you have a good Azure practice in-house? [Leveraging Azure API Management and vnet Peering (for example, SAP S/4HANA Private Cloud or Native)](architecture-apim-vnet.md)
+### Recommendation matrix
+- Are you running your SAP system on Azure including RISE? Do you have a good Azure practice in-house? [Leveraging Azure API Management and virtual network peering (for example, SAP S/4HANA Private Cloud or Native)](architecture-apim-virtual_network.md)
 - Do you want to use BAPI / RFC? Take a look at [Leveraging on-premises data gateway with access to BAPI / RFCs and OData Services](architecture-on-premises-data-gateway.md)
 - Are you already using SAP Business Technology Platform and have connected your SAP backend system to it? [Leveraging SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)](architecture-business-technology-platform-api.md)
 
@@ -222,4 +222,4 @@ The following list provides an overview of reference architectures. There isn't 
 * [SAP System publically available (most likely a demo scenario)](architecture-demo.md)
 * [Leveraging SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)](architecture-business-technology-platform-api.md)
 * [Leveraging on-premises data gateway with access to BAPI / RFCs and OData Services](architecture-on-premises-data-gateway.md)
-* [Leveraging Azure API Management and vnet Peering (for example, SAP S/4HANA Private Cloud or Native)](architecture-apim-vnet.md)
+* [Leveraging Azure API Management and virtual network peering (for example, SAP S/4HANA Private Cloud or Native)](architecture-apim-virtual_network.md)

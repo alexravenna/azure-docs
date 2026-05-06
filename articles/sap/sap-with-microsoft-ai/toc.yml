@@ -7,8 +7,8 @@ items:
     items:
     - name: Copilot Studio overview
       href: copilot-studio/copilot-with-sap-overview.md
-    - name: Leveraging Azure API Management and vnet Peering
-      href: copilot-studio/architecture-apim-vnet.md
+    - name: Leveraging Azure API Management and virtual network peering
+      href: copilot-studio/architecture-apim-virtual_network.md
     - name: Leveraging On-premises data gateway with access to BAPI / RFCs and OData Services
       href: copilot-studio/architecture-on-premises-data-gateway.md
     - name: Leveraging SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)

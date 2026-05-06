@@ -15,7 +15,7 @@ ms.author: hobruche
 > [!Important]
 > When consuming SAP APIs and interfaces, always ensure your usage complies with [SAP's API Policy](https://help.sap.com/doc/sap-api-policy/latest/en-US/API_Policy_latest.pdf). Please check with your SAP contact or account team if you have questions about permitted API usage in your specific scenario.
 
-## What Is Microsoft AI with SAP?
+## What is Microsoft AI with SAP?
 
 Microsoft AI with SAP refers to the combination of Microsoft's AI platform and tools—including **Microsoft 365 Copilot**, **Copilot Studio**, and **Azure AI Foundry**—with SAP's enterprise systems to create intelligent, AI-powered business experiences on top of SAP data and processes.
 
@@ -25,20 +25,20 @@ SAP systems are the operational backbone of many organizations, managing financi
 - Building **AI agents** that can reason over SAP data and take action across business processes
 - Enabling **agentic automation** that can orchestrate multi-step SAP workflows
 
-## Why Would You Do This?
+## Why would you do this?
 
-### For End Users
+### For end users
 - **Stay in your flow of work** — interact with SAP from Teams, Outlook, Excel, or Copilot Chat without switching to SAP GUI or Fiori
 - **Natural language access** — ask "What is the status of PO 4500001234?" instead of navigating ME23N
 - **Faster decisions** — get insights from SAP data combined with emails, documents, and other sources in one place
 
-### For Organizations
+### For organizations
 - **Reduce training overhead** — users interact with SAP through natural language, not complex UIs
 - **Accelerate processes** — AI agents can automate multi-step workflows that previously required manual SAP transactions
 - **Enable citizen developers** — business users can build agents with low-code tools in Copilot Studio
 - **Maintain governance** — enterprise-grade security, compliance, and access controls across all AI interactions with SAP
 
-### Common Business Scenarios
+### Common business scenarios
 
 | Area | Example |
 | --- | --- |
@@ -48,35 +48,35 @@ SAP systems are the operational backbone of many organizations, managing financi
 | **Supply Chain** | "What is the delivery status for sales order 800123?" — checked in SAP |
 
 
-## What Can You Do?
+## What can you do?
 
 Microsoft offers three complementary layers for bringing AI to SAP environments:
 
-### 1. Use Out-of-the-Box: Joule ↔ Microsoft 365 Copilot
+### 1. Use out-of-the-box: Joule ↔ Microsoft 365 Copilot
 
 The managed integration between **SAP Joule** and **Microsoft 365 Copilot** provides a prebuilt, bi-directional connection. Users in Microsoft 365 Copilot or Teams can ask SAP-related questions, and the request is routed to SAP Joule for processing — no custom development required.
 
 → [Learn more about Joule & Copilot](./joule/joule-copilot-overview.md)
 
-### 2. Extend with Custom Agents: Copilot Studio
+### 2. Extend with custom agents: Copilot Studio
 
 **Copilot Studio** enables you to build company-specific agents that access SAP data through connectors, APIs, or custom plugins. These agents can be deployed in Microsoft Teams, Microsoft 365 Copilot, websites, or other channels. Options range from low-code (Agent Builder) to pro-code (Microsoft 365 Agents SDK).
 
 → [Learn more about Copilot Studio & SAP](./copilot-studio/copilot-with-sap-overview.md)
 
-### 3. Build Enterprise AI Solutions: Azure AI Foundry
+### 3. Build enterprise AI solutions: Azure AI Foundry
 
 **Azure AI Foundry** is the full AI platform for advanced scenarios — custom models, multi-agent orchestration, MCP tools, and deep integration with SAP APIs (OData, RFC, BAPIs). Build sophisticated agents that can reason, plan, and execute complex multi-step workflows.
 
 → [Learn more about Foundry AI & SAP](./foundry/foundry-ai-sap.md)
 
 
-## How These Pieces Fit Together
+## How these pieces fit together
 
-![SAP with Microsoft AI - How the pieces fit together](about-sap-with-microsoft-ai.png)
+![Diagram showing how SAP with Microsoft AI pieces fit together.](media/about-sap-with-microsoft-ai.png)
 
 
-## How to Get Started
+## How to get started
 
 ### Starting Point 1: "I want quick value with minimal setup"
 
@@ -104,7 +104,7 @@ For complex scenarios involving multi-agent orchestration, custom models, or dee
 
 
 
-## Decision Guide
+## Decision guide
 
 | Question | If Yes → |
 | --- | --- |
@@ -113,14 +113,14 @@ For complex scenarios involving multi-agent orchestration, custom models, or dee
 | Do you need multi-agent orchestration or complex workflows? | Start with [Azure AI Foundry](./foundry/foundry-ai-sap.md) |
 | Do you want all of these? | Combine them — they work together |
 
-## Key Principles
+## Key principles
 
 - **These options are complementary, not competing.** Most organizations use a combination based on the use case.
 - **Start simple, grow complex.** Begin with Joule or a simple Copilot Studio agent, then expand to Foundry for advanced scenarios.
 - **SAP stays the system of record.** Microsoft AI adds an intelligence layer on top — it doesn't replace SAP.
 - **Security and governance are built in.** All integrations respect SAP authorizations, Microsoft Entra ID, and enterprise compliance requirements.
 
-## Links & Resources
+## Links and resources
 
 - [SAP & Microsoft Partnership](/training/modules/microsoft-sap-partnership/)
 - [Azure AI Foundry](https://ai.azure.com/)
