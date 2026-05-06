@@ -33,7 +33,7 @@ Two settings are available for network features:
 ## Considerations
 
 >[!IMPORTANT]
->Starting May 2026, basic networking is no longer available for new volumes and Azure NetApp Files volumes will start using Standard Networking by default. Any requests that that specify Basic Networking will be automatically upgraded to Standard Networking. Be default, there is no additional cost for this feature. The charges apply only if you enable billable Standard Networking features. [View the list of supported features](azure-netapp-files-network-topologies.md#considerations)
+>Starting May 31, 2026, basic networking is no longer available for new volumes and Azure NetApp Files volumes will start using Standard Networking by default. Any requests that that specify Basic Networking will be automatically upgraded to Standard Networking. By default, there is no additional cost for this feature. The charges apply only if you enable billable Standard Networking features. Existing volumes are not affected and no customer action is required.
 
 * Regardless of the network features option you set (*Standard* or *Basic*), an Azure VNet can only have one subnet delegated to Azure NetApp files. See [Delegate a subnet to Azure NetApp Files](azure-netapp-files-delegate-subnet.md#considerations). 
 
