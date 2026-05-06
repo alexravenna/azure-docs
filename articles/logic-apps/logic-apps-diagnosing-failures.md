@@ -151,7 +151,9 @@ The action timeout value can't be changed and is fixed at 2 minutes. If you're u
 
 ### My host memory stays elevated after processing messages in Azure Logic Apps (Standard). Could this be a memory leak?
 
-Elevated memory usage does not necessarily mean there is a memory leak. Logic App Standard runs with .NET Server Garbage Collection (GC), which is optimized for throughput, not minimal memory footprint. Server GC retains managed heap segments for future allocations rather than returning them to the operating system. Memory can stay elevated for hours or days even during idle periods between processing cycles.  
+Elevated memory usage doesn't always mean a memory leak. During an actual memory leak, memory usage increases under similar traffic load until the system crashes with an out-of-memory exception. You can observe this pattern, which repeats.
+
+Azure Logic Apps (Standard) runs with .NET Server Garbage Collection (GC), which is optimized for throughput, not minimal memory footprint. This garbage collection keeps managed heap segments for future allocation, rather than returns them to the operating system. Memory might stay elevated for hours or even days during idle periods between processing cycles. 
 
 For a true memory leak, the memory usage would keep increasing under similar traffic load until the system eventually crashes with out-of-memory exception. And you shall be able to observe this pattern repeatedly.  
 
