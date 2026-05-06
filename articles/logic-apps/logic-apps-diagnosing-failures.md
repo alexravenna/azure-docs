@@ -143,7 +143,7 @@ Scheduling overhead exists when running actions, while waiting time between acti
 
 * Consumption workflows run on multitenant Azure Logic Apps, so other customers' workloads might negatively affect your workflow's performance.
 
-* For more predictable performance, you might consider creating [Standard workflows](single-tenant-overview-compare.md), which run in single-tenant Azure Logic Standard. You'll have more control to scale up or out to improve performance.
+* For more predictable performance, consider creating [Standard workflows in single-tenant Azure Logic Apps (Standard)](single-tenant-overview-compare.md). You'll have more control to scale up or out to improve performance.
 
 ### My action times out after 2 minutes. How can I increase the timeout value?
 
