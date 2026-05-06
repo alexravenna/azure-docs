@@ -1,5 +1,5 @@
 ---
-title: Microsoft Copilot Studio and SAP Overview
+title: SAP with Microsoft AI  Copilot Studio and SAP Overview
 description: Overview of building Copilot agents with SAP data using Copilot Studio, including architecture options, connectors, and integration patterns.
 author: hobru
 ms.service: sap-on-azure
