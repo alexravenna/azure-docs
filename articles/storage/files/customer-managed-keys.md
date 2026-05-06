@@ -17,15 +17,15 @@ ms.author: kendownie
 
 Azure encrypts all data in a storage account at rest, including Azure Files data, using AES-256 encryption. By default, Microsoft manages the encryption keys for a storage account. For more control over encryption keys, you can use customer-managed keys (CMK) instead of Microsoft-managed keys to protect and control access to the encryption key that encrypts your data. This article explains how to configure customer-managed keys for Azure Files workloads.
 
-When you configure customer-managed keys for a storage account, Azure Files data in that storage account is automatically encrypted using the customer key. No per-share opt-in is required. Customer-managed keys are stored in [Azure Key Vault](/azure/key-vault/general/overview).
+When you configure customer-managed keys for a storage account, Azure Files data in that storage account is automatically encrypted using the customer key. No per-share opt-in is required.
+
+These instructions are for storing customer-managed keys in [Azure Key Vault](/azure/key-vault/general/overview). Some steps and commands for [Azure Key Vault Managed HSM](/azure/key-vault/managed-hsm/overview) (Hardware Security Module) might be slightly different.
 
 Follow these steps to configure customer-managed keys for a storage account.
 
 ## Step 1: Create or configure a key vault
 
-To enable customer managed keys, you need an Azure Key Vault with purge protection enabled. You can use an existing key vault or create a new one. The storage account and key vault can be in different regions or subscriptions within the same Microsoft Entra tenant.
-
-These instructions are for Azure Key Vault. The steps and commands for [Azure Key Vault Managed HSM](/azure/key-vault/managed-hsm/overview) (Hardware Security Module) might be different.
+To enable customer managed keys, you need an Azure Key Vault with purge protection enabled. You can use an existing key vault or create a new one. The storage account and key vault can be in different regions or subscriptions within the same Microsoft Entra tenant. For cross tenant scenarios, see [Configure cross-tenant customer-managed keys for an existing storage account](/azure/storage/common/customer-managed-keys-configure-cross-tenant-existing-account).
 
 ### [Azure portal](#tab/portal)
 
@@ -605,20 +605,123 @@ Confirm that `keySource` is `Microsoft.Keyvault` and the `keyVaultProperties` se
 
 ## Key rotation
 
-Regularly rotating your encryption key limits the exposure if a key is ever compromised. For security best practices, rotate your encryption key at least once every two years.
+Regularly rotating your encryption key limits the exposure if a key is ever compromised. There are two ways to rotate encryption for a storage account that uses customer-managed keys:
+
+- **Rotate the key version** - Create a new version of the same key in the key vault. The key name stays the same, but the version changes.
+- **Change the key** - Switch the storage account to use an entirely different key (with a different name) in the same or a different key vault.
 
 > [!IMPORTANT]
 > Azure checks the key vault for a new key version only once daily. After rotating a key, wait 24 hours before disabling the previous key version.
 
-### Automated key rotation (recommended)
+### Rotate the key version
 
-If you configured customer-managed keys without specifying a key version (the default when using the Azure portal), Azure checks for new key versions daily. If you create a new version of the key in key vault, Azure picks it up within 24 hours. You can also configure [automatic key rotation in Azure Key Vault](/azure/key-vault/keys/how-to-configure-key-rotation) to generate new key versions on a schedule.
+For security best practices, rotate the key version at least once every two years.
 
-### Manual key rotation
+#### Automatic key version rotation (recommended)
 
-If you specified a key version when configuring customer-managed keys using PowerShell or Azure CLI, you must manually update the storage account configuration to point to the new key version.
+If you configured customer-managed keys without specifying a key version (the default when using the Azure portal), Azure automatically checks for new key versions daily. If you create a new version of the key in key vault, Azure picks it up within 24 hours. You can also configure [automatic key rotation in Azure Key Vault](/azure/key-vault/keys/how-to-configure-key-rotation) to generate new key versions on a schedule.
 
-To manually rotate the encryption key, update the storage account encryption configuration to point to the new key version using PowerShell or Azure CLI. Specify the new key version in the `--encryption-key-version` (Azure CLI) or `-KeyVersion` (PowerShell) parameter when running the same commands shown in [Step 4](#step-4-configure-customer-managed-keys-on-the-storage-account) for manual key version updating.
+#### Manual key version rotation
+
+If you specified a key version when configuring customer-managed keys using PowerShell or Azure CLI, Azure uses that specific version and doesn't automatically check for new versions. You must manually update the storage account configuration to point to the new key version.
+
+##### [Azure portal](#tab/portal)
+
+Manual key version rotation isn't supported in the Azure portal. To manually rotate the key version, use Azure PowerShell or Azure CLI.
+
+##### [PowerShell](#tab/powershell)
+
+To manually rotate the key version by using Azure PowerShell, run the following cmdlet. Replace `<resource-group>`, `<storage-account-name>`, `<key-vault-name>`, and `<key-name>` with your own values.
+
+```azurepowershell
+$keyVault = Get-AzKeyVault -VaultName <key-vault-name>
+$key = Get-AzKeyVaultKey -VaultName <key-vault-name> -Name <key-name>
+
+Set-AzStorageAccount `
+    -ResourceGroupName <resource-group> `
+    -Name <storage-account-name> `
+    -KeyVaultUri $keyVault.VaultUri `
+    -KeyName $key.Name `
+    -KeyVersion $key.Version `
+    -KeyVaultEncryption
+```
+
+##### [Azure CLI](#tab/cli)
+
+To manually rotate the key version by using Azure CLI, run the following commands. Replace `<storage-account-name>`, `<resource-group>`, `<key-vault-name>`, and `<key-name>` with your own values.
+
+```azurecli
+# Get the key vault URI
+KEY_VAULT_URI=$(az keyvault show \
+    --name <key-vault-name> \
+    --query properties.vaultUri -o tsv)
+
+# Get the latest key version
+KEY_VERSION=$(az keyvault key show \
+    --vault-name <key-vault-name> \
+    --name <key-name> \
+    --query key.kid -o tsv | sed -e 's|.*/||')
+
+az storage account update \
+    --name <storage-account-name> \
+    --resource-group <resource-group> \
+    --encryption-key-vault $KEY_VAULT_URI \
+    --encryption-key-name <key-name> \
+    --encryption-key-version $KEY_VERSION \
+    --encryption-key-source Microsoft.Keyvault
+```
+
+---
+
+### Change the key
+
+To switch the storage account to use an entirely different key, create or import a new key in your key vault (see [Create or import an encryption key](#step-2-create-or-import-an-encryption-key)), and then update the storage account encryption configuration to use the new key.
+
+#### [Azure portal](#tab/portal)
+
+To change the key by using the Azure portal, follow these steps:
+
+1. Go to your storage account.
+1. From the service menu, under **Security + networking**, select **Encryption**.
+1. Select **Change key**.
+1. Select **Select a key vault and key**, and then choose your key vault and new key.
+1. Select **Save**.
+
+#### [PowerShell](#tab/powershell)
+
+To change the key by using Azure PowerShell, run the following cmdlet. Replace `<resource-group>`, `<storage-account-name>`, `<key-vault-name>`, and `<new-key-name>` with your own values. To use automatic key version updating (recommended), omit the `-KeyVersion` parameter.
+
+```azurepowershell
+$keyVault = Get-AzKeyVault -VaultName <key-vault-name>
+$key = Get-AzKeyVaultKey -VaultName <key-vault-name> -Name <new-key-name>
+
+Set-AzStorageAccount `
+    -ResourceGroupName <resource-group> `
+    -Name <storage-account-name> `
+    -KeyVaultUri $keyVault.VaultUri `
+    -KeyName $key.Name `
+    -KeyVaultEncryption
+```
+
+#### [Azure CLI](#tab/cli)
+
+To change the key by using Azure CLI, run the following commands. Replace `<storage-account-name>`, `<resource-group>`, `<key-vault-name>`, and `<new-key-name>` with your own values. To use automatic key version updating (recommended), omit the `--encryption-key-version` parameter.
+
+```azurecli
+# Get the key vault URI
+KEY_VAULT_URI=$(az keyvault show \
+    --name <key-vault-name> \
+    --query properties.vaultUri -o tsv)
+
+az storage account update \
+    --name <storage-account-name> \
+    --resource-group <resource-group> \
+    --encryption-key-vault $KEY_VAULT_URI \
+    --encryption-key-name <new-key-name> \
+    --encryption-key-source Microsoft.Keyvault
+```
+
+---
 
 ## Revoke access to file share data by disabling the key
 
