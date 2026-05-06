@@ -6,7 +6,7 @@ ms.service: azure-deployment-environments
 ms.custom: devx-track-azurecli, devx-track-bicep
 author: RoseHJM
 ms.author: rosemalcolm
-ms.date: 01/17/2025
+ms.date: 05/06/2026
 ms.topic: how-to
 zone_pivot_groups: ade-extensibility-iac-framework
 
@@ -112,8 +112,8 @@ After you complete the image customization, you can build the image and push it 
 
 <!-- =========== TERRAFORM ======================================================================================================== -->
 
-
 ::: zone pivot="terraform"
+
 ## Use container images with ADE
 
 You can take one of the following approaches to use container images with ADE:
@@ -179,6 +179,7 @@ You can build and push the image manually, or use a script provided by Microsoft
 The published GitHub Action helps to build and push an image to an Azure Container Registry (ACR). You can reference a provided ACR image link within an environment definition in ADE to deploy or delete an environment with the provided image.
 
 To create an image configured for ADE, follow these steps:
+
 1. Create a custom image based on a GitHub workflow.
 1. Install desired packages.
 1. Configure operation shell scripts.
@@ -187,7 +188,6 @@ To create an image configured for ADE, follow these steps:
 **1. Create a custom image based on a GitHub workflow**
 
 Use the [published repository](https://github.com/Azure/ade-extensibility-model-terraform/blob/main/README.md#azure-deployment-environments---leveraging-ades-extensibility-model-with-terraform) to take advantage of the GitHub workflow. The repository contains ADE-compatible sample image components, including a Dockerfile and shell scripts for deploying and deleting environments using Terraform IaC templates. This sample code helps you create your own container image. 
-
 
 **2. Install required packages**
 In this step, you install any packages you require in your image, including Terraform. You can install the Terraform CLI to an executable location so that it can be used in your deployment and deletion scripts. 
@@ -202,7 +202,6 @@ RUN mv terraform /usr/bin/terraform
 
 > [!Tip]
 > You can get the download URL for your preferred version of the Terraform CLI from [Hashicorp releases](https://aka.ms/deployment-environments/terraform-cli-zip).
-
 
 **3. Configure operation shell scripts**
 
@@ -513,12 +512,12 @@ In this configuration, ADE uses the Managed Identity for the PET, whether system
 > [!Tip]
 > If your ACR uses Microsoft Entra attribute-based access control (ABAC) for repository permissions, you may need to make additional role assignments like `Container Registry Repository Reader` to the PET identity. For more information, see [Microsoft Entra ABAC for repository permissions](/azure/container-registry/container-registry-rbac-abac-repository-permissions).
 
-
 When you're ready to push your image to your registry, run the following command:
 
 ```docker
 docker push {YOUR_REGISTRY}.azurecr.io/{YOUR_IMAGE_LOCATION}:{YOUR_TAG}
 ```
+
 ### [Public registry](#tab/public-registry/)
 
 ### Use a public registry with anonymous pull
