@@ -357,7 +357,7 @@
       href: how-to-routing-policies.md
     - name: Internet access with routing intent
       href: about-internet-routing.md
-    - name: Routing intent with static routes
+    - name: Configuring static routes with routing intent
       href: routing-intent-static-route.md
   - name: Next hop IP support
     href: next-hop-ip.md
