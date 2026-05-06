@@ -1,5 +1,5 @@
 ---
-title: Architecture - SAP BTP with API Management and Cloud Connector
+title: SAP with Microsoft AI Architecture - SAP BTP with API Management and Cloud Connector
 description: Copilot Studio integration with SAP using SAP Business Technology Platform, SAP API Management, and SAP Cloud Connector.
 author: hobru
 ms.service: sap-on-azure

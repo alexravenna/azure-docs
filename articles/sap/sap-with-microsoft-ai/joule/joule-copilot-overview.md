@@ -1,5 +1,5 @@
 ---
-title: Joule & Microsoft 365 Copilot Integration
+title: SAP with Microsoft AI SAP Joule & Microsoft 365 Copilot Integration
 description: How SAP Joule and Microsoft 365 Copilot integrate bi-directionally, including setup, architecture, and troubleshooting.
 author: hobru
 ms.service: sap-on-azure

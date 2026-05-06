@@ -1,5 +1,5 @@
 ---
-title: Azure AI Foundry & SAP Overview
+title: SAP with Microsoft AI Foundry & SAP Overview
 description: How Azure AI Foundry integrates with SAP to enable agentic AI scenarios, multi-agent orchestration, and enterprise-grade AI solutions.
 author: hobru
 ms.service: sap-on-azure
@@ -124,7 +124,7 @@ A key pattern emerging from enterprise deployments is **multi-agent orchestratio
 | --- | --- |
 | **SAP Agent** | Transactional access to SAP systems (OData, RFC, BAPIs) |
 | **Fabric Data Agent** | Analytical data from semantic models in Fabric |
-| **M365 Agent** | Access to emails, chats, documents, and calendar |
+| **Microsoft 365 Agent** | Access to emails, chats, documents, and calendar |
 | **Custom Agents** | ServiceNow, Salesforce, Workday, or any other system |
 
 Users interact through a single natural language interface in Teams or Copilot Chat, while the orchestrator routes requests to the appropriate agent behind the scenes.

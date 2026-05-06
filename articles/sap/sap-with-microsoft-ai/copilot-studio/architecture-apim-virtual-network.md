@@ -1,5 +1,5 @@
 ---
-title: Architecture - Azure API Management with virtual network peering
+title: SAP with Microsoft AI Architecture - Azure API Management with virtual network peering
 description: Copilot Studio integration with SAP using Azure API Management and virtual network peering for SAP systems running on Azure.
 author: hobru
 ms.service: sap-on-azure
