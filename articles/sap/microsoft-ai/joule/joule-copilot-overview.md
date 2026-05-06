@@ -86,23 +86,23 @@ The integration follows a trust-based architecture:
 
 ### Step 1: Configure SAP Cloud Identity Services
 
-- Set up SAP Cloud Identity Services (IAS) as the identity provider for your SAP BTP subaccount
-- Establish a trust relationship between SAP IAS and Microsoft Entra ID
-- Configure user mapping (Microsoft Entra ID user ↔ SAP user)
+1. Set up SAP Cloud Identity Services (IAS) as the identity provider for your SAP BTP subaccount
+2. Establish a trust relationship between SAP IAS and Microsoft Entra ID
+3. Configure user mapping (Microsoft Entra ID user ↔ SAP user)
 
 👉 Detailed guide: [Configuring SAP Cloud Identity Services and Microsoft Entra ID for Joule](https://community.sap.com/t5/technology-blog-posts-by-sap/configuring-sap-cloud-identity-services-and-microsoft-entra-id-for-joule/ba-p/14105743)
 
 ### Step 2: Configure Microsoft Entra ID
 
-- Register the SAP Joule application in Microsoft Entra ID
-- Configure the necessary API permissions and consent
-- Set up the enterprise application for single sign-on
+1. Register the SAP Joule application in Microsoft Entra ID
+2. Configure the necessary API permissions and consent
+3. Set up the enterprise application for single sign-on
 
 ### Step 3: Enable Joule Agent in Copilot / Teams
 
-- Enable the Joule agent in the Microsoft 365 Admin Center or Teams Admin Center
-- Assign the agent to the relevant users or groups
-- Test the integration by asking an SAP-related question in Copilot or Teams
+1. Enable the Joule agent in the Microsoft 365 Admin Center or Teams Admin Center
+2. Assign the agent to the relevant users or groups
+3. Test the integration by asking an SAP-related question in Copilot or Teams
 
 👉 Detailed guide: [Enable Microsoft Copilot and Teams to Pass Requests to Joule](https://community.sap.com/t5/technology-blog-posts-by-sap/enable-microsoft-copilot-and-teams-to-pass-requests-to-joule/ba-p/14109137)
 

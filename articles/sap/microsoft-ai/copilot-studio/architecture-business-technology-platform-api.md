@@ -28,7 +28,7 @@ SAP BTP then forwards the request via the SAP Cloud Connector to the SAP Backend
 
 ![Diagram showing the SAP Business Technology Platform API management architecture.](../media/apim-cloud-connector-business-process-api-management.jpg)
 
-(This architecture only depicts one path; You can use multiple variations for the connection)
+This architecture only depicts one path; you can use multiple variations for the connection.
 
 ## Setup and configuration
 In this scenario in most cases the SAP Business Technology platform is in place and also the SAP Cloud Connector is already installed.

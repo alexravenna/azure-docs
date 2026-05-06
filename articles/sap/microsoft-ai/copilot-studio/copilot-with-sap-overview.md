@@ -74,8 +74,6 @@ Since a lot of collaboration happens in Microsoft Teams, it's important to highl
 #### Websites
 Copilot Agents can also run on websites. They can help and guide a user where to navigate, or provide answers without the need to find the right site. This integration can also be done in an SAP Fiori Launchpad or SAP Build Workzone. Such an Agent can help you look-up products in your SAP system or also help a supplier -- on their Supplier portal -- to check the status of the latest invoice. 
 
-#### Slack, Facebook, ...
-Copilot Agents can also be deployed to other collaboration and social media tools like Slack and Facebook. In a Slack chat, the agent can interact with customers to retrieve the latest information about a complaint raised in the SAP system. 
 
 #### SAP Joule
 SAP and Microsoft have been working on a dedicated, bi-directional integration of SAP Joule and Microsoft 365 Copilot. Via this integration, Microsoft 365 Copilot can also be integrated within Joule. This integration doesn't yet extend to custom-built agents (like agents built from Copilot Studio), but it allows end-users to access SAP features directly via an SAP Joule agent. 
@@ -133,7 +131,7 @@ Depending on the kind of backend system and the skills available, you can connec
 ![Diagram showing integration protocols.](../media/protocols.jpg)
 
 ### OData
-OData is the Go-to protocol for transactional SAP applications. SAP Fiori, SAP ECC, SAP S/4HANA; SAP SuccessFactors, SAP Ariba, SAP Concur, ... all support OData. The [SAP Business Accelerator Hub](https://api.sap.com/) lists thousands of out of the box OData Services. The [SAP Fiori Reference App Library](https://fioriappslibrary.hana.ondemand.com/sap/fix/externalViewer/) shows other OData services available and supported out of the box by SAP. 
+OData is the Go-to protocol for transactional SAP applications. Applications like SAP Fiori, SAP ECC, SAP S/4HANA, SAP SuccessFactors, SAP Ariba, SAP Concur and more support OData. The [SAP Business Accelerator Hub](https://api.sap.com/) lists thousands of out of the box OData Services. The [SAP Fiori Reference App Library](https://fioriappslibrary.hana.ondemand.com/sap/fix/externalViewer/) shows other OData services available and supported out of the box by SAP. 
 
 If no out of the box OData service is available, custom [CDS views](https://learning.sap.com/courses/basic-abap-programming/working-with-cds-view_c289f74d-675e-4084-9d90-5635958ec604) can be created (via [RAP](https://pages.community.sap.com/topics/abap/rap) or [CAP](https://developers.sap.com/tutorials/introduction..html)) to expose other OData services. 
 
