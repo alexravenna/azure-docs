@@ -53,7 +53,7 @@ To restore the database, follow these steps:
 
 ## Create a MySQL - Flexible server from restored recovery point
 
-### Steps to access data from restored recovery point
+### Access data from restored recovery point
 
 1. Download the restored files from Azure Storage Account using [Azure Storage explorer](../storage/storage-explorer/vs-azure-tools-storage-manage-with-storage-explorer.md).
 
