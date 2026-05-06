@@ -5,17 +5,17 @@ ms.service: azure-container-apps
 author: craigshoemaker
 ms.author: cshoe
 ms.service: azure-container-apps
-ms.topic: quickstart
+ms.topic: how-to
 ms.date: 05/05/2026
 # customer intent: As a developer, I want to deploy a container app to Azure Container Apps express using the Azure CLI so that I can get my web app running in the cloud as quickly as possible.
 ---
 
-# Quickstart: Deploy an Express container app by using the Azure CLI (private preview)
+# Deploy an Express container app by using the Azure CLI (preview)
 
-In this quickstart, you use the Azure CLI to create an Azure Container Apps express environment and deploy your first express container app. Azure Container Apps express is a developer-first platform that gets your containerized web app running in the cloud with minimal configuration.
+In this article, you use the Azure CLI to create an Azure Container Apps express environment and deploy your first express container app. Azure Container Apps express is a developer-first platform that gets your containerized web app running in the cloud with minimal configuration.
 
 > [!IMPORTANT]
-> Azure Container Apps express is currently in private preview. Access is limited to Microsoft Entra ID accounts. Personal Microsoft accounts aren't supported.
+> Azure Container Apps express is currently in preview. Access is limited to Microsoft Entra ID accounts. Personal Microsoft accounts aren't supported.
 
 ## Prerequisites
 
@@ -61,12 +61,6 @@ az containerapp up \
 ```
 
 After the command completes, the CLI outputs the URL for your running app.
-
-## Provide feedback
-
-If you encounter issues or have feedback during the private preview, file an issue on the [Azure Container Apps GitHub repository](https://github.com/microsoft/azure-container-apps/). Start your issue title with **[EPP]** to identify it as an Express Private Preview issue.
-
-For example: `[EPP] Deployment fails when using custom environment variables`
 
 ## Related content
 

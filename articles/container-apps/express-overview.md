@@ -51,7 +51,7 @@ The express deployment model works best for HTTP-based web workloads where speed
 
 The express deployment model simplifies the deployment experience by removing the need to create and manage a Container Apps environment. You deploy your app directly, and the platform provisions the underlying resources for you.
 
-- **No environment to manage**: Deploy your container app without creating or configuring an environment. The platform handles infrastructure allocation automatically. This environment-less model reduces setup steps and makes it easy to get started.
+- **Less environment details to manage**: When using the portal, the platform creates a light-weight environment for your app. If working from the CLI, you still create an environment yourself.
 
 - **Consumption-based compute**: Express apps run on consumption CPU with pay-as-you-go pricing. Your apps scale to zero when idle, so you only pay for the compute your app uses.
 
@@ -61,7 +61,7 @@ The express deployment model simplifies the deployment experience by removing th
 
 - **Optimized cold start**: The platform automatically optimizes cold-start behavior, so your app is ready to serve traffic quickly after scaling from zero.
 
-- **Dedicated management UI**: Express apps are managed [through a dedicated UI](https://containerapps.azure.com/) separate from the Azure portal. When you create or manage an express app, the platform directs you to this streamlined interface instead of the standard Azure portal experience.
+- **Specialized management UI**: Express apps are managed [through a UI experience](https://containerapps.azure.com/) separate from the Azure portal. When you create or manage an express app, the platform directs you to this streamlined interface instead of the standard Azure portal experience.
 
     :::image type="content" source="media/express-overview/azure-container-apps-express-create.png" alt-text="Screenshot of Azure Container Apps express create experience.":::
 
