@@ -5,7 +5,7 @@ author: mrm9084
 ms.service: azure-app-configuration
 ms.devlang: java
 ms.topic: quickstart
-ms.date: 04/21/2026
+ms.date: 05/06/2026
 ms.author: mametcal
 ms.custom: devx-track-java, mode-other
 #Customer intent: As an Spring Boot developer, I want to use feature flags to control feature availability quickly and confidently.
@@ -14,8 +14,6 @@ ms.custom: devx-track-java, mode-other
 # Quickstart: Add feature flags to a Spring Boot app
 
 In this quickstart, you'll create a feature flag in Azure App Configuration and use it to dynamically control Spring Boot apps to create an end-to-end implementation of feature management.
-
-The App Configuration feature management libraries extend Spring Boot by providing feature flag support. These examples in the quickstart build on the Spring Boot app introduced in the dynamic configuration tutorial. Before you continue, finish the [quickstart](./quickstart-java-spring-app.md) and the [tutorial](./enable-dynamic-configuration-java-spring-app.md) to create Spring Boot apps with dynamic configuration first.
 
 The Spring Boot Feature Management libraries do **not** have a dependency on any Azure libraries. They seamlessly integrate with App Configuration through its Spring Boot configuration provider.
 
@@ -70,7 +68,7 @@ Add a feature flag called *Beta* to the App Configuration store and leave **Labe
             <dependency>
                 <groupId>com.azure.spring</groupId>
                 <artifactId>spring-cloud-azure-dependencies</artifactId>
-                <version>7.1.0</version>
+                <version>7.2.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -127,7 +125,6 @@ Add a feature flag called *Beta* to the App Configuration store and leave **Labe
         @Bean
         public CommandLineRunner runner(FeatureManager featureManager) {
             return args -> {
-                // Is always false
                 System.out.println("Beta is enabled: " + featureManager.isEnabled("Beta"));
             };
         }
