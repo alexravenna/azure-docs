@@ -32,13 +32,13 @@ You can execute the `$bulk-delete` operation at the system level or for individu
 
   - **System level**: When you execute the operation at the system level, you can delete FHIR resources across all the resource types on the FHIR server.
     
-    ```http
+    ```rest
       DELETE  /$bulk-delete
     ```
   
   - **Individual resource types**: When you execute the operation for individual resource types, you can delete FHIR resources that map to the resource type in the URL.
     
-    ```http
+    ```rest
       DELETE /<Resource Type>/$bulk-delete
     ```
 
