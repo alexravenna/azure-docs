@@ -1,5 +1,5 @@
 ---
-title: Architecture - Demo Scenario (Public SAP System)
+title: SAP with Microsoft AI Architecture - Demo Scenario (Public SAP System)
 description: Quick-start architecture for SAP with Microsoft AI connecting Microsoft Copilot Studio and SAP integration using a publicly available SAP system for demo purposes.
 author: hobru
 ms.service: sap-on-azure
