@@ -10,12 +10,12 @@ ms.date: 5/05/2026
 
 # VMware Cloud Director on Azure VMware Solution network scenarios 
 
-VMware Cloud Director on Azure VMware Solution offers a robust platform to manage multitenancy and enable organizations to create secure, isolated virtual data centers. This article provides various network connectivity scenarios for VMware Cloud Director tenants, including connecting to the internet and accessing Azure services. By using the flexibility of VMware Cloud Director and Azure VMware Solution, tenants can achieve seamless integration with external networks and Azure resources to ensure efficient and scalable operations.
+VMware Cloud Director on Azure VMware Solution offers a robust platform to manage multitenancy and enable organizations to create secure, isolated virtual data centers. This article provides various network connectivity scenarios for VMware Cloud Director tenants, including connecting to the internet and accessing Azure services. Through using the flexibility of VMware Cloud Director and Azure VMware Solution, tenants can achieve seamless integration with external networks and Azure resources to ensure efficient and scalable operations.
 
 
 ## Connect VMware Cloud Director tenants on Azure VMware Solution to internet
 
-- To achieve internet connectivity, the provider can create organization virtual data center's with an organization edge gateway (Tier-1) router and assign Public IP for NAT configuration. 
+- To achieve internet connectivity, the provider can create organization virtual data centers with an organization edge gateway (Tier-1) router and assign Public IP for NAT configuration. 
 
 -  Learn about how to [Turn on public IP addresses to an NSX Edge node for VMware NSX](enable-public-ip-nsx-edge.md).
 
@@ -23,7 +23,7 @@ VMware Cloud Director on Azure VMware Solution offers a robust platform to manag
 
 :::image type="content" source="media/vmware-cloud-director/vmware-cloud-director-internet-diagram.png" alt-text="Diagram showing how tenants in VMware Cloud Director connects to internet in Azure VMware Solution." border="false" lightbox="media/vmware-cloud-director/vmware-cloud-director-internet-diagram.png":::
 
-- Organization virtual data center Edge gateway has default DENY ALL firewall rule. Virtual datacenter organization administrators need to open appropriate ports to allow access through the firewall by adding a new firewall rule.
+- Organization virtual data center edge gateway has default DENY ALL firewall rule. Virtual datacenter organization administrators need to open appropriate ports to allow access through the firewall by adding a new firewall rule.
 
 > [!Note]
 >  To manage overlapping IP address, use NAT to prevent conflicts in end-to-end routing scenarios.
