@@ -71,7 +71,7 @@ mysqld --datadir=<path to data folder of the restore files downloaded>
 ```
 
    >[!Note]
->You can either add the `bin` folder path to the environment variables and execute `mysqld` directly; or navigate to `bin` folder path in command prompt and then execute `mysqld` 
+   >You can either add the `bin` folder path to the environment variables and run the `mysqld` command directly; or go to the `bin` folder path in command prompt and then run `mysqld` 
 
 5. Connect to the database using any supported client.
 
