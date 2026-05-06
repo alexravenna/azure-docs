@@ -454,21 +454,26 @@ To use manual key version updating instead, add the `-KeyVersion $key.Version` p
 
 #### [Azure CLI](#tab/cli)
 
-To configure customer-managed keys on an existing storage account by using Azure CLI with automatic key version updating (recommended), run the following commands. Replace `<resource-group>`, `<identity-name>`, `<storage-account-name>`, `<key-vault-uri>`, and `<key-name>` with your own values.
+To configure customer-managed keys on an existing storage account by using Azure CLI with automatic key version updating (recommended), run the following commands. Replace `<resource-group>`, `<identity-name>`, `<storage-account-name>`, `<key-vault-name>`, and `<key-name>` with your own values.
 
 The following command uses your previously created user-assigned managed identity. If you want to use the storage account's system identity instead, set `--identity-type` to `SystemAssigned` and omit the `IDENTITY_RESOURCE_ID` variable, `--user-identity-id`, and `--key-vault-user-identity-id`.
 
 ```azurecli
-# Using user-assigned managed identity
+# Using user-assigned managed identity. Omit for system assigned.
 IDENTITY_RESOURCE_ID=$(az identity show \
     --name <identity-name> \
     --resource-group <resource-group> \
     --query id -o tsv)
 
+# Get the key vault URI
+KEY_VAULT_URI=$(az keyvault show \
+    --name <key-vault-name> \
+    --query properties.vaultUri -o tsv)
+
 az storage account update \
     --name <storage-account-name> \
     --resource-group <resource-group> \
-    --encryption-key-vault <key-vault-uri> \
+    --encryption-key-vault $KEY_VAULT_URI \
     --encryption-key-name <key-name> \
     --encryption-key-source Microsoft.Keyvault \
     --key-vault-user-identity-id $IDENTITY_RESOURCE_ID \
@@ -524,13 +529,18 @@ To use manual key version updating instead of automatic, add the `-KeyVersion $k
 
 #### [Azure CLI](#tab/cli)
 
-To create a new storage account with customer-managed keys by using Azure CLI, run the following commands. Replace `<resource-group>`, `<identity-name>`, `<storage-account-name>`, `<key-vault-uri>`, `<key-name>`, and `<region>` with your own values. You can specify different values for `--kind` and `--sku` if desired.
+To create a new storage account with customer-managed keys by using Azure CLI, run the following commands. Replace `<resource-group>`, `<identity-name>`, `<storage-account-name>`, `<key-vault-name>`, `<key-name>`, and `<region>` with your own values. You can specify different values for `--kind` and `--sku` if desired.
 
 ```azurecli
 IDENTITY_RESOURCE_ID=$(az identity show \
     --name <identity-name> \
     --resource-group <resource-group> \
     --query id -o tsv)
+
+# Get the key vault URI
+KEY_VAULT_URI=$(az keyvault show \
+    --name <key-vault-name> \
+    --query properties.vaultUri -o tsv)
 
 az storage account create \
     --name <storage-account-name> \
@@ -540,7 +550,7 @@ az storage account create \
     --kind StorageV2 \
     --identity-type UserAssigned \
     --user-identity-id $IDENTITY_RESOURCE_ID \
-    --encryption-key-vault <key-vault-uri> \
+    --encryption-key-vault $KEY_VAULT_URI \
     --encryption-key-name <key-name> \
     --encryption-key-source Microsoft.Keyvault \
     --key-vault-user-identity-id $IDENTITY_RESOURCE_ID
@@ -565,7 +575,7 @@ To verify the storage account configuration by using the Azure portal, follow th
 
 ### [PowerShell](#tab/powershell)
 
-To verify the storage account configuration by using Azure PowerShell, run the following cmdlet. Replace `<resource-group>` and `<storage-account-name>` with your own values. 
+To verify the storage account configuration by using Azure PowerShell, run the following cmdlet. Replace `<resource-group>` and `<storage-account-name>` with your own values.
 
 ```azurepowershell
 $account = Get-AzStorageAccount `
@@ -580,7 +590,7 @@ Confirm that `KeySource` is `Microsoft.Keyvault` and that `KeyVaultProperties` s
 
 ### [Azure CLI](#tab/cli)
 
-To verify the configuration by using Azure CLI, run the following command. Replace `<resource-group>` and `<storage-account-name>` with your own values. Confirm that `keySource` is `Microsoft.Keyvault` and the `keyvaultproperties` section shows your key vault URI and key name.
+To verify the configuration by using Azure CLI, run the following command. Replace `<resource-group>` and `<storage-account-name>` with your own values.
 
 ```azurecli
 az storage account show \
@@ -588,6 +598,8 @@ az storage account show \
     --resource-group <resource-group> \
     --query encryption
 ```
+
+Confirm that `keySource` is `Microsoft.Keyvault` and the `keyVaultProperties` section shows your key vault URI and key name.
 
 ---
 
