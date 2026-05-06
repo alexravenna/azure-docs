@@ -10,7 +10,7 @@ ms.date: 05/03/2026
 ms.author: hobruche
 ---
 
-# Leveraging Azure API Management and virtual network peering (for example, SAP S/4HANA Private Cloud or Native)
+# Leverage Azure API Management and virtual network peering (for example, SAP S/4HANA Private Cloud or Native)
 
 > [!Important]
 > When consuming SAP APIs and interfaces, always ensure your usage complies with [SAP's API Policy](https://help.sap.com/doc/sap-api-policy/latest/en-US/API_Policy_latest.pdf). Please check with your SAP contact or account team if you have questions about permitted API usage in your specific scenario.
@@ -30,7 +30,7 @@ Some of the Azure services frequently used are Logic Apps and Azure API Manageme
 
 * [Set up Microsoft Entra ID, Azure API Management, and SAP for SSO from SAP OData connector](/power-platform/sap/connect/entra-id-apim-oauth)
 
-![Diagram showing the Azure virtual network peering architecture.](../media/azure-apim-virtual_network.jpg)
+![Diagram showing the Azure virtual network peering architecture.](../media/azure-apim-virtual-network.jpg)
 
 
 

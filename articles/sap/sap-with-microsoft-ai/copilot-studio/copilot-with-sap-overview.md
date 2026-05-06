@@ -1,5 +1,5 @@
 ---
-title: Copilot Studio and SAP Overview
+title: Microsoft Copilot Studio and SAP Overview
 description: Overview of building Copilot agents with SAP data using Copilot Studio, including architecture options, connectors, and integration patterns.
 author: hobru
 ms.service: sap-on-azure
@@ -107,10 +107,10 @@ Seamless integration with Microsoft 365 Agents SDK to build self-hosted agents.
 
 The following table provides an overview of the different tools and their features:
 | | Agent Builder | Copilot Studio | AI Foundry |
-| --- | --- | --- | --- | 
-| **Knowledge grounding**       | Built-in RAG tied to enterprise contents (SharePoint, M365 docs, and Bing search)     | Flexible data connections to organization data (M365, and connectors to other enterprise data)        | Comprehensive retrieval integration with security, either built-in or through own APIs/vector index  |
-| **User interfaces**           | M365 Copilot Chat – surfaced with M365 Copilot experiences like in Teams              | M365 Copilot Chat + embedded in M365/custom apps and chat                                             | Bring-your-own-UI next to integration with M365 Copilot and Apps                                     |
-| **Foundation models**         | Built-in LLMs (same models behind M365 Copilot, e.g., GPT-4 or other managed models)  | Configurable models (BYOM through AI Foundry) + agent-specific fine-tuning                            | Maximum model flexibility (Foundry model catalog, custom models, and FT models)                      |
+| --- | --- | --- | --- |
+| **Knowledge grounding**       | Built-in RAG tied to enterprise contents (SharePoint, Microsoft 365 docs, and Bing search)     | Flexible data connections to organization data (Microsoft 365, and connectors to other enterprise data)        | Comprehensive retrieval integration with security, either built-in or through own APIs/vector index  |
+| **User interfaces**           | Microsoft 365 Copilot Chat – surfaced with Microsoft 365 Copilot experiences like in Teams              | Microsoft 365 Copilot Chat + embedded in Microsoft 365/custom apps and chat                                             | Bring-your-own-UI next to integration with Microsoft 365 Copilot and Apps                                     |
+| **Foundation models**         | Built-in LLMs (same models behind Microsoft 365 Copilot, e.g., GPT-4 or other managed models)  | Configurable models (BYOM through AI Foundry) + agent-specific fine-tuning                            | Maximum model flexibility (Foundry model catalog, custom models, and FT models)                      |
 | **Pre-built tools**           | Minimal toolset for RAG from connected knowledge sources                              | Large tool library through pre-built connectors to extend agent actions                               | Extensive and extensible tool integrations (1st party tools, connectors to LoBs, and custom)         |
 | **Tool use via MCP**          | N/A – not supported for end users                                                     | Available through marketplace with pre-built 1P/3P MCP servers                                        | Fully support MCP for pre-built 1P/3P MCP servers and custom MCP servers                             |
 | **Memory and learning**         | Short term memory within the same chat session                                       | Short term memory of the session                                                                      | Extensive stateful short/long-term memory                                                            |
@@ -213,13 +213,13 @@ Since the tools and protocols mentioned above are indifferent of the actual back
 The following list provides an overview of reference architectures. There isn't only one, because it depends very much on your existing infrastructure and what components you're using. In the simplest form (for a first POC), you can just use Copilot Studio, use the SAP OData Connector and connect directly to your SAP system in the cloud ([Option #1](https://github.com/hobru/Microsoft-Learning/blob/main/architecture-demo.md))
 
 ### Recommendation matrix
-- Are you running your SAP system on Azure including RISE? Do you have a good Azure practice in-house? [Leveraging Azure API Management and virtual network peering (for example, SAP S/4HANA Private Cloud or Native)](architecture-apim-virtual_network.md)
-- Do you want to use BAPI / RFC? Take a look at [Leveraging on-premises data gateway with access to BAPI / RFCs and OData Services](architecture-on-premises-data-gateway.md)
-- Are you already using SAP Business Technology Platform and have connected your SAP backend system to it? [Leveraging SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)](architecture-business-technology-platform-api.md)
+- Are you running your SAP system on Azure including RISE? Do you have a good Azure practice in-house? [Leverage Azure API Management and virtual network peering (for example, SAP S/4HANA Private Cloud or Native)](architecture-apim-virtual-network.md)
+- Do you want to use BAPI / RFC? Take a look at [Leverage on-premises data gateway with access to BAPI / RFCs and OData Services](architecture-on-premises-data-gateway.md)
+- Are you already using SAP Business Technology Platform and have connected your SAP backend system to it? [Leverage SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)](architecture-business-technology-platform-api.md)
 
 ### Overview
 
 * [SAP System publically available (most likely a demo scenario)](architecture-demo.md)
-* [Leveraging SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)](architecture-business-technology-platform-api.md)
-* [Leveraging on-premises data gateway with access to BAPI / RFCs and OData Services](architecture-on-premises-data-gateway.md)
-* [Leveraging Azure API Management and virtual network peering (for example, SAP S/4HANA Private Cloud or Native)](architecture-apim-virtual_network.md)
+* [Leverage SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)](architecture-business-technology-platform-api.md)
+* [Leverage on-premises data gateway with access to BAPI / RFCs and OData Services](architecture-on-premises-data-gateway.md)
+* [Leverage Azure API Management and virtual network peering (for example, SAP S/4HANA Private Cloud or Native)](architecture-apim-virtual-network.md)

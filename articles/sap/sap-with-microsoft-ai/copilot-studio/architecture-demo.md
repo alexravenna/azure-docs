@@ -28,11 +28,11 @@ In the following steps, we'll use the public SAP Gateway Development system. Thi
 ## Setup and configuration
 Make sure to register for the SAP Gateway Demo System. You should be able to access the data with your P- or S-User in a browser, for example, 
 ````URL
-https://sapes5.sapdevcenter.com/sap/opu/odata/iwbep/GWSAMPLE_BASIC/
+https://<servername>/sap/opu/odata/iwbep/GWSAMPLE_BASIC/
 ```` 
  A list of five Products can be retrieved via, 
  ````URL
- https://sapes5.sapdevcenter.com/sap/opu/odata/iwbep/GWSAMPLE_BASIC/ProductSet?$top=5
+ https://<servername>/sap/opu/odata/iwbep/GWSAMPLE_BASIC/ProductSet?$top=5
 ```` 
 
 ### Agent and Copilot development 

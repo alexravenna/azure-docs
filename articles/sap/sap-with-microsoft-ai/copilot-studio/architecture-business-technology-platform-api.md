@@ -10,7 +10,7 @@ ms.date: 05/03/2026
 ms.author: hobruche
 ---
 
-# Leverage SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)
+# Use SAP Business Technology Platform (with SAP API Management and SAP Cloud Connector)
 
 > [!Important]
 > When consuming SAP APIs and interfaces, always ensure your usage complies with [SAP's API Policy](https://help.sap.com/doc/sap-api-policy/latest/en-US/API_Policy_latest.pdf). Please check with your SAP contact or account team if you have questions about permitted API usage in your specific scenario.
@@ -31,7 +31,7 @@ SAP BTP then forwards the request via the SAP Cloud Connector to the SAP Backend
 (This architecture only depicts one path; You can use multiple variations for the connection)
 
 ## Setup and configuration
-For this scenario in most cases the SAP Business Technology platform is  in place and also the SAP Cloud Connector is already installed.
+In this scenario in most cases the SAP Business Technology platform is in place and also the SAP Cloud Connector is already installed.
 
 ### Agent and Copilot development 
 In Copilot Studio, use the SAP OData Connector or the HTTP Connector to connect to the service exposed on BTP. You can either use the connectors directly from Copilot Studio, or use a Power Automate flow to add extra logic before / after calling the API. 
@@ -42,15 +42,15 @@ Using the SAP OData Connector you can also implement single sign-on from Entra I
 * [Power Platform + SAP: Updates via SAP OData services](https://youtu.be/mez5qIZmrfM?si=b22hyxSTlspy-HR_)
 
 ### Authentication
-In most cases the expectation from users using Copilot is that there's a principal propagation in place, meaning the user that is logged on to Copilot, is also the user that is authenticated in the SAP backend system. This not only ensures that auditing and activity traces in the SAP system are tracked in the user context, but also that the user only has access to the data that they are allowed to have. 
+In most cases the expectation from users using Copilot is that there's a principal propagation in place. This means that  the user that is logged on to Copilot, is also the user that is authenticated in the SAP backend system. The use of principal propagation not only ensures that auditing and activity traces in the SAP system are tracked in the user context, but also that the user only has access to the data that they're allowed to have. 
 
 For all integration scenarios via the SAP Business Technology Platform Principal Propagation flows are documented.  
 
-* [Principal propagation in a multicloud solution between Microsoft Azure and SAP, Part IV: SSO with a Power Virtual Agents Chatbot and on-premises Data Gateway](https://community.sap.com/t5/technology-blog-posts-by-members/principal-propagation-in-a-multi-cloud-solution-between-microsoft-azure-and/ba-p/13519225)
+* [Principal propagation in a multicloud solution between Microsoft Azure and SAP, Part IV: SSO with a Copilot Studio  Chatbot and on-premises Data Gateway](https://community.sap.com/t5/technology-blog-posts-by-members/principal-propagation-in-a-multi-cloud-solution-between-microsoft-azure-and/ba-p/13519225)
 * [Power Platform + SAP OData - single sign-on - Happy path](https://youtu.be/NSE--fVLdUg?si=eYnXYX5DLuyMwuY3)
 
 ### Integration and connectivity infrastructure
-The easiest way to expose APIs from your SAP backend system, is via the SAP Integration Suite. In this example, we're using the SAP API Management. The policy of the API Proxy can also be enhanced to support the Principal Propagation Flow to enable single sign-on from the Copilot Agent to the SAP backend system. 
+The easiest way to expose APIs from your SAP backend system is via the SAP Integration Suite. In this example, we're using the SAP API Management. The policy of the API Proxy can also be enhanced to support the Principal Propagation Flow to enable single sign-on from the Copilot Agent to the SAP backend system. 
 
 * [Principal Propagation via Entra Id](https://api.sap.com/policytemplate/Principal_Propagation_via_Entra_ID)
 * [SuccessFactors Principal Propagation via Entra ID](https://api.sap.com/policytemplate/SuccessFactors_Principal_Propagation_via_Entra_Id)

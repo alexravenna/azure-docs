@@ -84,7 +84,7 @@ The managed integration between **SAP Joule** and **Microsoft 365 Copilot** prov
 
 If your organization has Microsoft 365 Copilot licenses and SAP Joule enabled, the managed integration gets you started without custom development. Users can ask SAP questions directly in Teams or Copilot Chat.
 
-📖 [Joule & Copilot setup guide](./joule/joule-copilot-overview.md#setup--configuration)
+📖 [Joule & Copilot setup guide](./joule/joule-copilot-overview.md#setup-and-configuration)
 
 ### Starting Point 2: "I want to build a custom agent using low-code for a specific process that needs information from an SAP system"
 
