@@ -35,7 +35,7 @@ This includes [certificate authentication](point-to-site-certificate-gateway.md)
 
 ## To remove a profile
 
-To remove a profile, use the following steps:
+Use the following steps:
 1. Open the Azure VPN Client for Mac.
 1. Disconnect the connection, and clear the **Connect automatically** check box (this can also be managed in settings).
 

@@ -11,14 +11,13 @@
 > - The Azure VPN Client for macOS must be [version 3.0.100](/articles/vpn-gateway/azure-vpn-client-versions) or later.
 > - Always On must be configured per profile - there's no default Always On profile.
 > - Only one profile can have Always On enabled at a time.
-> - Always On can only be enabled when the VPN connection is disconnected.
+> - Always On can only be enabled when the VPN connection is disconnected. It is grayed out in any other state.
 > - Disconnecting an Always On profile disables the Always On feature for that profile.
 
 1. Open the Azure VPN Client for Mac.
 1. Select the profile you want to configure for Always On. If there isn't a client profile downloaded, follow the steps in **[this document](/articles/vpn-gateway/vpn-gateway-howto-always-on-device-tunnel-mac.md)** to configure a profile for your VPN client.
 1. Ensure the connection is in disconnected mode.
 1. Select the checkbox for **Connect-Automatically**. 
-1. Select **Connect** to establish the VPN connection.
 1. If the connection succeeds, you successfully configured an Always On device tunnel. 
 
 ![Diagram showing the always on feature in client.](./media/vpn-gateway-vwan-always-on-device-macos/app-settings-menu-macos-always-on.png)
@@ -27,7 +26,7 @@
 ### Connection failed - Repeated connection failures
 ![Diagram showing the connection failed repeated connection failures popup.](./media/vpn-gateway-vwan-always-on-device-macos/connection-failed-repeated-always-on.png)
 
-Always on was disabled because connection cannot be established even after max retry attempts. It could mean gateway isn’t reachable, incorrect connection configuration, etc. Admins should check the VPN configuration, validate gateway is up, and then try to re-enable connect-automatically. 
+Always on was disabled because connection can't be established even after max retry attempts. It could mean gateway isn’t reachable, incorrect connection configuration, etc. Admins should check the VPN configuration, validate gateway is up, and then try to re-enable connect-automatically. 
 
 ### Always On Checkbox enabled but connection remains disconnected
 ![Diagram showing the checkbox on but connection remaining disconnected.](./media/vpn-gateway-vwan-always-on-device-macos/disconnected-connect-automatically-checked.png)
