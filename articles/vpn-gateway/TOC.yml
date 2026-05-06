@@ -301,7 +301,7 @@
             - name: Windows clients
               href: vpn-gateway-howto-always-on-device-tunnel.md
             - name: macOS clients
-              href: vpn-gateway-howto-always-on-device-tunnel-macos.md
+              href: vpn-gateway-howto-always-on-device-tunnel-mac.md
         - name: User tunnel
           href: vpn-gateway-howto-always-on-user-tunnel.md
     - name: Move to OpenVPN or IKEv2 from SSTP
