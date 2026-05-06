@@ -80,7 +80,7 @@ While you can connect from outside of Azure, it isn't recommended, especially wh
 
 ## Rely on hostname, not a public or private IP address
 
-The IP address assigned to your cache can change as a result of a scale operation or backend improvement. We recommend relying on the hostname instead of an explicit public or private IP address. Note that the 'static IP' of the cache is nominal, and can change in some cases. Here are the recommended forms for the various tiers:
+The IP address assigned to your cache can change as a result of a scale operation or backend improvement. We recommend relying on the hostname instead of an explicit public or private IP address. Note that the 'static IP' of the cache in a virtual network is nominal; it isn't truly guaranteed to be forever even though changes are rare. Here are the recommended forms for the various tiers:
 
 |Tier | Form |
 |----|----|
