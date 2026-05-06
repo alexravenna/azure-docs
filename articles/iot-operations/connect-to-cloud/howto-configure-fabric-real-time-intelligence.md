@@ -35,7 +35,7 @@ Retrieve the [Kafka-compatible connection details for the custom endpoint](/fabr
 
 # [Entra ID authentication](#tab/entra-id)
 
-This method uses the managed identity of the Azure IoT Operations instance to authenticate with the event stream. Use the system-assigned managed identity authentication methods to configure the data flow endpoint.
+This method uses a managed identity to authenticate with the event stream. Use either system-assigned managed identity or user-assigned managed identity when you configure the data flow endpoint.
 
 1. The connection details are in the Fabric portal under the **Sources** section of your event stream. 
 1. In the details panel for the custom endpoint, select **Kafka** protocol.
@@ -69,7 +69,11 @@ This method uses the managed identity of the Azure IoT Operations instance to au
 
 ## Create a Microsoft Fabric Real-Time Intelligence data flow endpoint
 
-Microsoft Fabric Real-Time Intelligence supports Simple Authentication and Security Layer (SASL), System-assigned managed identity, and User-assigned managed identity authentication methods. For details on the available authentication methods, see [Available authentication methods](#available-authentication-methods).
+Microsoft Fabric Real-Time Intelligence supports three authentication methods for data flow endpoints:
+
+- **System-assigned managed identity**: Use the Azure IoT Operations Arc extension identity to authenticate with the event stream. Before you create the endpoint, add the extension identity to the Fabric workspace with **Contributor** or higher permissions. To learn more, see [System-assigned managed identity](#system-assigned-managed-identity).
+- **User-assigned managed identity**: Use a user-assigned managed identity configured for Azure IoT Operations cloud connections. Before you create the endpoint, add the user-assigned managed identity to the Fabric workspace with **Contributor** or higher permissions. To learn more, see [User-assigned managed identity](#user-assigned-managed-identity).
+- **SASL**: Use the Fabric event stream custom endpoint connection string. This method requires SASL settings and a synced Kubernetes secret with the username and password values. To learn more, see [SASL](#sasl).
 
 # [Operations experience](#tab/portal)
 
@@ -83,25 +87,7 @@ Microsoft Fabric Real-Time Intelligence supports Simple Authentication and Secur
     | --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
     | Name                  | The name of the data flow endpoint.                                                                                                                                                                                       |
     | Host                  | The hostname of the event stream custom endpoint in the format `<bootstrap-server>.servicebus.windows.net:9093`. Use the bootstrap server address noted previously.                                                       |
-    | Authentication method | The method used for authentication. Choose [*System assigned managed identity*](#system-assigned-managed-identity) for Entra ID, [*User assigned managed identity*](#user-assigned-managed-identity), or [*SASL*](#sasl). |
-
-
-    If you choose the SASL authentication method, you must also enter the following settings:
-
-    | Setting               | Description                                                                                       |
-    | --------------------- | ------------------------------------------------------------------------------------------------- |
-    | SASL type             | Choose *Plain*.                                                                                   |
-    | Synced secret name    | Enter a name for the synced secret. A Kubernetes secret with this name is created on the cluster. |
-
-    Select **Add reference** to create a new or choose an existing Key Vault reference for the username and password references.
-
-    For **Username reference of token secret**, store a Key Vault secret whose value is the literal string `$ConnectionString` (including the leading `$`).
-
-    :::image type="content" source="media/howto-configure-fabric-real-time-intelligence/username-reference.png" alt-text="Screenshot to create a username reference in Azure Key Vault.":::
-
-    For **Password reference of token secret**, the secret value must be the connection string with the primary key from the event stream custom endpoint.
-
-    :::image type="content" source="media/howto-configure-fabric-real-time-intelligence/password-reference.png" alt-text="Screenshot to create a password reference in Azure Key Vault.":::
+    | Authentication method | The method used for authentication. Choose [*System assigned managed identity*](#system-assigned-managed-identity), [*User assigned managed identity*](#user-assigned-managed-identity), or [*SASL*](#sasl).              |
 
 1. Select **Apply** to provision the endpoint.
 
@@ -430,12 +416,22 @@ In the operations experience data flow endpoint settings page, select the **Basi
 
 Enter the following settings for the endpoint:
 
-| Setting                            | Description                                                                                            |
-| ---------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| SASL type                          | The type of SASL authentication to use. Supported types are `Plain`, `ScramSha256`, and `ScramSha512`. |
-| Synced secret name                 | The name of the Kubernetes secret that contains the SASL credentials.                                  |
-| Username reference or token secret | The reference to the username or token secret used for SASL authentication.                            |
-| Password reference of token secret | The reference to the password or token secret used for SASL authentication.                            |
+| Setting                            | Description                                                                                       |
+| ---------------------------------- | ------------------------------------------------------------------------------------------------- |
+| SASL type                          | The type of SASL authentication to use. For Fabric custom endpoints, choose `Plain`.              |
+| Synced secret name                 | Enter a name for the synced secret. A Kubernetes secret with this name is created on the cluster. |
+| Username reference or token secret | The reference to the username or token secret used for SASL authentication.                       |
+| Password reference of token secret | The reference to the password or token secret used for SASL authentication.                       |
+
+Select **Add reference** to create a new or choose an existing Key Vault reference for the username and password references.
+
+For **Username reference of token secret**, store a Key Vault secret whose value is the literal string `$ConnectionString` (including the leading `$`).
+
+:::image type="content" source="media/howto-configure-fabric-real-time-intelligence/username-reference.png" alt-text="Screenshot to create a username reference in Azure Key Vault.":::
+
+For **Password reference of token secret**, the secret value must be the connection string with the primary key from the event stream custom endpoint.
+
+:::image type="content" source="media/howto-configure-fabric-real-time-intelligence/password-reference.png" alt-text="Screenshot to create a password reference in Azure Key Vault.":::
 
 # [Azure CLI](#tab/cli)
 
