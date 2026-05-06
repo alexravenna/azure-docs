@@ -19,6 +19,13 @@ ms.author: evach
 
 Azure API for FHIR&reg; provides a fully managed deployment of the Microsoft FHIR Server for Azure. The server is an implementation of the [FHIR](https://hl7.org/fhir) standard. This document provides details about the features and enhancements made to Azure API for FHIR.
 
+## May 2026
+### FHIR service
+
+**Security enhancements for export**: Added validation to reject path traversal sequences in $export endpoint parameters to prevent unauthorized access to blob storage paths.
+
+**Case change for custom headers in diagnostic logs**: Custom headers in diagnostic logs will now appear in lowercase to align with modern HTTP standards. This does not impact API functionality, but customers using case-sensitive parsing in logging or monitoring pipelines may need to update their logic. We recommend ensuring header processing is case-insensitive.
+
 ## March 2026
 ### FHIR service
 **Bulk Export cancellation behavior update**: Added updates to align the FHIR server to support [Bulk Data Access 2.0](https://hl7.org/fhir/uv/bulkdata/STU2/export.html#bulk-data-delete-request). This includes a change to bulk export cancellation behavior. Previously, cancellation request of an already completed, cancelled, or failed export job returned "200 OK." The behavior is now updated to return more informative operation outcomes:
