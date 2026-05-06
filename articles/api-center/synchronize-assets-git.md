@@ -60,15 +60,15 @@ To integrate a Git repository:
 1. In the [Azure portal](https://portal.azure.com), go to your API center.
 1. In the sidebar menu, select **Platforms** > **Integrations**.
 1. Select **+ New integration** and choose **From Git repository**.
-1. On **Integrate your Git repository**, provide the following information:
+1. On **Integrate your Git repository**, enter the following information:
 
     | Field | Description |
     |-------|-------------|
     | **Configure Git repository source** ||
-    | **Repository URL** | Enter the URL to the Git repository containing asset files, optionally specifying branch and subfolder (for example, `https://github.com/<org>/<repo>/tree/main/skills`). |
+    | **Repository URL** | Enter the URL to the Git repository containing asset files. Optionally, specify the branch and subfolder (for example, `https://github.com/<org>/<repo>/tree/main/skills`). |
     | **Git provider** | Select the provider (for example, **GitHub**). |
     | **Asset type configuration** | API Center configures a default **skill** asset type with file pattern `**/skill.md`. <br/><br/>Select **+ Add asset type** to add one or more asset types to sync. |
-    | **Personal access token (PAT)** | If you have a PAT stored in Azure Key Vault, click **Select** to browse to the Key Vault secret.<br/><br/>Optionally select **Automatically configure managed identity and assign permissions** if you haven't manually configured a managed identity to access the key vault secret. |
+        | **Personal access token (PAT)** | If you have a PAT stored in Azure Key Vault, click **Select** to browse to the Key Vault secret.<br/><br/>Optionally, select **Automatically configure managed identity and assign permissions** if you didn't manually configure a managed identity to access the key vault secret. |
     | **Integration details** | Accept the generated link identifier or provide a custom ID for the integration link. |
     | **Environment details** | |
     | **Environment title** | Enter a friendly name for the repository environment (for example, *Git repository*). |
