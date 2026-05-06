@@ -12,6 +12,8 @@ ms.custom:
 
 # Advanced: Combine static routing to Azure Firewall and spoke NVAs
 
+This article describes an advanced Virtual WAN design that combines Azure Firewall in the virtual hub with a network virtual appliance in a spoke virtual network for different traffic inspection paths.
+
 ## Scenario overview
 
 > [!NOTE]

@@ -12,6 +12,8 @@ ms.custom:
 
 # Basic: Route traffic to indirect spokes or the internet
 
+This article describes how to use Virtual WAN static routes to send traffic to a network virtual appliance in a spoke virtual network for indirect spoke connectivity, internet egress, or VPN/SD-WAN tunnels.
+
 ## Scenario overview
 
 This routing scenario explains how to configure Azure Virtual WAN to route traffic to a network virtual appliance (NVA) deployed in a Virtual WAN spoke virtual network. In this design, the NVA inspects traffic and then forwards it either to the **Internet**, **virtual networks that are indirectly connected to the virtual hub** (but peered with the NVA virtual network), or **VPN/SDWAN tunnels** terminated on the NVA.

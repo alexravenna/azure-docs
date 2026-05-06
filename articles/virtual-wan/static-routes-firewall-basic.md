@@ -12,6 +12,8 @@ ms.custom:
 
 # Static routes with Azure Firewall in Virtual WAN
 
+This article describes basic static route scenarios that send Virtual WAN traffic to Azure Firewall in the virtual hub.
+
 ## Overview
 
 This document summarizes basic scenarios for routing Virtual WAN traffic to Azure Firewall using static routes. The document **doesn't cover** [routing intent](how-to-routing-policies.md).

@@ -13,7 +13,7 @@ ms.custom:
 # Basic: Use routing intent with static routes
 
 > [!NOTE]
-> This design pattern is compatible with any supported next hop security solution deployed in the Virtual WAN hub, including **Azure Firewall**, an **integrated NVA**, or a **SaaS solution**. Additionally, use [static route configuration option 1](static-routes.md#configuration-options) when configuring static routes on the virtual network connection to ensure proper propagation of the static routes to the hub and other connected spokes. Configuration option 2 is **not supported** when using routing intent.
+> This design pattern is compatible with any supported next hop security solution deployed in the Virtual WAN hub, including **Azure Firewall**, an **integrated NVA**, or a **Software as a Service (SaaS) solution**. Additionally, use [static route configuration option 1](static-routes.md#configuration-options) when configuring static routes on the virtual network connection to ensure proper propagation of the static routes to the hub and other connected spokes. Configuration option 2 is **not supported** when using routing intent.
 
 ## Scenario overview
 
@@ -51,7 +51,7 @@ In the diagram above, there are three types of spokes:
 
 ### Routing intent and routing policies
 
-The virtual hub must use routing intent. Use a **Private Traffic** routing policy with next hop set to the security solution deployed in the virtual hub, such as Azure Firewall, a supported integrated NVA, or a SaaS security solution.
+The virtual hub must use routing intent. Use a **Private Traffic** routing policy with next hop set to the security solution deployed in the virtual hub, such as Azure Firewall, a supported integrated NVA, or an SaaS security solution.
 
 
 ### Static routes on the NVA virtual network connection
@@ -71,5 +71,5 @@ The virtual hub must use routing intent. Use a **Private Traffic** routing polic
 * For deployments where static routes are specified on a virtual network connection with **Propagate static route** enabled, the **bypass next hop IP** behavior is ignored when routing intent is applied. For more information, see [Bypass next hop IP for workloads within this VNet](howto-connect-vnet-hub.md#bypassexplained).
 * If there are multiple static routes configured where the destination CIDRs are **not** in IANA RFC1918, all static routes with non-RFC1918 destinations must use the **same next hop IP address**.
 * Routing intent is the only supported mechanism in Virtual WAN to inspect **inter-hub** traffic through security solutions deployed in the virtual hub.
-* If you need a design where a spoke NVA is used only for Internet breakout, while the virtual hub security solution inspects private traffic, see [Combining Azure Firewall and spoke NVAs](hybrid-firewall-spoke-static.md). In this scenario, Internet traffic is only inspected by the spoke NVA.
-* If you need a design where the spoke NVA is used to route traffic to indirect spokes or the Internet without routing intent, see [Route traffic to indirect spokes](indirect-spoke-architecture.md).
+* If you need a design where an NVA deployed in a spoke is used only for Internet breakout, while the virtual hub security solution inspects private traffic, see [Combining Azure Firewall and NVAs deployed in spokes](hybrid-firewall-spoke-static.md). In this scenario, Internet traffic is only inspected by the spoke NVA.
+* If you need a design where an NVA deployed in a spoke is used to route traffic to indirect spokes or the Internet without routing intent, see [Route traffic to indirect spokes](indirect-spoke-architecture.md).

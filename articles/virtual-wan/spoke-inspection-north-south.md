@@ -12,6 +12,8 @@ ms.custom:
 
 # Advanced: North-south inspection with NVAs
 
+This article describes advanced Virtual WAN designs that use spoke network virtual appliances to inspect north-south private traffic and internet-bound traffic.
+
 ## Scenario overview
 
 > [!NOTE]
