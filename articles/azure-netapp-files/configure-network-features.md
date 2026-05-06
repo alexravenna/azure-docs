@@ -75,7 +75,7 @@ You can edit the network features option of existing volumes from *Basic* to *St
 
 ### Register the feature
 
-Before upgradeing from Basic to Standard network features, you need to register the feature.
+Before upgrading from Basic to Standard network features, you need to register the feature.
 
 1.  Register the feature:
 
