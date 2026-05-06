@@ -59,7 +59,7 @@ To restore the database, follow these steps:
 
 2. Install the MySQL community version from [here](https://dev.mysql.com/downloads/)
 
->[!Note]
+   >[!Note]
 >The downloaded MySQL version must be same or compatible with the version of the restored files.
 
 3. Open command prompt and navigate to the `bin` directory of the downloaded MySQL community version folder.
