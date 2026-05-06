@@ -35,7 +35,7 @@ Before you start, make sure you have the following resources:
 | [Node.js](https://nodejs.org/) 18 or later | Free, open-source, cross-platform JavaScript runtime environment |
 | [Visual Studio Code 1.85.0 or later](https://code.visualstudio.com/download) | Local development experience |
 | [Visual Studio Code Extension API](https://code.visualstudio.com/api) | API that lets you build extensions for Visual Studio Code |
-| [Azure Logic Apps Migration Agent extension]() | Required extension with migration agent for Visual Studio Code |
+| [Azure Logic Apps Migration Agent extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.logicapps-migration-agent) | Required extension with migration agent for Visual Studio Code |
 | [Azure Logic Apps (Standard) extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurelogicapps) | Required dependency for the Azure Logic Apps Migration Agent extension |
 | Familiarity with [TypeScript](https://www.typescriptlang.org/) | A strongly typed programming language that builds on JavaScript |
 | Source integration project | The source integration project and artifact files for the platform where you want support |
@@ -46,7 +46,7 @@ To add platform support to the migration agent, use the following approaches:
 
 | Approach | Recommended | Description |
 |----------|-------------|-------------|
-| **Built-in parser** (contribute to the repo) | Yes | Add a parser and skills directly to the project. Full integration with all five migration stages. This approach is recommended because built-in parsers ship with the extension, use the same CI/CD pipeline, and can access all internal APIs. |
+| **Built-in parser** (contribute to the [extension's GitHub repository](https://go.microsoft.com/fwlink/?linkid=2363903)) | Yes | Add a parser and skills directly to the project. Full integration with all five migration stages. This approach is recommended because built-in parsers ship with the extension, use the same CI/CD pipeline, and can access all internal APIs. |
 | **External parser extension** | No | Create a separate Visual Studio Code extension that registers parsers through the plugin API. Covers only the Discovery stage. |
 
 All parsers transform source platform artifacts into a common IR format as a JSON document. The migration agent uses the IR format in the planning, conversion, and validation stages. The parser registry supports both built-in and external parser plugins:
@@ -221,7 +221,7 @@ To document how your platform's artifacts map to the IR schema, add a `docs/IREx
 
 ## Alternative: External parser extension
 
-External parser extensions cover only the migration agent's Discovery stage where the agent parses your source files. Skills, platform detection, and AI-powered planning and conversion require that you directly contribute to the main repository.
+External parser extensions cover only the migration agent's Discovery stage where the agent parses your source files. Skills, platform detection, and AI-powered planning and conversion require that you directly contribute to the [extension's GitHub repository](https://go.microsoft.com/fwlink/?linkid=2363903).
 
 However, if you prefer to not directly contribute to the repository, create a separate Visual Studio Code extension that registers parsers by using the [parse plugin API](#parser-plugin-api):
 
