@@ -51,7 +51,7 @@ To restore the database, follow these steps:
 
    :::image type="content" source="./media/backup-azure-mysql-flexible-server-restore/review-restore.png" alt-text="Screenshot that shows how to trigger restore operation." lightbox="./media/backup-azure-mysql-flexible-server-restore/review-restore.png":::
 
-## Create MySQL server from restored recovery point
+## Create a MySQL - Flexible server from restored recovery point
 
 ### Steps to access data from restored recovery point
 
