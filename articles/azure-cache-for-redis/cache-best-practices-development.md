@@ -78,7 +78,7 @@ Locate your cache instance and your application in the same region. Connecting t
 
 While you can connect from outside of Azure, it isn't recommended, especially when using Redis as a cache. If you're using Redis server as just a key/value store, latency might not be the primary concern.
 
-## Rely on hostname not public/private IP address
+## Rely on hostname, not a public or private IP address
 
 The IP address assigned to your cache can change as a result of a scale operation or backend improvement. We recommend relying on the hostname instead of an explicit public or private IP address. Note that the 'static IP' of the cache is nominal, and can change in some cases. Here are the recommended forms for the various tiers:
 
