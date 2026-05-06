@@ -21,31 +21,31 @@ When you configure customer-managed keys for a storage account, Azure Files data
 
 Follow these steps to configure customer-managed keys for a storage account.
 
-## Step 1: Create or configure a Key Vault
+## Step 1: Create or configure a key vault
 
-To enable customer managed keys, you need an Azure Key Vault with purge protection enabled. You can use an existing Key Vault or create a new one. The storage account and Key Vault can be in different regions or subscriptions within the same Microsoft Entra tenant.
+To enable customer managed keys, you need an Azure Key Vault with purge protection enabled. You can use an existing key vault or create a new one. The storage account and key vault can be in different regions or subscriptions within the same Microsoft Entra tenant.
 
 These instructions are for Azure Key Vault. The steps and commands for [Azure Key Vault Managed HSM](/azure/key-vault/managed-hsm/overview) (Hardware Security Module) might be different.
 
 ### [Azure portal](#tab/portal)
 
-To create a new Key Vault by using the Azure portal, follow these steps:
+To create a new key vault by using the Azure portal, follow these steps:
 
-1. In the Azure portal, search for **Key Vaults** and select **Create**.
+1. In the Azure portal, search for **Key vaults** and select **Create**.
 1. Fill in the required fields (subscription, resource group, name, region).
 1. Under **Recovery options**, select **Enable purge protection**.
 1. Select **Review + create**, and then select **Create**.
 
-If you want to use an existing Key Vault, follow these steps:
+If you want to use an existing key vault, follow these steps:
 
-1. Go to your Key Vault in the Azure portal.
+1. Go to your key vault in the Azure portal.
 1. From the service menu, under **Settings**, select **Properties**.
 1. In the **Purge protection** section, select **Enable purge protection**, and then select **Save**.
-1. Make sure soft delete is enabled on your Key Vault. It's enabled by default for new Key Vaults.
+1. Make sure soft delete is enabled on your key vault. It's enabled by default for new key vaults.
 
 ### [PowerShell](#tab/powershell)
 
-To create a new Key Vault with purge protection enabled, run the following cmdlet. Replace `<key-vault-name>`, `<resource-group>`, and `<region>` with your own values.
+To create a new key vault with purge protection enabled, run the following cmdlet. Replace `<key-vault-name>`, `<resource-group>`, and `<region>` with your own values.
 
 ```azurepowershell
 New-AzKeyVault `
@@ -55,7 +55,7 @@ New-AzKeyVault `
     -EnablePurgeProtection
 ```
 
-To enable purge protection on an existing Key Vault, run the following cmdlet. Replace `<key-vault-name>` and `<resource-group>` with your own values.
+To enable purge protection on an existing key vault, run the following cmdlet. Replace `<key-vault-name>` and `<resource-group>` with your own values.
 
 ```azurepowershell
 Update-AzKeyVault `
@@ -66,7 +66,7 @@ Update-AzKeyVault `
 
 ### [Azure CLI](#tab/cli)
 
-To create a new Key Vault with purge protection enabled, run the following command. Replace `<key-vault-name>`, `<resource-group>`, and `<region>` with your own values.
+To create a new key vault with purge protection enabled, run the following command. Replace `<key-vault-name>`, `<resource-group>`, and `<region>` with your own values.
 
 ```azurecli
 az keyvault create \
@@ -76,7 +76,7 @@ az keyvault create \
     --enable-purge-protection true
 ```
 
-To enable purge protection on an existing Key Vault, run the following command. Replace `<key-vault-name>` and `<resource-group>` with your own values.
+To enable purge protection on an existing key vault, run the following command. Replace `<key-vault-name>` and `<resource-group>` with your own values.
 
 ```azurecli
 az keyvault update \
@@ -89,15 +89,15 @@ az keyvault update \
 
 ### Assign the Key Vault Crypto Officer role
 
-To create and manage keys in your Key Vault, you need the **Key Vault Crypto Officer** role on the Key Vault. You can assign this role to yourself by using the Azure portal, PowerShell, or Azure CLI. If you already have this role on the Key Vault, you can skip this section and proceed to Step 2.
+To create and manage keys in your key vault, you need the **Key Vault Crypto Officer** role on the key vault. You can assign this role to yourself by using the Azure portal, PowerShell, or Azure CLI. If you already have this role on the Key Vault, you can skip this section and proceed to Step 2.
 
-You need the **Owner** or **User Access Administrator** RBAC role on the Key Vault scope to assign the **Key Vault Crypto Officer** role. Contact your admin if needed.
+You need the **Owner** or **User Access Administrator** RBAC role on the key vault scope to assign the **Key Vault Crypto Officer** role. Contact your admin if needed.
 
 #### [Azure portal](#tab/portal)
 
 To assign the **Key Vault Crypto Officer** role to yourself by using the Azure portal, follow these steps:
 
-1. Go to your Key Vault.
+1. Go to your key vault.
 1. From the service menu, select **Access control (IAM)**.
 1. Under **Grant access to this resource**, select **Add role assignment**.
 1. Search for and select **Key Vault Crypto Officer**, and then select **Next**.
@@ -112,10 +112,10 @@ To assign the **Key Vault Crypto Officer** role to yourself by using Azure Power
 
 ```azurepowershell
 $keyVault = Get-AzKeyVault -VaultName <key-vault-name>
-$currentUser = (Get-AzContext).Account.Id
+$currentUser = (Get-AzADUser -SignedIn).Id
 
 New-AzRoleAssignment `
-    -SignInName $currentUser `
+    -ObjectId $currentUser `
     -RoleDefinitionName "Key Vault Crypto Officer" `
     -Scope $keyVault.ResourceId
 ```
@@ -139,13 +139,13 @@ az role assignment create \
 
 ## Step 2: Create or import an encryption key
 
-You need an RSA or RSA-HSM key of size 2048, 3072, or 4096. Generate or import an RSA key in your Key Vault. Before you generate a key, make sure you have the **Key Vault Crypto Officer** role on the Key Vault.
+You need an RSA or RSA-HSM key of size 2048, 3072, or 4096. Generate or import an RSA key in your key vault. Before you generate a key, make sure you have the **Key Vault Crypto Officer** role on the key vault.
 
 ### [Azure portal](#tab/portal)
 
 To generate a new RSA encryption key by using the Azure portal, follow these steps.
 
-1. Go to your Key Vault in the Azure portal.
+1. Go to your key vault in the Azure portal.
 1. From the service menu, under **Objects**, select **Keys**.
 1. Select **Generate/Import**. Under **Options**, select **Generate**.
 1. Enter a name for the key. Key names can only contain alphanumeric characters and dashes.
@@ -154,7 +154,7 @@ To generate a new RSA encryption key by using the Azure portal, follow these ste
 
 To import an existing RSA encryption key by using the Azure portal, follow these steps.
 
-1. Go to your Key Vault in the Azure portal.
+1. Go to your key vault in the Azure portal.
 1. From the service menu, under **Objects**, select **Keys**.
 1. Select **Generate/Import**. Under **Options**, select **Import**.
 1. Select your key to upload.
@@ -211,9 +211,9 @@ az keyvault key import \
 
 ## Step 3: Create a managed identity and assign permissions
 
-The storage account needs a [managed identity](/entra/identity/managed-identities-azure-resources/overview) to authenticate to the Key Vault. By using a managed identity, the storage account can securely access the encryption key in your Key Vault without storing credentials.
+The storage account needs a [managed identity](/entra/identity/managed-identities-azure-resources/overview) to authenticate to the key vault. By using a managed identity, the storage account can securely access the encryption key in your key vault without storing credentials.
 
-Create a user-assigned or system-assigned managed identity and grant that identity the **Key Vault Crypto Service Encryption User** role on the Key Vault.
+Create a user-assigned or system-assigned managed identity and grant that identity the **Key Vault Crypto Service Encryption User** role on the key vault.
 
 > [!IMPORTANT]
 > If you plan to create a new storage account for CMK instead of using an existing storage account, you must create a user-assigned managed identity. You can't use a system-assigned identity during storage account creation because the identity doesn't exist until the storage account is created.
@@ -262,7 +262,7 @@ Assign the **Key Vault Crypto Service Encryption User** role to the user-assigne
 
 To assign the **Key Vault Crypto Service Encryption User** role to the user-assigned managed identity by using the Azure portal, follow these steps:
 
-1. Go to your Key Vault in the Azure portal.
+1. Go to your key vault in the Azure portal.
 1. From the service menu, select **Access control (IAM)**.
 1. Under **Grant access to this resource**, select **Add role assignment**.
 1. Search for and select **Key Vault Crypto Service Encryption User**, and then select **Next**.
@@ -328,13 +328,13 @@ To enable a system-assigned managed identity on an existing storage account by u
 1. Go to your storage account in the Azure portal.
 1. From the service menu, under **Security + networking**, select **Encryption**.
 1. For **Encryption type**, select **Customer-managed keys**.
-1. Under **Key vault and key**, select the Key Vault and key that you created in Step 2.
+1. Under **Key vault and key**, select the key vault and key that you created in Step 2.
 1. For **Identity type**, select **System assigned**.
 1. Select **Save**.
 
 Next, assign the **Key Vault Crypto Service Encryption User** role to the system-assigned managed identity for your storage account:
 
-1. Go to your Key Vault.
+1. Go to your key vault.
 1. From the service menu, select **Access control (IAM)**.
 1. Under **Grant access to this resource**, select **Add role assignment**.
 1. Search for and select **Key Vault Crypto Service Encryption User**, and then select **Next**.
@@ -397,12 +397,12 @@ az role assignment create \
 
 ## Step 4: Configure customer-managed keys on the storage account
 
-With the Key Vault, key, and managed identity in place, you can enable customer-managed keys on the storage account.
+With the key vault, key, and managed identity in place, you can enable customer-managed keys on the storage account.
 
-Follow these steps to configure the storage account to use your key from Key Vault for encryption. The Azure portal always uses automatic key version updating. To use manual key version management instead, use Azure PowerShell or Azure CLI and specify a key version.
+Follow these steps to configure the storage account to use your key for encryption. The Azure portal always uses automatic key version updating. To use manual key version management instead, use Azure PowerShell or Azure CLI and specify a key version.
 
 > [!IMPORTANT]
-> For storage accounts that are associated with a [network security perimeter](files-network-security-perimeter.md), the Key Vault should ideally be in the same network security perimeter. If it isn't, then you must configure the network security perimeter profile of the Key Vault to allow the storage account to communicate with it.
+> For storage accounts that are associated with a [network security perimeter](files-network-security-perimeter.md), the key vault should ideally be in the same network security perimeter. If it isn't, then you must configure the network security perimeter profile of the key vault to allow the storage account to communicate with it.
 
 ### Configure customer-managed keys for an existing storage account
 
@@ -416,7 +416,7 @@ To configure customer-managed keys on an existing storage account by using the A
 1. From the service menu, under **Security + networking**, select **Encryption**.
 1. For **Encryption type**, select **Customer-Managed Keys**. If the storage account is already configured for CMK, select **Change key**.
 1. For **Encryption key**, select **Select from key vault**.
-1. Select **Select a Key Vault and key**, and then choose your Key Vault and key.
+1. Select **Select a key vault and key**, and then choose your key vault and key.
 1. For **Identity type**, choose:
    - **System-assigned** - uses the storage account's system identity, which is created automatically.
    - **User-assigned** - uses your previously created user-assigned managed identity.
@@ -489,7 +489,7 @@ You can configure customer-managed keys when you create a new storage account by
 To configure customer-managed keys for a new storage account by using the Azure portal, follow these steps. The portal uses automatic key version updating by default. You can't specify a key version.
 
 1. On the **Encryption** tab during storage account creation, select **Customer-managed keys (CMK)** for **Encryption type**.
-1. Under **Encryption key**, choose **Select a key vault and key**, then select your Key Vault and key.
+1. Under **Encryption key**, choose **Select a key vault and key**, then select your key vault and key.
 1. Under **User-assigned identity**, choose **Select an identity**. The **Select user assigned managed identity** windows opens.
 1. Search for and select your pre-created user-assigned managed identity. New storage accounts can't use a system-assigned managed identity.
 1. Select **Add**.
@@ -517,7 +517,6 @@ New-AzStorageAccount `
     -UserAssignedIdentityId $identity.Id `
     -KeyVaultUri $keyVault.VaultUri `
     -KeyName $key.Name `
-    -KeyVaultEncryption `
     -KeyVaultUserAssignedIdentityId $identity.Id
 ```
 
@@ -557,7 +556,7 @@ After you enable customer-managed keys, confirm that encryption is properly conf
 
 ### [Azure portal](#tab/portal)
 
-To verify the configuration by using the Azure portal, follow these steps:
+To verify the storage account configuration by using the Azure portal, follow these steps:
 
 1. Go to your storage account in the Azure portal.
 1. From the service menu, under **Security + networking**, select **Encryption**.
@@ -566,19 +565,22 @@ To verify the configuration by using the Azure portal, follow these steps:
 
 ### [PowerShell](#tab/powershell)
 
-To verify the configuration by using Azure PowerShell, run the following cmdlet. Replace `<resource-group>` and `<storage-account-name>` with your own values. Confirm that `keySource` is `Microsoft.Keyvault` and the `keyvaultproperties` section shows your Key Vault URI and key name.
+To verify the storage account configuration by using Azure PowerShell, run the following cmdlet. Replace `<resource-group>` and `<storage-account-name>` with your own values. 
 
 ```azurepowershell
 $account = Get-AzStorageAccount `
     -ResourceGroupName <resource-group> `
     -Name <storage-account-name>
 
-$account.Encryption
+$account.Encryption.KeySource
+$account.Encryption.KeyVaultProperties
 ```
+
+Confirm that `KeySource` is `Microsoft.Keyvault` and that `KeyVaultProperties` shows your key vault URI and key name.
 
 ### [Azure CLI](#tab/cli)
 
-To verify the configuration by using Azure CLI, run the following command. Replace `<resource-group>` and `<storage-account-name>` with your own values. Confirm that `keySource` is `Microsoft.Keyvault` and the `keyvaultproperties` section shows your Key Vault URI and key name.
+To verify the configuration by using Azure CLI, run the following command. Replace `<resource-group>` and `<storage-account-name>` with your own values. Confirm that `keySource` is `Microsoft.Keyvault` and the `keyvaultproperties` section shows your key vault URI and key name.
 
 ```azurecli
 az storage account show \
@@ -594,11 +596,11 @@ az storage account show \
 Regularly rotating your encryption key limits the exposure if a key is ever compromised. For security best practices, rotate your encryption key at least once every two years.
 
 > [!IMPORTANT]
-> Azure checks the Key Vault for a new key version only once daily. After rotating a key, wait 24 hours before disabling the previous key version.
+> Azure checks the key vault for a new key version only once daily. After rotating a key, wait 24 hours before disabling the previous key version.
 
 ### Automated key rotation (recommended)
 
-If you configured customer-managed keys without specifying a key version (the default when using the Azure portal), Azure checks for new key versions daily. If you create a new version of the key in Key Vault, Azure picks it up within 24 hours. You can also configure [automatic key rotation in Azure Key Vault](/azure/key-vault/keys/how-to-configure-key-rotation) to generate new key versions on a schedule.
+If you configured customer-managed keys without specifying a key version (the default when using the Azure portal), Azure checks for new key versions daily. If you create a new version of the key in key vault, Azure picks it up within 24 hours. You can also configure [automatic key rotation in Azure Key Vault](/azure/key-vault/keys/how-to-configure-key-rotation) to generate new key versions on a schedule.
 
 ### Manual key rotation
 
@@ -615,13 +617,13 @@ You can immediately block access to encrypted file share data by disabling or de
 - Get/set file metadata
 - Put range, copy file, rename file
 
-To revoke access to your file share data, disable the key in Key Vault by using the Azure portal, Azure PowerShell, or Azure CLI. Re-enable the key to restore access.
+To revoke access to your file share data, disable the key in key vault by using the Azure portal, Azure PowerShell, or Azure CLI. Re-enable the key to restore access.
 
 ### [Azure portal](#tab/portal)
 
 To disable the key by using the Azure portal, follow these steps:
 
-1. Go to your Key Vault in the Azure portal.
+1. Go to your key vault in the Azure portal.
 1. From the service menu, under **Objects**, select **Keys**.
 1. Right-click the key and select **Disable**.
 
@@ -692,6 +694,7 @@ For more information about encryption and key management, see the following arti
 
 - [Azure Storage encryption for data at rest](/azure/storage/common/storage-service-encryption)
 - [Customer-managed keys for Azure Storage encryption (overview)](/azure/storage/common/customer-managed-keys-overview)
+- [Configure customer-managed keys in the same tenant for an existing storage account](/azure/storage/common/customer-managed-keys-configure-existing-account)
 - [Configure cross-tenant customer-managed keys](/azure/storage/common/customer-managed-keys-configure-cross-tenant-existing-account)
 - [Encryption for Azure Files](/azure/storage/files/storage-files-planning#encryption-for-azure-files)
 - [What is Azure Key Vault?](/azure/key-vault/general/overview)
