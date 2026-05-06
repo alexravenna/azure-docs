@@ -5,7 +5,7 @@ author: expekesheth
 ms.service: azure-health-data-services
 ms.subservice: fhir
 ms.topic: how-to
-ms.date: 10/01/2025
+ms.date: 05/05/2026
 ms.author: kesheth
 ---
 
@@ -18,7 +18,7 @@ ms.author: kesheth
 
 You can use the various features of `$bulk-delete` together to satisfy different use cases. The following example shows how to use `$bulk-delete` for data retention.  
 
-Suppose you want to delete Patient data that's older than three years, along with all data that references that patient. You also want to delte Practitioner resources that are no longer referenced by any Patient resources. 
+Suppose you want to delete Patient data that's older than three years, along with all data that references that patient. You also want to delete Practitioner resources that are no longer referenced by any Patient resources. 
 
 You can achieve this use case with these two calls.  
 
