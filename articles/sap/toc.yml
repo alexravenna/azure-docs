@@ -14,4 +14,4 @@ items:
   - name: Business Process Solutions
     href: business-process-solutions/toc.yml
   - name: SAP with Microsoft AI
-    href: sap-with-microsoft-ai/toc.yml
+    href: microsoft-ai/toc.yml
