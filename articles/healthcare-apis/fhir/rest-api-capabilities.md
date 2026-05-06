@@ -106,9 +106,7 @@ For examples, refer to the [FHIRPath Patch REST file](https://github.com/microso
 > [!NOTE]
 > When you use `PATCH` against STU3 and request a History bundle, the patched resource's `Bundle.entry.request.method` maps to `PUT`. This mapping exists because STU3 doesn't contain a definition for the `PATCH` verb in the [HTTPVerb value set](http://hl7.org/fhir/STU3/valueset-http-verb.html).
 
-The FHIR service supports the [$bulk-update](fhir-bulk-update.md) operation to perform multi-resource updates at system-level across all resources and type-level in bulk. This operation allows you to apply updates to a large set of resources that match specified search criteria, rather than updating resources individually.
-
-
+The FHIR service supports the [$bulk-update](fhir-bulk-update.md) operation to perform multi-resource updates at system-level and type-level across all resources in bulk. This operation allows you to apply updates to a large set of resources that match specified search criteria, rather than updating resources individually.
 
 ### Patch with FHIRPath patch
 
