@@ -58,7 +58,7 @@ After you add a private certificate to an app, the certificate is stored in a de
 
 You can add up to 1,000 private certificates per webspace.
 
-## Free managed certificate
+## Create a free managed certificate
 
 The free App Service managed certificate is a turn-key solution for helping to secure your custom DNS name in App Service. Without any action from you, this TLS server certificate is fully managed by App Service and is automatically renewed, as long as the prerequisites that you set up stay the same. All the associated bindings are updated with the renewed certificate. You create and bind the certificate to a custom domain, and let App Service do the rest.
 
@@ -91,8 +91,6 @@ The free certificate comes with the following limitations:
 - Must meet all the preceding criteria for successful certificate issuance and renewals.
 
 ---
-
-## Create a free managed certificate
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
@@ -150,7 +148,7 @@ By default, the App Service resource provider doesn't have access to your key va
 
 | Resource provider | Service principal app ID / assignee | Key Vault RBAC role |
 |--|--|--|
-| Azure App Service or `Microsoft.Web` | - `abfa0a7c-a6b6-4736-8310-5855508787cd` for Azure Cloud Services <br><br>- `6a02c803-dafd-4136-b4c3-5a6f318b4714` for Azure Cloud Services for Government | Certificate User |
+| Azure App Service or `Microsoft.Azure.WebSites` | - `abfa0a7c-a6b6-4736-8310-5855508787cd` for Azure Cloud Services <br><br>- `6a02c803-dafd-4136-b4c3-5a6f318b4714` for Azure Cloud Services for Government | Certificate User |
 
 The service principal app ID or assignee value is the application (client) ID for the App Service resource provider.
 
@@ -158,7 +156,7 @@ The service principal app ID or assignee value is the application (client) ID fo
 
 | Resource provider | Service principal app ID | Key Vault secret permissions | Key Vault certificate permissions |
 |--|--|--|--|
-| Azure App Service or `Microsoft.Web` | - `abfa0a7c-a6b6-4736-8310-5855508787cd` for Azure Cloud Services <br><br>- `6a02c803-dafd-4136-b4c3-5a6f318b4714` for Azure Cloud Services for Government | Get | Get |
+| Azure App Service or `Microsoft.Azure.WebSites` | - `abfa0a7c-a6b6-4736-8310-5855508787cd` for Azure Cloud Services <br><br>- `6a02c803-dafd-4136-b4c3-5a6f318b4714` for Azure Cloud Services for Government | Get | Get |
 
 The service principal app ID or assignee value is the ID for the App Service resource provider. To learn how to authorize Key Vault permissions for the App Service resource provider by using an access policy, see [Assign a Key Vault access policy](/azure/key-vault/general/assign-access-policy?tabs=azure-portal).
 

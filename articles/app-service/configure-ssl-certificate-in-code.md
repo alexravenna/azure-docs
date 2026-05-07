@@ -54,16 +54,16 @@ When `WEBSITE_LOAD_CERTIFICATES` is set to `*`, all previously added certificate
 
 ## Load certificates in Windows apps
 
-The `WEBSITE_LOAD_CERTIFICATES` app setting makes the specified certificates accessible to your Windows hosted app in the Windows certificate store, in [Current User](/windows-hardware/drivers/install/local-machine-and-current-user-certificate-stores).
+The `WEBSITE_LOAD_CERTIFICATES` app setting makes the specified certificates accessible to your Windows hosted app in the Windows certificate store, in [Current User\My](/windows-hardware/drivers/install/local-machine-and-current-user-certificate-stores).
 
-In C# code, you access the certificate by using the certificate thumbprint. The following code loads a certificate with the thumbprint `XXXXXXXXXXXXX`.
+In C# code, you access the certificate by using the certificate thumbprint. The following code loads a certificate with the thumbprint `<your-cert-thumbprint>`.
 
 ```csharp
 using System;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
-string certThumbprint = "XXXXXXXXXXXXX";
+string certThumbprint = "<your-cert-thumbprint>";
 bool validOnly = false;
 
 using (X509Store certStore = new X509Store(StoreName.My, StoreLocation.CurrentUser))
