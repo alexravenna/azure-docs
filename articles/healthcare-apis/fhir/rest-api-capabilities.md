@@ -26,7 +26,7 @@ The FHIR service supports the following create and update interactions as define
 
 ## Delete and conditional delete
 
-The FHIR service offers two delete types. There's [Delete](https://www.hl7.org/fhir/r4/http.html#delete), which is also known as hard and soft delete, and [Conditional Delete](https://www.hl7.org/fhir/r4/http.html#cdelete).
+The FHIR service offers two delete types. There's [Delete](https://www.hl7.org/fhir/r4/http.html#delete), which is also known as hard and soft delete, and [Conditional Delete](https://www.hl7.org/fhir/r4/http.html#3.1.0.7.1).
 
 Use delete interactions to remove individual resources by ID or to remove up to 100 resources in bulk by using search criteria with conditional delete. You can also remove larger sets of resources in bulk by using the `$bulk-delete` operation. To learn more about deleting resources in bulk, see [$bulk-delete operation](fhir-bulk-delete.md).
 
