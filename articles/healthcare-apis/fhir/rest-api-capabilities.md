@@ -22,7 +22,7 @@ The FHIR service supports the following create and update interactions as define
 - [update](https://www.hl7.org/fhir/r4/http.html#update)
 - [conditional update](https://www.hl7.org/fhir/r4/http.html#cond-update) 
 
- A useful header in these scenarios is the [If-Match](https://www.hl7.org/fhir/http.html#concurrency) header. Use the `If-Match` header to validate the version you're updating before making the update. If the `ETag` doesn't match the expected `ETag`, the interaction returns the error message *412 Precondition Failed*. 
+ A useful header in these scenarios is the [If-Match](https://www.hl7.org/fhir/r4/http.html#concurrency) header. Use the `If-Match` header to validate the version you're updating before making the update. If the `ETag` doesn't match the expected `ETag`, the interaction returns the error message *412 Precondition Failed*. 
 
 ## Delete and conditional delete
 
