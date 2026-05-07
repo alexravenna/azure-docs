@@ -97,13 +97,11 @@ Microsoft Copilot Studio is a powerful, low-code platform that enables organizat
 #### Microsoft 365 Agent Toolkit
 Microsoft 365 Agents Toolkit is a suite of tools for building enterprise-ready agents and apps that work across Microsoft 365 Copilot, Teams, Office, web, and other third-party messaging channels. 
 
-Microsoft 365 Agents Toolkit is an evolution of Teams Toolkit.
-
-[Microsoft 365 Agents Toolkit](/microsoft-365/developer/overview-m365-agents-toolkit)
-Seamless integration with Microsoft 365 Agents SDK to build self-hosted agents.
+[Microsoft 365 Agents Toolkit](/microsoft-365/developer/overview-m365-agents-toolkit) is an evolution of Teams Toolkit.
 
 
 The following table provides an overview of the different tools and their features:
+
 | | Agent Builder | Copilot Studio | AI Foundry |
 | --- | --- | --- | --- |
 | **Knowledge grounding**       | Built-in RAG tied to enterprise contents (SharePoint, Microsoft 365 docs, and Bing search)     | Flexible data connections to organization data (Microsoft 365, and connectors to other enterprise data)        | Comprehensive retrieval integration with security, either built-in or through own APIs/vector index  |
