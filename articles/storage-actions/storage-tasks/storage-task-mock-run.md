@@ -76,9 +76,7 @@ When a mock run finishes, a detailed report is written to the report export cont
 
 You can also view a summary of the run directly in the Azure portal on the assignment's mock run results page, including the number of objects listed, objects that met the conditions, and operations that would have been performed.
 
-<!-- TODO: Add a sanitized screenshot (no internal subscription details) once available.
 > ![Screenshot of the mock run results page in the Azure portal showing the Mock summary tab with Objects listed, Objects met condition, Operations mocked, and the Download report button.](../media/storage-tasks/storage-task-mock-run/mock-run-results-page.png)
--->
 
 **Report columns:**
 
