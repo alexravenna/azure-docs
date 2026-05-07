@@ -220,9 +220,9 @@ MQTT v5 currently differs from the [MQTT v5 specification](https://docs.oasis-op
 - If the server receives a PUBACK packet from a client with a nonsuccess response code, the connection is terminated.
 - Keep Alive maximum is 1,160 seconds.
 
-### MQTTv3.1.1 current limitations
+### MQTT v3.1.1 current limitations
 
-MQTT v5 currently differs from the [MQTT v3.1.1 specification](http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html) in the following ways:
+The MQTT broker currently differs from the [MQTT v3.1.1 specification](https://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html) in the following ways:
 
 - QoS 2 isn't supported. A publish request with a `RETAIN` flag or with a QoS 2 fails and closes the connection.
 - Keep Alive maximum is 1,160 seconds.

@@ -79,7 +79,7 @@ The following features are released in preview:
 - [Forward events from one Event Grid namespace topic to another namespace topic](forward-events-to-another-namespace-topic.md)
 - [Network security perimeter in Event Grid](configure-network-security-perimeter.md)
 
-We also published the following new articles:
+The following new articles were also published:
 
 - [Transport Layer Security support](transport-layer-security.md)
 - [Cross-tenant delivery in Event Grid](cross-tenant-delivery-using-managed-identity.md)

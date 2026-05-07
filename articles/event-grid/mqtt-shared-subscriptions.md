@@ -99,9 +99,15 @@ Shared subscriptions are ideal for:
 
 Use shared subscriptions when:
 
-- You need parallel message processing
-- A single consumer can't handle the load
-- You want scalable and resilient architectures
-- You want to avoid building custom load balancing
+- You need parallel message processing.
+- A single consumer can't handle the load.
+- You want scalable and resilient architectures.
+- You want to avoid building custom load balancing.
 
 :::image type="content" source="media/mqtt-shared-subscriptions/shared-subscription-parallel-process-diagram.png" alt-text="Diagram showing shared subscription where a topic distributes messages across multiple consumers for parallel processing.":::
+
+## Related content
+
+- [MQTT broker overview](mqtt-overview.md)
+- [MQTT features supported by the Azure Event Grid MQTT broker](mqtt-support.md)
+- [Publish and subscribe to MQTT messages](mqtt-publish-and-subscribe-portal.md)

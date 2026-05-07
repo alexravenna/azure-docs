@@ -32,7 +32,7 @@ Event Grid has two main features:
 - Your custom applications
 - External partner (software as a service) systems
 
-The Event Grid push delivery mechanism sends data to destinations that include your own application webhooks and Azure services. Here's a look at these two features.
+The Event Grid push delivery mechanism sends data to destinations that include your own application webhooks and Azure services. The following sections describe each feature.
 
 ## MQTT messaging
 
@@ -53,7 +53,7 @@ Highlights of MQTT messaging support in Event Grid:
 - **Publish-subscribe messaging model**: Communicates efficiently by using one-to-many, many-to-one, and one-to-one messaging patterns.
 - [Built-in cloud integration](mqtt-routing.md): Routes your MQTT messages to Azure services or custom webhooks for further processing.
 - **Flexible and fine-grained** [access control model](mqtt-access-control.md): Groups clients and topics to simplify access control management. Uses the variable support in topic templates for fine-grained access control.
-- **MQTT broker authentication methods**: Uses [X.509 certificate authentication](mqtt-client-authentication.md), an industry authentication standard for IoT devices. Uses [Microsoft Entra ID authentication](mqtt-client-microsoft-entra-token-and-rbac.md), an Azure authentication standard for applications. Uses flexible authentication patterns like [OAuth 2.0 JSON Web Token (JWT) authentication](oauth-json-web-token-authentication.md), which is lightweight and secure for MQTT clients that aren't provisioned in Azure. Uses [custom webhook authentication](authenticate-with-namespaces-using-webhook-authentication.md), which allows external HTTP endpoints (webhooks) to authenticate MQTT connections dynamically. This method uses Entra ID JWT validation to ensure secure access.
+- **MQTT broker authentication methods**: Uses [X.509 certificate authentication](mqtt-client-authentication.md), an industry authentication standard for IoT devices. Uses [Microsoft Entra ID authentication](mqtt-client-microsoft-entra-token-and-rbac.md), an Azure authentication standard for applications. Uses flexible authentication patterns like [OAuth 2.0 JSON Web Token (JWT) authentication](oauth-json-web-token-authentication.md), which is lightweight and secure for MQTT clients that aren't provisioned in Azure. Uses [custom webhook authentication](authenticate-with-namespaces-using-webhook-authentication.md), which allows external HTTP endpoints (webhooks) to authenticate MQTT connections dynamically. This method uses Microsoft Entra ID JWT validation to ensure secure access.
 - **Transport Layer Security (TLS) 1.2 and TLS 1.3 support**: Secures your client communication by using robust encryption protocols.
 - **Multi-session support**: Connects your applications with multiple active sessions to ensure reliability and scalability.
 - **MQTT over WebSocket**: Enables connectivity for clients in firewall-restricted environments.

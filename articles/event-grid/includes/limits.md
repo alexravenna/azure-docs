@@ -13,7 +13,7 @@ ms.custom:
 ---
 
 > [!NOTE]
-> The following limits listed in this article are per region.
+> The following limits are per region.
 
 ## Event Grid throttle limits
 
