@@ -62,7 +62,7 @@ You can also use [Azure CLI commands](/cli/azure/feature) `az feature register` 
 
     ```azurepowershell
     Set-AzContext -SubscriptionId <subscriptionId>
-    Register-AzProviderFeature -ProviderNamespace Microsoft.NetApp -FeatureName ANFMigrationAssistant
+    Register-AzProviderFeature -ProviderNamespace Microsoft.NetApp -FeatureName ANFSVolumeMigration
     ```
 
 2. Check the status of the feature registration: 
@@ -71,7 +71,7 @@ You can also use [Azure CLI commands](/cli/azure/feature) `az feature register` 
     > The **RegistrationState** may be in the `Registering` state for up to 60 minutes before changing to`Registered`. Wait until the status is **Registered** before continuing.
 
     ```azurepowershell
-    Get-AzProviderFeature -ProviderNamespace Microsoft.NetApp -FeatureName ANFMigrationAssistant
+    Get-AzProviderFeature -ProviderNamespace Microsoft.NetApp -FeatureName ANFSVolumeMigration
     ```
 
 You can also use [Azure CLI commands](/cli/azure/feature) `az feature register` and `az feature show` to register the feature and display the registration status.
