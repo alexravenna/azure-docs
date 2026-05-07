@@ -256,13 +256,13 @@ Content-Type: application/json
 
 ### Response field descriptions
 
-| Field             | Description  |
-|---------------------------|------------------------------------|
-| `decision` (required)       | Authentication decision is either `allow` or `deny`. |
-| `clientAuthenticationName`  | Client authentication name (identity name). (Required when `decision` is set to `allow`.)  |
-| `attributes`                | Dictionary with attributes. Key is the attribute name, and the value is an int/string/array. (Optional when `decision` is set to `allow`.) |
-| `expiration`                | Expiration date in Unix time format. (Optional when `decision` is set to `allow`.) |
-| `errorReason`               | Error message if `decision` is set to `deny`. This error is logged. (Optional when `decision` is set to `deny`.) |
+| Field | Type | Required When | Description |
+|-------|------|---------------|-------------|
+| `decision` | string (`allow` \| `deny`) | Always required | Authentication decision returned by the service. Allowed values are `allow` or `deny`. |
+| `clientAuthenticationName` | string | Required if `decision` = `allow` | Identity name of the client (for example, device ID or client ID). |
+| `attributes` | object (dictionary) | Optional if `decision` = `allow` | Key-value pairs representing additional attributes. Values can be int, string, or array of strings. |
+| `expiration` | integer (Unix timestamp, seconds) | Optional if `decision` = `allow` | Expiration time for the authorization decision, expressed as Unix time (seconds since epoch). Example: `1713782400`. |
+| `errorReason` | string | Optional if `decision` = `deny` | Error message describing why the request was denied. This value is logged for diagnostics. |
 
 ### Examples of supported attribute types
 

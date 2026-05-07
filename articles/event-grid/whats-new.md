@@ -11,6 +11,18 @@ ms.custom:
 
 Azure Event Grid receives improvements on an ongoing basis. To stay up to date with the most recent developments, this article provides you with information about the features that are added or updated in a release.
 
+## April 2026
+
+The following features of Event Grid namespaces moved from public preview to general availability (GA):
+
+- MQTT compliance: [MQTT Retain support](mqtt-retain.md)
+- MQTT compliance: [Shared Subscriptions](mqtt-shared-subscriptions.md)
+- [HTTP Publish of MQTT messages in Event Grid](mqtt-http-publish.md)
+
+The following features are released in preview:
+
+- MQTT compliance: [Subscription Identifiers](mqtt-support.md#shared-subscriptions-and-subscription-identifiers-overview)
+
 ## July 2025
 
 The following features of Event Grid namespaces moved from public preview to general availability (GA):
