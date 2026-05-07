@@ -8,7 +8,7 @@ ms.service: azure-api-management
 ms.custom:
   - build-2024
 ms.topic: concept-article
-ms.date: 03/23/2026
+ms.date: 05/07/2026
 ms.author: danlep
 ---
 
@@ -116,7 +116,7 @@ The following tables compare features available in the following API Management 
 | [Azure OpenAI in Microsoft Foundry models and LLMs](azure-ai-foundry-api.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | [Pass-through MCP server](expose-existing-mcp-server.md) | ✔️  | ✔️ | ❌ | ✔️ | ❌ |
 | [Export REST API as MCP server](export-rest-mcp-server.md)  | ✔️ | ✔️ | ❌ | ✔️ | ❌ |
-| [A2A agent](agent-to-agent-api.md)  | ❌ | ✔️ | ❌ | ❌ | ❌ |
+| [A2A agent](agent-to-agent-api.md)  | ✔️ | ✔️ | ❌ | ❌ | ❌ |
 | [Circuit breaker in backend](backends.md#circuit-breaker)  |  ✔️ | ✔️ | ❌ | ✔️ | ✔️ |
 | [Load-balanced backend pool](backends.md#load-balanced-pool)  |  ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
