@@ -6,7 +6,7 @@ ms.service: azure-deployment-environments
 ms.custom: build-2023
 ms.author: rosemalcolm
 author: RoseHJM
-ms.date: 03/20/2025
+ms.date: 05/07/2026
 ms.topic: how-to
 
 #customer intent: As a platform engineer, I want to create an environment type so that my team members can deploy environments.
@@ -30,7 +30,7 @@ To add a new environment type to a dev center:
 1. Sign in to the [Azure portal](https://portal.azure.com) and go to Azure Deployment Environments.
 1. In the left pane, under **Configure**, select **Dev centers**.
 1. On the **Dev centers** page, select your dev center. 
-1. Select **Environment types** in the left pane.
+1. In the left pane, under **Environment configuration**, select **Environment types**.
 1. Select **+ Create**.
 1. On the **Create environment type** page, add the following details:
    1. In the **Name** box, add a name for the environment type.
@@ -54,7 +54,7 @@ To delete an environment type from a dev center:
 1. Sign in to the [Azure portal](https://portal.azure.com) and go to Azure Deployment Environments.
 1. In the left pane, under **Configure**, select **Dev centers**.
 1. On the **Dev centers** page, select your dev center. 
-1. Select **Environment types** in the left pane.
+1. In the left pane, under **Environment configuration**, select **Environment types**.
 1. Select the environment types that you want to delete.
 1. Select **Delete** and then confirm.
 
