@@ -21,7 +21,7 @@ The following features of Event Grid namespaces moved from public preview to gen
 
 The following features are released in preview:
 
-- MQTT compliance: [Subscription Identifiers](mqtt-support.md#shared-subscriptions-and-subscription-identifiers-overview)
+- MQTT compliance: [Subscription Identifiers](mqtt-support.md#subscription-identifiers)
 
 ## July 2025
 
