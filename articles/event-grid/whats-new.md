@@ -2,7 +2,7 @@
 title: What's New? Azure Event Grid
 description: Learn what's new with Azure Event Grid, such as the latest release notes, known issues, bug fixes, deprecated functionality, and upcoming changes.
 ms.topic: overview
-ms.date: 07/30/2025
+ms.date: 05/07/2026
 ms.custom:
   - build-2025
 ---

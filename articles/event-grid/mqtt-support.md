@@ -6,7 +6,7 @@ ms.custom:
   - ignite-2023
   - build-2024
   - build-2025
-ms.date: 07/30/2025
+ms.date: 05/07/2026
 author: george-guirguis
 ms.author: geguirgu
 ms.subservice: mqtt

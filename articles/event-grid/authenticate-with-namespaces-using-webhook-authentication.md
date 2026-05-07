@@ -4,7 +4,7 @@ description: This article shows you how to authenticate with Azure Event Grid na
 ms.topic: how-to
 ms.custom:
   - build-2025
-ms.date: 03/23/2026
+ms.date: 05/07/2026
 author: Connected-Seth
 ms.author: seshanmugam
 ---

@@ -5,7 +5,7 @@ ms.topic: reference
 ms.custom:
   - build-2023
   - build-2025
-ms.date: 07/30/2025
+ms.date: 05/07/2026
 ---
 
 # Azure Event Grid quotas and limits
