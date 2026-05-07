@@ -173,19 +173,21 @@ MQTT v5 introduces support for assigned client identifiers, which allows the MQT
 - For firmware updates or resets, clients should either retain their known client identifier or use modest session expiry intervals to avoid prolonged lockouts.
 - Namespace configuration can increase session limits per client to minimize disruptions during updates or rollbacks.
 
-## Shared subscriptions and subscription identifiers overview
+### Shared subscriptions 
 
 **Shared subscriptions** in MQTT enable multiple clients to consume messages from a single topic subscription as a group, allowing the broker to distribute messages across them in a load-balanced manner. Instead of every subscriber receiving every message, the workload is shared—each message is delivered to only one client within the group. This pattern is particularly useful for scaling backend processing, improving throughput, and ensuring high availability in scenarios like telemetry processing, order handling, or event-driven microservices. In Azure Event Grid MQTT Broker, shared subscriptions help build resilient, horizontally scalable consumer applications without requiring complex custom load-balancing logic.
 
+### Subscription identifiers 
+
 **Subscription identifiers** in Azure Event Grid MQTT Broker (MQTT 5) allow a client to assign a unique numeric ID to each subscription so that incoming messages can be easily associated with the correct subscription. When the broker delivers a message, it includes the identifier(s) of the matching subscription(s), enabling the client to route and process messages efficiently—especially when handling multiple or overlapping topic filters.
 
-## Why subscription identifiers matter
+#### Why subscription identifiers matter
 
 - **Clear message context**: Instantly know which subscription triggered the message
 - **Simplified logic**: Avoid complex topic matching on the client side
 - **Efficient processing**: Route messages to the right handler or workflow quickly
 
-## Smart home monitoring example
+#### Smart home monitoring example
 
 Consider two client application monitors different types of data from a home:
 
