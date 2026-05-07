@@ -209,7 +209,7 @@ The MQTT broker is adding more MQTT v5 and MQTT v3.1.1 features in the future to
 
 ### MQTT v5 current limitations
 
-MQTT v5 currently differs from the [MQTT v5 specification](https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html) in the following ways:
+Support for MQTT v5 currently differs from the [MQTT v5 specification](https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html) in the following ways:
 
 - The effective will delay interval is the lesser of the provided Will Delay Interval and the session expiry interval (if provided).
 - Maximum QoS is 1.
