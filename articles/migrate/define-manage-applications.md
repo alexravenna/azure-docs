@@ -128,6 +128,7 @@ If you want to define applications at scale, you can select **Import> Import app
     > The All inventory export contains a column named 'App ARM ID Name(s)' which is the ARM representation of the application resource- do not add/edit any values in the column as that can lead to errors in importing the application grouping. Currently, import applications only supports adding workloads to an application and not to removing any associated workloads from existing applications. To remove a workload, use the portal experience to review and edit the specific application.
 
 ### Import application properties
+
 When the application is defined using import, a warning icon appears next to the application name to indicate that mandatory properties need to be updated. You can update these properties individually by selecting the application in the Applications view, or update them at scale using **Import> Import application properties**. 
 
 1. You can update the properties of application(s) in the prescribed template, which is an export of applications inventory.
@@ -164,7 +165,11 @@ After defining the applications, you can review the applications any time from t
 
 ## Auto-discovered applications
 
-Azure Migrate now supports the automatic discovery of applications by grouping of inventory discovered using [Collector](how-to-discover-using-collector.md). Currently the process of automatically creating applications is performed only once after the inventory from collector is imported. Each auto-discovered application represents a logical grouping of servers (and workloads running on those servers) automatically identified using server-naming patterns, inferred environments, and derived server roles. You can review these applications from the **Applications** view. 
+Azure Migrate now supports automatic application discovery by grouping servers discovered through the Collector, Appliance, or CSV import.
+
+To start automatic discovery, go to **Add Applications** > **Auto discover applications**. You can run this process only once, and it might take up to one hour depending on the total number of discovered workloads.
+ 
+Each auto-discovered application represents a logical grouping of servers (and workloads running on those servers) automatically identified using server-naming patterns, inferred environments, and derived server roles. You can review these applications from the **Applications** view. 
 
 - The view shows Applications which are either **Managed by** system (auto-discovered applications) or user (manually added applications through portal or import).
 - You can scope the system-defined applications from the view and filter by **Confidence score** which is a system assigned score to represent the accuracy of the application grouping. The user-defined (manually created) applications do not have a confidence score value so it is set to '-'.
