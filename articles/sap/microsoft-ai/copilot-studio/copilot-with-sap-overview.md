@@ -199,6 +199,8 @@ This provides not only the best security, but also reduces the number of hops an
 
 ### Backend systems and data sources
 Since the tools and protocols mentioned above are indifferent of the actual backend system, the integration of Copilots to SAP ranges from SAP S/4HANA Public Cloud systems (using OData) to old SAP R/3 system that can expose their data either via RFC/BAPI or with a standalone SAP Gateway that exposes an OData Service. Authentication options vary on the used protocol and application. Here's a first overview of integration options
+
+
 | Application | Potential Protocols | Authentication |
 | --- | --- | --- |
 | R/3, SAP ECC | BAPI/RFC | SAP UID / Kerberos |
