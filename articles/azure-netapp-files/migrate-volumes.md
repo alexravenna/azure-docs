@@ -32,11 +32,11 @@ With Azure NetApp Files' migration assistant, you can peer and migrate volumes f
 >[!TIP]
 >For help with creating a migration volume and peering clusters for the migration assistant, see the [PowerShell migration assistant workflow sample script](https://github.com/Azure-Samples/azure-docs-powershell-samples/blob/main/migration-assistant/migration-assistant-workflow.ps1).
 
-## Register the feature
-
-# [Azure CLI](#tab/azurecli)
+## Register the feature 
 
 You need to register the feature before using it for the migration assistant for the first time. After registration, the feature is enabled and works in the background. 
+
+# [Azure CLI](#tab/azurecli)
 
 1. Register the feature: 
 
@@ -57,8 +57,6 @@ You need to register the feature before using it for the migration assistant for
 You can also use [Azure CLI commands](/cli/azure/feature) `az feature register` and `az feature show` to register the feature and display the registration status.
 
 # [Azure PowerShell](#tab/azurepowershell)
-
-You need to register the feature before using it for the migration assistant for the first time. After registration, the feature is enabled and works in the background. 
 
 1. Register the feature: 
 
