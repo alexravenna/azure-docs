@@ -95,7 +95,7 @@ The following metric charts are viewable in the Storage Sync Service portal:
 
 | Metric name | Description | Page name |
 |-|-|-|
-| Agent Version Expiration Information | Number of days until the agent version expires | Storage Sync Service - Metrics |
+| Agent Version Expiration Information | Installed agent version is approaching expiration (yes/no) | Storage Sync Service - Metrics |
 | Bytes synced | Size of data transferred (upload and download) | Sync Group - Status, Server endpoint - Sync status, Storage Sync Service - Metrics |
 | Cache data size by last access time | Size of data by last access time | Server Endpoint - Cloud Tiering Status, Storage Sync Service - Metrics |
 | Cloud tiering cache hit rate | Percentage of bytes that have been served from the cache vs. recalled from the cloud. This metric is generated only when there is active I/O (such as file reads or recalls) on the server endpoint. | Sync Group - Status, Server Endpoint - Cloud Tiering Status, Storage Sync Service - Metrics |
@@ -217,7 +217,7 @@ The following table lists common and recommended alert rules for Azure File Sync
 | Registered server is failing to communicate with the Storage Sync Service | Server online status |
 | Server endpoint is in low disk space mode | Cloud tiering low disk space mode |
 | Cloud tiering recall size exceeded 500 GiB in a day  | Cloud tiering recall size |
-| Installed agent is approaching expiration | Agent version expiration information |
+| Installed agent version is approaching expiration | Agent version expiration information |
 
 The following table summarizes the default thresholds and evaluation periods for each recommended alert.
 
