@@ -17,25 +17,31 @@ This article describes FHIR service REST API capabilities in Azure Health Data S
 
 The FHIR service supports the following create and update interactions as defined by the FHIR specification:
 
-- [create](https://www.hl7.org/fhir/http.html#create)
-- [conditional create](https://www.hl7.org/fhir/http.html#ccreate)
-- [update](https://www.hl7.org/fhir/http.html#update)
-- [conditional update](https://www.hl7.org/fhir/http.html#cupdate) 
+- [create](https://www.hl7.org/fhir/r4/http.html#create)
+- [conditional create](https://www.hl7.org/fhir/r4/http.html#ccreate)
+- [update](https://www.hl7.org/fhir/r4/http.html#update)
+- [conditional update](https://www.hl7.org/fhir/r4/http.html#cond-update) 
 
  A useful header in these scenarios is the [If-Match](https://www.hl7.org/fhir/http.html#concurrency) header. Use the `If-Match` header to validate the version you're updating before making the update. If the `ETag` doesn't match the expected `ETag`, the interaction returns the error message *412 Precondition Failed*. 
 
 ## Delete and conditional delete
 
-The FHIR service offers two delete types. There's [Delete](https://www.hl7.org/fhir/http.html#delete), which is also known as hard and soft delete, and [Conditional Delete](https://www.hl7.org/fhir/http.html#cdelete).
+The FHIR service offers two delete types. There's [Delete](https://www.hl7.org/fhir/r4/http.html#delete), which is also known as hard and soft delete, and [Conditional Delete](https://www.hl7.org/fhir/r4/http.html#cdelete).
 
 Use delete interactions to remove individual resources by ID or to remove up to 100 resources in bulk by using search criteria with conditional delete. You can also remove larger sets of resources in bulk by using the `$bulk-delete` operation. To learn more about deleting resources in bulk, see [$bulk-delete operation](fhir-bulk-delete.md).
 
 ### Delete (hard and soft delete)
 
-The FHIR specification defines that after deleting a resource, subsequent nonversion reads of that resource return a 410 HTTP status code. As a result, you can't find the resource through searching. Additionally, the FHIR service enables you to fully delete the resource, including all history. To fully delete the resource, pass a parameter `true` setting to `hardDelete`: `(DELETE {{FHIR_URL}}/{resource}/{id}?hardDelete=true)`. If you don't pass this parameter or set `hardDelete` to false, the historic versions of the resource are still available.
+The FHIR specification defines that after deleting a resource, subsequent nonversion reads of that resource return a 410 HTTP status code. As a result, you can't find the resource through searching. Additionally, the FHIR service enables you to fully delete the resource, including all history. To fully delete the resource, set the `hardDelete` parameter to `true`.
+
+```rest
+DELETE {{FHIR_URL}}/{resource}/{id}?hardDelete=true
+```
+
+If you don't pass this parameter or set `hardDelete` to false, the historic versions of the resource are still available.
 
 > [!NOTE]
-> If you only want to delete the history, the FHIR service supports a custom operation called `$purge-history`. This operation deletes the history from a resource.
+> If you only want to delete the history, the FHIR service supports a custom operation called [$purge-history](purge-history.md). This operation deletes the history from a resource.
 
 ### Conditional delete
 
@@ -65,19 +71,19 @@ If you don't use the hard delete parameter, the records in the FHIR service stil
  
 If you don't know the ID of the deleted resource, use this URL pattern:
 
-```rest
-<FHIR_URL>/<resource-type>/<resource-id>/_history
-```
+`<FHIR_URL>/<resource-type>/<resource-id>/_history`
 
-For example: `https://myworkspace-myfhirserver.fhir.azurehealthcareapis.com/Patient/123456789/_history`
+For example: 
+
+`https://myworkspace-myfhirserver.fhir.azurehealthcareapis.com/Patient/123456789/_history`
  
 If you don't know the ID of the resource, do a history search on the entire resource type:
 
-```rest
-<FHIR_URL>/<resource-type>/_history
-```
+`<FHIR_URL>/<resource-type>/_history`
 
-For example: `https://myworkspace-myfhirserver.fhir.azurehealthcareapis.com/Patient/_history`
+For example: 
+
+`https://myworkspace-myfhirserver.fhir.azurehealthcareapis.com/Patient/_history`
 
 After you find the record to restore, use the `PUT` operation to recreate the resource with the same ID, or use the `POST` operation to make a new resource with the same information.
  
@@ -86,7 +92,7 @@ After you find the record to restore, use the `PUT` operation to recreate the re
 
 ## Batch and transaction bundles 
 
-In the FHIR service, bundles are containers that hold multiple resources. By using batch and transaction bundles, you can submit a set of actions for a server to perform in a single HTTP request and response.
+In the FHIR service, [bundles](http://hl7.org/fhir/R4/bundle.html) are containers that hold multiple resources. By using batch and transaction bundles, you can submit a set of actions for a server to perform in a single HTTP request and response.
 
 The server can perform the actions independently as a batch, or as a single atomic transaction where the entire set of changes succeeds or fails as a single entity. You can submit actions on multiple resources of the same or different types, such as create, update, or delete. For more information, see [FHIR bundles](http://hl7.org/fhir/R4/http.html#transaction).
 
@@ -164,7 +170,7 @@ To use parallel batch bundle processing:
 
 ## History
 
-The [history](https://www.hl7.org/fhir/http.html#history) interaction retrieves the history of either a particular resource, all resources of a given type, or all resources supported by the system. The HTTP GET command performs history interactions.
+The [history](https://www.hl7.org/fhir/r4/http.html#history) interaction retrieves the history of either a particular resource, all resources of a given type, or all resources supported by the system. The HTTP GET command performs history interactions.
 
 For example: 
 
@@ -186,7 +192,7 @@ For more information on history and version management, see [FHIR versioning pol
 
 ## Patch and conditional patch
 
-[Patch](https://www.hl7.org/fhir/http.html#patch) is a valuable RESTful interaction when you need to update only a portion of the FHIR resource. By using patch, you can specify the element that you want to update in the resource without updating the entire record. FHIR defines three ways to patch resources: JSON Patch, XML Patch, and FHIRPath Patch. 
+[Patch](https://www.hl7.org/fhir/r4/http.html#patch) is a valuable RESTful interaction when you need to update only a portion of the FHIR resource. By using patch, you can specify the element that you want to update in the resource without updating the entire record. FHIR defines three ways to patch resources: JSON Patch, XML Patch, and FHIRPath Patch. 
 
 The FHIR service supports JSON Patch and FHIRPath Patch, including conditional versions that patch resources by search criteria instead of resource IDs.
 
