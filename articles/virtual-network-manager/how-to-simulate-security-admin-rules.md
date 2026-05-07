@@ -35,51 +35,51 @@ This feature helps you validate security admin rule behavior, identify potential
 
 ## Simulate security admin rules in the Azure portal
 
-Use rule impact analyzer in the Azure portal to analyzer your security admin rules and simulate traffic flow patterns. In this step, you navigate to the rule impact analyzer feature.
+Use rule impact analyzer in the Azure portal to analyze your security admin rules and simulate traffic flow patterns. In this step, you go to the rule impact analyzer feature.
 
 1.  In the Azure portal, search for and select **Network managers**.
 
 1.  Select your network manager instance.
 
-1.  In the left menu, select **Configurations** under **Settings**.
+1.  In the left menu, under **Settings**, select **Configurations**.
 
 1.  Select your security admin configuration.
 
-1.  In the left menu, select **Rule collections** under **Settings**.
+1.  In the left menu, under **Settings**, select **Rule collections**.
 
-1.  Select **Analyze rules** for the desired rule collection.
+1.  Select **Analyze rules** for the rule collection you want.
 
-:::image type="content" source="media/how-to-simulate-security-admin-rules/rule-impact-analyzer-interface.png" alt-text="Screenshot of the Azure Network Manager interface showing the Rule Impact Analyzer tool.":::
+:::image type="content" source="media/how-to-simulate-security-admin-rules/rule-impact-analyzer-interface.png" lightbox="media/how-to-simulate-security-admin-rules/rule-impact-analyzer-interface-expanded.png" alt-text="Screenshot of the Azure Network Manager interface showing the Rule Impact Analyzer tool.":::
 
 > [!Important]
-> Rule impact analysis is performed only on virtual networks with traffic analytics fully enabled. This ensures the simulation is based on complete and accurate traffic data. The following virtual networks are automatically excluded because they can result in incomplete or inaccurate simulation results:
+> Rule impact analysis works only on virtual networks with traffic analytics fully enabled. This requirement ensures the simulation is based on complete and accurate traffic data. The following virtual networks are automatically excluded because they can result in incomplete or inaccurate simulation results:
 > - Virtual networks with subnet or NIC‑level flow logs.
 > - Virtual networks with flow log filtering enabled.
 > - AKS‑injected virtual networks.
 
 ## Review results
 
-After running the simulation, you see a detailed report that lists all existing traffic paths that have the target network groups’ virtual networks as the source and/or destination and how your security admin rules can affect those traffic paths.
+After running the simulation, you see a detailed report that lists all existing traffic paths that have the target network groups’ virtual networks as the source and destination. The report shows how your security admin rules can affect those traffic paths.
 
-:::image type="content" source="media/how-to-simulate-security-admin-rules/rule-impact-analyzer-results.png" alt-text="Screenshot that shows the rule impact analyzer results with predicted traffic impact states (Affected, Not affected, Cannot be determined) for each traffic path.":::
+:::image type="content" source="media/how-to-simulate-security-admin-rules/rule-impact-analyzer-results.png" lightbox="media/how-to-simulate-security-admin-rules/rule-impact-analyzer-results-expanded.png" alt-text="Screenshot that shows the rule impact analyzer results with predicted traffic impact states (Affected, Not affected, Cannot be determined) for each traffic path.":::
 
-The **Predicted traffic impact** column of the simulation results yield one of the following states:
+The **Predicted traffic impact** column of the simulation results returns one of the following states:
 
-- **Affected**: a path where at least one simulated rule is predicted to change the existing traffic behavior.
+- **Affected**: a path where at least one simulated rule changes the existing traffic behavior.
 
-- **Not affected**: a path where none of the simulated rules are predicted to change the existing traffic behavior.
+- **Not affected**: a path where none of the simulated rules change the existing traffic behavior.
 
-- **Cannot be determined**: a path where the analysis couldn’t compute a result. For example, a log analytics workspace doesn’t exist for traffic analytics, access to the workspace is denied, or required data is missing.
+- **Cannot be determined**: a path where the analysis can't compute a result. For example, this state occurs if a Log Analytics workspace doesn't exist for traffic analytics, if access to the workspace is denied, or if required data is missing.
 
-You can select **View details** for any of the listed traffic paths. This opens a pane with additional information on each of the simulated security admin rules, showing whether a rule is predicted to affect or not affect the selected traffic path.
+Select **View details** for any of the listed traffic paths. This selection opens a pane with additional information on each of the simulated security admin rules, showing whether a rule affects the selected traffic path.
 
-:::image type="content" source="media/how-to-simulate-security-admin-rules/rule-impact-details-pane.png" alt-text="Screenshot that shows the View details pane displaying whether a security admin rule is predicted to affect a traffic path between two virtual networks.":::
+:::image type="content" source="media/how-to-simulate-security-admin-rules/rule-impact-details-pane.png" lightbox="media/how-to-simulate-security-admin-rules/rule-impact-details-pane-expanded.png" alt-text="Screenshot that shows the View details pane displaying whether a security admin rule is predicted to affect a traffic path between two virtual networks.":::
 
 ## Configure scope
 
-You can configure the scope of rule impact analyzer to choose your desired rule collections and/or specific security admin rules to simulate traffic flow patterns for your desired set of network groups and/or specific virtual networks.
+You can configure the scope of rule impact analyzer to choose your desired rule collections and specific security admin rules to simulate traffic flow patterns for your desired set of network groups and specific virtual networks.
 
-:::image type="content" source="media/how-to-simulate-security-admin-rules/rule-impact-analyzer-scope.png" alt-text="Screenshot that shows the Configure scope options to select specific rule collections, rules, network groups, and virtual networks for analysis.":::
+:::image type="content" source="media/how-to-simulate-security-admin-rules/rule-impact-analyzer-scope.png" lightbox="media/how-to-simulate-security-admin-rules/rule-impact-analyzer-scope-expanded.png" alt-text="Screenshot that shows the Configure scope options to select specific rule collections, rules, network groups, and virtual networks for analysis.":::
 
 1.  In the rule impact analyzer results page, select **Configure scope**.
 
