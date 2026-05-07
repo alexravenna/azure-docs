@@ -91,7 +91,7 @@ Set routes for specific networks on the corresponding route table. For example, 
 A second level of traffic segmentation using the network security groups within the Spokes and the Hub to create a more granular traffic policy.
 
 > [!NOTE]
-> **Traffic from on-premises to Azure VMware Solution:** Traffic between on-premises workloads, either vSphere-based or others, are enabled by Global Reach, but the traffic doesn't go through Azure Firewall on the hub. In this scenario, you must implement traffic segmentation mechanisms, either on-premises or in Azure VMware Solution.
+> **Traffic from on-premises to Azure VMware Solution:** Traffic between on-premises workloads, either vSphere-based or others, get enabled by Global Reach, but the traffic doesn't go through Azure Firewall on the hub. In this scenario, you must implement traffic segmentation mechanisms, either on-premises or in Azure VMware Solution.
 
 ### Application Gateway
 
