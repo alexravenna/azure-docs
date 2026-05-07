@@ -22,9 +22,10 @@ In Azure Deployment Environments, [environment types](concept-environments-key-c
 
 Project environment types allow platform engineering teams to:
 
-- Configure the target subscription in which Azure resources will be created, per environment type and per project. 
+- Configure the target subscription in which Azure resources are created, per environment type and per project. 
 
   You can provide subscriptions for environment types in a project to automatically apply the right set of policies on environments. This action also abstracts Azure governance-related concepts from your development teams.
+
 - Preconfigure the managed identity that developers use to perform the deployment, along with the access levels that development teams get after the environment is created.
 
 ## Prerequisites
@@ -34,7 +35,7 @@ Project environment types allow platform engineering teams to:
 
 ## Add a project environment type
 
-When you configure a project environment type, your development teams can use it to create an environment. They'll create the environment in the mapped subscription by using the configured deployment identity, along with permissions granted to resources created as part of the environment. All the associated policies are automatically applied.
+When you configure a project environment type, your development teams can use it to create an environment. They create the environment in the mapped subscription by using the configured deployment identity, along with permissions granted to resources created as part of the environment. All the associated policies are automatically applied.
 
 To add a new project environment type:
 
@@ -53,7 +54,7 @@ To add a new project environment type:
     |Name     |Value     |
     |---------|----------|
     |**Type**| Select a dev center environment type to enable for the project.|
-    |**Deployment subscription**| Select the target subscription in which the environment will be created.|
+    |**Deployment subscription**| Select the target subscription in which the environment is created.|
     |**Deployment identity** | Select either a system-assigned managed identity or a user-assigned managed identity that will be used to perform deployments on behalf of the user.|
     |**Permissions on environment resources** > **Environment creator role(s)**|  Select the roles that get access to the environment resources.|
     |**Permissions on environment resources** > **Additional access** | Select the users or Microsoft Entra groups that are granted specific roles on the environment resources.|
@@ -66,7 +67,7 @@ To add a new project environment type:
 
 ## Update a project environment type
 
-You can update a project environment type so that it uses a different subscription or deployment identity when developers deploy environments. Updating a project environment type affects only newly created environments. Existing environments will continue to exist in the previously mapped subscription.
+You can update a project environment type so that it uses a different subscription or deployment identity when developers deploy environments. Updating a project environment type affects only newly created environments. Existing environments continue to exist in the previously mapped subscription.
 
 To update an existing project environment type:
 
@@ -92,7 +93,7 @@ When you enable an environment type (or re-enable one that you disabled), develo
 
 1. Select **Environment types** in the left pane.
 
-1. Select the environment type to enable or disable.
+1. Select the environment type that you want to enable or disable.
 
 1. Select **Enable** or **Disable** at the top of the page.
 
@@ -112,4 +113,4 @@ You can delete a specific project environment type only if no deployed environme
 
 ## Related content
 
-* [Create and access an environment in Azure Deployment Environments](quickstart-create-access-environments.md)
+- [Create and access an environment in Azure Deployment Environments](quickstart-create-access-environments.md)

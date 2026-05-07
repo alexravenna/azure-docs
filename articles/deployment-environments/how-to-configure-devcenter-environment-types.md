@@ -18,8 +18,8 @@ In Azure Deployment Environments, you use [environment types](./concept-environm
 
 In this article, you learn how to:
 
-* Add a new environment type to a dev center.
-* Delete an environment type from a dev center.
+- Add a new environment type to a dev center.
+- Delete an environment type from a dev center.
 
 :::image type="content" source="media/configure-dev-center-environment-types/azure-deployment-environments-environment-types.png" alt-text="Screenshot of example environment types." lightbox="media/configure-dev-center-environment-types/azure-deployment-environments-environment-types.png":::
 
@@ -60,4 +60,4 @@ To delete an environment type from a dev center:
 
 ## Next step
 
-* [Configure environment types for specific projects](how-to-configure-project-environment-types.md)
+- [Configure environment types for specific projects](how-to-configure-project-environment-types.md)
