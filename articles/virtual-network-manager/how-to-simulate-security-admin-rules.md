@@ -49,7 +49,7 @@ Use rule impact analyzer in the Azure portal to analyzer your security admin rul
 
 1.  Select **Analyze rules** for the desired rule collection.
 
-:::image type="content" source="media/how-to-simulate-security-admin-rules/image1.png" alt-text="whatif-nm AI-generated content may be incorrect.":::
+:::image type="content" source="media/how-to-simulate-security-admin-rules/image1.png" alt-text="Screenshot of the Azure Network Manager interface showing the Rule Impact Analyzer tool.":::
 
 > [!Important]
 > Rule impact analysis is performed only on virtual networks with traffic analytics fully enabled. This ensures the simulation is based on complete and accurate traffic data. The following virtual networks are automatically excluded because they can result in incomplete or inaccurate simulation results:
@@ -61,7 +61,7 @@ Use rule impact analyzer in the Azure portal to analyzer your security admin rul
 
 After running the simulation, you see a detailed report that lists all existing traffic paths that have the target network groups’ virtual networks as the source and/or destination and how your security admin rules may affect those traffic paths.
 
-:::image type="content" source="media/how-to-simulate-security-admin-rules/image2.png" alt-text="The image shows a Microsoft Azure interface with a rule impact analyzer tool, where it displays the results of an analysis of a rule collection&#39;s potential impact on selected virtual networks, with data on traffic affected by the rules. AI-generated content may be incorrect.":::
+:::image type="content" source="media/how-to-simulate-security-admin-rules/image2.png" alt-text="Screenshot that shows the rule impact analyzer results with predicted traffic impact states (Affected, Not affected, Cannot be determined) for each traffic path.":::
 
 The **Predicted traffic impact** column of the simulation results will yield one of the following states:
 
@@ -73,13 +73,13 @@ The **Predicted traffic impact** column of the simulation results will yield one
 
 You can select **View details** for any of the listed traffic paths. This opens a pane with additional information on each of the simulated security admin rules, showing whether a rule is predicted to affect or not affect the selected traffic path.
 
-:::image type="content" source="media/how-to-simulate-security-admin-rules/image3.png" alt-text="The image displays a Microsoft Azure Monitor dashboard with a rule impact analysis, showing traffic statistics between two virtual networks, highlighting a rule that denies outbound traffic. AI-generated content may be incorrect.":::
+:::image type="content" source="media/how-to-simulate-security-admin-rules/image3.png" alt-text="Screenshot that shows the View details pane displaying whether a security admin rule is predicted to affect a traffic path between two virtual networks.":::
 
 ## Configure scope
 
 You can configure the scope of rule impact analyzer to choose your desired rule collections and/or specific security admin rules to simulate traffic flow patterns for your desired set of network groups and/or specific virtual networks.
 
-:::image type="content" source="media/how-to-simulate-security-admin-rules/image4.png" alt-text="A screenshot of the Azure Network Manager interface displaying the Rule Impact Analyzer tool, with options to configure rule collections, select security rules, and analyze potential impacts on virtual networks. AI-generated content may be incorrect.":::
+:::image type="content" source="media/how-to-simulate-security-admin-rules/image4.png" alt-text="Screenshot that shows the Configure scope options to select specific rule collections, rules, network groups, and virtual networks for analysis.":::
 
 1.  In the rule impact analyzer results page, select **Configure scope**.
 
@@ -87,4 +87,7 @@ You can configure the scope of rule impact analyzer to choose your desired rule 
 
 1.  Select **Apply** to run rule impact analyzer on the new scope.
 
-# Additional resources
+## Next steps
+
+> [!div class="nextstepaction"]
+> [Create a security admin rule using network groups](how-to-create-security-admin-rule-network-group.md)
