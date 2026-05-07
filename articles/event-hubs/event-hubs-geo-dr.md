@@ -93,9 +93,9 @@ If a pairing between primary and secondary namespace already exists, private end
 
 When you create a disaster recovery configuration for your application and Event Hubs namespaces, create private endpoints for both primary and secondary Event Hubs namespaces. These private endpoints connect to virtual networks that host both primary and secondary instances of your application.
 
-Let's say you have two virtual networks: `VNET-1`, `VNET-2` and these primary and secondary namespaces: `EventHubs-Namespace1-Primary`, `EventHubs-Namespace2-Secondary`. You need to do the following steps:
-
 Suppose you have two virtual networks, `VNET-1` and `VNET-2`, and these primary and secondary namespaces: `EventHubs-Namespace1-Primary` and `EventHubs-Namespace2-Secondary`. Complete the following steps:
+
+- On `EventHubs-Namespace1-Primary`, create two private endpoints that use subnets from `VNET-1` and `VNET-2`
 - On `EventHubs-Namespace2-Secondary`, create two private endpoints that use the same subnets from `VNET-1` and `VNET-2`
 
 ![Private endpoints and virtual networks](./media/event-hubs-geo-dr/private-endpoints-virtual-networks.png)
@@ -109,7 +109,7 @@ The advantage of this approach is that failover can happen at the application la
 > [!NOTE]
 > For guidance on geo-disaster recovery of a virtual network, see [Virtual Network - Business Continuity](../virtual-network/virtual-network-disaster-recovery-guidance.md).
 
-## Role-based access control
+## Role-based access control (RBAC)
 
 Microsoft Entra role-based access control (RBAC) assignments to entities in the primary namespace aren't replicated to the secondary namespace. Create role assignments manually in the secondary namespace to secure access to them.
 
