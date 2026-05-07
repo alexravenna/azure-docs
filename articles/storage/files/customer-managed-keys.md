@@ -4,7 +4,7 @@ description: Learn how to configure customer-managed keys (CMK) in Azure Key Vau
 author: khdownie
 ms.service: azure-file-storage
 ms.topic: how-to
-ms.date: 05/06/2026
+ms.date: 05/07/2026
 ms.author: kendownie
 # Customer intent: "As a cloud admin, I want to learn how to configure customer-managed keys instead of using Microsoft-managed keys for encrypting Azure Files data at rest."
 ---
@@ -15,7 +15,7 @@ ms.author: kendownie
 
 :heavy_multiplication_x: **Doesn't apply to:** File shares created with the Microsoft.FileShares resource provider (preview)
 
-Azure encrypts all data in a storage account at rest, including Azure Files data, using AES-256 encryption. By default, Microsoft manages the encryption keys for a storage account. For more control over encryption keys, you can use customer-managed keys (CMK) instead of Microsoft-managed keys to protect and control access to the encryption key that encrypts your data. This article explains how to configure customer-managed keys for Azure Files workloads.
+Azure encrypts all data in a storage account at rest, including Azure Files data, using AES-256 encryption. By default, Microsoft manages the encryption keys for a storage account. For more control over encryption keys, you can use [customer-managed keys](/azure/storage/common/customer-managed-keys-overview) (CMK) instead of Microsoft-managed keys to protect and control access to the encryption key that encrypts your data. This article explains how to configure customer-managed keys for Azure Files workloads.
 
 When you configure customer-managed keys for a storage account, Azure Files data in that storage account is automatically encrypted using the customer key. No per-share opt-in is required.
 
@@ -25,7 +25,7 @@ Follow these steps to configure customer-managed keys for a storage account.
 
 ## Step 1: Create or configure a key vault
 
-To enable customer managed keys, you need an Azure Key Vault with purge protection enabled. You can use an existing key vault or create a new one. The storage account and key vault can be in different regions or subscriptions within the same Microsoft Entra tenant. For cross tenant scenarios, see [Configure cross-tenant customer-managed keys for an existing storage account](/azure/storage/common/customer-managed-keys-configure-cross-tenant-existing-account).
+To enable customer managed keys, you need an Azure storage account along with an Azure Key Vault with purge protection enabled. You can use an existing key vault or create a new one. The storage account and key vault can be in different regions or subscriptions within the same Microsoft Entra tenant. For cross-tenant scenarios, see [Configure cross-tenant customer-managed keys for an existing storage account](/azure/storage/common/customer-managed-keys-configure-cross-tenant-existing-account).
 
 ### [Azure portal](#tab/portal)
 
@@ -213,14 +213,11 @@ az keyvault key import \
 
 The storage account needs a [managed identity](/entra/identity/managed-identities-azure-resources/overview) to authenticate to the key vault. By using a managed identity, the storage account can securely access the encryption key in your key vault without storing credentials.
 
-Create a user-assigned or system-assigned managed identity and grant that identity the **Key Vault Crypto Service Encryption User** role on the key vault.
+Create a user-assigned managed identity and grant that identity the **Key Vault Crypto Service Encryption User** role on the key vault.
 
-> [!IMPORTANT]
-> If you plan to create a new storage account for CMK instead of using an existing storage account, you must create a user-assigned managed identity. You can't use a system-assigned identity during storage account creation because the identity doesn't exist until the storage account is created.
+### Create a user-assigned managed identity
 
-### Option A: Create a user-assigned managed identity
-
-You can create a user-assigned managed identity by using the Azure portal, Azure PowerShell, or Azure CLI.
+Create a user-assigned managed identity by using the Azure portal, Azure PowerShell, or Azure CLI.
 
 #### [Azure portal](#tab/portal)
 
@@ -256,11 +253,11 @@ az identity create \
 
 #### Assign the Key Vault Crypto Service Encryption User role to the managed identity
 
-Assign the **Key Vault Crypto Service Encryption User** role to the user-assigned managed identity you created by using the Azure portal, PowerShell, or Azure CLI.
+Assign the **Key Vault Crypto Service Encryption User** role to the managed identity you created by using the Azure portal, PowerShell, or Azure CLI.
 
 ##### [Azure portal](#tab/portal)
 
-To assign the **Key Vault Crypto Service Encryption User** role to the user-assigned managed identity by using the Azure portal, follow these steps:
+To assign the **Key Vault Crypto Service Encryption User** role to the managed identity by using the Azure portal, follow these steps:
 
 1. Go to your key vault in the Azure portal.
 1. From the service menu, select **Access control (IAM)**.
@@ -269,7 +266,7 @@ To assign the **Key Vault Crypto Service Encryption User** role to the user-assi
 1. Under **Assign access to**, select **Managed identity**.
 1. Under **Members**, choose **+Select members**.
 1. The **Select managed identities** window opens. Under **Managed identity**, select **User-assigned managed identity**.
-1. Select the user-assigned managed identity that you created, and then choose **Select**.
+1. Select the managed identity that you created, and then choose **Select**.
 1. Select **Review + assign**, and then **Review + assign** again.
 
 ##### [PowerShell](#tab/powershell)
@@ -315,86 +312,6 @@ az role assignment create \
 
 ---
 
-You can now proceed to [Step 4: Configure customer-managed keys on the storage account](#step-4-configure-customer-managed-keys-on-the-storage-account).
-
-### Option B: System-assigned managed identity (existing storage accounts only)
-
-For existing storage accounts, you can enable a system-assigned managed identity for the storage account and assign it the **Key Vault Crypto Service Encryption User** role. You can do this by using the Azure portal, PowerShell, or Azure CLI.
-
-#### [Azure portal](#tab/portal)
-
-To enable a system-assigned managed identity on an existing storage account by using the Azure portal, follow these steps:
-
-1. Go to your storage account in the Azure portal.
-1. From the service menu, under **Security + networking**, select **Encryption**.
-1. For **Encryption type**, select **Customer-managed keys**.
-1. Under **Key vault and key**, select the key vault and key that you created in Step 2.
-1. For **Identity type**, select **System assigned**.
-1. Select **Save**.
-
-Next, assign the **Key Vault Crypto Service Encryption User** role to the system-assigned managed identity for your storage account:
-
-1. Go to your key vault.
-1. From the service menu, select **Access control (IAM)**.
-1. Under **Grant access to this resource**, select **Add role assignment**.
-1. Search for and select **Key Vault Crypto Service Encryption User**, and then select **Next**.
-1. Under **Assign access to**, select **Managed identity**.
-1. Under **Members**, choose **+Select members**.
-1. Search for and select the system-assigned managed identity for your storage account, and then choose **Select**.
-1. Select **Review + assign**, and then **Review + assign** again.
-
-#### [PowerShell](#tab/powershell)
-
-To enable a system-assigned managed identity on an existing storage account and add the required role assignment by using Azure PowerShell, run the following cmdlets. Replace `<resource-group>`, `<storage-account-name>`, and `<key-vault-name>` with your own values.
-
-```azurepowershell
-# Enable system-assigned identity
-Set-AzStorageAccount `
-    -ResourceGroupName <resource-group> `
-    -Name <storage-account-name> `
-    -AssignIdentity
-
-$storageAccount = Get-AzStorageAccount `
-    -ResourceGroupName <resource-group> `
-    -Name <storage-account-name>
-
-$keyVault = Get-AzKeyVault -VaultName <key-vault-name>
-
-New-AzRoleAssignment `
-    -ObjectId $storageAccount.Identity.PrincipalId `
-    -RoleDefinitionName "Key Vault Crypto Service Encryption User" `
-    -Scope $keyVault.ResourceId
-```
-
-#### [Azure CLI](#tab/cli)
-
-To enable a system-assigned managed identity on an existing storage account and add the required role assignment by using Azure CLI, run the following commands. Replace `<resource-group>`, `<storage-account-name>`, and `<key-vault-name>` with your own values.
-
-```azurecli
-# Enable system-assigned identity on the storage account
-az storage account update \
-    --name <storage-account-name> \
-    --resource-group <resource-group> \
-    --assign-identity
-
-# Get the principal ID
-SA_PRINCIPAL_ID=$(az storage account show \
-    --name <storage-account-name> \
-    --resource-group <resource-group> \
-    --query identity.principalId -o tsv)
-
-# Assign the role on the key vault
-KV_RESOURCE_ID=$(az keyvault show --name <key-vault-name> --query id -o tsv)
-
-az role assignment create \
-    --assignee-object-id $SA_PRINCIPAL_ID \
-    --assignee-principal-type ServicePrincipal \
-    --role "Key Vault Crypto Service Encryption User" \
-    --scope $KV_RESOURCE_ID
-```
-
----
-
 ## Step 4: Configure customer-managed keys on the storage account
 
 With the key vault, key, and managed identity in place, you can enable customer-managed keys on the storage account.
@@ -417,10 +334,8 @@ To configure customer-managed keys on an existing storage account by using the A
 1. For **Encryption type**, select **Customer-Managed Keys**. If the storage account is already configured for CMK, select **Change key**.
 1. For **Encryption key**, select **Select from key vault**.
 1. Select **Select a key vault and key**, and then choose your key vault and key.
-1. For **Identity type**, choose:
-   - **System-assigned** - uses the storage account's system identity, which is created automatically.
-   - **User-assigned** - uses your previously created user-assigned managed identity.
-1. If you selected **User-assigned**, you must search for and select the user-assigned managed identity and then select **Add**.
+1. For **Identity type**, choose **User-assigned** to use your previously created user-assigned managed identity.
+1. Search for and select the user-assigned managed identity and then select **Add**.
 1. Select **Save**.
 
 :::image type="content" source="media/customer-managed-keys/encryption-key-selection.png" alt-text="Screenshot showing the encryption selection and key selection for configuring customer managed keys.":::
@@ -450,7 +365,7 @@ Set-AzStorageAccount `
     -KeyVaultUserAssignedIdentityId $identity.Id
 ```
 
-To use manual key version updating instead, add the `-KeyVersion $key.Version` parameter to the `Set-AzStorageAccount` cmdlet.
+To use manual key version updating instead of automatic updating, add the `-KeyVersion $key.Version` parameter to the `Set-AzStorageAccount` cmdlet.
 
 #### [Azure CLI](#tab/cli)
 
@@ -481,13 +396,15 @@ az storage account update \
     --user-identity-id $IDENTITY_RESOURCE_ID
 ```
 
-To use manual key version updating instead, add `--encryption-key-version <key-version>` to the `az storage account update` command.
+To use manual key version updating instead of automatic updating, add `--encryption-key-version <key-version>` to the `az storage account update` command.
 
 ---
 
 ### Configure customer-managed keys for a new storage account
 
 You can configure customer-managed keys when you create a new storage account by using the Azure portal, Azure PowerShell, or Azure CLI.
+
+You can't use a system-assigned identity during storage account creation because the identity doesn't exist until the storage account is created. You must use a user-assigned managed identity.
 
 #### [Azure portal](#tab/portal)
 
