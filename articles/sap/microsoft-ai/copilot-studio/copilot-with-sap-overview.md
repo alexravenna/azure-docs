@@ -101,8 +101,7 @@ Microsoft 365 Agents Toolkit is a suite of tools for building enterprise-ready a
 
 
 The following table provides an overview of the different tools and their features:
-
-| | Agent Builder | Copilot Studio | AI Foundry |
+| Capability | Agent Builder | Copilot Studio | AI Foundry |
 | --- | --- | --- | --- |
 | **Knowledge grounding**       | Built-in RAG tied to enterprise contents (SharePoint, Microsoft 365 docs, and Bing search)     | Flexible data connections to organization data (Microsoft 365, and connectors to other enterprise data)        | Comprehensive retrieval integration with security, either built-in or through own APIs/vector index  |
 | **User interfaces**           | Microsoft 365 Copilot Chat – surfaced with Microsoft 365 Copilot experiences like in Teams              | Microsoft 365 Copilot Chat + embedded in Microsoft 365/custom apps and chat                                             | Bring-your-own-UI next to integration with Microsoft 365 Copilot and Apps                                     |
@@ -110,7 +109,7 @@ The following table provides an overview of the different tools and their featur
 | **Pre-built tools**           | Minimal toolset for RAG from connected knowledge sources                              | Large tool library through pre-built connectors to extend agent actions                               | Extensive and extensible tool integrations (1st party tools, connectors to LoBs, and custom)         |
 | **Tool use via MCP**          | N/A – not supported for end users                                                     | Available through marketplace with pre-built 1P/3P MCP servers                                        | Fully support MCP for pre-built 1P/3P MCP servers and custom MCP servers                             |
 | **Memory and learning**         | Short term memory within the same chat session                                       | Short term memory of the session                                                                      | Extensive stateful short/long-term memory                                                            |
-|                               | Not persistent across sessions                                                        | Extensible with external storage                                                                      | Integrated retrieval                                                                                  |
+| **Integrated retrieval**                              | Not persistent across sessions                                                        | Extensible with external storage                                                                      | Integrated retrieval                                                                                  |
 | **Orchestrator and MAS**        | Not supported – only single stand-alone agent                                        | Multi-agent orchestration with an orchestrator pattern + connected agents                             | Built-in multi-agent orchestration supporting various conversational patterns                         |
 
 
