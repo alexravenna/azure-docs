@@ -6,7 +6,7 @@ ms.author: v-gajeronika
 ms.topic: how-to
 ms.date: 05/05/2026
 ms.service: azure-site-recovery
-ms.custom: sfi-image-nochange
+ms.custom: sfi-image-nochange, references_regions
 # Customer intent: "As an IT administrator, I want to configure replication for Azure VMs to another region, so that I can ensure disaster recovery and maintain business continuity in the event of a regional outage."
 ---
 

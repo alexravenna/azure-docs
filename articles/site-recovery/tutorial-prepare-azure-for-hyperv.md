@@ -4,7 +4,7 @@ description: Learn how to prepare Azure resources for disaster recovery of on-pr
 ms.service: azure-site-recovery
 ms.topic: tutorial
 ms.date: 05/05/2026
-ms.custom: MVC, engagement-fy23
+ms.custom: MVC, engagement-fy23, references_regions
 ms.author: v-gajeronika
 author: Jeronika-MS
 # Customer intent: "As a system administrator, I want to configure Azure resources for disaster recovery of on-premises Hyper-V VMs, so that I can ensure business continuity during outages."
@@ -67,7 +67,7 @@ Images of replicated machines are held in an Azure storage account. Azure VMs ar
     1. For **Performance**, select **Standard**.
     1. For **Redundancy**, retain the default **Geo-redundant storage (GRS)** for storage redundancy.
 
-    :::image type="content" source="media/tutorial-prepare-azure/create-storage-account.png" alt-text="Screenshot that shows an example of Create a storage account options.":::
+    :::image type="content" source="media/tutorial-prepare-azure/create-storage-account.png" alt-text="Screenshot that shows an example of Create a storage account option.":::
 1. Select **Review** and review your settings.
 1. Select **Create**.
 

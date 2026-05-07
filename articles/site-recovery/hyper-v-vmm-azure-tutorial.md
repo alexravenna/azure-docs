@@ -7,9 +7,7 @@ ms.date: 05/05/2026
 ms.author: v-gajeronika
 ms.service: azure-site-recovery
 author: Jeronika-MS
-ms.custom:
-  - MVC
-  - sfi-image-nochange
+ms.custom: MVC, sfi-image-nochange, references_regions
 # Customer intent: "As a system administrator managing Hyper-V virtual machines with System Center VMM, I want to set up disaster recovery to Azure using Site Recovery, so that I can ensure high availability and quick recovery in case of an outage."
 ---
 
