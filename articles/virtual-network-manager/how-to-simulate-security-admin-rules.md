@@ -13,11 +13,11 @@ ms.custom:
 
 # Simulate security admin rule impact with rule impact analyzer
 
-In this article, you learn how to use the rule impact analyzer feature to simulate your security admin rules on the traffic flows of your virtual networks in your Azure Virtual Network Manager instance’s security admin configuration’s rule collections blade. You can use the Azure portal to analyze what impact the security admin rules in your rule collection may have on your virtual networks before deploying them.
+In this article, you learn how to use the rule impact analyzer feature to simulate your security admin rules on the traffic flows of your virtual networks in your Azure Virtual Network Manager instance’s security admin configuration’s rule collections blade. You can use the Azure portal to analyze what impact the security admin rules in your rule collection can have on your virtual networks before deploying them.
 
 This feature helps you validate security admin rule behavior, identify potential impact to existing traffic flows, and ensure your connectivity requirements are met without disrupting live traffic. By understanding the impact of your security admin rules, you can confidently plan changes, maintain compliance, and reduce the risk of misconfiguration across your virtual networks.
 
-# Prerequisites
+## Prerequisites
 
 - An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn_52a140ac-560d-400f-de96-b5fd487708cd) before you begin.
 
@@ -29,11 +29,11 @@ This feature helps you validate security admin rule behavior, identify potential
 
 - Traffic analytics enabled for your virtual network flow logs. If you don’t have virtual network flow logs enabled on the network groups’ virtual networks you want to include in the analysis, see [Create a flow log](/azure/network-watcher/vnet-flow-logs-manage?tabs=portal#create-a-flow-log). If you don’t have traffic analytics enabled for your virtual network flow logs, see [Enable traffic analytics on virtual network flow logs](/azure/network-watcher/vnet-flow-logs-manage#enable-or-disable-traffic-analytics).
 
-  - It may take time after configuring these tools before data becomes available for rule impact analyzer.
+  - It can take time after configuring these tools before data becomes available for rule impact analyzer.
 
 - Required role-based access control (RBAC) permissions. For more information, see [Traffic analytics RBAC Permissions](/azure/network-watcher/required-rbac-permissions#traffic-analytics).
 
-# Simulate security admin rules in the Azure portal
+## Simulate security admin rules in the Azure portal
 
 Use rule impact analyzer in the Azure portal to analyzer your security admin rules and simulate traffic flow patterns. In this step, you navigate to the rule impact analyzer feature.
 
@@ -59,17 +59,17 @@ Use rule impact analyzer in the Azure portal to analyzer your security admin rul
 
 ## Review results
 
-After running the simulation, you see a detailed report that lists all existing traffic paths that have the target network groups’ virtual networks as the source and/or destination and how your security admin rules may affect those traffic paths.
+After running the simulation, you see a detailed report that lists all existing traffic paths that have the target network groups’ virtual networks as the source and/or destination and how your security admin rules can affect those traffic paths.
 
 :::image type="content" source="media/how-to-simulate-security-admin-rules/rule-impact-analyzer-results.png" alt-text="Screenshot that shows the rule impact analyzer results with predicted traffic impact states (Affected, Not affected, Cannot be determined) for each traffic path.":::
 
-The **Predicted traffic impact** column of the simulation results will yield one of the following states:
+The **Predicted traffic impact** column of the simulation results yield one of the following states:
 
 - **Affected**: a path where at least one simulated rule is predicted to change the existing traffic behavior.
 
 - **Not affected**: a path where none of the simulated rules are predicted to change the existing traffic behavior.
 
-- **Cannot be determined**: a path where the analysis couldn’t compute a result (e.g. a log analytics workspace doesn’t exist for traffic analytics, access to the workspace is denied, or required data is missing).
+- **Cannot be determined**: a path where the analysis couldn’t compute a result. For example, a log analytics workspace doesn’t exist for traffic analytics, access to the workspace is denied, or required data is missing.
 
 You can select **View details** for any of the listed traffic paths. This opens a pane with additional information on each of the simulated security admin rules, showing whether a rule is predicted to affect or not affect the selected traffic path.
 
