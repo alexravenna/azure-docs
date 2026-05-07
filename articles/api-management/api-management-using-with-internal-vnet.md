@@ -26,7 +26,7 @@ This article explains how to set up VNet connectivity for your API Management in
 * Git 
 
 > [!NOTE]
-> * None of the API Management endpoints are registered on the public DNS. The endpoints remain inaccessible until you [configure DNS](#dns-configuration) for the VNet.
+> * None of the API Management endpoints are registered on the public DNS. The endpoints remain inaccessible until you [configure DNS](#dns-configuration-for-internal-virtual-network-scenarios) for the VNet.
 > * To use the self-hosted gateway in this mode, also enable private connectivity to the self-hosted gateway [configuration endpoint](self-hosted-gateway-overview.md#fqdn-dependencies). 
 
 Use API Management in internal mode to:
