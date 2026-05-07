@@ -33,13 +33,13 @@ You can execute the `$bulk-delete` operation at the system level or for individu
   - **System level**: When you execute the operation at the system level, you can delete FHIR resources across all the resource types on the FHIR server.
     
     ```rest
-      DELETE  /$bulk-delete
+      DELETE  [base]/$bulk-delete
     ```
   
   - **Individual resource types**: When you execute the operation for individual resource types, you can delete FHIR resources that map to the resource type in the URL.
     
     ```rest
-      DELETE /<Resource Type>/$bulk-delete
+      DELETE [base]/<Resource Type>/$bulk-delete
     ```
 
 > [!NOTE]
@@ -135,12 +135,9 @@ A request to the polling endpoint returns one of four outcomes depending on the 
 
 1. **Failed**: This outcome states the job failed. Status code depends on the failure type.
 
-Sample request and response for determining the status 
-request: 
+Sample request and response for determining the status request: 
 
-```rest
-{{fhir_url}}/_operations/bulk-delete/<job id>
-```
+`{{fhir_url}}/_operations/bulk-delete/<job id>`
 
 Here's a sample response for a successfully completed delete job:
  
