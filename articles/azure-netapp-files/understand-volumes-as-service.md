@@ -34,11 +34,11 @@ Azure NetApp Files also handles high availability setup, data resilience, and fi
 Azure NetApp Files changes enterprise storage from an infrastructure-centric model to a cloud-native consumption model. Instead of planning and operating storage systems, organizations can provision what they need when they need it and adapt quickly as business requirements change. This approach translates technical capabilities into tangible business benefits, helping teams move faster, operate more efficiently, scale with confidence, and maintain control over availability and costs as workloads evolve:
 
 * **Agility and faster time to market**: Rapid, on-demand provisioning removes long hardware procurement cycles. Teams can allocate enterprise storage in minutes and accelerate development and deployment timelines.
-* **Operational Simplicity**: Fully managed by Azure – no need to maintain storage hardware, virtual infrastructure or storage OS – freeing IT staff from complex storage administration.
+* **Operational Simplicity**: Fully managed by Azure – no need to maintain storage hardware, virtual infrastructure, or storage OS – freeing IT staff from complex storage administration.
 * **Cloud Integration & Automation**: Native Azure service with APIs/CLI support enables easy automation and DevOps integration for streamlined management.
 * **Scalability & Performance on Demand**: Scales from small to multi-petabyte volumes with tiered performance levels that can be adjusted dynamically as needs evolve.
 * **Resilience & Availability**: Built-in high availability (99.99% SLA) and data protection features safeguard against downtime and data loss without extra effort.
-* **Cost Optimization & Governance**: Pay-as-you-go pricing with no over-provisioning, plus cost-saving features like reservations, dynamic service level changes and tiering of cold data help optimize spend and simplify budget tracking.
+* **Cost Optimization & Governance**: Pay-as-you-go pricing with no over-provisioning, plus cost-saving features like reservations, dynamic service level changes, and tiering of cold data help optimize spend and simplify budget tracking.
 
 ## Agility and Faster Time-to-Market
 
@@ -50,7 +50,7 @@ Azure NetApp Files brings cloud speed to enterprise storage, allowing organizati
 
 ## Operational Simplicity and Efficiency
 
-With Azure NetApp Files, the complexity of managing a sophisticated storage infrastructure is handled by the service, not your IT team. There is no need to install, tune, or patch a storage OS, and no physical disks or RAID groups for administrators to manage. 
+With Azure NetApp Files, the complexity of managing a sophisticated storage infrastructure is handled by the service, not your IT team. There's no need to install, tune, or patch a storage OS, and no physical disks or RAID groups for administrators to manage. 
 
 Everything from capacity planning to high availability is abstracted behind the service. IT administrators use the familiar Azure interface to create and manage volumes, just as they would manage any Azure resource, which simplifies operations and reduces the specialized skill set needed. This operational simplicity yields real efficiency gains: teams spend far less time on routine storage administration and troubleshooting. In turn, staff can be reallocated to more strategic tasks such as architecture optimization or data governance. 
 
@@ -66,7 +66,7 @@ This programmability means enterprises can incorporate storage operations into t
 
 Furthermore, multi-protocol support (NFSv3, NFSv4.1, SMB, object REST API) means you can lift-and-shift both Linux and Windows file-based applications to Azure without changes – a form of flexibility that lets you modernize IT at your own pace. 
 
-Azure NetApp Files tight integration with Azure’s ecosystem and its API-driven nature provide a level of flexibility and control that is difficult to achieve with traditional SAN/NAS (virtual) appliances, empowering teams to respond quickly and consistently to the needs of developers and the business.
+Azure NetApp Files tight integration with Azure’s ecosystem and its API-driven nature provide a level of flexibility and control that's difficult to achieve with traditional SAN/NAS (virtual) appliances, empowering teams to respond quickly and consistently to the needs of developers and the business.
 
 ## Scalability and Performance On-Demand
 
@@ -80,26 +80,26 @@ From high-end databases and analytics that demand sub-millisecond latency, to ge
 
 ## Resilience and Availability
 
-For any enterprise data service, resilience is critical – and Azure NetApp Files is built with high availability and data protection at its core. The service provides an industry-leading cloud SLA (Service Level Agreement) of 99.99% availability, achieved through built-in redundancy and automatic failover within the service’s architecture. This means if there’s a maintenance event or an unexpected issue in the underlying infrastructure, Azure NetApp Files will transparently switch over to a redundant path, keeping your data online and accessible to applications. You don’t need to architect or manage a failover cluster or infrastructure redundancy yourself – it’s handled automatically. 
+For any enterprise data service, resilience is critical, and Azure NetApp Files is built with high availability and data protection at its core. The service provides an industry-leading cloud SLA (Service Level Agreement) of 99.99% availability, achieved through built-in redundancy and automatic failover within the service’s architecture. This means if there’s a maintenance event or an unexpected issue in the underlying infrastructure, Azure NetApp Files will transparently switch over to a redundant path, keeping your data online and accessible to applications. You don’t need to architect or manage a failover cluster or infrastructure redundancy yourself as it’s handled automatically. 
 
 Additionally, Azure NetApp Files offers advanced data protection features such as point-in-time snapshots and rapid snapshot restores, backups of snapshots, cross-region replication for disaster recovery, cross-zone replication for high availability across availability zones and cross-zone-region replication for combined HA and DR across zones and regions. These capabilities allow enterprises to meet strict continuity and compliance requirements with minimal effort. For example, you can enable volume replication from one Azure region to another as a DR strategy, or use vaulting (backup) to guard against accidental deletions. 
 
 Security is also enterprise-grade: data is encrypted at rest and in transit, and Azure NetApp Files supports integration with Active Directory, Entra ID and LDAP, and role-based access control for robust access management. All of this resilience is delivered as part of the service – organizations benefit from strong uptime and data protection without needing to implement and manage these mechanisms manually. This results in reduced risk of downtime or data loss for the business, protecting productivity and revenue. 
 
-Azure NetApp Files provides a highly reliable foundation for critical workloads, so decision makers can be confident that moving important applications to this service will not compromise availability or safety of data.
+Azure NetApp Files provides a highly reliable foundation for critical workloads, so decision makers can be confident that moving important applications to this service won't compromise availability or safety of data.
 
 ## Cost Optimization and Governance
 Azure NetApp Files also helps organizations optimize costs and enforce good governance in their cloud storage usage. The service’s pay-as-you-go model means you only pay for the capacity and performance you provision, with no large upfront expenditures. 
 
-This model, combined with the ability to start small and scale as needed, avoids the common scenario of over-provisioning (buying expensive storage that sits idle “just in case”). In self-managed and procured environments, over-provisioning leads to wasted capital, whereas Azure NetApp Files' elasticity ensures you consume just what is required at any given time.
+This model, combined with the ability to start small and scale as needed, avoids the common scenario of over-provisioning (buying expensive storage that sits idle). In self-managed and procured environments, over-provisioning leads to wasted capital, whereas Azure NetApp Files' elasticity ensures you consume just what is required at any given time.
 
-Azure NetApp Files includes features that automatically reduce costs for less-used data: for instance, “storage with cool access” can transparently tier infrequently accessed data to cheaper Azure storage, lowering the cost of storing cold data while keeping it transparently accessible when needed. Similarly, space-efficient snapshots and short-term clones ensure that backup or test copies of data consume minimal additional storage, providing further savings. 
+Azure NetApp Files includes features that automatically reduce costs for less-used data. For instance, storage with cool access can transparently tier infrequently accessed data to cheaper Azure storage, lowering the cost of storing cold data while keeping it transparently accessible when needed. Similarly, space-efficient snapshots and short-term clones ensure that backup or test copies of data consume minimal storage, providing further savings. 
 
 From a governance perspective, Azure NetApp Files being an Azure native service means you can utilize Azure’s built-in cost management tools to monitor usage, set budgets or alerts, and attribute costs to departments or projects. You can also apply Azure Policies to control how and where Azure NetApp Files resources are deployed (for example, ensuring volumes are created in approved regions or under certain service levels). Cost governance is therefore integrated and straightforward. 
 
 Additionally, offers options like reserved capacity pricing for Azure NetApp Files (committing to 1-year or 3-year usage for discounts) for organizations that can predict their needs, further aligning the service with enterprise financial planning. 
 
-By leveraging these cost-optimization features, enterprises can get top-tier performance only when needed and at lower cost when not, all with full transparency into spending. 
+By using these cost-optimization features, enterprises can get top-tier performance only when needed and at lower cost when not, all with full transparency into spending. 
 
 Azure NetApp Files delivers not just technical performance, but also financial flexibility – helping ensure that storage costs don’t spiral out of control and that investments directly map to business value.
 
@@ -107,11 +107,11 @@ Azure NetApp Files delivers not just technical performance, but also financial f
 
 Azure NetApp Files enables enterprises to consume storage as an easily accessible cloud service rather than manage it as complex infrastructure. 
 
-For business decision makers, this translates into tangible outcomes: greater agility in launching projects (storage is no longer a bottleneck), improved operational efficiency and focus (IT teams are liberated from undifferentiated heavy lifting), the ability to scale seamlessly as the business grows or changes, and confidence that critical data and applications will remain available and protected. 
+For business decision makers, this translates into tangible outcomes such as greater agility in launching projects (storage is no longer a bottleneck), improved operational efficiency and focus (IT teams are liberated from undifferentiated heavy lifting), the ability to scale seamlessly as the business grows or changes, and confidence that critical data and applications remain available and protected. 
 
-By delivering high-performance, feature-rich file storage in a cloud-native manner, Azure NetApp Files helps bridge the gap between legacy enterprise applications and cloud innovation. It is especially valuable “when” an organization needs to migrate demanding, file-based workloads to Azure or modernize its infrastructure without rewriting applications – in those cases, Azure NetApp Files provides a ready-to-go solution that meets enterprise requirements for speed, reliability, and security. 
+By delivering high-performance, feature-rich file storage in a cloud-native manner, Azure NetApp Files helps bridge the gap between legacy enterprise applications and cloud innovation. It's especially valuable when an organization needs to migrate demanding, file-based workloads to Azure or modernize its infrastructure without rewriting applications. In those cases, Azure NetApp Files provides a ready-to-go solution that meets enterprise requirements for speed, reliability, and security. 
 
-Adopting Azure NetApp Files can accelerate time-to-market and innovation while reducing the effort and risk traditionally associated with enterprise storage. It allows businesses to focus on leveraging data, not managing storage, thereby delivering clear business value in today’s fast-paced, cloud-driven world.
+Adopting Azure NetApp Files can accelerate time-to-market and innovation while reducing the effort and risk traditionally associated with enterprise storage. It allows businesses to focus on using data, and not managing storage, thereby delivering clear business value in today’s fast-paced, cloud-driven world.
 
 ## Next steps
 
