@@ -100,17 +100,19 @@ Microsoft 365 Agents Toolkit is a suite of tools for building enterprise-ready a
 [Microsoft 365 Agents Toolkit](/microsoft-365/developer/overview-m365-agents-toolkit) is an evolution of Teams Toolkit.
 
 
+
 The following table provides an overview of the different tools and their features:
+
 | Capability | Agent Builder | Copilot Studio | AI Foundry |
 | --- | --- | --- | --- |
-| **Knowledge grounding**       | Built-in RAG tied to enterprise contents (SharePoint, Microsoft 365 docs, and Bing search)     | Flexible data connections to organization data (Microsoft 365, and connectors to other enterprise data)        | Comprehensive retrieval integration with security, either built-in or through own APIs/vector index  |
-| **User interfaces**           | Microsoft 365 Copilot Chat – surfaced with Microsoft 365 Copilot experiences like in Teams              | Microsoft 365 Copilot Chat + embedded in Microsoft 365/custom apps and chat                                             | Bring-your-own-UI next to integration with Microsoft 365 Copilot and Apps                                     |
-| **Foundation models**         | Built-in LLMs (same models behind Microsoft 365 Copilot, e.g., GPT-4 or other managed models)  | Configurable models (BYOM through AI Foundry) + agent-specific fine-tuning                            | Maximum model flexibility (Foundry model catalog, custom models, and FT models)                      |
-| **Pre-built tools**           | Minimal toolset for RAG from connected knowledge sources                              | Large tool library through pre-built connectors to extend agent actions                               | Extensive and extensible tool integrations (1st party tools, connectors to LoBs, and custom)         |
-| **Tool use via MCP**          | N/A – not supported for end users                                                     | Available through marketplace with pre-built 1P/3P MCP servers                                        | Fully support MCP for pre-built 1P/3P MCP servers and custom MCP servers                             |
-| **Memory and learning**         | Short term memory within the same chat session                                       | Short term memory of the session                                                                      | Extensive stateful short/long-term memory                                                            |
-| **Integrated retrieval**                              | Not persistent across sessions                                                        | Extensible with external storage                                                                      | Integrated retrieval                                                                                  |
-| **Orchestrator and MAS**        | Not supported – only single stand-alone agent                                        | Multi-agent orchestration with an orchestrator pattern + connected agents                             | Built-in multi-agent orchestration supporting various conversational patterns                         |
+| **Knowledge grounding** | Built-in RAG tied to enterprise contents (SharePoint, Microsoft 365 docs, and Bing search) | Flexible data connections to organization data (Microsoft 365 and connectors to other enterprise data) | Comprehensive retrieval integration with security, either built-in or through own APIs/vector index |
+| **User interfaces** | Microsoft 365 Copilot Chat surfaced with Microsoft 365 Copilot experiences like in Teams | Microsoft 365 Copilot Chat plus embedded in Microsoft 365/custom apps and chat | Bring-your-own-UI next to integration with Microsoft 365 Copilot and Apps |
+| **Foundation models** | Built-in LLMs (same models behind Microsoft 365 Copilot, e.g., GPT-4 or other managed models) | Configurable models (BYOM through AI Foundry) plus agent-specific fine-tuning | Maximum model flexibility (Foundry model catalog, custom models, and FT models) |
+| **Pre-built tools** | Minimal toolset for RAG from connected knowledge sources | Large tool library through pre-built connectors to extend agent actions | Extensive and extensible tool integrations (1st party tools, connectors to LoBs, and custom) |
+| **Tool use via MCP** | N/A - not supported for end users | Available through marketplace with pre-built 1P/3P MCP servers | Full MCP support for pre-built 1P/3P MCP servers and custom MCP servers |
+| **Memory and learning** | Short-term memory within the same chat session | Short-term memory of the session | Extensive stateful short/long-term memory |
+| **Integrated retrieval** | Not persistent across sessions | Extensible with external storage | Integrated retrieval |
+| **Orchestrator and MAS** | Not supported - only single stand-alone agent | Multi-agent orchestration with an orchestrator pattern plus connected agents | Built-in multi-agent orchestration supporting various conversational patterns |
 
 
 ### Integration protocols
