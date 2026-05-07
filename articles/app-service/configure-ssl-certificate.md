@@ -144,6 +144,9 @@ If you use Key Vault to manage your certificates, you can import a PKCS12 certif
 
 By default, the App Service resource provider doesn't have access to your key vault. To use a key vault for a certificate deployment, you must authorize read access for the resource provider (App Service) to the key vault. You can grant access with an access policy or role-based access control (RBAC).
 
+> [!NOTE]
+> In Azure Resource Manager and RBAC role definitions, App Service is represented by the resource provider namespace `Microsoft.Web`. In automation scripts and some APIs, the service principal might be referenced as `Microsoft.Azure.WebSites`.
+
 ### [RBAC permissions](#tab/rbac)
 
 | Resource provider | Service principal app ID / assignee | Key Vault RBAC role |
