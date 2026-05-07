@@ -9,7 +9,7 @@ author: sshankMSFT
 ms.author: shashankar # Microsoft alias
 ms.service: azure-storage-actions
 ms.topic: feature-guide
-ms.date: 04/12/2026
+ms.date: 05/07/2026
 ---
 
 # Create a mock run
@@ -42,6 +42,8 @@ Before you create a mock run, ensure you have the following items:
     *   Set the **Start from** date and time.
     *   Optionally configure a **Max duration** for the run.
 1. In the **Report** section, select the **Report export container** where the mock run report will be stored.
+
+   > ![Screenshot of the Add assignment pane with Mock run selected as the run type, showing the Role, Filter objects, Trigger details, and Report export container sections.](../media/storage-tasks/storage-task-mock-run-create/add-assignment-mock-run.png)
 
 1.  Select **Add** to create the assignment.
 1.  After the assignment appears in the **Assignments** page, select the check box next to it and select **Enable** to schedule the mock run.
