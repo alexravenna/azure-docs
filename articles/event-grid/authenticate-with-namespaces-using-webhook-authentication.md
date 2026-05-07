@@ -114,7 +114,7 @@ If you have a basic Azure function created from the Azure portal, set up authent
         :::image type="content" source="./media/authenticate-with-namespaces-using-webhook-authentication/identity-provider-first-settings.png" alt-text="Screenshot that shows the Add an identity provider with Microsoft as an identity provider." lightbox="./media/authenticate-with-namespaces-using-webhook-authentication/identity-provider-first-settings.png":::
 1. In the **Token allowed audiences** section, enter allowed token audiences. To be specific, enter the Application ID URI of the Microsoft Entra app that you noted earlier. The token audience is used to validate the incoming token from Event Grid. 
 1. In the **Additional checks** section, follow these steps:
-    1. For **Client application requirement**, select **Allowed requestions from specific client applications**, and then enter the application ID you noted earlier. 
+    1. For **Client application requirement**, select **Allowed requests from specific client applications**, and then enter the application ID you noted earlier. 
     1. For **Identity requirement**, select **Allow requests from any identity**.    
     
         :::image type="content" source="./media/authenticate-with-namespaces-using-webhook-authentication/token-audience-additional-checks.png" alt-text="Screenshot that shows the Add an identity provider with token audience and additional checks." lightbox="./media/authenticate-with-namespaces-using-webhook-authentication/token-audience-additional-checks.png":::        
