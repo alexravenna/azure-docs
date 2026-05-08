@@ -89,7 +89,7 @@ Provide access permissions to applications and services that use IoT Hub functio
 
 Connection strings are tokens that grant devices and services permissions to connect to IoT Hub based on shared access policies. Connection strings are an easy way to get started with IoT Hub and are used in many samples and tutorials. We don't recommend them for production scenarios.
 
-For most sample scenarios, the service policy is sufficient. The service policy grants **Service Connect** permissions to access service endpoints. For more information about the other built-in shared access policies, see [Access control and permissions](./iot-hub-dev-guide-sas.md#access-control-and-permissions).
+For most sample scenarios, the service policy is sufficient. The service policy grants Service Connect permissions to access service endpoints. For more information about the other built-in shared access policies, see [Access control and permissions](./iot-hub-dev-guide-sas.md#access-control-and-permissions).
 
 To get the IoT Hub connection string for the service policy, follow these steps:
 
@@ -139,7 +139,7 @@ Authenticating access by using Microsoft Entra ID and controlling permissions by
 
 ## Delete an IoT hub
 
-When you delete an IoT hub, you lose the associated device identity registry. If you want to move or upgrade an IoT hub, or delete an IoT hub but keep the devices, consider [migrating an IoT hub using the Azure CLI](./migrate-hub-state-cli.md).
+When you delete an IoT hub, you lose the associated device identity registry. If you want to move or upgrade an IoT hub, or delete an IoT hub but keep the devices, consider [migrating an IoT hub by using the Azure CLI](./migrate-hub-state-cli.md).
 
 ### [Azure portal](#tab/portal)
 

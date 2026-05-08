@@ -20,7 +20,7 @@ This article explains how to deploy Azure IoT Hub with [Azure Device Registry](i
 
 ## Prerequisites
 
-- An active Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- An active Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - The privilege to perform role assignments within your target scope. Performing role assignments in Azure requires a [privileged role](../role-based-access-control/built-in-roles.md#privileged), such as Owner or User Access Administrator at the appropriate scope.
 - A [supported region](iot-hub-what-is-new.md#supported-regions) to deploy instances of IoT Hub, Azure Device Registry, and the device provisioning service.
 

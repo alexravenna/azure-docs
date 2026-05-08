@@ -14,11 +14,11 @@ This section describes how to create an IoT hub by using the [Azure portal](http
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. On the Azure homepage, select **+ Create a resource**.
+1. On the Azure home page, select **+ Create a resource**.
 
 1. From the **Categories** menu, select **Internet of Things**, and then select **IoT Hub**.
 
-1. On the **Basics** tab, fill in the fields:
+1. On the **Basics** tab, fill in the following fields:
 
    [!INCLUDE [iot-hub-pii-note-naming-hub](./iot-hub-pii-note-naming-hub.md)]
 
@@ -38,7 +38,7 @@ This section describes how to create an IoT hub by using the [Azure portal](http
 
 1. Select **Next: Networking** to continue creating your hub.
 
-1. On the **Networking** tab, fill in the fields:
+1. On the **Networking** tab, fill in the following fields:
 
    | Property | Value |
    | ----- | ----- |
@@ -53,8 +53,8 @@ This section describes how to create an IoT hub by using the [Azure portal](http
 
    | Property | Value |
    | ----- | ----- |
-   | **Permission model** | Part of role-based access control, this property decides how you manage access to your IoT hub. Allow shared access policies or choose only role-based access control. For more information, see [Control access to IoT Hub by using Microsoft Entra ID](/azure/iot-hub/iot-hub-dev-guide-azure-ad-rbac). |
-   | **Assign me** | You might need access to IoT Hub data APIs to manage elements within an instance. If you have access to role assignments, select the **IoT Hub Data Contributor role** to grant yourself full access to the data APIs.<br><br>To assign Azure roles, you must have `Microsoft.Authorization/roleAssignments/write` permissions, such as [User Access administrator](/azure/role-based-access-control/built-in-roles#user-access-administrator) or [Owner](/azure/role-based-access-control/built-in-roles#owner). |
+   | **Permission model** | This property decides how you manage access to your IoT hub. It's part of role-based access control. Allow shared access policies or choose only role-based access control. For more information, see [Control access to IoT Hub by using Microsoft Entra ID](/azure/iot-hub/iot-hub-dev-guide-azure-ad-rbac). |
+   | **Assign me** | This property allows access to IoT Hub data APIs to manage elements within an instance. If you have access to role assignments, select the **IoT Hub Data Contributor role** to grant yourself full access to the data APIs.<br><br>To assign Azure roles, you must have `Microsoft.Authorization/roleAssignments/write` permissions, such as [User Access Administrator](/azure/role-based-access-control/built-in-roles#user-access-administrator) or [Owner](/azure/role-based-access-control/built-in-roles#owner). |
    | **Device-to-cloud partitions** | This property relates the device-to-cloud messages to the number of simultaneous readers of the messages. Most IoT hubs need only four partitions. |
 
    :::image type="content" source="./media/iot-hub-include-create-hub/iot-hub-management.png" alt-text="Screenshot that shows how to set the role-based access control and scale for a new IoT hub.":::
@@ -65,8 +65,8 @@ This section describes how to create an IoT hub by using the [Azure portal](http
 
    | Property | Value |
    | -------- | ----- |
-   | **Enable Device Update for IoT Hub** | Turn on Device Update for IoT Hub to enable over-the-air updates for your devices. If you select this option, you're prompted to provide information to provision a Device Update for IoT Hub account and instance. For more information, see [What is Device Update for IoT Hub?](/azure/iot-hub-device-update/understand-device-update) |
-   | **Enable Defender for IoT** | Turn Defender for IoT on to add an extra layer of protection to IoT and your devices. This option isn't available for hubs in the free tier. For more information, see [Security recommendations for IoT Hub](/azure/defender-for-iot/device-builders/concept-recommendations) in [Microsoft Defender for IoT](/azure/defender-for-iot/device-builders) documentation. |
+   | **Enable Device Update for IoT Hub** | Turn on **Device Update for IoT Hub** to enable over-the-air updates for your devices. If you select this option, you're prompted to provide information to provision a Device Update for IoT Hub account and instance. For more information, see [What is Device Update for IoT Hub?](/azure/iot-hub-device-update/understand-device-update) |
+   | **Enable Defender for IoT** | Turn on **Defender for IoT** to add an extra layer of protection to IoT and your devices. This option isn't available for hubs in the free tier. For more information, see [Security recommendations for IoT Hub](/azure/defender-for-iot/device-builders/concept-recommendations) in [Microsoft Defender for IoT](/azure/defender-for-iot/device-builders) documentation. |
 
    :::image type="content" source="./media/iot-hub-include-create-hub/iot-hub-create-add-ons.png" alt-text="Screenshot that shows how to set the optional add-ons for a new IoT hub.":::
 
