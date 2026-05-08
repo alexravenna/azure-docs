@@ -91,7 +91,10 @@ The following example shows a queue trigger [TypeScript function](functions-refe
 
 :::code language="typescript" source="~/azure-functions-nodejs-v4/ts/src/functions/storageQueueTrigger1.ts" :::
 
-The [usage](#usage) section explains `queueItem`. The [message metadata section](#message-metadata) explains all of the other variables shown.
+> [!TIP]
+> Use the generic type parameter (for example, `app.storageQueue<string>(...)`) to avoid the default `unknown` type on the queue input. For more information, see [Usage](#usage).
+
+The [message metadata section](#message-metadata) explains all of the other variables shown.
 
 # [Model v3](#tab/nodejs-v3)
 
