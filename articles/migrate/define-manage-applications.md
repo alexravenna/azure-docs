@@ -124,15 +124,7 @@ If you want to define applications at scale, you can select **Import> Import app
     > The **Application name(s)** are case-sensitive. The application name also allows for alphanumeric and special characters except `','` and `'\'`. In each import operation, you can add up to 500 workloads per application and 200 applications. To import more applications, run multiple import operations with up to 200 applications per operation.
 
 4. After adding the application names to the file, you can browse and select the CSV file. 
-5. The following values are supported in the CSV file:
-
-**Property** | **Required** | **Description** | **Values**
-    --- | --- | --- | ---
-    Business criticality | Yes | Specify the criticality of the application to your business | Choose from **High**, **Medium**, **Low**
-    Complexity | Yes | Specify the complexity in terms of workloads and dependencies | Choose from **High**, **Medium**, **Low**
-    Publisher | No (Optional) | Specify the names of the publisher of application (Packaged) or its workloads (custom) | For example, **SAP** if it's a Packaged application or **Microsoft** if it's a Custom application running on .NET IIS web application and SQL database
-    Technology stack | No (Optional) | Specify the technology used like runtimes, frameworks, languages etc. | For example, .NET, SQL, MySQL, Tomcat etc.
-
+5. If the selected file passes the validation checks, you can select Import to upload the details of the applications, as added in the CSV file.
 6. After the import is complete, you can see the import status and review the **no of applications created** and check the **error** file if any failures occur. 
 
     >[!Note]
@@ -150,7 +142,15 @@ When the application is defined using import, a warning icon appears next to the
     >[!Note]
     > Don't edit the **App ARM ID** column in the CSV file. You can add application properties across multiple import operations but avoid triggering multiple imports in parallel.
 
-5. After adding or editing application information in the CSV file, browse and select the updated CSV file.
+5. The following values are supported in the CSV file:
+
+    **Property** | **Required** | **Description** | **Values**
+    --- | --- | --- | ---
+    Business criticality | Yes | Specify the criticality of the application to your business | Choose from **High**, **Medium**, **Low**
+    Complexity | Yes | Specify the complexity in terms of workloads and dependencies | Choose from **High**, **Medium**, **Low**
+    Publisher | No (Optional) | Specify the names of the publisher of application (Packaged) or its workloads (custom) | For example, **SAP** if it's a Packaged application or **Microsoft** if it's a Custom application running on .NET IIS web application and SQL database
+    Technology stack | No (Optional) | Specify the technology used like runtimes, frameworks, languages etc. | For example, .NET, SQL, MySQL, Tomcat etc.
+
 6. If the file passes validation checks, select Import to upload the application details captured in the CSV file.
 7. After the import completes, review the import status, the number of applications processed, and the error file if any failures occur.
 
