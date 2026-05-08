@@ -14,11 +14,11 @@ service.tree.id: cf90d1aa-e8ca-47a9-a6d0-bc69c7db1d52
 
 # Save costs with Microsoft Foundry Provisioned Throughput Reservations
 
-You can save money on Microsoft Foundry Provisioned Throughput by committing to a reservation for your provisioned throughput units (PTUs) usage for models available in Microsoft Foundry Models for a duration of one month or one year. This article explains how you can save money with Microsoft Foundry Provisioned Throughput Reservations.
+You can save money on Microsoft Foundry Provisioned Throughput by committing to a one month or a one year reservation for your provisioned throughput units (PTUs) usage for models available in Microsoft Foundry Models. This article explains how you can save money with Microsoft Foundry Provisioned Throughput Reservations.
 
 To purchase a Microsoft Foundry Provisioned Throughput Reservation, you choose an Azure region, quantity, and the deployment type that you want covered. Then add the Microsoft Foundry Provisioned Throughput SKU (Global, Data Zone, or Regional) to your cart. Then verify the quantity of Microsoft Foundry Provisioned Throughput units that you want to purchase and complete your order.
 
-When you purchase a reservation, the Microsoft Foundry Provisioned Throughput usage that matches the reservation attributes is no longer charged at the hourly rates.
+When you purchase a reservation, the Microsoft Foundry Provisioned Throughput usage that matches the reservation attributes is no longer charged at the hourly rates, but at the discounted reservation price.
 
 >[!NOTE]
 >Reservations for Global, Data Zone, and Regional deployments aren't interchangeable. You need to purchase a separate reservation for each deployment type. As an example, if you purchase a reservation for Global the benefit will only apply to Global deployments and not to Data Zone or Regional.
