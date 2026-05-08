@@ -14,7 +14,7 @@ zone_pivot_groups: iot-hub-deployment-methods
 
 # Deploy Azure IoT Hub with Device Registry integration and certificate management (preview)
 
-This article explains how to deploy IoT Hub with [Azure Device Registry](iot-hub-device-registry-overview.md) integration and [Microsoft-backed X.509 certificate management](iot-hub-certificate-management-overview.md).
+This article explains how to deploy Azure IoT Hub with [Azure Device Registry](iot-hub-device-registry-overview.md) integration and [Microsoft-backed X.509 certificate management](iot-hub-certificate-management-overview.md).
 
 [!INCLUDE [iot-hub-public-preview-banner](includes/public-preview-banner.md)]
 
@@ -32,9 +32,9 @@ To set up your IoT Hub instance with Device Registry integration and certificate
 
 | Deployment method | Description |
 |-------------------|-------------|
-| Select **Azure portal** at the top of the page. | Use the Azure portal to create a new IoT Hub, an instance of the device provisioning service, and a Device Registry namespace and to configure all necessary settings. |
-| Select **Azure CLI** at the top of the page. | Use the Azure CLI to create a new IoT Hub, an instance of the device provisioning service, and a Device Registry namespace and to configure all necessary settings. |
-| Select **PowerShell script** at the top of the page. | Use a PowerShell script (Windows only) to automate the creation of a new IoT Hub, an instance of the device provisioning service, and a Device Registry namespace and to configure all necessary settings. |
+| Select the **Azure portal** tab at the top of the page. | Use the Azure portal to create a new IoT hub, an instance of the device provisioning service, and a Device Registry namespace and to configure all necessary settings. |
+| Select the **Azure CLI** tab at the top of the page. | Use the Azure CLI to create a new IoT hub, an instance of the device provisioning service, and a Device Registry namespace and to configure all necessary settings. |
+| Select the **PowerShell script** tab at the top of the page. | Use a PowerShell script (Windows only) to automate the creation of a new IoT hub, an instance of the device provisioning service, and a Device Registry namespace and to configure all necessary settings. |
 
 :::zone pivot="portal"
 
@@ -56,7 +56,7 @@ To set up your IoT Hub instance with Device Registry integration and certificate
 
 ## Next steps
 
-1. Your IoT Hub with Device Registry integration and certificate management is set up and ready to use. You can now start onboarding your IoT devices to the hub by using an instance of the device provisioning service. You can use your Device Registry policies to issue certificates to your devices:
+1. Your IoT hub with Device Registry integration and certificate management is set up and ready to use. You can now start onboarding your IoT devices to the hub by using an instance of the device provisioning service. You can use your Device Registry policies to issue certificates to your devices:
 
    - [Certificate issuance in Azure IoT Hub certificate management](concept-certificate-issuance.md)
    - [Certificate renewal in Azure IoT Hub certificate management](concept-certificate-renewal.md)
