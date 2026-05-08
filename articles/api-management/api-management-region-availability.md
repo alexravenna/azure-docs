@@ -6,7 +6,7 @@ author: dlepow
  
 ms.service: azure-api-management
 ms.topic: concept-article
-ms.date: 05/07/2026
+ms.date: 05/08/2026
 ms.author: danlep
 ms.custom:
   - references_regions
@@ -25,9 +25,11 @@ Information in the following table is updated regularly. Capacity availability i
 
 > [!IMPORTANT]
 > **Temporary capacity limitations**
-- **UK South** - Creation of new Basic v2, Standard v2, and Premium v2 instances is currently unavailable.
+> - **UK South** - Creation of new Basic v2, Standard v2, and Premium v2 instances is currently unavailable.
 > - **East US 2** - Creation of new Premium v2 instances is currently unavailable.
-> We're actively working to restore availability in these regions. Existing instances are not affected. In the meantime, consider deploying to an alternative region or use a different tier.
+>
+> We're actively working to restore availability in these regions. Existing instances are not affected. In the meantime, consider deploying to an alternative region or choose a different tier.
+
 | Region | Basic v2 | Standard v2 | Premium v2 | Workspace gateway (Premium) | 
 |-----|:---:|:---:|:---:|:---:|
 | Australia Central | ✅ | ✅ | | |
