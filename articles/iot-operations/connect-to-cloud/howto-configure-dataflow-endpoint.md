@@ -53,7 +53,7 @@ The following table shows the supported scenarios:
 | Custom endpoint as destination | Yes, if source is default endpoint or an MQTT endpoint with host `aio-broker` |
 | Custom endpoint as source and destination | No, unless one of them is an MQTT endpoint with host `aio-broker` |
 
-For information about how the local MQTT broker buffers data when a destination endpoint is unavailable, see [Resiliency when destination endpoints are unavailable](overview-dataflow.md#resiliency-when-destination-endpoints-are-unavailable).
+For information about how the local MQTT broker buffers data when a destination endpoint is unavailable, see [Configure data buffering and disk persistence for data flows](howto-configure-disk-persistence.md).
 
 ## Reuse endpoints
 

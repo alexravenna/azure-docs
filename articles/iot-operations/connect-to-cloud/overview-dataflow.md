@@ -72,63 +72,11 @@ Data flows use message schemas to transform the message into the format expected
 
 For more information, see [Understand message schemas](./concept-schema-registry.md).
 
-## Resiliency when destination endpoints are unavailable
+## Data buffering and disk persistence
 
-When you use the local MQTT broker as a source endpoint in a data flow, either directly or indirectly through assets that publish to it, the data flow receives messages from the MQTT broker as a subscriber. The data flow acknowledges each source message after the message is successfully processed and delivered to the destination, or after the message is intentionally dropped because of filtering, schema validation, or message expiry.
+When a data flow sends messages to a destination endpoint, the destination or network might become unavailable. If delivery can't complete, the data flow doesn't acknowledge the source message. The MQTT broker keeps the message in the subscriber queue and the data flow retries delivery.
 
-If the destination endpoint, such as Azure Event Hubs, Fabric Real-Time Intelligence, Kafka, or another cloud service, is unavailable, delivery can't complete. In this case, the data flow doesn't acknowledge the source message. The MQTT broker keeps the message in the subscriber queue and the data flow retries delivery. When connectivity is restored, the data flow sends queued messages to the destination and acknowledges them after successful delivery.
-
-```text
-Publisher or asset -> MQTT broker -> Data flow -> Destination endpoint
-
-1. The MQTT broker delivers a message to the data flow.
-2. The data flow sends the message to the destination endpoint.
-3. If the send succeeds, the data flow acknowledges the source message and the broker removes it from the subscriber queue.
-4. If the send fails, the data flow doesn't acknowledge the source message. The broker keeps it queued.
-5. The data flow retries delivery until it succeeds, the message expires, or a configured limit applies.
-```
-
-> [!IMPORTANT]
-> Data flow buffering is bounded. Queued messages are subject to the MQTT broker memory profile, subscriber queue limits, disk-backed message buffer size, persistence configuration, and message or session expiry. Configure these settings for the maximum outage duration and throughput you need to tolerate.
-
-### Data protection configuration layers
-
-Use the following configuration layers to control how messages are buffered and protected during destination outages.
-
-| Layer | What it protects against | Default behavior | Customer action |
-| --- | --- | --- | --- |
-| Data flow retry and withheld acknowledgment | Temporary destination or network outage | Built in for local MQTT broker and asset-backed sources | No configuration required |
-| MQTT broker subscriber queue | Messages received by a data flow subscription but not yet acknowledged | Stored in memory | Configure memory profile and subscriber queue limits |
-| Disk-backed message buffer | Large temporary backlogs that exceed available memory | Disabled | Configure the broker at deployment with a disk-backed message buffer |
-| MQTT broker persistence | Broker or pod restart while messages are queued | Disabled by default | Enable broker persistence and subscriber queue persistence |
-| Data flow `requestDiskPersistence` | Per-data-flow request for persistent subscriber queue storage | Disabled | Enable `requestDiskPersistence` on the data flow or data flow graph, and enable dynamic subscriber queue persistence on the broker |
-| Message and session expiry | Bounded storage and replay behavior | Configurable | Set expiry and limits based on your loss tolerance and outage window |
-
-The local MQTT broker subscriber queue is stored in memory by default. You can configure the MQTT broker to use disk in two different ways:
-
-- **Disk-backed message buffer**: Uses disk as a spillover buffer when queues grow beyond available memory. This setting helps with larger temporary backlogs, but it isn't the same as durable persistence across broker restarts.
-- **MQTT broker persistence**: Persists selected broker data, including subscriber queues, to disk so queued messages can survive restarts or power loss.
-
-For more information, see:
-
-- [Configure broker settings for high availability, scaling, and memory usage](../manage-mqtt-broker/howto-configure-availability-scale.md)
-- [Configure disk-backed message buffer behavior](../manage-mqtt-broker/howto-disk-backed-message-buffer.md)
-- [Configure MQTT broker persistence](../manage-mqtt-broker/howto-broker-persistence.md)
-- [Configure disk persistence for data flows](howto-configure-disk-persistence.md)
-- [Configure broker MQTT client options](../manage-mqtt-broker/howto-broker-mqtt-client-options.md#subscriber-queue-limit)
-
-### Choose a buffering configuration
-
-Choose a configuration based on the outage duration and durability requirements for your workload:
-
-- For short transient cloud or network outages, the default in-memory subscriber queue might be enough.
-- For higher throughput or longer temporary outages, configure the disk-backed message buffer.
-- For restart or power-loss protection, enable MQTT broker persistence and subscriber queue persistence, then enable `requestDiskPersistence` on the data flow or data flow graph.
-- For bounded storage environments, configure subscriber queue limits, message expiry, and monitoring so the broker enforces queue limits and drops or rejects messages according to your policy.
-
-### Example: Destination outage
-
-Assume that you create a data flow by using the default local MQTT broker as the source endpoint and Azure Event Hubs as the destination endpoint. If connectivity between the data flow and Azure Event Hubs is lost, the data flow retries sends and doesn't acknowledge source messages. The MQTT broker queues the unacknowledged messages. With default settings, the queue is stored in memory. With disk-backed message buffer, the queue can spill to disk. With broker persistence and data flow `requestDiskPersistence`, queued messages can survive broker restarts, subject to the configured persistence, expiry, and storage limits.
+For information about destination outage behavior, broker subscriber queues, disk-backed message buffer, broker persistence, and data flow `requestDiskPersistence`, see [Configure data buffering and disk persistence for data flows](howto-configure-disk-persistence.md).
 
 ## Related content
 
