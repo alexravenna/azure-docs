@@ -242,7 +242,7 @@ After the agents and the collector are running, confirm that telemetry is arrivi
 
 If rows come back, the pipeline is working. If not, check the collector logs for export errors. Typical culprits are an incorrect connection string, blocked egress to the Application Insights ingestion endpoint, or a firewalled OTLP receiver port.
 
-## Step 4: Import the dashboards into Grafana
+## Step 4: Import the dashboards into Grafana or access them in Azure portal
 
 Each dashboard has its own import flow and variables reference:
 
