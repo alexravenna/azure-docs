@@ -44,7 +44,7 @@ You can use the Azure portal, PowerShell, Azure CLI, or an Azure Resource Manage
 1. First, decide which roles you want to assign. To find a list of blob data access roles, see [Azure built-in roles for blobs](authorize-access-azure-active-directory.md#azure-built-in-roles-for-blobs).
 
    > [!NOTE]
-   > To access blob data in the Azure portal by using Microsoft Entra credentials, a user must have the Azure Resource Manager **Reader** role, at a minimum, in addition to a data access role such as the **Storage Blob Data Reader** or **Storage Blob Data Contributor** role. See [Data access from the Azure portal](authorize-access-azure-active-driectory.md#data-access-from-the-azure-portal).
+   > To access blob data in the Azure portal by using Microsoft Entra credentials, a user must have the Azure Resource Manager **Reader** role, at a minimum, in addition to a data access role such as the **Storage Blob Data Reader** or **Storage Blob Data Contributor** role. See [Data access from the Azure portal](authorize-access-azure-active-directory.md#data-access-from-the-azure-portal).
 
 1. Assign roles to users. To assign an Azure role, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal). While that article isn't specific to Azure Storage, the steps to assign roles are consistent for all Azure services. 
 

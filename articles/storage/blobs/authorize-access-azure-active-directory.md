@@ -37,7 +37,7 @@ When a security principal (a user, group, or application) attempts to access a b
 
 ### Use a Microsoft Entra account with portal, PowerShell, or Azure CLI
 
-To learn about how to access data in the Azure portal by using a Microsoft Entra account, see [Data access from the Azure portal](#data-access-from-the-portal). To learn how to call Azure PowerShell or Azure CLI commands by using a Microsoft Entra account, see [Data access from PowerShell or Azure CLI](#data-access-from-powershell-or-azure-cli).
+To learn about how to access data in the Azure portal by using a Microsoft Entra account, see [Data access from the Azure portal](#data-access-from-the-azure-portal). To learn how to call Azure PowerShell or Azure CLI commands by using a Microsoft Entra account, see [Data access from PowerShell or Azure CLI](#data-access-from-powershell-or-azure-cli).
 
 <a name='use-azure-ad-to-authorize-access-in-application-code'></a>
 
