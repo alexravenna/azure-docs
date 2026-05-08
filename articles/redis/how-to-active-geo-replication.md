@@ -243,8 +243,6 @@ To monitor the _Geo Replication Healthy_ metric in the Azure portal:
  
 - Out of memory (OOM) - Some free memory is needed for geo-replication sync to work. When the cache is under memory pressure or has reached its memory limit, syncing is paused. Reduce memory pressure by setting TTLs or changing the eviction policy. 
 
-- OOM - Some free memory is needed for the geo-replication sync to work. When the cache is OOM, syncing will be paused. Make sure to reduce memory pressure by setting TTLs or changing the eviction policy. 
-
 ### Flush caches using Azure CLI or PowerShell
 
 The Azure CLI and PowerShell can also be used to trigger a flush operation. For more information on using Azure CLI, see [az redisenterprise database flush](/cli/azure/redisenterprise#az-redisenterprise-database-flush). For more information on using PowerShell, see [Invoke-AzRedisEnterpriseCacheDatabaseFlush](/powershell/module/az.redisenterprisecache/invoke-azredisenterprisecachedatabaseflush).
