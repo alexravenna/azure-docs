@@ -6,14 +6,14 @@ ms.author: sethm
 ms.service: azure-iot-operations
 ms.subservice: azure-data-flows
 ms.topic: concept-article
-ms.date: 03/02/2026
+ms.date: 05/06/2026
 
 #CustomerIntent: As an operator, I want to understand how I can use data flows to connect data sources.
 ---
 
 # Process and route data with data flows
 
-Data flows simplify the setup of data paths to move, transform, and enrich data. By using data flows, you can connect various data sources and perform data operations. The data flow component is part of Azure IoT Operations, which you deploy as an Azure Arc extension. You configure a data flow by using Kubernetes custom resource definitions (CRDs).
+Data flows simplify the setup of data paths to move, transform, and enrich data. By using data flows, you can connect various data sources and perform data operations. The data flow component is part of Azure IoT Operations, which you deploy as an Azure Arc extension. You configure a data flow by using the operations experience web UI, the Azure CLI, or Azure Resource Manager templates.
 
 You can write configurations for various use cases, such as:
 
@@ -22,6 +22,9 @@ You can write configurations for various use cases, such as:
 - Send data to the cloud or edge without transformation.
 
 Data flows aren't limited to the region where you deploy the IoT Operations instance. You can use data flows to send data to cloud endpoints in different regions.
+
+> [!NOTE]
+> Data flows replace the preview-only **Data Processor** component from early Azure IoT Operations releases. The `--include-dp` parameter on `az iot ops init` was removed and is no longer required—the data flows components deploy automatically.
 
 ## Key features
 
@@ -45,15 +48,18 @@ You can apply transformations to data during the processing stage to perform var
 - **Standardizing values**: Scale property values to a user-defined range.
 - **Contextualizing data**: Add reference data to messages for enrichment and driving insights.
 
+> [!TIP]
+> For richer processing capabilities including conditional routing, time-based aggregation, and composable transform pipelines, see [Data flow graphs](concept-dataflow-graphs.md).
+
 ### Configuration and deployment
 
-Specify the configuration by using Kubernetes CRDs. Based on this configuration, the data flow operator creates data flow instances to ensure high availability and reliability.
+Specify the configuration by using the operations experience web UI, the Azure CLI, or Azure Resource Manager templates. Based on this configuration, the data flow operator creates data flow instances to ensure high availability and reliability.
 
 ## Benefits
 
 - **Simplified setup**: Easily connect data sources and destinations.
 - **Flexible transformations**: Perform a wide range of data operations.
-- **Scalable configuration**: Use Kubernetes CRDs for scalable and manageable configurations.
+- **Scalable configuration**: Use Azure tools for scalable and manageable configurations.
 - **High availability**: Kubernetes native resource ensures reliability.
 
 By using data flows, you can efficiently manage your data paths. You can ensure that data is accurately sent, transformed, and enriched to meet your operational needs.
@@ -74,6 +80,9 @@ The local MQTT broker message queue is stored in memory by default. You can conf
 
 ## Related content
 
-- [Tutorial: Send messages from assets to the cloud using a data flow](../end-to-end-tutorials/tutorial-upload-messages-to-cloud.md)
+- [Data flows vs. data flow graphs](overview-dataflow-comparison.md)
+- [Data flow graphs overview](concept-dataflow-graphs.md)
 - [Create a data flow](howto-create-dataflow.md)
+- [Configure a data flow source](howto-configure-dataflow-source.md)
 - [Create a data flow endpoint](howto-configure-dataflow-endpoint.md)
+- [Tutorial: Send messages from assets to the cloud using a data flow](../end-to-end-tutorials/tutorial-upload-messages-to-cloud.md)
