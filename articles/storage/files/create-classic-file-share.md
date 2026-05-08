@@ -74,9 +74,10 @@ The first tab to complete when creating a storage account is labeled **Basics**.
 
 ### Advanced
 
-The **Advanced** tab is optional, but it provides more granular settings for the storage account. The first section relates to **Security** settings.
+The **Advanced** tab is optional, but it provides more granular settings for the storage account. 
 
-![A screenshot of the security section of the advanced tab.](./media/storage-how-to-create-file-share/create-account-advanced-tab.png)
+> [!div class="mx-imgBorder"]
+> ![A screenshot of the security section of the advanced tab.](./media/storage-how-to-create-file-share/create-account-advanced-tab.png)
 
 The **Hierarchical Namespace** section applies only to Azure Blob storage, even in FileStorage storage accounts using the provisioned v1 or provisioned v2 billing models which can only contain Azure file shares. Azure file shares support a hierarchical namespace regardless of the value of these settings.
 
