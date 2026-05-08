@@ -6,11 +6,11 @@ metadata:
   author: craigshoemaker
   ms.topic: faq
   ms.service: azure-container-apps
-  ms.date: 05/07/2026
+  ms.date: 05/08/2026
   ms.author: cshoe
 title: Azure Container Apps express frequently asked questions (FAQs)
 summary: |
-  This article lists commonly asked questions about Azure Container Apps express together with related answers.
+  This article answers frequently asked questions about Azure Container Apps express.
 
   > [!IMPORTANT]
   > Azure Container Apps express is currently in **Public Preview**. Preview features are provided without an SLA and are not recommended for production workloads. Some features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
@@ -26,7 +26,7 @@ sections:
       - question: |
           How is Azure Container Apps express different from Azure Container Apps?
         answer: |
-          Azure Container Apps requires you to create and configure a managed environment before deploying apps. Express eliminates that step entirely. Key differences include:
+          Azure Container Apps requires you to create and configure a managed environment before deploying apps. Express provides production-ready defaults with no environment provisioning. Key differences include:
 
           - **Provisioning**: Express apps are running in seconds, not minutes.
           - **Cold starts**: Express delivers sub-second scale-from-zero startup times.
@@ -113,7 +113,7 @@ sections:
       - question: |
           What features are not yet available in express?
         answer: |
-          Express is in Public Preview and doesn't yet include every Azure Container Apps feature. Features that aren't available yet include:
+          Express is in Public Preview and doesn't yet include all Azure Container Apps features. Currently unavailable features include:
 
           - VNet integration
           - Custom domains
@@ -127,7 +127,7 @@ sections:
       - question: |
           When will express reach feature parity with Azure Container Apps?
         answer: |
-          Microsoft is continuing to add features during Public Preview. For the latest feature support information, see the [express documentation](https://aka.ms/aca/express).
+          We continue to add features during Public Preview. Check the [express documentation](https://aka.ms/aca/express) for the latest feature support information.
 
   - name: Regions
     questions:
@@ -144,7 +144,7 @@ sections:
       - question: |
           Why can't I create an express environment in my preferred region?
         answer: |
-          During Public Preview, express is available only in specific regions. The portal and CLI might show regions where express isn't supported yet. If you receive an `ExpressEnvironmentNotAvailableInRegion` error, choose a supported region and try again. Region availability will expand during the preview.
+          During Public Preview, express is available only in specific regions. The portal and CLI might show unsupported regions. If you receive an `ExpressEnvironmentNotAvailableInRegion` error, choose a supported region and try again. Region availability expands throughout the preview.
 
   - name: Pricing and billing
     questions:
@@ -156,25 +156,25 @@ sections:
       - question: |
           Is there a free tier for express?
         answer: |
-          Yes. Express includes the same generous free grant that applies to Azure Container Apps consumption workloads. You are not charged until your usage exceeds the free grant thresholds. Combined with scale-to-zero, express ensures you only pay for what you use.
+          Yes. Express includes the same free grant that applies to Azure Container Apps consumption workloads. You incur charges only when your usage exceeds the free grant thresholds. Combined with scale-to-zero, express means you pay only for what you use.
 
   - name: Migration
     questions:
       - question: |
           Will my existing Azure Container Apps environments be automatically migrated to express?
         answer: |
-          Some existing environments may be eligible for migration to express. Migration is performed in phases, starting with environments that are inactive, empty (no running apps or jobs), and belong to subscriptions with low Azure Container Apps usage. The criteria are designed to minimize disruption.
+          Some existing environments are eligible for migration to express. We perform migration in phases, starting with inactive, empty environments (no running apps or jobs) that belong to subscriptions with low Azure Container Apps usage. This approach minimizes disruption.
 
-          If your environment is selected for migration, you'll receive advance notice with the timeline and any required actions. You'll also have a chance to opt out.
+          When your environment is selected for migration, you'll receive advance notice with the timeline and any required actions. You can also opt out.
 
       - question: |
           What criteria are used to select environments for migration?
         answer: |
-          Migration candidates are selected based on multiple factors:
+          We select migration candidates based on multiple factors:
 
-          - **Activity level**: Environments with no running applications or jobs are prioritized.
-          - **Feature usage**: Environments that don't use advanced features (such as VNet integration, Dapr, dedicated workload profiles, or session pools) are considered first.
-          - **Subscription with low usage**: Low-usage subscriptions are migrated before high-usage ones to minimize revenue risk.
+          - **Activity level**: We prioritize environments with no running applications or jobs.
+          - **Feature usage**: We consider environments that don't use advanced features (such as VNet integration, Dapr, dedicated workload profiles, or session pools).
+          - **Subscription usage**: We migrate low-usage subscriptions before high-usage ones to minimize disruption.
 
           Environments that use advanced features not yet available in express, or that belong to high-usage subscriptions, are not auto-migrated.
 
@@ -191,14 +191,14 @@ sections:
       - question: |
           Can I opt out of automatic migration?
         answer: |
-          If you receive a migration notice and your environment depends on features that express doesn't support yet, or if migration would disrupt your workloads, contact Azure support to discuss your options. Environments that use unsupported advanced features aren't auto-migrated. You can also choose to self-migrate later by using the archive and restore workflow.
+          If you receive a migration notice and your environment depends on features that express doesn't yet support, or if migration would disrupt your workloads, contact Azure support to discuss your options. Environments that use unsupported advanced features are not auto-migrated. You can also self-migrate later using the archive and restore workflow.
 
       - question: |
           Will I lose any functionality if my environment is migrated to express?
         answer: |
-          Automatic migration is only performed for environments where express supports all the features currently in use. If your environment uses advanced features such as VNet integration, Dapr, dedicated workload profiles, or custom domains that are not yet available in express, it will not be selected for automatic migration.
+          We only auto-migrate environments where express supports all features currently in use. If your environment uses advanced features such as VNet integration, Dapr, dedicated workload profiles, or custom domains that are not yet available in express, it won't be selected for automatic migration.
 
-          If you self-migrate using archive and restore, review the express feature support matrix to confirm that all features your application depends on are available before proceeding.
+          If you self-migrate using archive and restore, review the express feature support matrix to confirm that express supports all features your application depends on before proceeding.
 
       - question: |
           What happens to my apps and data during migration?
@@ -210,12 +210,12 @@ sections:
       - question: |
           Is express ready for production workloads?
         answer: |
-          Express is currently in **Public Preview**. Preview services don't include an SLA. Express can work well for development, testing, and prototyping, and for production workloads that don't need features available only in Azure Container Apps with workload profiles, such as VNet integration or managed identity.
+          Express is currently in **Public Preview**. Preview services don't include an SLA. Express works well for development, testing, and prototyping, and for production workloads that don't require features only available in Azure Container Apps with workload profiles, such as VNet integration or managed identity.
 
       - question: |
           Does express have an SLA?
         answer: |
-          Express is in Public Preview and does not currently have an SLA. SLA commitments will be defined as express moves toward General Availability. For workloads that require an SLA today, use Azure Container Apps with workload profiles.
+          Express is in Public Preview and doesn't currently have an SLA. We'll define SLA commitments as express moves toward General Availability. For workloads that require an SLA today, use Azure Container Apps with workload profiles.
 
       - question: |
           How do I provide feedback or report issues?
