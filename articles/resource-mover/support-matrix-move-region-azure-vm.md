@@ -184,7 +184,7 @@ If you're using a network security group (NSG) rules to control outbound connect
 - Create a Storage tag rule for the source region.
 - Create an *AzureSiteRecovery* tag rule, to allow access to the Site Recovery service in any region. This tag has dependencies on these other tags, so you need to create rules for them to:
     - *AzureActiveDirectory*
-    - **EventHub*
+    - *EventHub*
     - *AzureKeyVault*
     - *GuestAndHybridManagement*
 - We recommend you test rules in a nonproduction environment. [Review some examples](../site-recovery/azure-to-azure-about-networking.md#outbound-connectivity-using-service-tags).
