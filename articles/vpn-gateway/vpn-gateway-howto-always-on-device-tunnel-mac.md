@@ -31,7 +31,7 @@ This includes [certificate authentication](point-to-site-certificate-gateway.md)
 
 ## Configure a device tunnel
 
-[!INCLUDE [device configuration](../../includes/vpn-gateway-vwan-always-on-device-mac.md)]
+[!INCLUDE [device configuration](../../includes/vpn-gateway-vwan-always-on-device-macos.md)]
 
 ## To remove a profile
 
