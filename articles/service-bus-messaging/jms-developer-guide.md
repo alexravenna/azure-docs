@@ -2,7 +2,7 @@
 title: Azure Service Bus JMS 2.0 developer guide
 description: How to use the Java Message Service (JMS) 2.0 API to communicate with Azure Service Bus
 ms.topic: article
-ms.date: 06/16/2025
+ms.date: 03/30/2026
 ms.custom:
   - devx-track-extended-java
   - sfi-ropc-nochange
@@ -362,6 +362,56 @@ connection.setExceptionListener(exception -> {
 In Spring Boot, set the exception listener on the `CachingConnectionFactory` (for senders) and the `DefaultJmsListenerContainerFactory` (for listeners).
 
 For a complete working sample showing all of these patterns, see the [Spring Boot JMS Resilience sample](https://github.com/Azure/azure-servicebus-jms-samples/tree/sample/spring-boot-resilience/spring-boot-resilience) in the azure-servicebus-jms-samples repository.
+### Dead letter queues
+
+Every queue and topic subscription in Azure Service Bus has an associated [dead letter queue (DLQ)](service-bus-dead-letter-queues.md). The system automatically moves messages that it can't deliver or process to the DLQ. For example, the system moves a message to the DLQ when the message exceeds the maximum delivery count or its time-to-live (TTL) expires.
+
+> [!IMPORTANT]
+> To move TTL-expired messages to the DLQ, enable **dead-lettering on message expiration** for the queue or subscription. Without this setting, the system silently discards expired messages. For configuration steps, see [Enable dead lettering for a queue or subscription](enable-dead-letter.md).
+
+In JMS, you access the DLQ as a separate destination by constructing the full path and creating a `JmsQueue` with it. No special API is required.
+
+**Queue DLQ path format:**
+
+```
+<queue-name>/$deadletterqueue
+```
+
+**Topic subscription DLQ path format:**
+
+```
+<topic-name>/Subscriptions/<subscription-name>/$deadletterqueue
+```
+
+**Example - consuming from a queue's dead letter queue:**
+
+```java
+import org.apache.qpid.jms.JmsQueue;
+
+// Construct the DLQ path for a queue named "orders"
+String dlqPath = "orders/$deadletterqueue";
+JmsQueue dlqDestination = new JmsQueue(dlqPath);
+
+// Create a consumer on the DLQ and receive messages
+MessageConsumer dlqConsumer = session.createConsumer(dlqDestination);
+Message message = dlqConsumer.receive(5000);
+```
+
+Dead-lettered messages include metadata properties that describe why the message was dead-lettered:
+
+| Property | Description |
+|----------|-------------|
+| `DeadLetterReason` | The reason the message was dead-lettered (for example, `TTLExpiredException` or `MaxDeliveryCountExceeded`). |
+| `DeadLetterErrorDescription` | A human-readable description of the dead-letter reason. |
+
+Read these properties by using `message.getStringProperty()`:
+
+```java
+String reason = message.getStringProperty("DeadLetterReason");
+String description = message.getStringProperty("DeadLetterErrorDescription");
+```
+
+For a complete working sample, see [QueueDeadLetterReceive.java](https://github.com/Azure/azure-servicebus-jms-samples/blob/sample/dead-letter-queue/src/main/java/com/microsoft/azure/samples/QueueDeadLetterReceive.java) in the azure-servicebus-jms-samples repository.
 
 ## AMQP disposition and Service Bus operation mapping
 
