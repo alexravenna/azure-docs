@@ -300,13 +300,11 @@
           href: point-to-site-user-groups-radius.md
     - name: Configure Always On tunnels
       items:
-        - name: Device tunnel
-          items:
-            - name: Windows clients
-              href: vpn-gateway-howto-always-on-device-tunnel.md
-            - name: macOS clients
-              href: vpn-gateway-howto-always-on-device-tunnel-mac.md
-        - name: User tunnel
+        - name: Device Tunnel - Windows clients
+          href: vpn-gateway-howto-always-on-device-tunnel.md
+        - name: Device Tunnel - macOS clients
+          href: vpn-gateway-howto-always-on-device-tunnel-macos.md
+        - name: User Tunnel - Windows clients
           href: vpn-gateway-howto-always-on-user-tunnel.md
     - name: Move to OpenVPN or IKEv2 from SSTP
       href: ikev2-openvpn-from-sstp.md
