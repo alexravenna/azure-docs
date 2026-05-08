@@ -5,7 +5,7 @@ author: expekesheth
 ms.service: azure-health-data-services
 ms.subservice: fhir
 ms.topic: reference
-ms.date: 05/06/2026
+ms.date: 05/08/2026
 ms.author: kesheth
 ---
 
@@ -28,11 +28,11 @@ The FHIR service supports the following create and update interactions as define
 
 The FHIR service offers two delete types. There's [Delete](https://www.hl7.org/fhir/r4/http.html#delete), which is also known as hard and soft delete, and [Conditional Delete](https://www.hl7.org/fhir/r4/http.html#3.1.0.7.1).
 
-Use delete interactions to remove individual resources by ID or to remove up to 100 resources in bulk by using search criteria with conditional delete. You can also remove larger sets of resources in bulk by using the `$bulk-delete` operation. To learn more about deleting resources in bulk, see [$bulk-delete operation](fhir-bulk-delete.md).
+Use delete interactions to remove individual resources by ID or to remove resources in bulk by using search criteria with conditional delete. You can also remove larger sets of resources in bulk by using the `$bulk-delete` operation. To learn more about deleting resources in bulk, see [$bulk-delete operation](fhir-bulk-delete.md).
 
 ### Delete (hard and soft delete)
 
-The FHIR specification defines that after deleting a resource, subsequent nonversion reads of that resource return a 410 HTTP status code. As a result, you can't find the resource through searching. Additionally, the FHIR service enables you to fully delete the resource, including all history. To fully delete the resource, set the `hardDelete` parameter to `true`.
+Use the `DELETE` interaction to delete a resource. The FHIR service supports both hard and soft delete. By default, the FHIR service performs a soft delete, which means that the resource is marked as deleted but still exists in the system. You can still access the resource's history and recover it if needed. By setting the `hardDelete` parameter to `true`, you can perform a hard delete, which permanently removes the resource and its history from the system.
 
 ```rest
 DELETE {{FHIR_URL}}/{resource}/{id}?hardDelete=true
