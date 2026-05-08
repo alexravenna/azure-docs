@@ -132,15 +132,6 @@ You can instantiate the connection factory with the following parameters:
       * Other configuration parameters.
 
 Create the factory as shown in the following example. The token credential and host are required parameters, but the other properties are optional.
-
-```java
-String host = "<YourNamespaceName>.servicebus.windows.net";
-ConnectionFactory factory = new ServiceBusJmsConnectionFactory(tokenCredential, host, null); 
-```
-
-# [Connection string authentication](#tab/connection-string-authentication)
-
-You can instantiate the connection factory with the following parameters:
    * Connection string - The connection string for the Azure Service Bus Premium tier namespace.
    * ServiceBusJmsConnectionFactorySettings property bag, which contains:
       * `connectionIdleTimeoutMS` - idle connection timeout in milliseconds.
@@ -317,6 +308,20 @@ You can use selectors when creating any of the following consumers:
 
 > [!NOTE]
 > Service Bus selectors don't support `LIKE` and `BETWEEN` SQL keywords.
+
+### Scheduled messages (delivery delay)
+
+JMS 2.0 supports scheduling a message for future delivery by using the `setDeliveryDelay` method on a `MessageProducer` or `JMSProducer`. When you set this property, Service Bus accepts the message but only makes it visible to consumers after the delay period elapses.
+
+```java
+MessageProducer producer = session.createProducer(queue);
+
+// Schedule a message for delivery 30 seconds from now
+producer.setDeliveryDelay(30000);
+producer.send(session.createTextMessage("Scheduled message"));
+```
+
+For a complete working sample, see [QueueScheduledSend.java](https://github.com/Azure/azure-servicebus-jms-samples/blob/sample/scheduled-messages/src/main/java/com/microsoft/azure/samples/QueueScheduledSend.java) in the azure-servicebus-jms-samples repository.
 
 ### Connection factory selection and resilience
 
