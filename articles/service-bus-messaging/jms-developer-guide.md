@@ -432,6 +432,7 @@ This developer guide shows how Java client applications that use Java Message Se
 ## Next steps
 
 For more information on Azure Service Bus and details about Java Message Service (JMS) entities, see the following articles:
+* [Choose between JMS and the native SDK for Azure Service Bus](service-bus-jms-versus-native-sdk.md)
 * [Service Bus - Queues, Topics, and Subscriptions](service-bus-queues-topics-subscriptions.md)
 * [Service Bus - Java Message Service entities](service-bus-queues-topics-subscriptions.md#java-message-service-jms-20-entities)
 * [AMQP 1.0 support in Azure Service Bus](service-bus-amqp-overview.md)
