@@ -6,7 +6,7 @@ ms.service: azure-deployment-environments
 ms.custom: build-2023
 author: RoseHJM
 ms.author: rosemalcolm
-ms.date: 03/17/2025
+ms.date: 05/08/2026
 ms.topic: how-to
 
 #customer intent: As a platform engineer, I want to configure a managed identity for a dev center so that I can enable secure deployment for my development teams.
@@ -59,7 +59,7 @@ As a security best practice, if you choose to use user-assigned identities, use 
 
    :::image type="content" source="media/configure-managed-identity/configure-user-assigned-managed-identity.png" alt-text="Screenshot that shows the user-assigned managed identity." lightbox="media/configure-managed-identity/configure-user-assigned-managed-identity.png":::
 
-1. On the **Add user assigned managed identity** pane, enter or select the following information:
+1. Enter or select the following information on the **Add user assigned managed identity** pane:
 
     1. On **Select a subscription**, select the subscription in which the identity exists.
     1. On **User assigned managed identities**, select an existing identity.
