@@ -24,15 +24,13 @@ When you use the local MQTT broker as a source endpoint in a data flow, either d
 
 If the destination endpoint is unavailable, delivery can't complete. In this case, the data flow doesn't acknowledge the source message. The MQTT broker keeps the message in the subscriber queue and the data flow retries delivery. When connectivity is restored, the data flow sends queued messages to the destination and acknowledges them after successful delivery.
 
-```text
-Publisher or asset -> MQTT broker -> Data flow -> Destination endpoint
+The message path is: publisher or asset to MQTT broker, MQTT broker to data flow, and data flow to destination endpoint.
 
 1. The MQTT broker delivers a message to the data flow.
-2. The data flow sends the message to the destination endpoint.
-3. If the send succeeds, the data flow acknowledges the source message and the broker removes it from the subscriber queue.
-4. If the send fails, the data flow doesn't acknowledge the source message. The broker keeps it queued.
-5. The data flow retries delivery until it succeeds, the message expires, or a configured limit applies.
-```
+1. The data flow sends the message to the destination endpoint.
+1. If the send succeeds, the data flow acknowledges the source message and the broker removes it from the subscriber queue.
+1. If the send fails, the data flow doesn't acknowledge the source message. The broker keeps it queued.
+1. The data flow retries delivery until it succeeds, the message expires, or a configured limit applies.
 
 > [!IMPORTANT]
 > Data flow buffering is bounded. Queued messages are subject to the MQTT broker memory profile, subscriber queue limits, disk-backed message buffer size, persistence configuration, and message or session expiry. Configure these settings for the maximum outage duration and throughput you need to tolerate.
