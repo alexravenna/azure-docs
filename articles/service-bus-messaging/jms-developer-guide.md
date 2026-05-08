@@ -73,7 +73,7 @@ TokenCredential tokenCredential = new DefaultAzureCredentialBuilder().build();
 
 You can instantiate the connection factory with the following parameters:
    * Token credential - Represents a credential capable of providing an OAuth token.
-   * Host - the hostname of the Azure Service Bus Premium tier namespace.
+   * Host - The hostname of the Azure Service Bus Premium tier namespace.
    * ServiceBusJmsConnectionFactorySettings property bag, which contains:
       * `connectionIdleTimeoutMS` - idle connection timeout in milliseconds.
       * `traceFrames` - boolean flag to collect AMQP trace frames for debugging.
@@ -98,7 +98,7 @@ TokenCredential tokenCredential = new DefaultAzureCredentialBuilder()
 
 You can instantiate the connection factory with the following parameters:
    * Token credential - Represents a credential capable of providing an OAuth token.
-   * Host - the hostname of the Azure Service Bus Premium tier namespace.
+   * Host - The hostname of the Azure Service Bus Premium tier namespace.
    * ServiceBusJmsConnectionFactorySettings property bag, which contains:
       * `connectionIdleTimeoutMS` - idle connection timeout in milliseconds.
       * `traceFrames` - boolean flag to collect AMQP trace frames for debugging.
@@ -125,7 +125,7 @@ TokenCredential tokenCredential = new ClientSecretCredentialBuilder()
 
 You can instantiate the connection factory with the following parameters:
    * Token credential - Represents a credential capable of providing an OAuth token.
-   * Host - the hostname of the Azure Service Bus Premium tier namespace.
+   * Host - The hostname of the Azure Service Bus Premium tier namespace.
    * ServiceBusJmsConnectionFactorySettings property bag, which contains:
       * `connectionIdleTimeoutMS` - idle connection timeout in milliseconds.
       * `traceFrames` - boolean flag to collect AMQP trace frames for debugging.
@@ -141,7 +141,7 @@ ConnectionFactory factory = new ServiceBusJmsConnectionFactory(tokenCredential, 
 # [Connection string authentication](#tab/connection-string-authentication)
 
 You can instantiate the connection factory with the following parameters:
-   * Connection string - the connection string for the Azure Service Bus Premium tier namespace.
+   * Connection string - The connection string for the Azure Service Bus Premium tier namespace.
    * ServiceBusJmsConnectionFactorySettings property bag, which contains:
       * `connectionIdleTimeoutMS` - idle connection timeout in milliseconds.
       * `traceFrames` - boolean flag to collect AMQP trace frames for debugging.
@@ -318,6 +318,50 @@ You can use selectors when creating any of the following consumers:
 > [!NOTE]
 > Service Bus selectors don't support `LIKE` and `BETWEEN` SQL keywords.
 
+### Connection factory selection and resilience
+
+When you use `ServiceBusJmsConnectionFactory` in Spring Boot or other frameworks that manage JMS connections, choose the right connection factory wrapper for **senders** and **listeners** to ensure reliable operation.
+
+#### Recommended configuration
+
+| Role | Connection factory | Why |
+|------|-------------------|-----|
+| **Senders** (`JmsTemplate`) | `CachingConnectionFactory` wrapping `ServiceBusJmsConnectionFactory` | `JmsTemplate` creates and closes a connection per send by default. `CachingConnectionFactory` maintains a single AMQP connection and caches sessions, avoiding connection churn that can exhaust broker resources under load. |
+| **Listeners** (`@JmsListener`, `DefaultMessageListenerContainer`) | Raw `ServiceBusJmsConnectionFactory` (unwrapped) | Each listener container gets its own AMQP connection with independent lifecycle. If a connection fails (token expiry, gateway upgrade, network blip), only that listener is affected, and Spring recreates the connection automatically. |
+
+#### What to avoid for listeners
+
+> [!WARNING]
+> **Never use `SingleConnectionFactory` with listener containers.** It forces all listeners to share a single JMS connection. If that connection is disrupted for any reason, all listeners lose connectivity simultaneously and can't recover independently. Use the raw `ServiceBusJmsConnectionFactory` so each listener container manages its own connection.
+
+`CachingConnectionFactory` on listener containers can also cause problems because cached sessions might reference a stale underlying connection. For listeners, the raw factory ensures each container can create a fresh connection independently.
+
+#### Spring Cloud Azure defaults
+
+If you use `spring-cloud-azure-starter-servicebus-jms` (version 6.2.0+), the starter applies this factory separation by default:
+
+| `spring.jms.servicebus.pool.enabled` | `spring.jms.cache.enabled` | Sender factory | Listener factory |
+|:------|:------|:------|:------|
+| *(not set)* | *(not set)* | `CachingConnectionFactory` | `ServiceBusJmsConnectionFactory` |
+| *(not set)* | `true` | `CachingConnectionFactory` | `CachingConnectionFactory` |
+| *(not set)* | `false` | `ServiceBusJmsConnectionFactory` | `ServiceBusJmsConnectionFactory` |
+| `true` | *(not set)* | `JmsPoolConnectionFactory` | `JmsPoolConnectionFactory` |
+
+On older versions (pre-6.2.0), both senders and listeners use `ServiceBusJmsConnectionFactory` by default, which causes senders to create a new connection per send.
+
+#### Adding an exception listener
+
+Without an exception listener, connection drops are completely silent. Add a `jakarta.jms.ExceptionListener` to both sender and listener factories for observability:
+
+```java
+connection.setExceptionListener(exception -> {
+    log.error("JMS connection error: {}", exception.getMessage(), exception);
+});
+```
+
+In Spring Boot, set the exception listener on the `CachingConnectionFactory` (for senders) and the `DefaultJmsListenerContainerFactory` (for listeners).
+
+For a complete working sample showing all of these patterns, see the [Spring Boot JMS Resilience sample](https://github.com/Azure/azure-servicebus-jms-samples/tree/sample/spring-boot-resilience/spring-boot-resilience) in the azure-servicebus-jms-samples repository.
 ### Dead letter queues
 
 Every queue and topic subscription in Azure Service Bus has an associated [dead letter queue (DLQ)](service-bus-dead-letter-queues.md). The system automatically moves messages that it can't deliver or process to the DLQ. For example, the system moves a message to the DLQ when the message exceeds the maximum delivery count or its time-to-live (TTL) expires.
@@ -387,7 +431,7 @@ This developer guide shows how Java client applications that use Java Message Se
 
 ## Next steps
 
-For more information on Azure Service Bus and details about Java Message Service (JMS) entities, check out the following articles:
+For more information on Azure Service Bus and details about Java Message Service (JMS) entities, see the following articles:
 * [Choose between JMS and the native SDK for Azure Service Bus](service-bus-jms-versus-native-sdk.md)
 * [Service Bus - Queues, Topics, and Subscriptions](service-bus-queues-topics-subscriptions.md)
 * [Service Bus - Java Message Service entities](service-bus-queues-topics-subscriptions.md#java-message-service-jms-20-entities)
