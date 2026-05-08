@@ -468,16 +468,31 @@ Earlier versions of this extension in the isolated worker process only support b
 ::: zone pivot="programming-language-java"
 The [QueueTrigger](/java/api/com.microsoft.azure.functions.annotation.queuetrigger) annotation gives you access to the queue message that triggered the function.
 ::: zone-end  
-::: zone pivot="programming-language-javascript,programming-language-typescript"  
-# [Model v4](#tab/nodejs-v4)
+::: zone pivot="programming-language-typescript"  
+### [Model v4](#tab/nodejs-v4)
 
 Access the queue item as the first argument to your function. If the payload is JSON, the value is deserialized into an object.
 
-# [Model v3](#tab/nodejs-v3)
+Use the generic type parameter on `app.storageQueue<string>(...)` to type the queue trigger input. Without the generic, the input parameter defaults to `unknown`, which requires explicit type narrowing before you can use the value. Generic type support requires `@azure/functions` version 4.11.0 or later.
+
+### [Model v3](#tab/nodejs-v3)
 
 Access the queue item using `context.bindings.<NAME>` where `<NAME>` matches the value defined in *function.json*. If the payload is JSON, the value is deserialized into an object.
 
 ---
+
+::: zone-end  
+::: zone pivot="programming-language-javascript"  
+### [Model v4](#tab/nodejs-v4)
+
+Access the queue item as the first argument to your function. If the payload is JSON, the value is deserialized into an object.
+
+### [Model v3](#tab/nodejs-v3)
+
+Access the queue item using `context.bindings.<NAME>` where `<NAME>` matches the value defined in *function.json*. If the payload is JSON, the value is deserialized into an object.
+
+---
+
 ::: zone-end  
 ::: zone pivot="programming-language-powershell"  
 Access the queue message via string parameter that matches the name designated by binding's `name` parameter in the *function.json* file.
