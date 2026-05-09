@@ -8,7 +8,7 @@
 ---
 > [!NOTE]
 > Note the following prerequisites for Always On VPN device tunnels on macOS:
-> - The Azure VPN Client for macOS must be [version 3.0.100](../articles/vpn-gateway/azure-vpn-client-versions) or later.
+> - The Azure VPN Client for macOS must be version 3.0.100 or later.
 > - Always On must be configured per profile - there's no default Always On profile.
 > - Only one profile can have Always On enabled at a time.
 > - Always On can only be enabled when the VPN connection is disconnected. It is grayed out in any other state.
