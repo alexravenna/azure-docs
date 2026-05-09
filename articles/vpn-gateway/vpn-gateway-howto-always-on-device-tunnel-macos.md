@@ -39,7 +39,7 @@ Use the following steps:
 1. Open the Azure VPN Client for Mac.
 1. Disconnect the connection, and clear the **Connect automatically** check box (this can also be managed in settings).
 
-:::image type="content" source="./media/point-to-site-mac-os-always-on/settings.png" alt-text="Diagram of user settings in Azure VPN Client." lightbox="./media/point-to-site-mac-os-always-on/settings.png":::
+:::image type="content" source="./media/point-to-site-macos-always-on/settings.png" alt-text="Diagram of user settings in Azure VPN Client." lightbox="./media/point-to-site-macos-always-on/settings.png":::
 
 1. Open the '...' menu next to the profile name, and select **Remove**
 
