@@ -745,12 +745,12 @@ Use the [`resource__versionless_id` or `versionless_id`](https://registry.terraf
 
 ## Customer Lockbox for Microsoft Azure
 
-[Customer Lockbox for Microsoft Azure](/azure/security/fundamentals/customer-lockbox-overview) doesn't apply to Azure Service Bus. Microsoft support engineers don't access customer message data during support operations. Support engineers only have access to the following metadata:
+[Customer Lockbox for Microsoft Azure](/azure/security/fundamentals/customer-lockbox-overview) doesn't apply to Azure Service Bus. Microsoft personnel don't access customer message data during support operations. Microsoft personnel only have access to the following metadata:
 
 - Names of Service Bus entities (queues, topics, and subscriptions)
 - Configuration settings for the namespace and its entities
 
-Message headers and message body content aren't accessible to support engineers. Additionally, message data is serialized to binary format on the client side before it's sent to the Service Bus service, so it isn't stored or viewable in a human-readable form on the server. As a result, Customer Lockbox approval isn't required for Azure Service Bus support scenarios.
+Message headers and message body content aren't accessible to Microsoft personnel. Additionally, message data is serialized to binary format on the client side before it's sent to the Service Bus service, so it isn't stored or viewable in a human-readable form on the server. As a result, Customer Lockbox approval isn't required for Azure Service Bus support scenarios.
 
 ## Next steps
 
