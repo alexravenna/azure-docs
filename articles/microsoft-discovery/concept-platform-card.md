@@ -10,15 +10,17 @@ ms.date: 04/21/2026
 #CustomerIntent: As a researcher or deployer, I want to understand Microsoft Discovery's intended purpose, capabilities, and limitations so that I can make informed decisions about adoption and use.
 ---
 
-# Platform Card: Microsoft Discovery
+# Platform card: Microsoft Discovery
 
-## What is an Application or Platform Card?
+This platform card describes Microsoft Discovery's intended uses, capabilities, limitations, and best practices for responsible deployment and use.
+
+## What is an application or platform card?
 
 Microsoft's Application and Platform cards are intended to help you understand how our AI technology works, the choices application owners can make that influence application performance and behavior, and the importance of considering the whole application, including the technology, the people, and the environment. Application cards are created for AI applications and platform cards are created for AI platform services. These resources can support the development or deployment of your own applications and can be shared with users or stakeholders impacted by them.
 
 As part of its commitment to responsible AI, Microsoft adheres to six core principles: fairness, reliability and safety, privacy and security, inclusiveness, transparency, and accountability. These principles are embedded in the Responsible AI Standard, which guides teams in designing, building, and testing AI applications. Application and Platform Cards play a key role in operationalizing these principles by offering transparency around capabilities, intended uses, and limitations. For further insight, readers are encouraged to explore Microsoft's Responsible AI Transparency Report and Code of Conduct, which outline how enterprise customers and individuals can engage with AI responsibly.
 
-## 1. Overview
+## Overview
 
 Microsoft Discovery is in Public Preview and is currently available to select customers. Use of Microsoft Discovery is subject to customer eligibility requirements and acceptance of our Product Terms and User Code of Conduct. It requires a license and is only offered in a limited number of countries. Our goal is to ensure the system remains safe, reliable, and beneficial for all users as we continue to evolve its capabilities.
 
@@ -28,11 +30,11 @@ Microsoft Discovery is an enterprise "agentic AI" platform designed to support s
 
 The platform uses an agentic AI architecture leveraging a graph‑based knowledge engine to drive R&D outcomes with enhanced speed, scale, and accuracy. Through a natural-language interface, users can describe objectives or questions, and the system can translate them into structured plans that draw on available tools, models, and workflows. Microsoft Discovery operationalizes the Discovery Engine which incorporates outcomes and feedback into subsequent reasoning, enabling adaptive, explainable, and repeatable research execution while keeping the user in control.
 
-### Intended Users
+### Intended users
 
 Microsoft Discovery is intended for R&D organizations including scientists, engineers, and developers in industries spanning life sciences, materials, semiconductors, energy, manufacturing, and advanced engineering. Built on Azure, the platform is designed to be extensible and secure, allowing organizations to integrate their own data, models, and tools into a unified AI‑driven environment. Rather than replacing human expertise, Microsoft Discovery augments it, helping teams manage complexity and scale insight across the research process.
 
-## 2. Key Terms
+## Key terms
 
 The following table provides a glossary of key terms related to Microsoft Discovery.
 
@@ -47,15 +49,15 @@ The following table provides a glossary of key terms related to Microsoft Discov
 | Supercomputer | The Supercomputer component of Microsoft Discovery uses Azure high‑performance computing (HPC), and future quantum capabilities, to execute compute‑intensive scientific workflows, simulations, and AI workloads. |
 | System Message | The system message (sometimes referred to as a "meta prompt") guides the system's behavior, aligning it with Microsoft AI Principles and user expectations. For example, it may include instructions like "do not provide information or create content that could cause physical, emotional, or financial harm." |
 
-## 3. Key Features / Capabilities
+## Key features and capabilities
 
 The key features and capabilities outlined here describe what Microsoft Discovery is designed to do and how it performs across supported tasks.
 
-### Natural-language Interface
+### Natural-language interface
 
 Users interact with Microsoft Discovery through a conversational assistant that understands requests in natural language and translates them into a structured plan using available tools and workflows. This helps scientists and engineers move from a research question to an actionable workflow without manually stitching together multiple systems. When needed, this Copilot can invoke integrated compute and tools (for example, simulations, database queries, or model runs) and supports iterative refinement through dialogue. This lowers the barrier to using advanced R&D tools by letting users adjust and explore workflows step‑by‑step in the same interface.
 
-### Multi‑Agent Architecture
+### Multi-agent architecture
 
 Discovery uses a multi-agent system, where end-users can bring in specialized AI agents, each adept in a certain domain (chemistry, biology, physics, silicon design, data analysis, and so on) or function (reasoning, simulation, optimization). These agents work together, coordinated by Copilot and a central knowledge graph. They can reason over a rich, connected knowledge base that integrates all the enterprise's data sources and scientific knowledge. This architecture allows tackling very complex, cross-disciplinary problems. For example, one agent might parse scientific literature while another runs a simulation and another analyses the results – all orchestrated in concert. (This distributed intelligence is what we mean by "agentic AI" – it's not one monolithic model, but a team of models working together for the user.)
 
@@ -71,11 +73,11 @@ In support of long‑running and iterative research, the Discovery Engine mainta
 
 Discovery is designed to be extensible, enabling customers to bring their own models (BYOM), integrate proprietary or third‑party data via platforms such as AI Foundry or Azure Machine Learning (AML), and build custom agents tailored to domain needs. Plug in your in-house models, your existing lab data, domain-specific databases, or even custom-developed AI agents. Discovery will incorporate those assets into the knowledge graph and workflows. Moreover, Discovery supports partner and open-source tools as well, and it's built on Azure so it inherits Azure's security, compliance, and governance capabilities.
 
-### HPC Integration
+### HPC integration
 
 Discovery is built on Azure's cutting-edge infrastructure, meaning it natively integrates Azure High-Performance Computing (HPC) and AI services. The platform can deploy workloads to large-scale CPU/GPU clusters, run cloud-based simulations (CFD, molecular dynamics, and so on), and use advanced AI models (including custom physics ML models or large language models) as needed.
 
-### Knowledge Reasoning
+### Knowledge reasoning
 
 Microsoft Discovery delivers advanced knowledge reasoning by combining curated domain grounding with graph‑enhanced, AI‑driven retrieval and synthesis. At the foundation, Discovery offers a bookshelf service that allows researchers to organize and ground their work in curated collections of scientific literature, papers, and reference materials tailored to their domain. This ensures that reasoning and analysis are anchored in trusted, relevant sources from the start.
 
@@ -87,7 +89,7 @@ What differentiates Microsoft Discovery is how it reasons over diverse knowledge
 
 When responses are grounded in web or customer data, Microsoft Discovery might provide hyperlinked citations so users can access the referenced websites or internal documents/databases used for grounding and learn more about the topic.
 
-## 4. Intended Uses
+## Intended uses
 
 Microsoft Discovery can be used in multiple scenarios across a variety of industries. Some examples of use cases include:
 
@@ -98,13 +100,13 @@ Microsoft Discovery can be used in multiple scenarios across a variety of indust
 | Semiconductor & Electronics Design | Companies designing new semiconductor architectures or materials where optimizing across thousands of parameters and simulations is critical. | Discovery enables engineers to automate simulation workflows, explore design alternatives, and analyze results at scale. The platform supports faster iteration toward more efficient or powerful chip designs by coordinating physics-based simulations and AI-driven optimization. |
 | Manufacturing & Advanced Engineering | Manufacturers in automotive, aerospace, or industrial sectors seeking to optimize product design and production processes. | Engineers can use Discovery to run large-scale virtual prototyping, testing thousands of design variations for performance, weight, and durability. In process engineering, the platform helps tune parameters to improve yield and quality. Discovery's ability to coordinate simulations and analyze results in context supports faster innovation and more informed decision-making. |
 
-## 5. Models and Training Data
+## Models and training data
 
-Microsoft Discovery uses a variety of AI models to power the experience that users see. These include large language models accessed via the Azure OpenAI Service through Azure AI Foundry. Specific models used include, but are not limited to, Open AI gpt-5, OpenAI gpt-5.2 and OpenAI Text Embedding 3 (small).
+Microsoft Discovery uses a variety of AI models to power the experience that users see. These include large language models accessed via the Azure OpenAI Service through Azure AI Foundry. Specific models used include, but are not limited to, OpenAI gpt-5, OpenAI gpt-5.2 and OpenAI Text Embedding 3 (small).
 
 For information about the training data, evaluation, and responsible AI considerations for Azure OpenAI models, see the Transparency Note for Azure OpenAI - Azure AI platforms.
 
-## 6. Performance
+## Performance
 
 This section describes the conditions and environment under which Microsoft Discovery is expected to perform reliably, the types of inputs the platform accepts and outputs it produces, and the languages it supports.
 
@@ -122,7 +124,7 @@ To ensure consistent and reliable execution, all agent instructions and prompts 
 
 Discovery is designed and evaluated for English. While the underlying LLM models have inherent multilingual capabilities for natural language understanding and generation, the platform's system prompts, user interface, and core evaluations are optimized and validated in English for this release. Use in other languages might work in practice but falls outside the scope of tested and supported behavior for the current release.
 
-### Workload Types
+### Workload types
 
 Discovery is specifically optimized for complex, multi-faceted, and long-duration research challenges (tasks spanning hours or days) that require autonomous AI agent orchestration. It is not designed for simple, one-off queries. The platform's cognitive Discovery Engine adaptively switches between fast and slow reasoning modes to decompose and address these complex problems.
 
@@ -130,7 +132,7 @@ Discovery is specifically optimized for complex, multi-faceted, and long-duratio
 
 Discovery operates within a secure, Azure-hosted cloud environment using Virtual Network (VNet) isolation, Managed Identities, and Role-Based Access Control (RBAC). It relies on scalable High-Performance Computing (HPC) node pools (with both CPU and GPU options) to execute compute-intensive workloads.
 
-## 7. Limitations
+## Limitations
 
 Understanding Microsoft Discovery's limitations is crucial to determine it is used within safe and effective boundaries. While we encourage customers to use Discovery in their innovative solutions or applications, it's important to note that Discovery was not designed for every possible scenario. We encourage users to refer to Discovery's Code of Conduct, Microsoft Enterprise AI Services Code of Conduct (for organizations), or the Code Conduct section in the Microsoft Services Agreement (for individuals), as well as the following considerations when choosing a use case.
 
@@ -140,7 +142,7 @@ Understanding Microsoft Discovery's limitations is crucial to determine it is us
 
 **Temporal Relevance of Data**: Scientific knowledge evolves rapidly. If Discovery relies on static or outdated datasets, it might surface obsolete findings or miss recent developments (a risk that is especially significant in fast-moving fields such as synthetic biology or AI-driven drug discovery). Users should regularly assess the currency of their data sources and treat outputs accordingly, particularly for time-sensitive research.
 
-**Performance Variability and Hallucination Risk**: When querying customer‑provided knowledge bases, response quality and groundedness depend heavily on the structure, completeness, and relevance of the underlying data, as well as how agents are configured to retrieve and reason over that data. In scenarios where the knowledge base is sparse, poorly structured, or weakly scoped, the system might produce responses that are incomplete or insufficiently grounded.
+**Performance variability and inaccurate output risk**: When querying customer‑provided knowledge bases, response quality and groundedness depend heavily on the structure, completeness, and relevance of the underlying data, as well as how agents are configured to retrieve and reason over that data. In scenarios where the knowledge base is sparse, poorly structured, or weakly scoped, the system might produce responses that are incomplete or insufficiently grounded.
 
 To help customers reduce this risk, we provide a reference sample agent in a GitHub repository that demonstrates recommended patterns for querying knowledge bases and enforcing grounding constraints. Customers are encouraged to use this sample as a starting point when building custom agents and workflows, and to apply additional validation and human review for high‑impact use cases. For more details, see Section 10.
 
@@ -152,7 +154,7 @@ To help customers reduce this risk, we provide a reference sample agent in a Git
 
 **Tooling Signal Dilution**: In a similar way to large conversation history degrading quality of answers, as the system gets access to a larger and larger pool of agents, its ability to choose the best tools for the task may degrade. We encourage you to actively curate the list of agents that the system can use to your relevant scenarios.
 
-### Prohibited Uses
+### Prohibited uses
 
 The following uses of Discovery are strictly prohibited:
 
@@ -164,19 +166,19 @@ The following uses of Discovery are strictly prohibited:
 
 **Bypassing Safety Systems**:  Attempts to circumvent, disable, or interfere with Discovery's built-in safety mechanisms, classifiers, or content filters are strictly prohibited. These systems are in place to help ensure responsible and secure use of the platform.
 
-## 8. Evaluations
+## Evaluations
 
 Microsoft Discovery was evaluated using manual, custom evaluations grounded in the Responsible AI (RAI) evaluation framework from Microsoft AI Foundry. Evaluations were run by executing a curated suite of structured prompts against a target release and systematically reviewing system behavior by risk category. The evaluation was designed to answer two core questions: (1) does Discovery behave safely and consistently when users attempt to push the system outside its intended boundaries, and (2) does it remain faithful to grounding sources?
 
-### Evaluation Methodology
+### Evaluation methodology
 
 Evaluations targeted two dimensions of system behavior: safety and groundedness. For safety, the evaluation assessed whether Discovery appropriately refused, deflected, or responded safely when prompts attempted to elicit disallowed or policy-sensitive content, or bypass system safeguards. It should operate as such while remaining helpful and policy-aligned for benign requests. For reliability, the evaluation assessed whether Discovery stayed faithful to provided context and retrieved sources in scenarios where grounded responses were expected.
 
 Ideal behavior is that Discovery responds consistently across prompt variants and risk categories, handles adversarial inputs without policy violations, and produces responses that are fully supported by available grounding sources.
 
-Suboptimal behavior includes regressions relative to prior runs or benchmarks, unsafe or policy-sensitive content generation, successful jailbreak outcomes, or inconsistent handling of similar prompts. In grounded scenarios specifically, suboptimal behavior includes hallucinated details, incorrect source attribution, or claims not supported by the provided context.
+Suboptimal behavior includes regressions relative to prior runs or benchmarks, unsafe or policy-sensitive content generation, successful jailbreak outcomes, or inconsistent handling of similar prompts. In grounded scenarios specifically, suboptimal behavior includes fabricated details, incorrect source attribution, or claims not supported by the provided context.
 
-### Data Curation
+### Data curation
 
 We curated evaluation data to systematically test Microsoft Discovery across key risk categories. The dataset consisted of structured test prompts designed to probe behavior under both realistic and adversarial scenarios. Prompts were created to explicitly target four risk domains:
 
@@ -193,7 +195,7 @@ Multiple quality and validity controls were applied to ensure the reliability an
 
 ### Metrics
 
-For groundedness, we measured whether the system's responses remain faithful to provided context, detecting unsupported claims or hallucinated content. Metrics captured include:
+For groundedness, we measured whether the system's responses remain faithful to provided context, detecting unsupported claims or fabricated content. Metrics captured include:
 
 - Ungrounded Attributes Defect Rates (Text - English)
 - Groundedness Defect Rates (Text - English)
@@ -210,11 +212,11 @@ For safety, the custom evaluation suite measured the system's ability to detect 
 
 Results were interpreted through comparative benchmarking to detect regressions and validate stability over time. Each release was assessed against two reference points: Foundry-provided baseline model behavior on a shared subset of prompts, and historical results from the prior release, enabled by the retained regression prompt set. Together, these comparisons provided a longitudinal view of whether Discovery's safety and reliability posture was improving, stable, or regressing across releases.
 
-## 9. Safety Components and Mitigations
+## Safety components and mitigations
 
 Microsoft Discovery incorporates multiple layers of safety and security controls designed to protect users, customer data, and the integrity of research workflows. This section describes the active safety components, mitigation measures, and cybersecurity practices users, integrators, and platform operators should be aware of when leveraging the platform.
 
-### Active Safety Components
+### Active safety components
 
 Discovery uses a combination of input classifiers, filters, and system‑level safeguards to prevent misuse and reduce the risk of harmful outputs. These safety controls are provided through Foundry Guardrails, Microsoft's content safety and filtering capability, and are applied by default to all models created within the platform scanning content at defined intervention points to detect and block unsafe or inappropriate content before it reaches the model. These components are designed to align with Microsoft's Responsible AI principles and are continuously updated as Discovery evolves.
 
@@ -222,15 +224,15 @@ Customers can create custom Guardrails and manage severity levels, including con
 
 To register for approval to use models directly sold by Microsoft with Modified Guardrails, you can submit the Limited Access Review: Modified Guardrails form. To the extent that you are approved for and comply with all requirements to use the model with modified Guardrails, you will have full control, including turning Guardrails off entirely or using annotations only. Note, the option to disable Guardrails is only available to managed customers.
 
-### Mitigation Measures
+### Mitigation measures
 
-Discovery's safety and performance posture is informed by ongoing evaluation and risk review. To address risks such as hallucination, automation bias, and loop drift, Discovery emphasizes human-in-the-loop oversight as a core mitigation strategy. Users are strongly encouraged to validate AI-generated outputs at key decision points, particularly in high-stakes research scenarios.
+Discovery's safety and performance posture is informed by ongoing evaluation and risk review. To address risks such as AI-generated responses being inaccurate, automation bias, and loop drift, Discovery emphasizes human-in-the-loop oversight as a core mitigation strategy. Users are strongly encouraged to validate AI-generated outputs at key decision points, particularly in high-stakes research scenarios.
 
 The platform supports transparency by surfacing citations and grounding sources where applicable, helping users trace the origin of generated content and assess its reliability. For grounded workflows, users are encouraged to ensure their knowledge base documents are current, well-structured, and relevant to the intended research scope, as output reliability is directly tied to the quality of available grounding sources.
 
 Discovery allows customers to integrate their own models, datasets, and agents. This extensibility helps reduce bias and improve relevance in specialized or emerging fields where general-purpose models may underperform. Users working in underrepresented or highly specialized domains are encouraged to use this capability to better align platform behavior with their specific research context.
 
-### Cybersecurity Measures
+### Cybersecurity measures
 
 Discovery's cybersecurity architecture is designed around a defense-in-depth model, with controls spanning identity, network, data, compute, and operational security. The following describes the active measures in place for this release.
 
@@ -246,11 +248,11 @@ Logging, Monitoring, and Detection:  Discovery integrates with Azure monitoring 
 
 Secure Development and Compliance:  Discovery follows Microsoft's Secure Development Lifecycle (SDL) and a continuous compliance model. Security bugs, vulnerabilities, and SDL requirements are tracked centrally and reviewed on an ongoing basis. Discovery participates in Azure's continuous SDL and vulnerability management programs, which support external compliance audits including SOC, ISO, and other Azure certifications. This approach ensures security is continuously evaluated rather than assessed only at release time.
 
-### Shared Responsibility
+### Shared responsibility
 
 Security in Discovery follows the Azure shared responsibility model. Discovery secures the underlying platform, managed services, and control plane. Customers are responsible for securing their subscriptions, VNets, role assignments, and data access policies. Understanding this division of responsibility is important for customers designing secure deployments aligned with their organizational and compliance requirements.
 
-## 10. Best Practices for Integrating and Deploying Microsoft Discovery
+## Best practices for integrating and deploying Microsoft Discovery
 
 Responsible AI is a shared commitment between Microsoft and its customers. While Microsoft builds AI applications with safety, fairness, and transparency at the core, customers play a critical role in deploying and using these technologies responsibly within their own contexts. To support this partnership, we offer the following best practices for deployers and end users to help customers implement responsible AI effectively.
 
@@ -270,7 +272,7 @@ Use clear, specific prompts:  Ensure prompts are explicit about your goal, the s
 - Output format (table, ranked list, experiment plan, and so on)
 - Grounding request (ask for citations/traceability when available)
 
-Example Prompt
+#### Example prompt
 
 Using my indexed knowledge base documents on \<TOPIC>, propose 3 testable hypotheses for \<RESEARCH GOAL>. For each hypothesis: (a) summarize the supporting evidence, (b) cite the specific source(s) used, and (c) list 2–3 experiments to validate it. If evidence is missing or weak, say so explicitly and suggest what additional data would be needed.
 
@@ -305,7 +307,7 @@ Test for safety, grounding, and toolchain reliability before scaling access:  Di
 
 Enable logging and continuously monitor for drift:  Discovery supports logging/monitoring by allowing diagnostic logs to be enabled and routed to customer-managed logging solutions, and it uses proactive health checks and telemetry to track connectivity and availability. Deployers should enable these logs, set up alerts for repeated failures or abnormal error patterns, and periodically review security findings and configuration drift as part of ongoing platform security assessments. For performance and output-quality drift, treat changes to the knowledge base, tools, workflows, or agents as "version changes" and rerun a small benchmark set to compare consistency, completeness, and grounding. Warning signs include fewer/weaker citations, increased uncertainty, contradictory conclusions, or missing key constraints (use these signals to trigger deeper review and remediation).
 
-## 11. Learn more about Microsoft Discovery
+## Learn more about Microsoft Discovery
 
 For additional guidance on the responsible use of Microsoft Discovery we recommend reviewing the Responsible Use Guide, which outlines key principles for deploying AI-powered features. You can learn more here:
 
