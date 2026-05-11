@@ -92,7 +92,7 @@ The following example shows a queue trigger [TypeScript function](functions-refe
 :::code language="typescript" source="~/azure-functions-nodejs-v4/ts/src/functions/storageQueueTrigger1.ts" :::
 
 > [!TIP]
-> Use the generic type parameter (for example, `app.storageQueue<string>(...)`) to avoid the default `unknown` type on the queue input. For more information, see [Usage](#usage).
+> To avoid the default `unknown` type on the queue input, use the generic type parameter (for example, `app.storageQueue<string>(...)`). This requires `@azure/functions` version 4.11.0 or later. For more information, see [Usage](#usage).
 
 The [message metadata section](#message-metadata) explains all of the other variables shown.
 
