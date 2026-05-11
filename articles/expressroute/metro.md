@@ -51,7 +51,7 @@ The following diagram allows for a comparison between the standard ExpressRoute 
 | Dallas Metro | Equinix DA6 <br>Digital Realty DFW10 | 1 | &cross; | &check; | Megaport |
 | Dublin Metro | Equinix DB3 <br>Digital Realty DUB02 | 1 | North Europe | &check; | Equinix<br>Megaport<br>Colt<sup>1</sup> |
 | Hong Kong Metro | Equinix HK1<br>iAdvantage MEGA-i | 2 | East Asia | &check; | Megaport<sup>1</sup><br> |
-| Frankfurt Metro |  Digital Realty FRA11<br>Equinix FR7 | 1 | Germany West Central | &check; | DE-CIX<br>Megaport<br>Colt<sup>1</sup><br>Equinix<sup>1</sup><br> |
+| Frankfurt Metro |  Digital Realty FRA11<br>Equinix FR7 | 1 | Germany West Central | &check; | DE-CIX<br>Megaport<br>Colt<sup>1</sup><br>Equinix<br> |
 | Jakarta Metro | NeutraDC HDC<br>NTT GDC | 2 | Indonesia Central | &check; | DCI Indonesia<br>Telin<sup>1</sup><br>XL Axiata<sup>1</sup> |
 | Johannesburg Metro |  Teraco JT1<br>Africa DAta Centres JHB1ADC | 3 | South Africa North | &check; | Equinix<sup>1</sup><br>OpenAccessDC<sup>1</sup> |
 | Madrid Metro | Equinix MD2<br>Digital Realty MAD1 | 1 | Spain Central | &check; | Colt<br>DE-CIX<br>Equinix<br>Megaport<br>1-IX.EU<sup>1</sup><br>Telefonica<sup>1</sup> |
