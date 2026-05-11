@@ -17,7 +17,6 @@ ms.custom:
 Azure Static Web Apps publishes a website to a production environment by building apps from a GitHub repository supported by a serverless backend. The following tutorial shows how to deploy C# Blazor WebAssembly app that displays weather data returned by a serverless API.
 
 > [!NOTE]
-> For the standalone ASP.NET Core Blazor WebAssembly hosting guide, see [Host and deploy with Azure Static Web Apps](/aspnet/core/blazor/host-and-deploy/webassembly/azure-static-web-apps).
 
 ## Prerequisites
 
