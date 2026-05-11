@@ -8,7 +8,7 @@ ms.service: azure-api-management
 ms.custom:
   - build-2024
 ms.topic: concept-article
-ms.date: 02/17/2026
+ms.date: 05/07/2026
 ms.author: danlep
 ---
 
@@ -85,7 +85,7 @@ The following tables compare features available in the following API Management 
 | [Managed domain certificates](configure-custom-domain.md?tabs=managed#domain-certificate-options) |  ✔️ | ❌ | ✔️ | ❌ | ❌ |
 | [TLS settings](api-management-howto-manage-protocols-ciphers.md) |  ✔️ | ✔️ | ✔️ | ✔️ | ❌ |
 | **HTTP/2** (Client-to-gateway) | ✔️<sup>4</sup> | ✔️<sup>4</sup> |❌ | ✔️ | ❌ |
-| **HTTP/2** (Gateway-to-backend) |  ❌ | ❌ | ❌ | ✔️<sup>5</sup> | ❌ |
+| **HTTP/2** (Gateway-to-backend) |  ✔️<sup>7</sup> | ❌ | ❌ | ✔️<sup>5</sup> | ❌ |
 | API threat detection with [Defender for APIs](protect-with-defender-for-apis.md) | ✔️ | ✔️ |  ❌ | ❌ | ❌ |
 
 <sup>1</sup> Depends on how the gateway is deployed, but is the responsibility of the customer.<br/>
@@ -93,7 +93,8 @@ The following tables compare features available in the following API Management 
 <sup>3</sup> CA root certificates for self-hosted gateway are managed separately per gateway.<br/>
 <sup>4</sup> Client protocol needs to be enabled.<br/>
 <sup>5</sup> Configure using the [forward-request](forward-request-policy.md) policy.<br/>
-<sup>6</sup> Configure CA certificate details for backend certificate authentication in [backend](backends.md) settings.
+<sup>6</sup> Configure CA certificate details for backend certificate authentication in [backend](backends.md) settings.<br/>
+<sup>7</sup> In preview for classic tier instances created starting January 2026. Contact support to enable for existing classic tier instances.
 
 ### Backend APIs
 
@@ -110,14 +111,17 @@ The following tables compare features available in the following API Management 
 | [Pass-through GraphQL](graphql-apis-overview.md) |  ✔️ | ✔️ |✔️ | ✔️ | ✔️ |
 | [Synthetic GraphQL](graphql-apis-overview.md)|  ✔️ |  ✔️ | ✔️<sup>1</sup> | ✔️<sup>1</sup> | ❌ |
 | [Pass-through WebSocket](websocket-api.md) |  ✔️ |  ✔️ | ❌ | ✔️ | ✔️ |
-| [Pass-through gRPC](grpc-api.md)  |  ✔️ | ❌ | ❌ | ✔️ | ❌ |
+| [Pass-through gRPC](grpc-api.md)  |  ✔️<sup>1</sup> | ❌ | ❌ | ✔️ | ❌ |
 | [OData](import-api-from-odata.md)  |  ✔️ |  ✔️ | ✔️ | ✔️ | ✔️ |
-| [Azure OpenAI in Microsoft Foundry models and LLMs](azure-ai-foundry-api.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+| [Microsoft Foundry LLMs](azure-ai-foundry-api.md) | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 | [Pass-through MCP server](expose-existing-mcp-server.md) | ✔️  | ✔️ | ❌ | ✔️ | ❌ |
 | [Export REST API as MCP server](export-rest-mcp-server.md)  | ✔️ | ✔️ | ❌ | ✔️ | ❌ |
-| [A2A agent](agent-to-agent-api.md)  | ❌ | ✔️ | ❌ | ❌ | ❌ |
+| [A2A agent](agent-to-agent-api.md)  | ✔️ | ✔️ | ❌ | ❌ | ❌ |
 | [Circuit breaker in backend](backends.md#circuit-breaker)  |  ✔️ | ✔️ | ❌ | ✔️ | ✔️ |
 | [Load-balanced backend pool](backends.md#load-balanced-pool)  |  ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+
+<sup>1</sup> In preview for classic tier instances created starting January 2026. Contact support to enable for existing classic tier instances.
+
 
 ### Policies
 
@@ -130,7 +134,7 @@ Managed and self-hosted gateways support all available [policies](api-management
 | [GraphQL resolvers](api-management-policies.md#graphql-resolvers) and [GraphQL validation](api-management-policies.md#content-validation)|  ✔️ | ✔️ |✔️ | ❌ | ❌ |
 | [Get authorization context](get-authorization-context-policy.md) |  ✔️ |  ✔️ |✔️ | ❌ | ❌ |
 | [Authenticate with managed identity](authentication-managed-identity-policy.md) |  ✔️ |  ✔️ |✔️ | ✔️ | ❌ |
-| [Azure OpenAI and LLM semantic caching](api-management-policies.md#caching) |  ✔️ | ✔️ |✔️ | ❌ | ❌ |
+| [LLM semantic caching](api-management-policies.md#caching) |  ✔️ | ✔️ |✔️ | ❌ | ❌ |
 | [Quota and rate limit](api-management-policies.md#rate-limiting-and-quotas) |  ✔️ | ✔️ | ✔️<sup>2</sup> | ✔️<sup>3</sup> | ✔️ |
 
 <sup>1</sup> Configured policies that aren't supported by the self-hosted gateway are skipped during policy execution.<br/>
