@@ -10,7 +10,7 @@ ms.topic: how-to
 ---
 
 
-# Increase Private Endpoints on Azure VMware Solution Datastores
+# Ensure reliable connections between Azure Elastic SAN volumes and Azure VMware Solution generation 1 datastores
 
 Deploying Azure VMware Solution datastores on Elastic SAN with the recommended number of private endpoints enhances performance and reliability. If you have existing Azure VMware Solution datastores and need to adjust the number of endpoints while avoiding downtime, you must create a new datastore with the recommended configuration and migrate your workloads using vSphere. This article guides you through creating a new datastore with the recommended endpoint configuration and migrating your VMs and templates.
 
