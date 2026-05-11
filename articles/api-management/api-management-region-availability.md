@@ -6,7 +6,7 @@ author: dlepow
  
 ms.service: azure-api-management
 ms.topic: concept-article
-ms.date: 05/08/2026
+ms.date: 05/11/2026
 ms.author: danlep
 ms.custom:
   - references_regions
@@ -37,6 +37,7 @@ Information in the following table is updated regularly. Capacity availability i
 | Australia Southeast | ✅ | ✅ | | |
 | Brazil South | ✅ | ✅ | |  |
 | Canada Central  | ✅ | ✅ | ✅ |  |
+| Canada East  | ✅ | ✅ | |  |
 | Central India  | ✅ | ✅ | |  |
 | Central US  | ✅ | ✅ | ✅ |  |
 | East Asia | ✅ | ✅ | | ✅ |
@@ -53,9 +54,11 @@ Information in the following table is updated regularly. Capacity availability i
 | South Africa North | ✅ | ✅ | |  |
 | South Central US | ✅ | ✅ |  |  |
 | South India | ✅ | ✅ |  |  |
+| Southeast Asia | ✅ | ✅ |  |  |
 | Sweden Central | ✅ | ✅ | ✅ | |
 | South India | ✅ | ✅ |  |  |
-| Switzerland North | ✅ |✅ |  | |
+| Spain Central | ✅ | ✅ |  |  |
+| Switzerland North | ✅ |✅ |  |  |
 | UAE North | ✅ | ✅ | |  |
 | UK South | ✅ ¹ | ✅ ¹ | ✅ ¹ | ✅ |
 | UK West | ✅  | ✅ | | |
