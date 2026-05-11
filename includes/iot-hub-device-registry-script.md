@@ -33,7 +33,7 @@ Use the provided PowerShell script to automate the setup of your IoT hub with Az
 
 ## Customize the script variables
 
-Open the script file in a text editor and modify the following variables to match your desired configuration:
+Open the script file in a text editor and modify the following variables to match the configuration that you want:
 
 - `TenantId`: Your tenant ID. To find this value, run `az account show` in your terminal.
 - `SubscriptionId`: Your subscription ID. To find this value, run `az account show` in your terminal.
@@ -61,8 +61,7 @@ Open the script file in a text editor and modify the following variables to matc
     - Select **s** or **S** to skip a step.
     - Select **Ctrl** + **C** to abort.
 
-> [!NOTE]
-> The creation of your Device Registry namespace, IoT Hub, device provisioning service, and other resources might take up to five minutes each.
+The creation of your Device Registry namespace, IoT Hub, device provisioning service, and other resources might take up to five minutes each.
 
 ## Monitor execution and validate the resources
 

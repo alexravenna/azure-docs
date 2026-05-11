@@ -105,7 +105,7 @@ To get the IoT Hub connection string for the service policy, follow these steps:
 
 #### [Azure CLI](#tab/cli)
 
-Use the [az iot hub connection-string show](/cli/azure/iot/hub/connection-string#az-iot-hub-connection-string-show) command to get a connection string for your IoT hub that grants the service policy permissions:
+Use the [az iot hub connection-string show](/cli/azure/iot/hub/connection-string#az-iot-hub-connection-string-show) command to get a connection string for your IoT hub that grants the service policy permissions.
 
 ```azurecli-interactive
 az iot hub connection-string show --hub-name <YOUR_IOT_HUB_NAME> --policy-name service
@@ -157,7 +157,7 @@ az iot hub delete --name <IOT_HUB_NAME> --resource-group <RESOURCE_GROUP_NAME>
 
 ### [Azure PowerShell](#tab/powershell)
 
-To delete the IoT hub, use the [Remove-AzIotHub](/powershell/module/az.iothub/remove-aziothub) command.
+To delete the IoT hub, use the [Remove-AzIotHub](/powershell/module/az.iothub/remove-aziothub) command:
 
 ```azurepowershell-interactive
 Remove-AzIotHub `

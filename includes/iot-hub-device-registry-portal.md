@@ -68,8 +68,7 @@ When you create a namespace with certificate management enabled, the process cre
 1. Select **Next**.
 1. Review your settings, and then select **Create** to create your Device Registry namespace.
 
-    > [!NOTE]
-    > The namespace creation process might take up to five minutes.
+   The namespace creation process might take up to five minutes.
 
 ### Get the principal ID for your namespace
 
@@ -131,7 +130,7 @@ In this section, you create a new IoT hub instance with the Device Registry name
 
 1. In the [Azure portal](https://portal.azure.com), search for and select **IoT Hub**.
 1. On the **IoT Hub** page, select **+ Create** to create a new IoT hub.
-1. On the **Basics** tab, fill in the following fields:
+1. On the **Basics** tab, fill in the fields that are listed in the following table.
 
    [!INCLUDE [iot-hub-pii-note-naming-hub](iot-hub-pii-note-naming-hub.md)]
 

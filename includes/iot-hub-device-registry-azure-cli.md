@@ -114,8 +114,7 @@ To create a resource group, role, and permissions for your IoT solution, follow 
 
 In this section, you create a new Device Registry namespace with a system-assigned managed identity. This process automatically generates a root CA credential and an issuing CA policy for the namespace. For more information on how credentials and policies are used to sign device leaf certificates during provisioning, see [Certificate management](../articles/iot-hub/iot-hub-certificate-management-overview.md).
 
-> [!NOTE]
-> Credentials are optional. You can also create a namespace without a managed identity by omitting the `--enable-certificate-management` and `--policy-name` flags.
+Credentials are optional. You can also create a namespace without a managed identity by omitting the `--enable-certificate-management` and `--policy-name` flags.
 
 1. Create a new Device Registry namespace. Your namespace `name` may contain only lowercase letters and hyphens (`-`) in the middle of the name, but not at the beginning or end. For example, the name `msft-namespace` is valid. The `--enable-certificate-management` command creates credential (root CA) and default policy (issuing CA) for this namespace. You can configure the name for this policy by using the `--policy-name` command. By default, a policy can issue certificates with a validity of 30 days.
 
@@ -123,9 +122,7 @@ In this section, you create a new Device Registry namespace with a system-assign
     az iot adr ns create --name <NAMESPACE_NAME> --resource-group <RESOURCE_GROUP_NAME> --location <REGION> --enable-certificate-management true --policy-name <POLICY_NAME>
     ```
 
-    > [!TIP]
-    > You can optionally create a custom policy by adding the `--cert-subject` and `--cert-validity-days` parameters. For more information, see [Create a custom policy](#create-a-custom-policy).
-
+    You can optionally create a custom policy by adding the `--cert-subject` and `--cert-validity-days` parameters. For more information, see [Create a custom policy](#create-a-custom-policy).
 
     The creation of the Device Registry namespace with system-assigned managed identity might take up to five minutes.
 
