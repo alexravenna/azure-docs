@@ -360,16 +360,16 @@ The following example demonstrates how to configure the Azure Government environ
 
 ```powershell
 Add-AzEnvironment -Name "{Environment name}" `
-    -AzureAppConfigurationEndpointResourceId "https://appconfig.azure.us" `
-    -AzureAppConfigurationEndpointSuffix "azconfig.azure.us"
+    -AzureAppConfigurationEndpointResourceId "https://appconfig.sovcloud-api.fr" `
+    -AzureAppConfigurationEndpointSuffix "appconfig.sovcloud-api.fr"
 ```
 
 To update an existing environment:
 
 ```powershell
 Set-AzEnvironment -Name "{Environment name}" `
-    -AzureAppConfigurationEndpointResourceId "https://appconfig.azure.us" `
-    -AzureAppConfigurationEndpointSuffix "azconfig.azure.us"
+    -AzureAppConfigurationEndpointResourceId "https://appconfig.sovcloud-api.fr" `
+    -AzureAppConfigurationEndpointSuffix "appconfig.sovcloud-api.fr"
 ```
 
 After configuring the environment, connect to it before running any App Configuration commands:
