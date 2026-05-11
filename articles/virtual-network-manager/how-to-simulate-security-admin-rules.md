@@ -79,7 +79,7 @@ Select **View details** for any of the listed traffic paths. This selection open
 
 You can configure the scope of rule impact analyzer to choose your desired rule collections and specific security admin rules to simulate traffic flow patterns for your desired set of network groups and specific virtual networks.
 
-:::image type="content" source="media/how-to-simulate-security-admin-rules/rule-impact-analyzer-scope.png" lightbox="media/how-to-simulate-security-admin-rules/rule-impact-analyzer-scope-expanded.png" alt-text="Screenshot that shows the Configure scope options to select specific rule collections, rules, network groups, and virtual networks for analysis.":::
+:::image type="content" source="media/how-to-simulate-security-admin-rules/rule-impact-analyzer-scope.png" lightbox="media/how-to-simulate-security-admin-rules/rule-impact-analyzer-scope.png" alt-text="Screenshot that shows the Configure scope options to select specific rule collections, rules, network groups, and virtual networks for analysis.":::
 
 1.  In the rule impact analyzer results page, select **Configure scope**.
 
