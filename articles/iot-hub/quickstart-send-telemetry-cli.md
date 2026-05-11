@@ -46,9 +46,9 @@ To launch Cloud Shell:
 
 1. Select your preferred CLI environment in the **Select environment** dropdown list. This quickstart uses the Bash environment. You can also use the PowerShell environment.
 
-    Some commands require different syntax or formatting in the Bash and PowerShell environments. For more information, see [Tips for using the Azure CLI successfully](/cli/azure/use-cli-effectively?tabs=bash%2Cbash2).
-
     ![Screenshot that shows selecting the CLI environment.](media/quickstart-send-telemetry-cli/cloud-shell-environment.png)
+
+    Some commands require different syntax or formatting in the Bash and PowerShell environments. For more information, see [Tips for using the Azure CLI successfully](/cli/azure/use-cli-effectively?tabs=bash%2Cbash2).
 
 ## Prepare two CLI sessions
 
