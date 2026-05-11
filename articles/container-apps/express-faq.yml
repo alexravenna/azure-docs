@@ -21,12 +21,12 @@ sections:
       - question: |
           What is Azure Container Apps express?
         answer: |
-          Azure Container Apps express is an environment tier for web applications that is currently in **Public Preview**. It helps you deploy quickly with scale from zero and fewer infrastructure choices to manage. You provide a container image, and express handles the environment setup, networking defaults, and scaling behavior for you.
+          Azure Container Apps express is an environment tier for container app environments that is currently in **Public Preview**. It helps you deploy quickly with scale from zero and fewer infrastructure choices to manage. You provide a container image, and express handles the environment setup, networking defaults, and scaling behavior for you.
 
       - question: |
           How is Azure Container Apps express different from Azure Container Apps?
         answer: |
-          Azure Container Apps requires you to create and configure a managed environment before deploying apps. Express provides production-ready defaults with no environment provisioning. Key differences include:
+          Azure Container Apps requires you to create and configure a managed environment before deploying apps. Express provides production-ready defaults with minimal environment provisioning time. Key differences include:
 
           - **Provisioning**: Express apps are running in seconds, not minutes.
           - **Cold starts**: Express delivers sub-second scale-from-zero startup times.
@@ -101,7 +101,7 @@ sections:
 
           - Deploy container images from any registry (anonymous or token-based pull)
           - Automatic scale from zero with no configuration required
-          - Multi-replica scaling for production traffic
+          - Up to 2 min replicas per app. No autoscaling is available yet.
           - Default ingress domain with an immediate public URL
           - Environment variables and secrets management
           - Real-time log streaming
@@ -134,7 +134,7 @@ sections:
       - question: |
           Which Azure regions support express?
         answer: |
-          Express is available in the following regions during Public Preview:
+          Express is initially available in the following regions during Public Preview:
 
           - East Asia
           - West Central US
@@ -172,7 +172,7 @@ sections:
         answer: |
           We select migration candidates based on multiple factors:
 
-          - **Activity level**: We prioritize environments with no running applications or jobs.
+          - **Activity level**: We prioritize environments with few or no running applications or jobs.
           - **Feature usage**: We consider environments that don't use advanced features (such as VNet integration, Dapr, dedicated workload profiles, or session pools).
           - **Subscription usage**: We migrate low-usage subscriptions before high-usage ones to minimize disruption.
 
