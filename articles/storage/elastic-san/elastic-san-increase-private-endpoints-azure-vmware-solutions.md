@@ -1,6 +1,6 @@
 ---
 title: Increase Private Endpoints for Azure VMware Solution Datastores
-description: Increase private endpoints on Azure VMware Solution datastores to boost performance and reliability. Learn how to migrate VMs and templates with step-by-step guidance.
+description: Update Azure VMware Solution generation 1 datastores to use the recommended number of private endpoints. Learn how to migrate VMs and templates.
 ms.service: azure-elastic-san-storage
 author: shaynasrag
 ms.author: shaynasrag
@@ -12,21 +12,23 @@ ms.topic: how-to
 
 # Increase Private Endpoints on Azure VMware Solution Datastores
 
-Deploying Azure VMware Solution datastores on Elastic SAN with the recommended number of private endpoints enhances performance and reliability. If you have existing Azure VMware Solution datastores and need to adjust the number of endpoints, you must create a new datastore with the recommended configuration and migrate your workloads. This article guides you through creating a new datastore with the recommended endpoint configuration and migrating your VMs and templates.
+Deploying Azure VMware Solution datastores on Elastic SAN with the recommended number of private endpoints enhances performance and reliability. If you have existing Azure VMware Solution datastores and need to adjust the number of endpoints while avoiding downtime, you must create a new datastore with the recommended configuration and migrate your workloads using vSphere. This article guides you through creating a new datastore with the recommended endpoint configuration and migrating your VMs and templates.
+
+> [!IMPORTANT]
+> This article only applies to Azure VMware Solution generation 1. If you're using Azure VMware Solution generation 2, you shouldn't need to perform the steps in this article since you should need to use a single private endpoint because Azure VMware Solution generation 2 clones iSCSI sessions.
 
 ## Prerequisites
 
 - You must have permissions to create and manage Elastic SAN resources.
 - You must have vSphere Client access for VM migration.
-- Review the [Configuration recommendations](../../azure-vmware/configure-azure-elastic-san.md#configuration-recommendations).
 
 ## Create new Azure VMware Solution datastore with recommended configuration
 
-To increase the number of private endpoints, first create a new datastore in Elastic SAN with the recommended configuration.
+To increase the number of private endpoints, create a new datastore in Elastic SAN with the recommended configuration.
 
-1. [Create volume groups](elastic-san-create.md#create-volume-groups) in your Elastic SAN account.
-1. Add the [recommended number of private endpoints](../../azure-vmware/configure-azure-elastic-san.md#configuration-recommendations) to your volume group.
-1. [Create a new volume](elastic-san-create.md#create-volumes) in your new volume group.
+1. [Create volume groups and new volumes](elastic-san-create.md#create-volume-groups) in your Elastic SAN.
+1. Review the [recommended number of private endpoints](../../azure-vmware/configure-azure-elastic-san.md#configuration-recommendations) to your volume group for your host type.
+1. [Create the number of private endpoints you need](../../azure-vmware/configure-azure-elastic-san.md#configure-private-endpoint) until your configuration matches the appropriate recommended configuration for your host type.
 1. [Create a new Elastic SAN Datastore](../../azure-vmware/configure-azure-elastic-san.md#add-an-elastic-san-volume-as-a-datastore) on Azure VMware Solution. This is your target datastore.
 
 ## Migrate VMs and templates to the new datastore
