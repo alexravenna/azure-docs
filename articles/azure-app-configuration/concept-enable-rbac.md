@@ -356,7 +356,7 @@ helm install azureappconfiguration.kubernetesprovider \
 
 If you use Azure PowerShell, the audience can be configured by setting the `AzureAppConfigurationEndpointResourceId` parameter on a custom Azure environment using `Add-AzEnvironment` or `Set-AzEnvironment`. Use version **15.6.0** or later of the **Az** module.
 
-The following example demonstrates how to configure the Azure Government environment with the App Configuration audience and endpoint suffix.
+The following example demonstrates how to configure the Bleu environment with the App Configuration audience and endpoint suffix.
 
 ```powershell
 Add-AzEnvironment -Name "{Environment name}" `
