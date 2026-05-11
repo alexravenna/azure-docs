@@ -4,7 +4,6 @@ description: Learn how to deploy your first Azure Container Apps express app usi
 ms.service: azure-container-apps
 author: craigshoemaker
 ms.author: cshoe
-ms.service: azure-container-apps
 ms.topic: how-to
 ms.date: 05/05/2026
 # customer intent: As a developer, I want to deploy a container app to Azure Container Apps express using the Azure CLI so that I can get my web app running in the cloud as quickly as possible.
