@@ -59,7 +59,7 @@ Use rule impact analyzer in the Azure portal to analyze your security admin rule
 
 ## Review results
 
-After running the simulation, you see a detailed report that lists all existing traffic paths that have the target network groups’ virtual networks as the source and destination. The report shows how your security admin rules can affect those traffic paths.
+After running the simulation, you see a detailed report that lists all existing traffic paths that have the target network groups’ virtual networks as the source or destination. The report shows how your security admin rules can affect those traffic paths.
 
 :::image type="content" source="media/how-to-simulate-security-admin-rules/rule-impact-analyzer-results.png" lightbox="media/how-to-simulate-security-admin-rules/rule-impact-analyzer-results-expanded.png" alt-text="Screenshot that shows the rule impact analyzer results with predicted traffic impact states (Affected, Not affected, Cannot be determined) for each traffic path.":::
 
