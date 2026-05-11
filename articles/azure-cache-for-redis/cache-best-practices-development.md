@@ -80,13 +80,15 @@ While you can connect from outside of Azure, it isn't recommended, especially wh
 
 ## Rely on hostname, not a public or private IP address
 
-The IP address assigned to your cache can change as a result of a scale operation or backend improvement. We recommend relying on the hostname instead of an explicit public or private IP address. Note that the 'static IP' of the cache in a virtual network is nominal; it isn't truly guaranteed to be forever even though changes are rare. Here are the recommended forms for the various tiers:
+The IP address assigned to your cache can change as a result of a scale operation or backend improvement. We recommend relying on the hostname instead of an explicit public or private IP address. The configured static IP address for a cache in a virtual network isn't an immutable guarantee and might change during certain operations, although changes are rare. Here are the recommended forms for the various SKUs:
 
-|Tier | Form |
+|SKUs| Form |
 |----|----|
-| Basic, Standard, Premium | `<cachename>.redis.cache.windows.net` |
+| Basic, Standard, Premium | `<DNS name>.redis.cache.windows.net` |
 | Enterprise, Enterprise Flash | `<DNS name>.<Azure region>.redisenterprise.cache.azure.net.`  |
 | Azure Managed Redis | `<DNS name>.<Azure region>.redis.azure.net` |
+
+ In these examples, `<DNS name>` refers to the cache instance's DNS host label. A trailing dot can be used to represent a fully qualified domain name (FQDN), but it isn't required.
 
 ## Choose an appropriate Redis version
 
