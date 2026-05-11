@@ -166,7 +166,7 @@ This example uses the generic **Recurrence** built-in trigger, which runs your w
 
 1. In the designer, follow the [general steps](../logic-apps/add-trigger-action-workflow.md#add-action) to add the *built-in* SFTP-SSH action you want.
 
-   For example, the SFTP action named **Get file content** gets the content from a file on an SFTP server. You can use the SFTP trigger that checks for new or updated files and a condition action that specifies criteria that the file content must meet. If the content meets the criteria, use another action to save the content to a different SFTP folder.
+   For example, the SFTP action named **Get file content** gets the file content on an SFTP server. You can use the SFTP trigger that checks for new or updated files and a condition action that specifies criteria that the file content must meet. If the content meets the criteria, use another action to save the content to a different SFTP folder.
 
 1. If prompted, provide the necessary [connection information](/azure/logic-apps/connectors/built-in/reference/sftp/#authentication). When you finish, select **Create new**.
 
