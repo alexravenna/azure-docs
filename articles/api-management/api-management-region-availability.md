@@ -55,9 +55,8 @@ Information in the following table is updated regularly. Capacity availability i
 | South Central US | ✅ | ✅ |  |  |
 | South India | ✅ | ✅ |  |  |
 | Southeast Asia | ✅ | ✅ |  |  |
-| Sweden Central | ✅ | ✅ | ✅ | |
-| South India | ✅ | ✅ |  |  |
 | Spain Central | ✅ | ✅ |  |  |
+| Sweden Central | ✅ | ✅ | ✅ | |
 | Switzerland North | ✅ |✅ |  |  |
 | UAE North | ✅ | ✅ | |  |
 | UK South | ✅ ¹ | ✅ ¹ | ✅ ¹ | ✅ |
