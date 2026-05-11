@@ -297,7 +297,7 @@ For the **Standard** logic app workflow, the following capabilities are differen
 
     * The built-in action, [Azure Logic Apps - Choose a Logic App workflow](logic-apps-http-endpoint.md) is now **Workflow Operations - Invoke a workflow in this workflow app**.
 
-    * The triggers in Standard stateless workflows do not support **Concurrency control**.
+    * In Standard stateless workflows, triggers don't support changing the trigger concurrency.
  
     * A Standard workflow can have only one trigger and doesn't support multiple triggers.
 
