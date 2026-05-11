@@ -30,7 +30,7 @@ For background on Azure RBAC concepts, see [Azure role-based access control docu
 
 ## Built-in Microsoft Discovery roles
 
-Microsoft Discovery provides three built-in roles designed around research personas. They're listed here in order of decreasing permissions.
+Microsoft Discovery provides four built-in roles. Three are designed around research personas; one is a specialized role for agent-knowledgebase integration scenarios. They're listed here in order of decreasing permissions.
 
 ### Microsoft Discovery Platform Administrator (Preview)
 
@@ -193,6 +193,73 @@ Readers have limited privileges to view and review information. They can't creat
 
 ---
 
+### Microsoft Discovery Bookshelf Index Data Reader (Preview)
+
+**Target persona:** AI developers other than the owner who created the Knowledge base
+
+**Assignable scopes:** Subscription, resource group, resource
+
+**Primary interface:** REST APIs, SDKs
+
+**Description:** Grants query access to search and retrieve data from Microsoft Discovery Bookshelf knowledge bases. 
+
+**Key capabilities:**
+
+- Retrieving data from Microsoft Discovery Bookshelf knowledge base versions using Discovery Agents
+- Minimum required access for agents to query linked knowledge bases
+
+**Key limitations:**
+
+- Can't create, update, or delete any resources
+- Can't perform any control plane or other data plane operations
+- No data action permissions; access is limited to the single search action
+
+**Permissions:**
+
+| Permission | Purpose |
+|------------|---------|
+| `Microsoft.Discovery/bookshelf/knowledgeBaseVersions/search` | Search and retrieve data from Bookshelf knowledge base versions |
+
+**Data actions:** None
+
+---
+
+### Discovery NSP Perimeter Joiner (custom role)
+
+**Target persona:** Microsoft Discovery first-party service principal (**Discovery control-plane service App**, app ID `92c174ac-8e41-4815-a1b7-d81b19ab03ce`) — *not* a human user.
+
+**Assignable scopes:** Subscription
+
+**Primary interface:** Azure CLI, Azure PowerShell, Azure portal (created by a subscription Owner during initial setup)
+
+**Description:** A *customer-created custom role* that grants the Microsoft Discovery control plane the minimum permissions it needs to associate (join) managed PaaS resources to the workspace's Network Security Perimeter (NSP) when provisioning network-hardened workspaces, supercomputers, and bookshelves. The NSP itself, and its access-rule profiles, are created by the Discovery service in the workspace's managed resource group; this role only authorizes the *resource-association* step. Network hardening is enabled by default for all new Discovery resources, so this role assignment is a one-time setup step per subscription.
+
+**Key capabilities:**
+
+- Joins managed PaaS resources (Azure OpenAI, Cosmos DB, Key Vault, Storage, Azure AI Search) to the Discovery-managed NSP at deployment time (creates the `resourceAssociations` entry on the NSP)
+- Reads NSP operation status to track association progress
+
+**Key limitations:**
+
+- Can't create, modify, or delete the NSP resource itself, its profiles, or its access rules
+- Can't create, modify, or delete `resourceAssociations` outside the join action (no broad write/delete on the NSP)
+- Can't read or modify any other Azure resource
+- Doesn't grant any data plane access
+
+**Permissions:**
+
+| Permission | Purpose |
+|------------|---------|
+| `Microsoft.Network/networkSecurityPerimeters/joinPerimeterRule/action` | Join managed resources to a Network Security Perimeter |
+| `Microsoft.Network/locations/networkSecurityPerimeterOperationStatuses/read` | Read the status of NSP operations |
+
+**Data actions:** None
+
+> [!IMPORTANT]
+> This role isn't a built-in Azure role — you create it once per subscription. Workspace, supercomputer, and bookshelf creation fail with NSP association errors if this role isn't assigned to the **Discovery control-plane service App** service principal before the first deployment. For full instructions, see [Assign the NSP Perimeter Joiner role](how-to-configure-network-security.md?tabs=azure-cli#assign-the-nsp-perimeter-joiner-role).
+
+---
+
 ## Roles required by persona
 
 The following table summarizes the recommended role combinations for each user persona. Roles can be assigned at the subscription or resource group scope. You can add more roles as your requirements grow.
@@ -200,18 +267,20 @@ The following table summarizes the recommended role combinations for each user p
 > [!TIP]
 > Start with least-privilege roles scoped to the narrowest scope needed, and expand permissions only as required.
 
-| Platform / IT administrator | Scientist / researcher | Reader / viewer |
+| Platform administrator | Scientist / researcher | Reader / viewer |
 |-----------------------------|------------------------|-----------------|
 | Microsoft Discovery Platform Administrator (Preview) | Microsoft Discovery Platform Contributor (Preview) | Microsoft Discovery Platform Reader (Preview) |
 | Managed Identity Contributor | Storage Account Contributor | Reader |
 | Managed Identity Operator | Storage Blob Data Contributor | |
 | Storage Account Contributor | AcrPush | |
 | Storage Blob Data Contributor | Reader (subscription level) | |
-| Network Contributor | | |
-| AcrPush | | |
+| Network Contributor | Azure AI User (Workspace MRG level) | |
+| AcrPush | Microsoft Discovery Bookshelf Index Data Reader (Preview) | |
 | Reader | | |
+| Azure AI Owner (Workspace MRG level) | | |
+| Microsoft Discovery Bookshelf Index Data Reader (Preview) | | |
 
-## Other Azure roles
+## Other Azure roles definition
 
 Some workflows require Azure built-in roles beyond the Microsoft Discovery roles. The following table lists the most common ones.
 
@@ -285,6 +354,12 @@ az role assignment create \
   --assignee-object-id {group-object-id} \
   --role "Microsoft Discovery Platform Reader (Preview)" \
   --scope "/subscriptions/{subscription-id}/resourceGroups/{rg-name}"
+
+# Assign Bookshelf Index Data Reader role to a managed identity at resource group scope
+az role assignment create \
+  --assignee {managed-identity-object-id} \
+  --role "Microsoft Discovery Bookshelf Index Data Reader (Preview)" \
+  --scope "/subscriptions/{subscription-id}/resourceGroups/{rg-name}"
 ```
 
 ### Azure PowerShell
@@ -307,6 +382,12 @@ New-AzRoleAssignment `
   -SignInName user@contoso.com `
   -RoleDefinitionName "Microsoft Discovery Platform Reader (Preview)" `
   -Scope "/subscriptions/{subscription-id}"
+
+# Assign Bookshelf Index Data Reader role to a managed identity at resource group scope
+New-AzRoleAssignment `
+  -ObjectId {managed-identity-object-id} `
+  -RoleDefinitionName "Microsoft Discovery Bookshelf Index Data Reader (Preview)" `
+  -Scope "/subscriptions/{subscription-id}/resourceGroups/{rg-name}"
 ```
 
 ## Related content
