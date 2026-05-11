@@ -38,7 +38,7 @@ This section describes how to create an IoT hub by using the [Azure portal](http
 
 1. Select **Next: Networking** to continue creating your hub.
 
-1. On the **Networking** tab, fill in the fields that are listed in the following table.
+1. On the **Networking** tab, fill in the following fields:
 
    | Property | Value |
    | ----- | ----- |

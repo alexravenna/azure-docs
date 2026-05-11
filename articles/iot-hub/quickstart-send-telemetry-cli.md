@@ -42,13 +42,11 @@ To launch Cloud Shell:
 
     ![Screenshot that shows the Azure portal Cloud Shell button.](media/quickstart-send-telemetry-cli/cloud-shell-button.png)
 
-    > [!NOTE]
-    > If this is your first time using Cloud Shell, you're prompted to create storage, which is required to use Cloud Shell. Select a subscription to create a storage account and an Azure Files share.
+    If this is your first time using Cloud Shell, you're prompted to create storage, which is required to use Cloud Shell. Select a subscription to create a storage account and an Azure Files share.
 
 1. Select your preferred CLI environment in the **Select environment** dropdown list. This quickstart uses the Bash environment. You can also use the PowerShell environment.
 
-    > [!NOTE]
-    > Some commands require different syntax or formatting in the Bash and PowerShell environments. For more information, see [Tips for using the Azure CLI successfully](/cli/azure/use-cli-effectively?tabs=bash%2Cbash2).
+    Some commands require different syntax or formatting in the Bash and PowerShell environments. For more information, see [Tips for using the Azure CLI successfully](/cli/azure/use-cli-effectively?tabs=bash%2Cbash2).
 
     ![Screenshot that shows selecting the CLI environment.](media/quickstart-send-telemetry-cli/cloud-shell-environment.png)
 
