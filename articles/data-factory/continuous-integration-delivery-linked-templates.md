@@ -37,10 +37,10 @@ When deploying your resources, you specify that the deployment is either an incr
 ## Considerations for shared self-hosted integration runtimes
 
 > [!WARNING]
-> When deploying linked ARM templates to an environment that uses a **linked (shared) self-hosted integration runtime**, the ARM deployment will overwrite the linked IR configuration with a plain self-hosted IR definition that has no registered nodes. This causes the IR to become **Unavailable**, breaking all linked services that depend on it.
+> When deploying linked ARM templates to an environment that uses a **linked (shared) self-hosted integration runtime**, the Resource Manager deployment will overwrite the linked IR configuration with a plain self-hosted IR definition that has no registered nodes. This causes the IR to become **Unavailable**, breaking all linked services that depend on it.
 > This happens because the linked ARM templates generated during publish always export integration runtimes as standalone `Microsoft.DataFactory/factories/integrationRuntimes` resources, with no awareness of linked IR relationships in target environments.
 
-To prevent this, add a step in your CI/CD pipeline to remove IR resource definitions from the linked template files **before** the ARM deployment step. If the target environment uses a different IR name than the source factory, add a rename step after the removal. The shared IR in the target environment remains intact and all linked services continue to resolve correctly after deployment.
+To prevent this, add a step in your CI/CD pipeline to remove IR resource definitions from the linked template files **before** the Resource Manager deployment step. If the target environment uses a different IR name than the source factory, add a rename step after the removal. The shared IR in the target environment remains intact and all linked services continue to resolve correctly after deployment.
 
 ## Related content
 
