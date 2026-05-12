@@ -181,7 +181,7 @@ sections:
       - question: |
           What is environment archiving?
         answer: |
-          Environments that are inactive (no running apps or jobs and no recent activity) may be archived. An archived environment is put to sleep. If you need your environment again, you can restore it.
+          You can archive an environment if it is not currently needed. Archiving deprovisions the underlying resources, preventing any unwanted billing and freeing up quota. Archived environments can later be restored to a running state. The default domain name won't change but the inbound and outbound IPs will. Archiving is only available if all of the features currently used by the environment can be backed up without data loss. Archiving can also be used to migrate an environment between modes like WorkloadProfiles to Express.
 
       - question: |
           Can I self-migrate my environment to express?
@@ -203,7 +203,7 @@ sections:
       - question: |
           What happens to my apps and data during migration?
         answer: |
-          During migration, your applications can experience up to 15 minutes of downtime. Automatic migrations are announced in advance. If you self-migrate by using archive and restore, you control the timing of the move.
+          During migration, your applications can experience up to 30 minutes of downtime. Automatic migrations are announced in advance. If you self-migrate by using archive and restore, you control the timing of the move.
 
   - name: Production readiness
     questions:
