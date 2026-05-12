@@ -1,0 +1,14 @@
+Question Number,Question,Overall Score,Answer Confidence,Notes / Gaps
+1,How do I enable large file share support on my Azure storage account?,2.0,Low,How-to article appears retired; feature exists but only surfaced in SDK reference docs (Set-AzStorageAccount -EnableLargeFileShare / largeFileSharesState property). No dedicated how-to chunk retrieved.
+2,How do I sync an Azure File Share to Blob Storage using AzCopy?,3.2,Medium,AzCopy general docs retrieved but no chunk specific to AFS-to-Blob sync scenario. Partial coverage only.
+3,Why isn't my Logic App trigger firing for files in Azure File Share subfolders?,2.0,Low,No Logic App + Azure Files connector troubleshooting content found. Chunks returned were generic Logic App trigger docs with no subfolder-specific guidance.
+4,How do I configure customer-managed keys for Azure Files encryption?,4.6,High,Strong retrieval — customer-managed keys how-to articles returned directly. Minor gap: cross-tenant CMK scenario not fully covered in top 5 chunks.
+5,How can I identify non-compliant Azure File Shares in my environment?,2.8,Low,Policy reference and Azure Policy docs retrieved but lack Azure Files-specific built-in policy examples. Compliance query guidance thin.
+6,What are the key properties and configuration options for an Azure File Sync Storage Sync Service?,3.6,Medium,Storage Sync Service overview and ARM properties docs retrieved. Missing detailed portal-based configuration walkthrough in top chunks.
+7,How can I resolve file download errors in Azure File Sync related to permissions / access / Key Vault?,3.2,Medium,Troubleshooting article retrieved with relevant error codes but Key Vault integration errors not explicitly addressed in top 5 chunks.
+8,How can I resolve file download errors in Azure File Sync when fetching the target download URI fails?,3.4,Medium,Sync error troubleshooting docs retrieved; URI-fetch failure scenario partially covered but not as a named/dedicated section.
+9,How can I resolve file download errors when backing up certificates with Azure File Sync?,2.8,Low,Azure Backup + File Sync docs retrieved but certificate-specific backup errors not addressed. Chunks diverge into general backup troubleshooting.
+10,How do I migrate from Azure File Sync to 100% cloud-based Azure Files?,3.2,Medium,Migration overview docs retrieved; cloud-only transition path covered at high level but step-by-step decommission guidance thin.
+11,Why does identity-based access keep reverting to unconfigured on my Azure File Share?,3.2,Medium,Identity-based access configuration docs retrieved; revert/reconfiguration issue not called out explicitly — troubleshooting gap.
+,,,,
+Average Score,3.1,,Questions scoring ≥ 4: 1 (Q4),Evaluated using live microsoft_docs_search (Top 5 chunks per question) — Claude Sonnet 4.6 — May 2026
