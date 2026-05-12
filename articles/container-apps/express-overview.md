@@ -12,7 +12,7 @@ ms.service: azure-container-apps
 
 Azure Container Apps express provides the fastest way to deploy containerized web applications to Azure. With opinionated defaults and a minimal configuration surface, express is a developer-first and agent-first platform designed to get your web apps running in the cloud as fast as possible.
 
-By using express, you can create a container app directly without having to create an environment first. The rapid provisioning and scale-from-zero features make express an ideal host for AI-powered applications and agent backends.
+By using express, you can create a container app directly without waiting for environment provisioning first. The rapid provisioning and scale-from-zero features make express an ideal host for AI-powered applications and agent backends.
 
 :::image type="content" source="media/express-overview/azure-container-apps-express-welcome.png" alt-text="Screenshot of the Azure Container Apps express welcome screen.":::
 
@@ -49,7 +49,7 @@ The express deployment model works best for HTTP-based web workloads where speed
 
 ## How express works
 
-The express deployment model simplifies the deployment experience by removing the need to create and manage a Container Apps environment. You deploy your app directly, and the platform provisions the underlying resources for you.
+The express deployment model simplifies the deployment experience by removing the need to manage a Container Apps environment. You deploy your app and the platform provisions the underlying resources for you.
 
 - **Less environment details to manage**: When using the portal, the platform creates a light-weight environment for your app. If working from the CLI, you still create an environment yourself.
 
@@ -159,7 +159,7 @@ The express deployment model supports the following features. This list is updat
 
 ## Region availability
 
-During preview, express is available only in the **West Central US** region. Support for more regions will be added in future releases.
+During public preview, express is initially available in the **West Central US** and **East Asia** regions. Support for more regions will be coming soon.
 
 ## Next steps
 
