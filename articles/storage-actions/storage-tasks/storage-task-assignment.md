@@ -34,7 +34,7 @@ The following table describes the configuration settings of a storage task assig
 | Filter by | Required | Option to either filter objects by using a prefix or to run the task against the entire storage account. |
 | Include blob prefixes | Required | The string prefix that is used to narrow the scope of blobs that are evaluated by the task. This field is required only if you choose to filter by using a blob prefix. |
 | Exclude blob prefixes | Optional | The string prefix that is used to exclude blobs that are evaluated by the task. Exclude blob prefixes must not be a superset beyond the scope of the include blob prefix. |
-| Run type | Required | The type of run to perform. Choose **Run once** to execute the task a single time, **Recurring** to run on a schedule, or **Mock run** to simulate the task without performing any operations. A mock run scans and evaluates blobs against the task conditions and generates a report, but does not modify any data. |
+| Run type | Required | The type of run to perform. Choose **Run once** to execute the task a single time, **Recurrent run** to run on a schedule, or **Mock run** to simulate the task without performing any operations. A mock run scans and evaluates blobs against the task conditions and generates a report, but does not modify any data. |
 | Run frequency | Required | Option to either run the task one time or multiple times. | 
 | Start from | Required | The date and time to begin running the task. Applicable only when scheduling a task to run multiple times. |
 | End by | Required | The date and time stop running the task. Applicable only when scheduling a task to run multiple times. |
