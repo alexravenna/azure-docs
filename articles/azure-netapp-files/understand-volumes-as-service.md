@@ -60,7 +60,7 @@ As an example, expanding storage for a new workload might be as easy as an API c
 
 ## Cloud Integration and Programmability
 
-Because Azure NetApp Files is a native Azure service, it integrates seamlessly with Azure’s management and automation tools. Users can control Azure NetApp Files through the Azure Portal, PowerShell/CLI, or Azure REST APIs, and even Terraform, enabling full Infrastructure-as-Code and DevOps automation of storage provisioning and management. 
+Because Azure NetApp Files is a native Azure service, it integrates seamlessly with Azure’s management and automation tools. Users can control Azure NetApp Files through the Azure portal, PowerShell/CLI, or Azure REST APIs, and even Terraform, enabling full Infrastructure-as-Code and DevOps automation of storage provisioning and management. 
 
 This programmability means enterprises can incorporate storage operations into their CI/CD pipelines or automated workflows. For instance, a dataset for a test environment can be automatically cloned and mounted as part of a deployment script. Azure NetApp Files also supports Azure Tags, Azure Policy, and central monitoring via Azure Monitor, which helps maintain governance and alignment with the organization’s cloud operations standards. The ability to script and automate every aspect of volume lifecycle (creation, snapshots, resizing, tier changes, backup, etc.) not only saves administrative time but also reduces the risk of human error, contributing to reliability. 
 
