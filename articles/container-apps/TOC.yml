@@ -229,7 +229,7 @@ items:
         - name: Functions and GPU
           items:
             - name: Use GPUs with Functions on Container Apps
-              href: ../azure-functions/functions-gpu-container-apps.md
+              href: functions-gpu-container-apps.md
             - name: "Tutorial: GPU image generation with Functions on ACA"
               href: tutorial-gpu-image-generation.md
         - name: Migrate from Functions v1 to v2

@@ -232,12 +232,6 @@
         href: container-concepts.md
       - name: Azure Container Apps hosting
         href: functions-container-apps-hosting.md
-      - name: Functions and GPU
-        items:
-        - name: Use GPUs with Functions on Container Apps
-          href: functions-gpu-container-apps.md
-        - name: "Tutorial: GPU image generation with Functions on ACA"
-          href: ../container-apps/tutorial-gpu-image-generation.md
     - name: Consumption plan (legacy)
       href: consumption-plan.md
     - name: Host MCP servers
