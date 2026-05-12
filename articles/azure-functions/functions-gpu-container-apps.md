@@ -51,6 +51,101 @@ Before you begin, make sure you have the following requirements:
 - [Azure Functions Core Tools](functions-run-local.md) version 4.x.
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/) for building container images.
 
+## Container image requirements for GPU
+
+When running Azure Functions with GPU on Container Apps, you must provide a custom container image that includes the Functions runtime, your GPU libraries, and your application code. Understanding the image requirements helps you build containers that work correctly with serverless GPUs.
+
+### Base image
+
+Your container image must include the Azure Functions runtime. Use one of the official [Azure Functions base images](https://mcr.microsoft.com/catalog?search=functions) as your starting point:
+
+| Language | Base image |
+|---|---|
+| Python | `mcr.microsoft.com/azure-functions/python:4-python3.11` |
+| Node.js | `mcr.microsoft.com/azure-functions/node:4-node20` |
+| .NET | `mcr.microsoft.com/azure-functions/dotnet-isolated:4-dotnet-isolated8.0` |
+| Java | `mcr.microsoft.com/azure-functions/java:4-java17` |
+| Custom handler | `mcr.microsoft.com/azure-functions/base:4` |
+
+These base images include the Functions host runtime. The [quickstart image](https://mcr.microsoft.com/en-us/artifact/mar/k8se/gpu-quickstart) (`mcr.microsoft.com/k8se/gpu-quickstart:latest`) is a prebuilt sample for testing GPU functionality, but it doesn't include the Functions runtime — use it only for validating GPU access in your environment.
+
+> [!TIP]
+> When you create a project with `func init --docker`, the generated Dockerfile already uses the correct base image for your chosen language runtime.
+
+### CUDA and GPU libraries
+
+The Azure Container Apps serverless GPU platform provides the NVIDIA driver on the host. However, CUDA runtime libraries, cuDNN, and other GPU frameworks are **not** preinstalled in the Functions base images. You must include them in your container image.
+
+You have two options for including CUDA:
+
+**Option 1: Install GPU frameworks that bundle CUDA** (recommended)
+
+Most AI/ML frameworks like PyTorch and TensorFlow ship with their own CUDA runtime. Install them with the appropriate CUDA variant:
+
+```dockerfile
+FROM mcr.microsoft.com/azure-functions/python:4-python3.11
+
+# PyTorch includes CUDA runtime
+RUN pip install torch torchvision --index-url https://download.pytorch.org/whl/cu121
+
+COPY . /home/site/wwwroot
+ENV AzureWebJobsScriptRoot=/home/site/wwwroot
+```
+
+**Option 2: Use a multi-stage build with NVIDIA CUDA base image**
+
+For workloads that need direct CUDA access without a high-level framework:
+
+```dockerfile
+# Stage 1: CUDA runtime
+FROM nvidia/cuda:12.1.0-runtime-ubuntu22.04 AS cuda-base
+
+# Stage 2: Functions image with CUDA libraries
+FROM mcr.microsoft.com/azure-functions/python:4-python3.11
+
+# Copy CUDA libraries from the NVIDIA base image
+COPY --from=cuda-base /usr/local/cuda /usr/local/cuda
+ENV PATH="/usr/local/cuda/bin:${PATH}"
+ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
+
+COPY requirements.txt /
+RUN pip install -r /requirements.txt
+
+COPY . /home/site/wwwroot
+ENV AzureWebJobsScriptRoot=/home/site/wwwroot
+```
+
+### GPU software stack compatibility
+
+The platform provides the NVIDIA driver, and your container must include a compatible CUDA runtime version. Check the current supported versions in the [GPU software stack](../container-apps/gpu-serverless-overview.md#gpu-software-stack) documentation before building your image.
+
+| Component | Provided by |
+|---|---|
+| NVIDIA GPU driver | Platform (Azure Container Apps host) |
+| CUDA runtime | Your container image |
+| cuDNN, NCCL, TensorRT | Your container image |
+| AI/ML frameworks (PyTorch, TensorFlow, etc.) | Your container image |
+
+> [!IMPORTANT]
+> The CUDA runtime version in your container must be compatible with the NVIDIA driver version on the platform. Generally, the NVIDIA driver is backward-compatible with older CUDA versions. Check the [NVIDIA CUDA compatibility matrix](https://docs.nvidia.com/deploy/cuda-compatibility/) for details.
+
+### Image size considerations
+
+GPU container images are typically large (5-15 GB) due to CUDA libraries and model files. To reduce image pull times and cold start latency:
+
+- Use multi-stage Docker builds to minimize the final image size.
+- Store large model files in [Azure Storage mounts](../container-apps/cold-start.md#manage-large-downloads) instead of bundling them in the image.
+- Enable [artifact streaming](/azure/container-registry/container-registry-artifact-streaming) on your Azure Container Registry (Premium SKU) for faster image pulls.
+- Use `.dockerignore` to exclude unnecessary files from the build context.
+
+### Sample Dockerfiles and templates
+
+For ready-to-use examples, see the following resources:
+
+- [Azure Functions on Container Apps GPU sample](https://github.com/Azure-Samples/function-on-aca-gpu) — Complete sample with Dockerfile, function code, and deployment configuration.
+- [Azure Container Apps GPU templates](https://github.com/microsoft/azure-container-apps/tree/main/templates/azml-app) — Templates for deploying models to serverless GPUs.
+- [Azure Functions base images](https://mcr.microsoft.com/catalog?search=functions) — Official Functions runtime images for all supported languages.
+
 ## Create a GPU-enabled function app
 
 ### Step 1: Create a Functions project with Docker support
