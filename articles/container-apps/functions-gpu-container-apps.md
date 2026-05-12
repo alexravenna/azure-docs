@@ -76,13 +76,13 @@ These base images include the Functions host runtime. The [quickstart image](htt
 
 ### CUDA and GPU libraries
 
-The Azure Container Apps serverless GPU platform provides the NVIDIA driver on the host. However, CUDA runtime libraries, cuDNN, and other GPU frameworks are **not** preinstalled in the Functions base images. You must include them in your container image.
+The Azure Container Apps serverless GPU platform provides both the NVIDIA driver and a [platform-provided CUDA runtime](gpu-serverless-overview.md#gpu-software-stack) (currently CUDA 12.x). If your application can use the platform-provided CUDA version, no extra CUDA setup is needed in your container. However, AI/ML frameworks and additional libraries like cuDNN must be included in your container image.
 
-You have two options for including CUDA:
+You have two options for CUDA:
 
-**Option 1: Install GPU frameworks that bundle CUDA** (recommended)
+**Option 1: Use the platform-provided CUDA runtime with GPU frameworks** (recommended)
 
-Most AI/ML frameworks like PyTorch and TensorFlow ship with their own CUDA runtime. Install them with the appropriate CUDA variant:
+Most AI/ML frameworks like PyTorch and TensorFlow bundle their own CUDA runtime. Install them with the appropriate CUDA variant:
 
 ```dockerfile
 FROM mcr.microsoft.com/azure-functions/python:4-python3.11
@@ -94,9 +94,9 @@ COPY . /home/site/wwwroot
 ENV AzureWebJobsScriptRoot=/home/site/wwwroot
 ```
 
-**Option 2: Use a multi-stage build with NVIDIA CUDA base image**
+**Option 2: Pin a specific CUDA version with a multi-stage build**
 
-For workloads that need direct CUDA access without a high-level framework:
+If you need a specific CUDA version different from the platform-provided one, or need direct CUDA access without a high-level framework:
 
 ```dockerfile
 # Stage 1: CUDA runtime
@@ -119,17 +119,17 @@ ENV AzureWebJobsScriptRoot=/home/site/wwwroot
 
 ### GPU software stack compatibility
 
-The platform provides the NVIDIA driver, and your container must include a compatible CUDA runtime version. Check the current supported versions in the [GPU software stack](gpu-serverless-overview.md#gpu-software-stack) documentation before building your image.
+The platform provides the NVIDIA driver and a CUDA runtime. Your container can rely on the platform-provided CUDA or ship its own. Check the current supported versions in the [GPU software stack](gpu-serverless-overview.md#gpu-software-stack) documentation.
 
 | Component | Provided by |
 |---|---|
 | NVIDIA GPU driver | Platform (Azure Container Apps host) |
-| CUDA runtime | Your container image |
+| CUDA runtime | Platform (default) or your container image (optional override) |
 | cuDNN, NCCL, TensorRT | Your container image |
 | AI/ML frameworks (PyTorch, TensorFlow, etc.) | Your container image |
 
 > [!IMPORTANT]
-> The CUDA runtime version in your container must be compatible with the NVIDIA driver version on the platform. Generally, the NVIDIA driver is backward-compatible with older CUDA versions. Check the [NVIDIA CUDA compatibility matrix](https://docs.nvidia.com/deploy/cuda-compatibility/) for details.
+> If you ship your own CUDA runtime, it must be compatible with the NVIDIA driver version on the platform. Generally, the NVIDIA driver is backward-compatible with older CUDA versions. Check the [NVIDIA CUDA compatibility matrix](https://docs.nvidia.com/deploy/cuda-compatibility/) for details. If you rely on the platform-provided CUDA runtime, verify your application works with the [current platform versions](gpu-serverless-overview.md#gpu-software-stack).
 
 ### Image size considerations
 
@@ -183,21 +183,9 @@ COPY . /home/site/wwwroot
 ```
 
 > [!IMPORTANT]
-> Your container image must include the necessary CUDA libraries and GPU frameworks for your workload. Verify compatibility with the [GPU software stack versions](gpu-serverless-overview.md#gpu-software-stack) supported by Azure Container Apps.
+> The platform provides a CUDA runtime by default. If your workload requires specific CUDA versions or additional GPU libraries, include them in your container image. Verify compatibility with the [GPU software stack versions](gpu-serverless-overview.md#gpu-software-stack) supported by Azure Container Apps.
 
-### Step 4: Build and push the container image
-
-Build your container image and push it to Azure Container Registry:
-
-```bash
-# Create a container registry (Premium SKU enables artifact streaming for faster image pulls)
-az acr create --name <REGISTRY_NAME> --resource-group <RESOURCE_GROUP> --sku Premium
-
-# Build and push the image
-az acr build --registry <REGISTRY_NAME> --image my-gpu-function:v1 .
-```
-
-### Step 5: Create a Container Apps environment with GPU
+### Step 4: Create a Container Apps environment with GPU
 
 ```bash
 # Create a resource group
@@ -215,6 +203,18 @@ az containerapp env workload-profile add \
   --resource-group <RESOURCE_GROUP> \
   --workload-profile-name gpu-t4 \
   --workload-profile-type Consumption-GPU-NC8as-T4
+```
+
+### Step 5: Build and push the container image
+
+Build your container image and push it to Azure Container Registry:
+
+```bash
+# Create a container registry (Premium SKU enables artifact streaming for faster image pulls)
+az acr create --name <REGISTRY_NAME> --resource-group <RESOURCE_GROUP> --sku Premium
+
+# Build and push the image
+az acr build --registry <REGISTRY_NAME> --image my-gpu-function:v1 .
 ```
 
 ### Step 6: Deploy the function app with GPU
