@@ -32,5 +32,5 @@ Always on was disabled because connection can't be established even after max re
 ![Diagram showing the checkbox on but connection remaining disconnected.](./media/vpn-gateway-vwan-always-on-device-macos/disconnected-connect-automatically-checked.png)
 
 Some unexpected error was hit. Try one of these mitigations: 
-1. Disable and re-enable ‘Connect Automatically’ 
-2. Remove profile and then import again 
+- Disable and re-enable 'Connect Automatically'
+- Remove profile and then import again 

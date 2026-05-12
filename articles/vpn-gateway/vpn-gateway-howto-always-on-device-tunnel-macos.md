@@ -27,7 +27,7 @@ Note the following prerequisites for Always On VPN device tunnels on macOS:
 ## Configure the gateway
 Always On VPN device tunnels are supported for all authentication types for the Azure VPN Client for macOS.
 
-This includes [certificate authentication](point-to-site-certificate-gateway.md) and [Microsoft Entra (AAD) Authentication](point-to-site-entra-gateway.md).
+This includes [certificate authentication](point-to-site-certificate-gateway.md) and [Microsoft Entra ID Authentication](point-to-site-entra-gateway.md).
 
 ## Configure a device tunnel
 
@@ -38,9 +38,7 @@ This includes [certificate authentication](point-to-site-certificate-gateway.md)
 Use the following steps:
 1. Open the Azure VPN Client for Mac.
 1. Disconnect the connection, and clear the **Connect automatically** check box (this can also be managed in settings).
-
-:::image type="content" source="./media/point-to-site-macos-always-on/settings.png" alt-text="Diagram of user settings in Azure VPN Client." lightbox="./media/point-to-site-macos-always-on/settings.png":::
-
+    :::image type="content" source="./media/point-to-site-macos-always-on/settings.png" alt-text="Diagram of user settings in Azure VPN Client." lightbox="./media/point-to-site-macos-always-on/settings.png":::
 1. Open the '...' menu next to the profile name, and select **Remove**
 
 ## Next steps
