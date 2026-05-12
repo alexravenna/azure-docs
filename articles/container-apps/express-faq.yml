@@ -13,7 +13,7 @@ summary: |
   This article answers frequently asked questions about Azure Container Apps express.
 
   > [!IMPORTANT]
-  > Azure Container Apps express is currently in **Public Preview**. Preview features are provided without an SLA and are not recommended for production workloads. Some features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+  > Azure Container Apps express is currently in **preview**. Preview features are provided without an SLA and are not recommended for production workloads. Some features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
 
 sections:
   - name: General
@@ -21,7 +21,7 @@ sections:
       - question: |
           What is Azure Container Apps express?
         answer: |
-          Azure Container Apps express is an environment tier for container app environments that is currently in **Public Preview**. It helps you deploy quickly with scale from zero and fewer infrastructure choices to manage. You provide a container image, and express handles the environment setup, networking defaults, and scaling behavior for you.
+          Azure Container Apps express is an environment tier for web applications that is currently in **preview**. It helps you deploy quickly with scale from zero and fewer infrastructure choices to manage. You provide a container image, and express handles the environment setup, networking defaults, and scaling behavior for you.
 
       - question: |
           How is Azure Container Apps express different from Azure Container Apps?
@@ -55,27 +55,7 @@ sections:
         answer: |
           You can create an express app using the Azure CLI or the new Azure Container Apps portal at [containerapps.azure.com](https://containerapps.azure.com/).
 
-          Using the Azure CLI, first create an express environment, then deploy your app:
-
-          ```azurecli
-          az containerapp env create \
-            --name <ENVIRONMENT_NAME> \
-            --resource-group <RESOURCE_GROUP_NAME> \
-            --environment-mode express \
-            --logs-destination none
-
-          az containerapp create \
-            --name <CONTAINER_APP_NAME> \
-            --resource-group <RESOURCE_GROUP_NAME> \
-            --environment <ENVIRONMENT_NAME> \
-            --image docker.io/nginx \
-            --target-port 80 \
-            --ingress external \
-            --min-replicas 0 \
-            --max-replicas 1
-          ```
-
-          Your app is live in seconds.
+          Using the Azure CLI, first create an express environment, then deploy your app. For more information, see [Deploy an express container app using the Azure CLI](./deploy-express-cli.md).
 
       - question: |
           Do I need to create a managed environment before deploying an express app?
@@ -97,7 +77,7 @@ sections:
       - question: |
           What features are available in express today?
         answer: |
-          Express is in Public Preview. The following features are available:
+          Express is in preview. The following features are available:
 
           - Deploy container images from any registry (anonymous or token-based pull)
           - Automatic scale from zero with no configuration required
@@ -108,12 +88,10 @@ sections:
           - Exec access to shell into running containers for debugging
           - New portal experience at [containerapps.azure.com](https://containerapps.azure.com/)
 
-          For the most current list of supported features, see the [express documentation](https://aka.ms/aca/express).
-
       - question: |
           What features are not yet available in express?
         answer: |
-          Express is in Public Preview and doesn't yet include all Azure Container Apps features. Currently unavailable features include:
+          Express is in preview and doesn't yet include all Azure Container Apps features. Currently unavailable features include:
 
           - VNet integration
           - Custom domains
@@ -127,24 +105,22 @@ sections:
       - question: |
           When will express reach feature parity with Azure Container Apps?
         answer: |
-          We continue to add features during Public Preview. Check the [express documentation](https://aka.ms/aca/express) for the latest feature support information.
+          Express will not support all featuers of Azure Container Apps. For more information, see [Azure Container Apps express overview](./express-overview.md).
 
   - name: Regions
     questions:
       - question: |
           Which Azure regions support express?
         answer: |
-          Express is initially available in the following regions during Public Preview:
+          Express is available in the following regions during preview:
 
           - East Asia
           - West Central US
 
-          Region availability is expanding throughout the preview period.
-
       - question: |
           Why can't I create an express environment in my preferred region?
         answer: |
-          During Public Preview, express is available only in specific regions. The portal and CLI might show unsupported regions. If you receive an `ExpressEnvironmentNotAvailableInRegion` error, choose a supported region and try again. Region availability expands throughout the preview.
+          During preview, express is available only in specific regions. The portal and CLI might show unsupported regions. If you receive an `ExpressEnvironmentNotAvailableInRegion` error, choose a supported region and try again.
 
   - name: Pricing and billing
     questions:
@@ -188,6 +164,14 @@ sections:
         answer: |
           Yes. You can use the archive and restore workflow to move to express without contacting support. Archive your current environment, then restore it as an express environment. This approach lets you choose when the migration happens.
 
+          For example:
+
+          ```bash
+          az containerapp env update --environment-mode express ...
+          ```
+
+          This command directly migrates an environment to express. The archive and restore functionality is handled internally.
+
       - question: |
           Can I opt out of automatic migration?
         answer: |
@@ -200,6 +184,8 @@ sections:
 
           If you self-migrate using archive and restore, review the express feature support matrix to confirm that express supports all features your application depends on before proceeding.
 
+          The self-migration flow prevents you from moving an app if a feature in use isn't supported. Instead, you see errors related to what's missing.
+
       - question: |
           What happens to my apps and data during migration?
         answer: |
@@ -210,12 +196,12 @@ sections:
       - question: |
           Is express ready for production workloads?
         answer: |
-          Express is currently in **Public Preview**. Preview services don't include an SLA. Express works well for development, testing, and prototyping, and for production workloads that don't require features only available in Azure Container Apps with workload profiles, such as VNet integration or managed identity.
+          Express is currently in **preview**. Preview services don't include an SLA. Express works well for development, testing, and prototyping, and for production workloads that don't require features only available in Azure Container Apps with workload profiles, such as VNet integration or managed identity.
 
       - question: |
           Does express have an SLA?
         answer: |
-          Express is in Public Preview and doesn't currently have an SLA. We'll define SLA commitments as express moves toward General Availability. For workloads that require an SLA today, use Azure Container Apps with workload profiles.
+          Express is in preview and doesn't have an SLA. SLA commitments will emerge as express moves toward General Availability. For workloads that require an SLA today, use Azure Container Apps with workload profiles.
 
       - question: |
           How do I provide feedback or report issues?

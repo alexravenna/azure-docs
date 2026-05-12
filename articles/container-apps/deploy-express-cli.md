@@ -1,5 +1,5 @@
 ---
-title: 'Quickstart: Deploy an Express container app using the Azure CLI'
+title: 'Quickstart: Deploy an Express Container App Using the Azure CLI'
 description: Learn how to deploy your first Azure Container Apps express app using the Azure CLI, including creating an express environment and deploying a container image.
 ms.service: azure-container-apps
 author: craigshoemaker
@@ -9,7 +9,7 @@ ms.date: 05/05/2026
 # customer intent: As a developer, I want to deploy a container app to Azure Container Apps express using the Azure CLI so that I can get my web app running in the cloud as quickly as possible.
 ---
 
-# Deploy an Express container app by using the Azure CLI (preview)
+# Deploy an express container app using the Azure CLI (preview)
 
 In this article, you use the Azure CLI to create an Azure Container Apps express environment and deploy your first express container app. Azure Container Apps express is a developer-first platform that gets your containerized web app running in the cloud with minimal configuration.
 
@@ -19,16 +19,29 @@ In this article, you use the Azure CLI to create an Azure Container Apps express
 ## Prerequisites
 
 - An Azure account with an active subscription. If you don't have one, [create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
-- A **Microsoft Entra ID account**. Only Entra ID accounts can sign in to express. Non-Entra ID accounts, such as personal Microsoft accounts, aren't supported.
 - The [Azure CLI](/cli/azure/install-azure-cli) installed.
 
 ## Update the Container Apps extension
 
 Before you begin, upgrade the Azure Container Apps CLI extension to the required version.
 
-```azurecli
-az extension update --name containerapp
-```
+1. Upgrade the Azure CLI to the latest version.
+
+    ```azurecli
+    az upgrade
+    ```
+
+1. Add the Container Apps extension.
+
+    ```azurecli
+    az extension add -n ContainerApp
+    ```
+
+1. Update the extension to ensure you have the latest version.
+
+    ```azurecli
+    az extension update --name containerapp
+    ```
 
 > [!NOTE]
 > You need version **1.3.0b4** or later of the `containerapp` extension.
@@ -46,7 +59,7 @@ az containerapp env create \
 ```
 
 > [!NOTE]
-> During the private preview, express is available only in the **West Central US** region. Ensure your resource group targets that region.
+> During preview, express is available only in the **West Central US** and **East Asia** regions.
 
 ## Deploy a container app
 
