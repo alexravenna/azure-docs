@@ -22,28 +22,6 @@ When you host Azure Functions on [Azure Container Apps](overview.md), you can us
 
 GPU support for Functions on Container Apps is available through Consumption GPU workload profiles in a workload profiles environment. You package your function code and GPU dependencies (such as CUDA libraries, AI models, or inference frameworks) into a custom container image, then deploy it to a Container Apps environment with a GPU workload profile.
 
-## Key benefits
-
-| Benefit | Description |
-|---|---|
-| **Event-driven GPU processing** | Combine Functions triggers and bindings with GPU compute for AI inference, image processing, or video transcription triggered by events from queues, HTTP, timers, and more. |
-| **Scale to zero** | Serverless GPUs scale in to zero when idle, eliminating costs during inactive periods. |
-| **Per-second billing** | Pay only for actual GPU compute time used during function execution. |
-| **Automatic scaling** | Scale out to meet demand with KEDA-based event-driven autoscaling. |
-| **Custom containers** | Package any GPU framework (PyTorch, TensorFlow, ONNX Runtime) alongside your function code. |
-| **Full data governance** | Your data never leaves the container boundary. |
-
-## Supported GPU types
-
-Azure Functions on Container Apps supports the following GPU types through serverless GPU workload profiles:
-
-| GPU type | Use case | vCPUs | Memory |
-|---|---|---|---|
-| **NVIDIA T4** | Cost-effective inference, image generation, smaller models | 8 | 56 GiB |
-| **NVIDIA A100** | High-performance inference, large language models, training | 24 | 220 GiB |
-
-For supported regions, see [Serverless GPU supported regions](gpu-serverless-overview.md#supported-regions).
-
 ## Prerequisites
 
 Before you begin, make sure you have the following requirements:
@@ -237,28 +215,6 @@ az containerapp create \
 ```
 
 The `--kind functionapp` flag enables Azure Functions integration. Setting `--min-replicas 0` enables scale-to-zero behavior for cost savings.
-
-## Common scenarios
-
-### AI inference
-
-Use GPU-accelerated Functions for real-time AI inference triggered by HTTP requests, queue messages, or events:
-
-- **Image classification and object detection** — Process images uploaded to Azure Blob Storage using GPU-accelerated models.
-- **Natural language processing** — Run LLMs or text analysis models triggered by Service Bus messages.
-- **Speech and audio processing** — Transcribe audio files using Whisper or similar models.
-
-### Batch processing
-
-Process large volumes of data using GPU compute triggered by timers or queue events:
-
-- **Video transcoding** — Transcode video files uploaded to storage.
-- **Scientific computing** — Run simulations triggered on a schedule.
-- **Data analytics** — Accelerate large-scale data transformations.
-
-### Image generation
-
-Generate images from text prompts using diffusion models. For a complete walkthrough, see [Tutorial: Deploy AI image generation with serverless GPUs with Azure Functions on ACA](tutorial-gpu-image-generation.md).
 
 ## Optimize cold start
 
