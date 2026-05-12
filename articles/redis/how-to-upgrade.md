@@ -27,7 +27,7 @@ These Redis versions are available for each tier.
 | Tier                         |        Available Redis version       |
 |:------------------------------------------------- |:------------------------------------:|
 | Memory Optimized, Balanced, Compute Optimized     |   Redis 7.4 |
-| Flash Optimized | Redis 7.4 (preview)  |
+| Flash Optimized | Redis 7.4  |
 
 ## Upgrade options
 
