@@ -6,7 +6,7 @@ author: halkazwini
 ms.author: halkazwini
 ms.service: azure-web-application-firewall
 ms.topic: concept-article
-ms.date: 02/25/2026
+ms.date: 05/12/2026
 
 # Customer intent: "As a cloud administrator, I want to create and manage Web Application Firewall policies for the Application Gateway, so that I can customize security settings for multiple sites efficiently and ensure each site is protected according to its specific requirements."
 ---
@@ -106,6 +106,38 @@ $appgw.ForceFirewallPolicyAssociation = $true
 ```
 
 Then proceed with the steps to associate a WAF Policy to your application gateway. For more information, see [Associate a WAF Policy with an existing Application Gateway.](associate-waf-policy-existing-gateway.md)
+
+## View WAF policy details
+
+To determine the rule set type and version configured on an existing WAF policy, use the Azure portal, Azure CLI, or Azure PowerShell.
+
+### Azure portal
+
+1. In the Azure portal, search for and select **Web Application Firewall policies**.
+1. Select your WAF policy.
+1. Select **Managed rules**. The **Managed rule set** section shows the rule set type (for example, OWASP or Microsoft_BotManagerRuleSet) and version for each configured rule set.
+
+### Azure CLI
+
+Use [az network application-gateway waf-policy show](/cli/azure/network/application-gateway/waf-policy#az-network-application-gateway-waf-policy-show) to retrieve the managed rule sets configured for a WAF policy:
+
+```azurecli
+az network application-gateway waf-policy show \
+  --name <policyName> \
+  --resource-group <resourceGroupName> \
+  --query "managedRules.managedRuleSets[].{type:ruleSetType, version:ruleSetVersion}" \
+  --output table
+```
+
+### Azure PowerShell
+
+```azurepowershell
+$policy = Get-AzApplicationGatewayFirewallPolicy `
+  -Name <policyName> `
+  -ResourceGroupName <resourceGroupName>
+
+$policy.ManagedRules.ManagedRuleSets | Select-Object RuleSetType, RuleSetVersion
+```
 
 ## Next step
 
