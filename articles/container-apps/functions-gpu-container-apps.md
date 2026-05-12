@@ -1,6 +1,8 @@
 ---
 title: Use GPUs with Azure Functions on Azure Container Apps
 description: Learn how to use serverless GPUs with Azure Functions on Azure Container Apps for compute-intensive AI and processing workloads.
+author: deepganguly
+ms.author: deepganguly
 ms.service: azure-container-apps
 ms.date: 05/12/2026
 ms.topic: how-to
@@ -50,7 +52,6 @@ Before you begin, make sure you have the following requirements:
 - [GPU quota approved](gpu-serverless-overview.md#request-serverless-gpu-quota) for your subscription. Customers with enterprise agreements and pay-as-you-go subscriptions have A100 and T4 quota enabled by default.
 - [Azure CLI](/cli/azure/install-azure-cli) version 2.62.0 or later.
 - [Azure Functions Core Tools](../azure-functions/functions-run-local.md) version 4.x.
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) for building container images.
 
 ## Container image requirements for GPU
 
@@ -189,8 +190,8 @@ COPY . /home/site/wwwroot
 Build your container image and push it to Azure Container Registry:
 
 ```bash
-# Create a container registry
-az acr create --name <REGISTRY_NAME> --resource-group <RESOURCE_GROUP> --sku Basic
+# Create a container registry (Premium SKU enables artifact streaming for faster image pulls)
+az acr create --name <REGISTRY_NAME> --resource-group <RESOURCE_GROUP> --sku Premium
 
 # Build and push the image
 az acr build --registry <REGISTRY_NAME> --image my-gpu-function:v1 .
@@ -272,24 +273,33 @@ GPU workloads often involve large container images and model files that increase
 Keep the following limitations in mind:
 
 - **One GPU per container**: Only one container in a function app can access the GPU. If you use sidecars, only the first container gets GPU access.
-- **Container requirement**: GPU functions must be deployed as [custom containers](container-concepts.md). Code-only deployments aren't supported for GPU workloads.
 - **Workload profiles environment**: Serverless GPUs require a workload profiles environment. Consumption-only environments aren't supported.
 - **Region availability**: GPU workload profiles are available in select regions. See [supported regions](gpu-serverless-overview.md#supported-regions).
 - **Quota**: You must have GPU quota approved for your subscription. See [Request GPU quota](gpu-serverless-overview.md#request-serverless-gpu-quota).
 
 ## Monitor GPU usage
 
-You can monitor GPU utilization through the container console:
+You can monitor GPU utilization and application performance through Azure Container Apps observability tools:
+
+### Check GPU status
 
 1. In the Azure portal, go to your container app.
 1. Under **Monitoring**, select **Console**.
+1. Select your replica and container, then choose **/bin/bash**.
 1. Run `nvidia-smi` to view GPU memory usage, utilization, and running processes.
 
-For application-level monitoring, configure [Application Insights](../azure-functions/monitor-functions.md) for your function app.
+### View logs and metrics
+
+1. Under **Monitoring**, select **Log stream** to view real-time container logs.
+1. Under **Monitoring**, select **Metrics** to track CPU, memory, and replica count.
+1. Use **Logs** to run KQL queries against your container app's log data.
+
+For more information, see [Monitor Azure Container Apps](observability.md). You can also configure [Application Insights](../azure-functions/configure-monitoring.md) for deeper function execution telemetry.
 
 ## Next steps
 
 - [Tutorial: Deploy AI image generation with serverless GPUs with Azure Functions on ACA](tutorial-gpu-image-generation.md)
-- [Azure Container Apps hosting of Azure Functions](../azure-functions/functions-container-apps-hosting.md)
+- [Azure Functions on Azure Container Apps overview](functions-overview.md)
 - [Using serverless GPUs in Azure Container Apps](gpu-serverless-overview.md)
-- [Linux container support in Azure Functions](../azure-functions/container-concepts.md)
+- [Improve cold start for serverless GPUs](gpu-serverless-overview.md#improve-gpu-cold-start)
+- [Monitor Azure Container Apps](observability.md)
