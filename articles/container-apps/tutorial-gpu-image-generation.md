@@ -1,5 +1,5 @@
 ---
-title: "Tutorial: Deploy AI image generation with serverless GPUs"
+title: "Tutorial: Deploy AI image generation with serverless GPUs with Azure Functions on ACA"
 description: Deploy Stable Diffusion for AI image generation using serverless GPUs in Azure Container Apps with Azure Functions or containers.
 author: craigshoemaker
 ms.author: cshoe
@@ -12,7 +12,7 @@ zone_pivot_groups: container-apps-portal-or-cli
 #customer intent: As a developer, I want to deploy an AI-powered image generation service using serverless GPUs so that I can create images from text prompts without managing GPU infrastructure.
 ---
 
-# Tutorial: Deploy AI image generation with serverless GPUs
+# Tutorial: Deploy AI image generation with serverless GPUs with Azure Functions on ACA
 
 In this tutorial, you deploy a Stable Diffusion-powered image generator using serverless GPUs in Azure Container Apps. You can deploy this solution either as an Azure Functions app or as a standard container app, depending on your needs.
 
