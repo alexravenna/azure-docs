@@ -40,19 +40,19 @@ After creating the new datastore, use storage vMotion to relocate all VMs and te
 1. Under the **VMs** tab, select multiple virtual machines for migration.
 1. Right-click the selected VMs and choose **Migrate**.
 
-    :::image type="content" source="media/elastic-san-increase-private-endpoints-azure-vmware-solutions/select-vms-for-migration.png" alt-text="vSphere Client showing migration option for selected VMs":::
+    :::image type="content" source="media/elastic-san-increase-private-endpoints-azure-vmware-solutions/select-vms-for-migration.png" alt-text="Screenshot of vSphere Client showing migration option for selected VMs.":::
     
     - Select the migration type: **Change storage only**.
 
-    :::image type="content" source="media/elastic-san-increase-private-endpoints-azure-vmware-solutions/migration-wizard-change-storage.png" alt-text="Migration wizard with 'Change storage only' selected":::
+    :::image type="content" source="media/elastic-san-increase-private-endpoints-azure-vmware-solutions/migration-wizard-change-storage.png" alt-text="Screenshot of migration wizard with 'Change storage only' selected.":::
 
     - Select the **Target Datastore** that you created in the previous steps.
 
-    :::image type="content" source="media/elastic-san-increase-private-endpoints-azure-vmware-solutions/select-target-datastore.png" alt-text="Selecting target datastore for VM migration":::
+    :::image type="content" source="media/elastic-san-increase-private-endpoints-azure-vmware-solutions/select-target-datastore.png" alt-text="Screenshot of selecting target datastore for VM migration.":::
 
 1. After you successfully relocate all VMs and templates to the target datastore, [disconnect and delete](../../azure-vmware/configure-azure-elastic-san.md#disconnect-and-delete-an-elastic-san-based-datastore) from the cluster.
 
-    :::image type="content" source="media/elastic-san-increase-private-endpoints-azure-vmware-solutions/delete-source-datastore.png" alt-text="Deleting the source datastore from the cluster in vSphere Client":::
+    :::image type="content" source="media/elastic-san-increase-private-endpoints-azure-vmware-solutions/delete-source-datastore.png" alt-text="Screenshot of deleting the source datastore from the cluster in vSphere Client.":::
 
 ## Next steps
 
