@@ -56,7 +56,7 @@ In September 2022, Microsoft and other online merchants no longer store credit c
 
 Azure supports two alternate payment methods for India customers for MOSP accounts.
 
-- Unified Payments Interface (UPI) is a real-time payment method.
+- Unified Payments Interface (UPI) is a real-time payment method. UPI is also supported for MCA accounts.
 - NetBanking gives customers access to banking services through an online platform.
 
 #### How do I make a payment with UPI or NetBanking?
