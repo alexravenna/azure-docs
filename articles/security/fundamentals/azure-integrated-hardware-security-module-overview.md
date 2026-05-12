@@ -9,7 +9,7 @@ ms.date: 04/30/2026
 ms.author: simranparkhe
 ---
 
-# Azure Integrated HSM Overview
+# Azure Integrated HSM overview
 
 [Azure Integrated HSM](https://techcommunity.microsoft.com/blog/AzureInfrastructureBlog/securing-azure-infrastructure-with-silicon-innovation/4293834) is a hardware security module (HSM) cache and crypto offload designed to enhance the security and performance of cryptographic operations in virtual machines. For customers who heavily rely on cryptography and have performance-intensive workloads, Azure Integrated HSM provides a secure hardware-backed way to store cryptographic keys for fast and secure usage.
 
@@ -28,7 +28,7 @@ Starting with new Azure server hardware [AMD D Series v7](/azure/virtual-machine
 * *No extra cost*
     * Available without extra cost
 
-### Supported Operations 
+### Supported operations 
 
 The following cryptographic operations are supported for Azure Integrated HSM:
 
@@ -61,7 +61,7 @@ The following cryptographic operations are supported for Azure Integrated HSM:
     * **HKDF** ("HMAC-based Key Derivation Function") (`BCRYPT_HKDF_ALGORITHM`)
         * As defined in [IETF RFC 5869](https://datatracker.ietf.org/doc/html/rfc5869), and referred to in NCrypt by the `BCRYPT_HKDF_ALGORITHM` string
 
-## Availability and Pricing
+## Availability and pricing
 
 Azure Integrated HSM is now available to use on the AMD v7 generally available platform in all the AMD v7 supported regions. This is supported for the general purpose [Dasv7-series](/azure/virtual-machines/sizes/general-purpose/dasv7-series), [Dadsv7-series](/azure/virtual-machines/sizes/general-purpose/dadsv7-series), [Easv7-series](/azure/virtual-machines/sizes/memory-optimized/easv7-series), and [Eadsv7-series](/azure/virtual-machines/sizes/memory-optimized/eadsv7-series) for 8 vCores and higher for Trusted Launch VMs. The Azure Integrated HSM general availability is for **Windows support only**, with Linux support coming soon. This feature is offered at no extra cost.
 

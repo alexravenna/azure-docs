@@ -51,7 +51,7 @@ az group create --name myResourceGroup --location eastus2
 Create a VM with the `az vm create` command.
 
 The following example creates a VM named `myVM` and adds a user account named `azureuser`.
-Azure Integrated HSM is supported only on specific VM SKUs; see the [supported SKUs](/azure/security/fundamentals/azure-integrated-hsm-overview) documentation for more on which SKUs are supported.
+Azure Integrated HSM is supported only on specific VM SKUs; see the [supported SKUs](/azure/security/fundamentals/azure-integrated-hardware-security-module-overview) documentation for more on which SKUs are supported.
 
 The VMs must support TrustedLaunch and Secure Boot in order to support Azure Integrated HSM.
 
@@ -117,5 +117,5 @@ python ./sample.py
 ## What's next
 
 - Install guest driver and Key Service Provider to your Azure Integrated HSM enabled VM [following the instructions on our GitHub](https://github.com/microsoft/AziHSM-Guest/tree/main)
-- [Azure Integrated HSM overview](/azure/security/fundamentals/azure-integrated-hsm-overview)
+- [Azure Integrated HSM overview](/azure/security/fundamentals/azure-integrated-hardware-security-module-overview)
 
