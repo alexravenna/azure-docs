@@ -32,7 +32,7 @@ Your agent automatically generates a structured insight after each conversation 
 
 Go to **Monitor** > **Session Insights**. The dashboard shows a list of insights on the left (newest first) and the full detail on the right.
 
-:::image type="content" source="media/review-session-insights/session-insights-overview.png" alt-text="Screenshot of SRE Agent session insights dashboard" lightbox="media/review-session-insights/session-insights-overview.png":::
+:::image type="content" source="media/review-session-insights/session-insights-overview.png" alt-text="Screenshot of SRE Agent session insights dashboard." lightbox="media/review-session-insights/session-insights-overview.png":::
 
 Select any insight to view its Timeline, Evaluation, and Derived Learning in expandable sections. Each insight also has a **Go to Thread** button to open the original conversation.
 

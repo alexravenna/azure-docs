@@ -21,7 +21,7 @@ View your AAU usage at **Settings** > **Agent consumption**.
 
 Azure SRE Agent billing is measured in Azure Agent Units (AAU). Your monthly allocation includes both a fixed **always-on flow** and a variable **active flow** that you can adjust. The consumption page breaks down your usage by thread type so you can see exactly where your AAUs are going.
 
-:::image type="content" source="media/monitor-agent-usage/consumption-summary-daily.png" alt-text="Screenshot of the SRE Agent agent consumption page showing donut chart with total active flow consumption" lightbox="media/monitor-agent-usage/consumption-summary-daily.png":::
+:::image type="content" source="media/monitor-agent-usage/consumption-summary-daily.png" alt-text="Screenshot of the SRE Agent agent consumption page showing donut chart with total active flow consumption." lightbox="media/monitor-agent-usage/consumption-summary-daily.png":::
 
 ### What the consumption page shows
 
@@ -79,7 +79,7 @@ Select **Change AAU allocation** on the monthly limit card to increase or decrea
 
 ## Get started
 
-Usage monitoring is built-in. Go to **Settings** > **Agent consumption** to see your AAU breakdown immediately.
+Usage monitoring is built in. Go to **Settings** > **Agent consumption** to see your AAU breakdown immediately.
 
 | Resource | What you learn |
 |----------|-------------------|

@@ -21,7 +21,7 @@ Answering those questions today means querying telemetry, cross-referencing tick
 
 Navigate to **Monitor** > **Incident metrics** to see the dashboard.
 
-:::image type="content" source="media/track-incident-value/incident-metrics-dashboard.png" alt-text="Screenshot of incident metrics dashboard showing five stat cards with sparkline trends and an incident summary line chart" lightbox="media/track-incident-value/incident-metrics-dashboard.png":::
+:::image type="content" source="media/track-incident-value/incident-metrics-dashboard.png" alt-text="Screenshot of incident metrics dashboard showing five stat cards with sparkline trends and an incident summary line chart." lightbox="media/track-incident-value/incident-metrics-dashboard.png":::
 
 ### Metric cards
 
@@ -91,7 +91,7 @@ Daily reports replace the "what happened overnight?" morning routine — the inf
 
 ## Get started
 
-Incident tracking is built-in — open **Monitor** > **Incident metrics** once your agent starts handling incidents.
+Incident tracking is built in — open **Monitor** > **Incident metrics** once your agent starts handling incidents.
 
 | Resource | What you'll learn |
 |----------|-------------------|

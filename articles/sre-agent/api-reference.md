@@ -118,7 +118,7 @@ Append the path suffix from the operations table, then add `?api-version=2025-05
 | `provisioningState` | string | `Succeeded`, `Failed`, `InProgress`, `Canceled`, `Deleting` (read-only) |
 | `agentEndpoint` | string | Data plane URL (read-only) |
 | `powerState` | string | `Running` or `Stopped` (read-only) |
-| `outboundIpAddresses` | string[] | Outbound IPs for allowlisting (read-only) |
+| `outboundIpAddresses` | string[] | Outbound IPs for allow list (read-only) |
 | `actionConfiguration.mode` | string | `Review`, `Automatic`, or `ReadOnly` |
 | `actionConfiguration.accessLevel` | string | `Low` or `High` |
 | `defaultModel.provider` | string | `Anthropic`, `MicrosoftFoundry`, or `GitHubCopilot` |
@@ -331,5 +331,5 @@ curl -X PUT \
 
 - [ARM template reference](/azure/templates/microsoft.app/agents): Full property schema on Microsoft Learn
 - [Deploy with Infrastructure as Code](deploy-iac.md): Automate agent deployment using Bicep, Terraform, or PowerShell
-- [Network requirements](network-requirements.md): Firewall allowlist for API endpoints
+- [Network requirements](network-requirements.md): Firewall allow list for API endpoints
 - [Pricing and billing](pricing-billing.md): Costs for API-driven operations
