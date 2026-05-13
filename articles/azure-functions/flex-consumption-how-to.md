@@ -21,7 +21,7 @@ zone_pivot_groups: programming-languages-set-functions
 
 This article shows you how to create function apps hosted in the [Flex Consumption plan](./flex-consumption-plan.md) in Azure Functions. It also shows you how to manage certain features of a Flex Consumption plan hosted app.
 
-Function app resources are langauge-specific. Make sure to choose your preferred code development language at the beginning of the article.
+Function app resources are language-specific. Make sure to choose your preferred code development language at the beginning of the article.
 
 ## Prerequisites
 
@@ -312,6 +312,14 @@ You can enable [virtual network integration](functions-networking-options.md#vir
 > [!IMPORTANT]
 > The Flex Consumption plan currently doesn't support subnets with names that contain underscore (`_`) characters. 
 
+### Understand Flex Consumption IP multiplexing
+
+Flex Consumption instances don't each use a unique IP address. Instead, all instances within a Flex Consumption app share a pool of IP addresses that are managed by shared network gateways. This IP multiplexing architecture is fundamentally different from Premium plans, where each instance uses one IP address.
+
+The key benefit of IP multiplexing is that a single Flex Consumption app can scale to 1,000+ instances while consuming far fewer than 1,000 IP addresses. All instances, even across multiple apps in the same subnet, share these gateway IPs.
+
+The "40 IPs per app" guideline represents a planning buffer that accounts for gateway capacity and redundancy but it's not an enforced limit. Plan for this buffer when sizing your subnet, but understand that actual IP consumption is typically lower due to multiplexing. The platform dynamically allocates IPs from the shared gateway pool based on demand, so you don't need to pre-reserve IPs per instance.
+
 To enable virtual networking when you create your app:
 
 ### [Azure CLI](#tab/azure-cli)
@@ -399,12 +407,56 @@ You can't currently configure virtual networking in Visual Studio Code.
 
 ---
 
-When you're choosing a subnet, these considerations apply:
+### Subnet sizing for Flex Consumption
 
-- The subnet you choose can't already be used for other purposes, such as with private endpoints or service endpoints, or be delegated to any other hosting plan or service. 
+Choose an appropriately sized subnet for your Flex Consumption apps. The following table provides guidance based on your scenario:
+
+| Scenario | Recommended CIDR | Usable IPs | Notes |
+|----------|------------------|-----------|-------|
+| Single Flex app | `/27` | 27 | Minimum supported subnet size for one app |
+| Multiple Flex apps in one subnet | `/26` | 59 | Recommended when hosting multiple apps; provides adequate gateway capacity |
+| High-scale workload (1,000+ instances) | `/26` or larger | 59+ | Use `/26` or larger subnets; each app maxes out at 1,000 instances |
+
+### Subnet requirements and considerations
+
+When you're choosing and configuring a subnet for Flex Consumption, keep these requirements and considerations in mind:
+
+**Subnet delegation:**
+- The subnet must be delegated to `Microsoft.App/environments`. This is different from Premium and Dedicated plans, which use `Microsoft.Web/serverFarms`.
+- The Microsoft.App resource provider must be registered in your subscription. You can register it via the Azure portal (**Subscriptions** > **Resource providers** > search for "Microsoft.App" > **Register**) or using the Azure CLI.
+
+**Subnet usage restrictions:**
+- The subnet can't already be used for private endpoints, service endpoints, or be delegated to other hosting plans or services.
 - You can't share the same subnet between a Container Apps environment and a Flex Consumption app.
-- You can share the same subnet with more than one app running in a Flex Consumption plan. Because the networking resources are shared across all apps, one function app might affect the performance of others on the same subnet.
-- In a Flex Consumption plan, a single function app might use up to 40 IP addresses, even when the app scales beyond 40 instances. While this rule of thumb is helpful when estimating the subnet size you need, it isn't strictly enforced.  
+- Subnet names cannot contain underscore (`_`) characters—this is a known Flex Consumption limitation.
+
+**Subnet sharing:**
+- You can share the same subnet with more than one app running in a Flex Consumption plan. However, because networking resources are shared across all apps, one function app can affect the performance of others on the same subnet. Consider the aggregate demand when packing multiple apps into a small subnet.
+- The subnet and app must be in the same region.
+
+**IP allocation and planning:**
+- Flex Consumption apps don't assign a unique IP address to each instance. Instead, instances share a pool of IPs managed by shared gateways. The "40 IPs per app" guideline is a planning buffer; actual usage is typically lower due to this multiplexing.
+- A `/27` subnet (27 usable IPs) is sufficient for a single app supporting up to 1,000 instances due to IP multiplexing. For multiple apps, use a `/26` or larger to provide adequate gateway capacity.
+- If too many apps share a small subnet, outbound network throughput can become a bottleneck rather than IP addresses being exhausted. Evaluate performance at your planned production scale.
+
+### Troubleshoot network performance issues
+
+When a Flex Consumption app integrates with a small subnet, you may experience performance degradation as the app scales. Monitor for these symptoms, which indicate that outbound capacity rather than IP addresses is the limiting factor:
+
+**Symptoms of undersized subnets:**
+- Increased latency on outbound calls to dependencies
+- Connection timeouts to external services
+- These issues increase as the app scales up, not as a sudden outage
+
+**Important:** Scale-out itself is not blocked by subnet size. The app continues to add instances even if the subnet is undersized; performance degradation occurs instead of a hard scale limit.
+
+**Monitoring and mitigation:**
+- **Instrument Application Insights with outbound dependency latency metrics**—this is your best early warning signal for undersized subnets.
+- **Load-test at production scale before settling on subnet size** to validate that your subnet sizing can handle your expected workload.
+- **Monitor with Azure Monitor**: Go to **Virtual Network** > **Subnet** in Azure Monitor to see IP allocation data via Resource Graph and KQL queries.
+- **Right-size your subnet** according to the guidance in the previous section. A `/27` minimum is strongly recommended; a `/26` is recommended for multiple apps.
+
+**Note:** Use at least a `/27` subnet to ensure adequate platform stability. Subnets significantly smaller than `/27` may experience gateway creation issues with no explicit error message.
 
 ## Configure deployment settings
 
