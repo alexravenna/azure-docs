@@ -10,7 +10,7 @@ ms.date: 05/13/2026
 ---
 # Cloning FAQs for Azure NetApp Files
 
-Azure NetApp Files volumes can be cloned to new volumes. Cloning Is based on snapshot technology: volume snapshots can be cloned to new volumes. Volume clones are writable copies of a source volume.   
+Cloning is based on snapshot technology: volume snapshots can be cloned to new volumes. Volume clones are writable copies of a source volume.   
 
 This article answers frequently asked questions (FAQs) about Azure NetApp Files cloning. 
 
@@ -34,8 +34,8 @@ For Manual QoS capacity pools you can manually assign a throughput limit to the 
 
 Two cloning options are provided: 
 
-* Regular volume clones are independent writable full volume copies 
-* Short-term clones are writable thin copies designed for short-term existence (up to 32 days)  
+* [Regular volume clones](snapshots-restore-new-volume.md) are independent writable full volume copies 
+* [Short-term clones](create-short-term-clone.md) are writable thin copies designed for short-term existence (up to 32 days)  
 
 ## What are regular volume clones?
 
