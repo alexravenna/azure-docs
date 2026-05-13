@@ -5,7 +5,7 @@ ms.service: cyclecloud
 ms.topic: reference
 ms.date: 05/13/2026
 author: emilylo
-ms.custom:
+ms.custom: include-file
 
 # Customer intent: As a developer or operator, I want to use the CycleCloud REST API to manage clusters and nodes programmatically.
 ---
