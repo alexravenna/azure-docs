@@ -111,6 +111,72 @@ The following sections describe how to create a private endpoint and a new insta
 
 1. Select **Review + create**.
 
+## Private endpoints with geo-replication
+
+In general, a private endpoint works transparently when geo-replication is enabled. A private endpoint always targets the parent Web PubSub resource — you can't create a separate private endpoint that points to a specific replica. One private endpoint on the parent resource is enough to reach the closest healthy replica.
+
+### How a private endpoint resolves when geo-replication is enabled
+
+When clients connect from *outside* the virtual network (no private endpoint in the path), the DNS resolution chain is:
+
+```
+sample.webpubsub.azure.com
+  -> sample.privatelink.webpubsub.azure.com   (CNAME)
+  -> <traffic-manager-profile>.trafficmanager.net   (performance routing)
+  -> <replica-regional-endpoint>   (CNAME)
+  -> <public IP of the selected replica>   
+```
+
+When clients connect from *inside* a virtual network that has a private endpoint, the chain is shortened to:
+
+```
+sample.webpubsub.azure.com
+  -> sample.privatelink.webpubsub.azure.com   (CNAME)
+  -> <private endpoint IP>   (from the private DNS zone)
+```
+
+Behind the scenes, the private endpoint's backend target is bound to the public IP that Traffic Manager would return for a public client in the same region. In other words, the private endpoint is mapped to whichever replica Traffic Manager currently selects as the closest healthy one for the region where the private endpoint lives.
+
+The following diagram shows how the private endpoint's network interface (NIC) is wired to the replica selected by Traffic Manager:
+
+```
+            ┌──────────────────────────────────┐
+            │  Client in VNet                  │
+            └────────────────┬─────────────────┘
+                             │
+                             ▼
+            ┌──────────────────────────────────┐
+            │  Private endpoint NIC            │
+            │  (private IP in your subnet)     │
+            └────────────────┬─────────────────┘
+                             │  wired to the public IP
+                             │  selected by Traffic Manager
+                             ▼
+            ┌──────────────────────────────────┐
+            │  Closest healthy replica         │
+            └──────────────────────────────────┘
+```
+
+**Example.** Assume the virtual network is in *East US*, the primary Web PubSub resource is in *West US*, and a replica is in *East US*. When clients in that virtual network connect to Web PubSub through the private endpoint, Traffic Manager selects the *East US* replica based on performance routing, so the traffic is forwarded by the private endpoint to the *East US* replica.
+
+### How a private endpoint fails over when a replica becomes unavailable
+
+If the private endpoint currently points to a replica in region A and that replica becomes unavailable, the private endpoint is automatically re-bound to another healthy replica. Traffic Manager detects the failure and returns the public IP of a different replica, and the private endpoint's **target IP** is then updated to match. The private endpoint always resolves to the same private IP inside your virtual network, so no client-side change is needed when a failover happens.
+
+The end-to-end failover time can take several minutes and is the sum of:
+
+- The time for Traffic Manager to detect that the replica is unhealthy.
+- DNS TTL and client-side DNS cache expiration.
+- The time for the private endpoint to update its target IP to the new replica.
+
+### How to manually force and validate a replica failover for clients that use a private endpoint
+
+To trigger and validate the failover from inside the virtual network:
+
+1. Run `nslookup sample.webpubsub.azure.com` and confirm that it resolves to the private endpoint IP.
+1. Connect a test client through the private endpoint and confirm which replica region it lands on (for example, by checking response headers or service-side metrics).
+1. Trigger the failover(stop the connected replica), wait for the combined Traffic Manager detection time + DNS TTL + private endpoint update time, and re-run the test to confirm that the client now lands on a different replica.
+
 ## Pricing
 
 For pricing details, see [Azure Private Link pricing](https://azure.microsoft.com/pricing/details/private-link).
