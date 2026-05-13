@@ -37,7 +37,7 @@ By default, short-term clones convert to regular volumes after 32 days.
 * You can create five short-term clones per regular volume.
 
 >[!NOTE]
->If you are creating a clone of a volume with application data in it, such as a database, ensure that the snapshot was taken with the application in a consistent state. You can achieve this by using [AzAcSnap](azacsnap-introduction.md), [SnapCenter](https://docs.netapp.com/us-en/snapcenter/get-started/concept_snapcenter_overview.html), [Commvault](https://documentation.commvault.com/11.42/software/getting_started_with_azure_netapp_files.html?view=saas) or other application aware snapshot management software. 
+>If you're creating a clone of a volume with application data in it, such as a database, ensure that the snapshot was taken with the application in a consistent state. You can achieve this by using [AzAcSnap](azacsnap-introduction.md), [SnapCenter](https://docs.netapp.com/us-en/snapcenter/get-started/concept_snapcenter_overview.html), [Commvault](https://documentation.commvault.com/11.42/software/getting_started_with_azure_netapp_files.html?view=saas), or other application aware snapshot management software. 
 
 ## Create a short-term clone
 
