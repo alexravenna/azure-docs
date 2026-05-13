@@ -32,11 +32,11 @@ Your agent automatically generates a structured insight after each conversation 
 
 Go to **Monitor** > **Session Insights**. The dashboard shows a list of insights on the left (newest first) and the full detail on the right.
 
-![Session Insights dashboard showing a list of 15 insights on the left panel and the selected insight's timeline and evaluation on the right panel](media/review-session-insights/session-insights-overview.png)
+:::image type="content" source="media/review-session-insights/session-insights-overview.png" alt-text="Screenshot of SRE Agent session insights dashboard" lightbox="media/review-session-insights/session-insights-overview.png":::
 
 Select any insight to view its Timeline, Evaluation, and Derived Learning in expandable sections. Each insight also has a **Go to Thread** button to open the original conversation.
 
-![Insight detail showing a timeline of an App Service 403 investigation with milestones for checking frontend code, discovering live URLs, confirming 403 blocks, and identifying network lockdown configuration](media/review-session-insights/session-insights-detail.png)
+:::image type="content" source="media/review-session-insights/session-insights-detail.png" alt-text="Screenshot of SRE Agent insight detail showing a timeline of an App Service 403 investigation with milestones for checking frontend code, discovering live URLs, confirming 403 blocks, and identifying network lockdown configuration" lightbox="media/review-session-insights/session-insights-detail.png":::
 
 ## Providing feedback
 

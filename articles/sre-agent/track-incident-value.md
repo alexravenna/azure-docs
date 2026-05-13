@@ -13,14 +13,6 @@ ms.custom: incidents, metrics, value, daily reports, response plans, analytics, 
 
 # Track incident value in Azure SRE Agent
 
-> [!TIP]
-> - See your agent's mitigation rate, assist rate, and pending actions with trend sparklines
-> - Track Intent Met — a 1–5 quality score across incidents, scheduled tasks, and conversations
-> - Drill into each response plan to identify which automation strategies resolve the most incidents
-> - Receive automated daily reports covering security findings, resource health, and incident summaries
-
-## The problem: proving your agent is working
-
 You deployed an AI agent to handle incidents. Leadership wants to know: *Is it reducing toil? Which incidents is it resolving on its own? Are we getting ROI?*
 
 Answering those questions today means querying telemetry, cross-referencing tickets, and guessing which response plans work. There's no single view showing what your agent did, how each response plan performed, or whether mitigation rates are improving.
@@ -29,7 +21,7 @@ Answering those questions today means querying telemetry, cross-referencing tick
 
 Navigate to **Monitor** > **Incident metrics** to see the dashboard.
 
-![Incident metrics dashboard showing five stat cards with sparkline trends and an incident summary line chart](media/track-incident-value/incident-metrics-dashboard.png)
+:::image type="content" source="media/track-incident-value/incident-metrics-dashboard.png" alt-text="Screenshot of incident metrics dashboard showing five stat cards with sparkline trends and an incident summary line chart" lightbox="media/track-incident-value/incident-metrics-dashboard.png":::
 
 ### Metric cards
 
@@ -114,6 +106,3 @@ Incident tracking is built-in — open **Monitor** > **Incident metrics** once y
 | [Monitor agent usage](monitor-agent-usage.md) | Track AAU consumption alongside incident metrics |
 | [Review agent insights](review-agent-insights.md) | Per-thread qualitative evaluation of agent performance |
 | [Audit agent actions](audit-agent-actions.md) | Review specific actions during incident investigations |
-```
-
----

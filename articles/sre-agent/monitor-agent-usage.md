@@ -21,7 +21,7 @@ View your AAU usage at **Settings** > **Agent consumption**.
 
 Azure SRE Agent billing is measured in Azure Agent Units (AAU). Your monthly allocation includes both a fixed **always-on flow** and a variable **active flow** that you can adjust. The consumption page breaks down your usage by thread type so you can see exactly where your AAUs are going.
 
-:::image type="content" source="media/monitor-agent-usage/consumption-summary-daily.png" alt-text="Screenshot of the SRE Agent agent consumption page showing donut chart with total active flow consumption":::
+:::image type="content" source="media/monitor-agent-usage/consumption-summary-daily.png" alt-text="Screenshot of the SRE Agent agent consumption page showing donut chart with total active flow consumption" lightbox="media/monitor-agent-usage/consumption-summary-daily.png":::
 
 ### What the consumption page shows
 
@@ -62,7 +62,7 @@ Each thread title is a link - select it to open the full conversation thread.
 
 Select **Download** next to the **Refresh** button above the charts to export the currently visible threads as a CSV file. The export includes thread title, type, AAUs consumed, status, last active date, and thread ID. All active filters are respected, so you can export just the data you need.
 
-:::image type="content" source="media/monitor-agent-usage/consumption-thread-table.png" alt-text="Screenshot of consumption by thread table in Azure SRE Agent showing thread titles, types, AAU counts, status badges, and last active dates with filter controls":::
+:::image type="content" source="media/monitor-agent-usage/consumption-thread-table.png" alt-text="Screenshot of consumption by thread table in Azure SRE Agent showing thread titles, types, AAU counts, status badges, and last active dates with filter controls" lightbox="media/monitor-agent-usage/consumption-thread-table.png":::
 
 ### Adjusting your allocation
 
