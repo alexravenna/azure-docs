@@ -61,7 +61,7 @@ To run a command, select **Copy** to copy a block of code in this quickstart, pa
 
 To use the Azure CLI, you must be signed in to your Azure account. All communication between your Azure CLI shell session and your IoT hub is authenticated and encrypted. As a result, this quickstart doesn't need extra authentication that you use with a real device, such as a connection string.
 
-- In the first CLI session, run the [az extension add](/cli/azure/extension#az-extension-add) command. The command adds the Microsoft Azure IoT extension for Azure CLI to your CLI shell. The IoT extension adds IoT Hub, Azure IoT Edge, and IoT device provisioning service commands specific to the Azure CLI.
+- In the first CLI session, run the [az extension add](/cli/azure/extension#az-extension-add) command. The command adds the Microsoft Azure IoT extension for Azure CLI to your CLI shell. The IoT extension adds IoT Hub, Azure IoT Edge, and IoT Device Provisioning Service commands specific to the Azure CLI.
 
    ```azurecli
    az extension add --name azure-iot

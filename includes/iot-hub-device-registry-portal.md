@@ -25,13 +25,13 @@ The setup process in this article includes the following steps:
 1. Set up your Device Registry namespace with certificate management enabled and assign necessary roles.
 1. Create a custom credential policy for your namespace.
 1. Create an IoT hub linked to your Device Registry namespace with a user-assigned managed identity.
-1. Create an instance of the device provisioning service and link it to your Device Registry namespace.
-1. Link your IoT hub to the instance of the device provisioning service.
+1. Create a DPS instance and link it to your Device Registry namespace.
+1. Link your IoT hub to the DPS instance.
 1. Sync credential policies from your namespace to your IoT hubs.
 1. Create an enrollment group and assign a policy to enable device onboarding.
 
 > [!IMPORTANT]
-> During the preview period, IoT Hub with Device Registry integration and certificate management features enabled on top of IoT Hub are available free of charge. The device provisioning service is billed separately and isn't included in the preview offer. For details on pricing for the device provisioning service, see [Azure IoT Hub pricing](https://azure.microsoft.com/pricing/details/iot-hub/).
+> During the preview period, IoT Hub with Device Registry integration and certificate management features enabled on top of IoT Hub are available free of charge. DPS is billed separately and isn't included in the preview offer. For details on DPS pricing, see [Azure IoT Hub pricing](https://azure.microsoft.com/pricing/details/iot-hub/).
 
 ## Set up your Device Registry namespace
 
@@ -81,7 +81,7 @@ To complete some configuration steps after you create the IoT hub, you need the 
 
 ### Assign roles to your managed identity
 
-After you create your Device Registry namespace, grant the required permissions to your user-assigned managed identity. The user-assigned managed identity is used to securely access other Azure resources, such as a Device Registry namespace and the device provisioning service. If you don't have a user-assigned managed identity, create one in the Azure portal. For more information, see [Create a user-assigned managed identity in the Azure portal](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal).
+After you create your Device Registry namespace, grant the required permissions to your user-assigned managed identity. The user-assigned managed identity is used to securely access other Azure resources, such as a Device Registry namespace and DPS. If you don't have a user-assigned managed identity, create one in the Azure portal. For more information, see [Create a user-assigned managed identity in the Azure portal](/entra/identity/managed-identities-azure-resources/manage-user-assigned-managed-identities-azure-portal).
 
 First, grant your user-managed identity the Azure Device Registry Onboarding role:
 
@@ -230,32 +230,32 @@ Repeat these steps to assign the **IoT Hub Registry Contributor** role:
 1. Choose **Select members**, and then paste in the Device Registry namespace principal ID that you copied in a previous step. Select the matching identity.
 1. Select **Review + assign** to finish.
 
-## Create an instance of the device provisioning service
+## Create a DPS instance
 
-After you create your IoT hub and your namespace, create a new instance of the device provisioning service.
+After you create your IoT hub and your namespace, create a new DPS instance.
 
 1. In the [Azure portal](https://portal.azure.com), search for and select **Device Provisioning Service**.
-1. In **Device Provisioning Services**, select **+ Create** to create a new instance of the device provisioning service.
+1. In **Device Provisioning Services**, select **+ Create** to create a new DPS instance.
 1. On the **Basics** tab, fill in the following fields:
 
     |Property|Value|
     |-----|-----|
-    |**Subscription**|Select the subscription to use for your instance of the device provisioning service.|
+    |**Subscription**|Select the subscription to use for your DPS instance.|
     |**Resource group**|Select the same resource group that contains the IoT hub that you created in the previous steps. By putting all related resources in a group together, you can manage them together.|
-    |**Name**|Provide a unique name for your new instance of the device provisioning service. If the name that you enter is available, a green check mark appears.|
+    |**Name**|Provide a unique name for your new DPS instance. If the name that you enter is available, a green check mark appears.|
     |**Region**|Select the same region where you created your IoT hub and Device Registry namespace in the previous steps.|
 
-    :::image type="content" source="../articles/iot-hub/media/device-registry/iot-hub-link-namespace.png" alt-text="Screenshot that shows the Basics tab for a new instance of the device provisioning service with the Azure Device Registry namespace selected." lightbox="../articles/iot-hub/media/device-registry/iot-hub-link-namespace.png":::
+    :::image type="content" source="../articles/iot-hub/media/device-registry/iot-hub-link-namespace.png" alt-text="Screenshot that shows the Basics tab for a new DPS instance with the Azure Device Registry namespace selected." lightbox="../articles/iot-hub/media/device-registry/iot-hub-link-namespace.png":::
 
 1. Select **Review + create** to validate your provisioning service.
-1. Select **Create** to start the deployment of your instance of the device provisioning service.
-1. After the deployment finishes, select **Go to resource** to view your instance of the device provisioning service.
+1. Select **Create** to start the deployment of your DPS instance.
+1. After the deployment finishes, select **Go to resource** to view your DPS instance.
 
-### Add your namespace to the device provisioning service
+### Add your namespace to DPS
 
-After you create your instance of the device provisioning service, link it to your Device Registry namespace so that devices can be provisioned by using Device Registry credential policies.
+After you create your DPS instance, link it to your Device Registry namespace so that devices can be provisioned by using Device Registry credential policies.
 
-1. In the [Azure portal](https://portal.azure.com), go to the instance of the device provisioning service that you created.
+1. In the [Azure portal](https://portal.azure.com), go to the DPS instance that you created.
 1. On the **Overview** page, find the **ADR namespace** section.
 1. Select the link to add the namespace.
 
@@ -264,23 +264,23 @@ After you create your instance of the device provisioning service, link it to yo
 1. Select your Device Registry namespace and the user-assigned managed identity.
 1. Select **Save**.
 
-After the link is established, your instance of the device provisioning service can use the Device Registry namespace for device provisioning and certificate management.
+After the link is established, your DPS instance can use the Device Registry namespace for device provisioning and certificate management.
 
-## Link the IoT hub and your instance of the device provisioning service
+## Link the IoT hub and your DPS instance
 
-Add a configuration to the instance of the device provisioning service that sets the IoT hub to which the instance provisions IoT devices.
+Add a configuration to the DPS instance that sets the IoT hub to which the instance provisions IoT devices.
 
-1. Under **Settings** on the sidebar menu of your instance of the device provisioning service, select **Linked IoT hubs**.
+1. Under **Settings** on the sidebar menu of your DPS instance, select **Linked IoT hubs**.
 1. Select **Add**.
 1. On the **Add link to IoT hub** pane, provide the following information:
 
     | Property | Value |
     | --- | --- |
-    | **Subscription** | Select the subscription that contains the IoT hub that you want to link with your new instance of the device provisioning service. |
-    | **IoT hub** | Select the IoT hub to link with your new instance of the device provisioning service. |
+    | **Subscription** | Select the subscription that contains the IoT hub that you want to link with your new DPS instance. |
+    | **IoT hub** | Select the IoT hub to link with your new DPS instance. |
     | **Access Policy** | Select **iothubowner (RegistryWrite, ServiceConnect, DeviceConnect)** as the credentials for establishing the link with the IoT hub. |
 
-    :::image type="content" source="../articles/iot-hub/media/device-registry/device-provision-link-iot-hub.png" alt-text="Screenshot that shows how to link an IoT hub to the instance of the device provisioning service in the portal.":::
+    :::image type="content" source="../articles/iot-hub/media/device-registry/device-provision-link-iot-hub.png" alt-text="Screenshot that shows how to link an IoT hub to the DPS instance in the portal.":::
 
 1. Select **Save**.
 1. Select **Refresh**. You should now see the selected hub under the list of **Linked IoT hubs**.
@@ -299,11 +299,11 @@ If you select to sync more than one policy, the process syncs policies to their 
 
 ## Create an enrollment group and assign a policy
 
-To provision devices with leaf certificates, you need to create an enrollment group and assign the policy that you created within your Device Registry namespace. The allocation-policy defines the onboarding authentication mechanism that the device provisioning service uses before issuing a leaf certificate. The default attestation mechanism is a symmetric key.
+To provision devices with leaf certificates, you need to create an enrollment group and assign the policy that you created within your Device Registry namespace. The allocation-policy defines the onboarding authentication mechanism that DPS uses before issuing a leaf certificate. The default attestation mechanism is a symmetric key.
 
 1. In the [Azure portal](https://portal.azure.com), search for and select **Device Provisioning Services**.
-1. Search for and select the instance of the device provisioning service that you created previously.
-1. Under **Settings** on the sidebar menu of your instance of the device provisioning service, select **Manage enrollments**.
+1. Search for and select the DPS instance that you created previously.
+1. Under **Settings** on the sidebar menu of your DPS instance, select **Manage enrollments**.
 1. On the **Manage enrollments** page, select either the **Enrollment groups** or **Individual enrollments** tab based on your provisioning needs.
 1. Select **+ Add enrollment group** or **+ Add individual enrollment** to create a new enrollment.
 1. On the **Registration + provisioning** page, fill in the following fields:

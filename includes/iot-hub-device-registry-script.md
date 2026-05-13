@@ -18,12 +18,12 @@ Use the provided PowerShell script to automate the setup of your IoT hub with Az
 1. Create a Device Registry namespace with system-assigned managed identity.
 1. Create a credential (root CA) and policy (issuing CA) scoped to that namespace.
 1. Create an IoT hub (preview) with a linked namespace and managed identity.
-1. Create a device provisioning service with a linked IoT hub and namespace.
+1. Create a DPS instance with a linked IoT hub and namespace.
 1. Sync your credential and policies (CA certificates) to IoT Hub.
 1. Create an enrollment group, and link to your policy to enable certificate provisioning.
 
 > [!IMPORTANT]
-> During the preview period, IoT Hub with Device Registry integration and certificate management features enabled on top of IoT Hub are available free of charge. Device provisioning service is billed separately and isn't included in the preview offer. For more information on pricing for device provisioning service, see [Azure IoT Hub pricing](https://azure.microsoft.com/pricing/details/iot-hub/).
+> During the preview period, IoT Hub with Device Registry integration and certificate management features enabled on top of IoT Hub are available free of charge. Device provisioning service is billed separately and isn't included in the preview offer. For more information on DPS pricing, see [Azure IoT Hub pricing](https://azure.microsoft.com/pricing/details/iot-hub/).
 
 ## Prepare your environment
 
@@ -41,7 +41,7 @@ Open the script file in a text editor and modify the following variables to matc
 - `Location`: The Azure region where you want to create your resources. Check out the available locations for preview features in the [Supported regions](../articles/iot-hub/iot-hub-what-is-new.md#supported-regions) section.
 - `NamespaceName`: Your namespace name can contain only lowercase letters and hyphens (`-`) in the middle of the name, but not at the beginning or end. For example, *msft-namespace* is a valid name.
 - `HubName`: Your hub name can contain only lowercase letters and numerals.
-- `DpsName`: The name of your new instance for device provisioning service.
+- `DpsName`: The name of your new DPS instance.
 - `UserIdentity`: The new user-assigned managed identity for your resources.
 - `WorkingFolder`: The local folder where your script is located.
 
@@ -61,7 +61,7 @@ Open the script file in a text editor and modify the following variables to matc
     - Select **s** or **S** to skip a step.
     - Select **Ctrl** + **C** to abort.
 
-The creation of your Device Registry namespace, IoT Hub, device provisioning service, and other resources might take up to five minutes each.
+The creation of your Device Registry namespace, IoT Hub, DPS instance, and other resources might take up to five minutes each.
 
 ## Monitor execution and validate the resources
 
@@ -70,6 +70,6 @@ The creation of your Device Registry namespace, IoT Hub, device provisioning ser
 1. After the script finishes, validate the creation of your resources by visiting your new resource group on the [Azure portal](https://portal.azure.com). You should see the following resources created:
 
     - IoT Hub instance
-    - Device provisioning service instance
+    - DPS instance
     - Azure Device Registry namespace
     - User-assigned managed identity

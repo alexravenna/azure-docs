@@ -57,12 +57,12 @@ The setup process in this article includes the following steps:
 1. Create a Device Registry namespace with system-assigned managed identity.
 1. Create a credential (root CA) and policy (issuing CA) scoped to that namespace.
 1. Create an IoT hub (preview) with a linked namespace and managed identity.
-1. Create a device provisioning service with a linked IoT hub and namespace.
+1. Create a DPS instance with a linked IoT hub and namespace.
 1. Sync your credential and policies (CA certificates) to IoT Hub.
 1. Create an enrollment group and link to your policy to enable certificate provisioning.
 
 > [!IMPORTANT]
-> During the preview period, IoT Hub with Device Registry integration and certificate management features enabled on top of IoT Hub are available free of charge. Device provisioning service is billed separately and isn't included in the preview offer. For information on pricing for the device provisioning service, see [Azure IoT Hub pricing](https://azure.microsoft.com/pricing/details/iot-hub/).
+> During the preview period, IoT Hub with Device Registry integration and certificate management features enabled on top of IoT Hub are available free of charge. Device provisioning service is billed separately and isn't included in the preview offer. For information on DPS pricing, see [Azure IoT Hub pricing](https://azure.microsoft.com/pricing/details/iot-hub/).
 
 ## Prepare your environment
 
@@ -205,29 +205,29 @@ In this section, you assign the [Azure Device Registry Contributor](../articles/
     az role assignment create --assignee $ADR_PRINCIPAL_ID --role "IoT Hub Registry Contributor" --scope $HUB_RESOURCE_ID
     ```
 
-## Create a device provisioning service instance with Device Registry integration
+## Create a DPS instance with Device Registry integration
 
-1. Create a new instance of the device provisioning service linked to your Device Registry namespace that you created in the previous sections. Your instance of the device provisioning service must be located in the same region as your Device Registry namespace.
+1. Create a new DPS instance linked to your Device Registry namespace that you created in the previous sections. Your DPS instance must be located in the same region as your Device Registry namespace.
 
     ```azurecli-interactive
     az iot dps create --name <DPS_NAME> --resource-group <RESOURCE_GROUP> --location <LOCATION> --mi-user-assigned $UAMI_RESOURCE_ID --ns-resource-id $NAMESPACE_RESOURCE_ID --ns-identity-id $UAMI_RESOURCE_ID
     ```
 
-1. Verify that the device provisioning service has the correct identity and Device Registry properties configured.
+1. Verify that DPS has the correct identity and Device Registry properties configured.
 
     ```azurecli-interactive
     az iot dps show --name <DPS_NAME> --resource-group <RESOURCE_GROUP> --query identity --output json
     ```
 
-## Link your IoT hub to the instance of the device provisioning service
+## Link your IoT hub to the DPS instance
 
-1. Link the IoT hub to your device provisioning service.
+1. Link the IoT hub to your DPS instance.
 
     ```azurecli-interactive
     az iot dps linked-hub create --dps-name <DPS_NAME> --resource-group <RESOURCE_GROUP> --hub-name <HUB_NAME>
     ```
 
-1. Verify that the IoT hub appears in the list of linked hubs for the device provisioning service.
+1. Verify that the IoT hub appears in the list of linked hubs for the DPS instance.
 
     ```azurecli-interactive
     az iot dps linked-hub list --dps-name <DPS_NAME> --resource-group <RESOURCE_GROUP>
@@ -249,9 +249,9 @@ Validate that your IoT hub registered its CA certificate.
 az iot hub certificate list --hub-name <HUB_NAME> --resource-group <RESOURCE_GROUP>
 ```
 
-## Create an enrollment in the device provisioning service
+## Create an enrollment in DPS
 
-To provision devices by using leaf certificates, create an enrollment group in the device provisioning service and assign it to the appropriate credential policy with the `--credential-policy` parameter.
+To provision devices by using leaf certificates, create an enrollment group in DPS and assign it to the appropriate credential policy with the `--credential-policy` parameter.
 
 The following command creates an enrollment group that uses symmetric key attestation by default:
 
