@@ -16,7 +16,7 @@ Use the provided PowerShell script to automate the setup of your IoT hub with Az
 1. Configure the necessary app privileges.
 1. Create a user-assigned managed identity.
 1. Create a Device Registry namespace with system-assigned managed identity.
-1. Create a credential (root CA) and policy (issuing CA) scoped to that namespace.
+1. Create a credential root certificate authority (root CA) and policy (issuing CA) scoped to that namespace.
 1. Create an IoT hub (preview) with a linked namespace and managed identity.
 1. Create a DPS instance with a linked IoT hub and namespace.
 1. Sync your credential and policies (CA certificates) to IoT Hub.

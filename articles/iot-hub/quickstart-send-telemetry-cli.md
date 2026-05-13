@@ -102,9 +102,8 @@ To create and start a simulated device:
 
 1. In the first CLI session, run the [az iot hub device-identity create](/cli/azure/iot/hub/device-identity#az-iot-hub-device-identity-create) command. This command creates the simulated device identity.
 
-    `YourIotHubName`. Replace this placeholder in the following code with the name that you chose for your IoT hub.
-
-    `simDevice`. You can use this name directly for the simulated device in the rest of this quickstart. Optionally, use a different name.
+    - `YourIotHubName`. Replace this placeholder in the following code with the name that you chose for your IoT hub.
+    - `simDevice`. You can use this name directly for the simulated device in the rest of this quickstart. Optionally, use a different name.
 
     ```azurecli
     az iot hub device-identity create -d simDevice -n {YourIoTHubName} 

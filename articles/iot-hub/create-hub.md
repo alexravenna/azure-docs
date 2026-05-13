@@ -22,7 +22,7 @@ Prepare the following prerequisites, depending on which tool you use.
 
 ### [Azure portal](#tab/portal)
 
-* Access to the [Azure portal](https://portal.azure.com).
+Access to the [Azure portal](https://portal.azure.com).
 
 ### [Azure CLI](#tab/cli)
 
@@ -53,7 +53,7 @@ Prepare the following prerequisites, depending on which tool you use.
 
 ### [Azure CLI](#tab/cli)
 
-Use the [az iot hub create](/cli/azure/iot/hub#az-iot-hub-create) command to create an IoT hub in your resource group by using a globally unique name for your IoT hub. For example:
+Use the [az iot hub create](/cli/azure/iot/hub#az-iot-hub-create) command to create an IoT hub in your resource group. Use a globally unique name for your IoT hub. For example:
 
 ```azurecli-interactive
 az iot hub create --name <NEW_NAME_FOR_YOUR_IOT_HUB> --resource-group <RESOURCE_GROUP_NAME> --sku S1

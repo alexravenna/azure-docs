@@ -55,7 +55,7 @@ The setup process in this article includes the following steps:
 1. Configure the necessary app privileges.
 1. Create a user-assigned managed identity.
 1. Create a Device Registry namespace with system-assigned managed identity.
-1. Create a credential (root CA) and policy (issuing CA) scoped to that namespace.
+1. Create a credential certificate authority (root CA) and policy (issuing CA) scoped to that namespace.
 1. Create an IoT hub (preview) with a linked namespace and managed identity.
 1. Create a DPS instance with a linked IoT hub and namespace.
 1. Sync your credential and policies (CA certificates) to IoT Hub.
@@ -116,7 +116,7 @@ In this section, you create a new Device Registry namespace with a system-assign
 
 Credentials are optional. You can also create a namespace without a managed identity by omitting the `--enable-certificate-management` and `--policy-name` flags.
 
-1. Create a new Device Registry namespace. Your namespace `name` may contain only lowercase letters and hyphens (`-`) in the middle of the name, but not at the beginning or end. For example, the name `msft-namespace` is valid. The `--enable-certificate-management` command creates credential (root CA) and default policy (issuing CA) for this namespace. You can configure the name for this policy by using the `--policy-name` command. By default, a policy can issue certificates with a validity of 30 days.
+1. Create a new Device Registry namespace. Your namespace `name` can contain only lowercase letters and hyphens (`-`) in the middle of the name, but not at the beginning or end. For example, the name `msft-namespace` is valid. The `--enable-certificate-management` command creates credential (root CA) and default policy (issuing CA) for this namespace. You can configure the name for this policy by using the `--policy-name` command. By default, a policy can issue certificates with a validity of 30 days.
 
     ```azurecli-interactive
     az iot adr ns create --name <NAMESPACE_NAME> --resource-group <RESOURCE_GROUP_NAME> --location <REGION> --enable-certificate-management true --policy-name <POLICY_NAME>
