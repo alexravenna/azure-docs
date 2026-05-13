@@ -104,7 +104,6 @@ Incident tracking is built-in — open **Monitor** > **Incident metrics** once y
 | Resource | What you'll learn |
 |----------|-------------------|
 | [Set up a response plan](../tutorials/agent-config/setup-response-plan.md) | Configure response plans that generate tracking data |
-| [Connect your IcM environment](../tutorials/incident-platforms/connect-icm.md) | Set up the IcM connector for incident tracking |
 
 ## Related capabilities
 

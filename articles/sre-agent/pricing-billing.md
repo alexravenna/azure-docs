@@ -61,7 +61,7 @@ Number of AAUs consumed per 1 million tokens:
 | GPT 5.3 Codex | 35 AAUs | 280 AAUs | 3.5 AAUs | 0 AAUs |
 | GPT 5.2 | 35 AAUs | 280 AAUs | 3.5 AAUs | 0 AAUs |
 
-*Rates are per 1 million tokens. Effective April 15, 2026.*
+*Rates are per 1 million tokens.*
 
 > [!NOTE]
 > Additional models and providers may be added in the future. AAU rates are set by Azure and may be updated as new models are released.
