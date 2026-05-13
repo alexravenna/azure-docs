@@ -147,7 +147,7 @@ Usage and optional cost information for the cluster
 ## Node
 A node record
 
-*Type* : object
+*Type*: object
 
 
 <a name="nodecreationrequest"></a>
@@ -157,7 +157,7 @@ Specifies how to add nodes to a cluster
 
 |Name|Description|Schema|
 |---|---|---|
-|**requestId**  <br>*optional*|Optional user-supplied unique token to prevent duplicate operations if there are network communication errors. If this value is included and matches an earlier request id, the server ignores this request and returns a 409 error.  <br>**Example** : `"00000000-0000-0000-0000-000000000000"`|string|
+|**requestId**  <br>*optional*|Optional user-supplied unique token to prevent duplicate operations if there are network communication errors. If this value is included and matches an earlier request ID, the server ignores this request and returns a 409 error.  <br>**Example** : `"00000000-0000-0000-0000-000000000000"`|string|
 |**sets**  <br>*required*|A list of node definitions to create. The request must contain at least one set. Each set can specify a different set of properties.  <br>**Example** : `[ "object" ]`|< [sets](#nodecreationrequest-sets) > array|
 
 <a name="nodecreationrequest-sets"></a>
@@ -206,7 +206,7 @@ Results of a node search
 |Name|Description|Schema|
 |---|---|---|
 |**nodes**  <br>*required*|The nodes returned  <br>**Example** : `[ "[node](#node)" ]`|< [Node](#node) > array|
-|**operation**  <br>*optional*| The status of an operation if the query includes an operation id  <br>**Example** : `"[operationstatus](#operationstatus)"`|[OperationStatus](#operationstatus)|
+|**operation**  <br>*optional*| The status of an operation if the query includes an operation ID  <br>**Example** : `"[operationstatus](#operationstatus)"`|[OperationStatus](#operationstatus)|
 
 
 <a name="nodemanagementrequest"></a>
@@ -218,10 +218,10 @@ Specifies how to perform actions on nodes in a cluster. There are multiple ways 
 |---|---|---|
 |**filter**  <br>*optional*|A filter expression that matches nodes. Strings in the expression must be quoted properly.  <br>**Example** : `"State === \"Started\""`|string|
 |**hostnames**  <br>*optional*|A list of short hostnames (with no domain) to manage  <br>**Example** : `[ "hostname1", "hostname2" ]`|< string > array|
-|**ids**  <br>*optional*|A list of node ids to manage  <br>**Example** : `[ "id1", "id2" ]`|< string > array|
+|**ids**  <br>*optional*|A list of node IDs to manage  <br>**Example** : `[ "id1", "id2" ]`|< string > array|
 |**ip_addresses**  <br>*optional*|A list of IP addresses to manage  <br>**Example** : `[ "10.0.1.1", "10.1.1.2" ]`|< string > array|
 |**names**  <br>*optional*|A list of node names to manage  <br>**Example** : `[ "name1", "name2" ]`|< string > array|
-|**requestId**  <br>*optional*|Optional user-supplied unique token to prevent duplicate operations if there are network communication errors. If this value is included and matches an earlier request id, the server ignores this request and returns a 409 error.  <br>**Example** : `"00000000-0000-0000-0000-000000000000"`|string|
+|**requestId**  <br>*optional*|Optional user-supplied unique token to prevent duplicate operations if there are network communication errors. If this value is included and matches an earlier request ID, the server ignores this request and returns a 409 error.  <br>**Example** : `"00000000-0000-0000-0000-000000000000"`|string|
 
 
 <a name="nodemanagementresult"></a>

@@ -24,7 +24,7 @@ GET /clusters/{cluster}/nodes
 |---|---|---|---|
 |**Path**|**cluster**  <br>*required*|The cluster to query|string|
 |**Query**|**operation**  <br>*optional*|If given, returns only the nodes for this operation ID, and includes the operation attribute on the body|string|
-|**Query**|**request_id**  <br>*optional*|If given, returns only the nodes for the operation identified by this request id, and includes the operation attribute on the body|string|
+|**Query**|**request_id**  <br>*optional*|If given, returns only the nodes for the operation identified by this request ID, and includes the operation attribute on the body|string|
 
 
 ### Responses
@@ -123,7 +123,7 @@ POST /clusters/{cluster}/nodes/deallocate
 
 
 ### Description
-This operation deallocates nodes in a cluster. The nodes can be identified in several ways,  including node name, node id, or by filter.
+This operation deallocates nodes in a cluster. The nodes can be identified in several ways,  including node name, node ID, or by filter.
 
 
 ### Parameters
@@ -783,7 +783,7 @@ GET /operations/
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
-|**Query**|**request_id**  <br>*optional*|The request ID for the operation. If this value is given, the list contains 0 or 1 elements.|string|
+|**Query**|**request_id**  <br>*optional*|The request ID for the operation. If this value is given, the list contains 0 or 1 element.|string|
 
 
 ### Responses
@@ -817,7 +817,7 @@ GET /operations/
 
 
 <a name="operations_getstatus"></a>
-## Gets operation status by id
+## Gets operation status by ID
 ```
 GET /operations/{id}
 ```
