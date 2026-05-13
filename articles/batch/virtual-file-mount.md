@@ -4,7 +4,7 @@ description: Learn how to mount different kinds of virtual file systems on Batch
 ms.topic: how-to
 ms.devlang: csharp
 ms.custom: devx-track-csharp, devx-track-azurepowershell, linux-related-content
-ms.date: 06/10/2024
+ms.date: 05/13/2025
 # Customer intent: As a cloud engineer, I want to mount a virtual file system on Batch pool nodes, so that I can efficiently manage shared data access for tasks running on those compute nodes.
 ---
 
@@ -360,7 +360,7 @@ The following code example configurations demonstrate mounting various file shar
 
 Azure Files is the standard Azure cloud file system offering. The following configuration mounts an Azure Files share named `<file-share-name>` to the *S* drive. For information about the parameters in the example, see [Mount SMB Azure file share on Windows](/azure/storage/files/storage-how-to-use-files-windows) or [Create an NFS Azure file share and mount it on a Linux VM using the Azure portal](/azure/storage/files/storage-files-how-to-create-nfs-shares).
 
-```csharp
+```C# Snippet:virutal_file_mount_file_share
 using System;
 using System.Threading.Tasks;
 using Azure;
@@ -442,7 +442,7 @@ For information on getting these keys or identity, see the following articles:
 
 The following configuration mounts a blob file system with BlobFuse options. For illustration purposes, the example shows `AccountKey`, `SasKey`, and `IdentityResourceId`, but you can actually specify only one of these methods.
 
-```csharp
+```C# Snippet:virutal_file_mount_blob
 using System;
 using System.Threading.Tasks;
 using Azure;
@@ -528,7 +528,7 @@ You can mount NFS shares to pool nodes to allow Batch to access traditional file
 
 The following example shows a configuration for an NFS file system mount:
 
-```csharp
+```C# Snippet:virutal_file_mount_nfs
 using System;
 using System.Threading.Tasks;
 using Azure;
@@ -599,7 +599,7 @@ Mounting [CIFS](/windows/desktop/fileio/microsoft-smb-protocol-and-cifs-protocol
 
 The following example shows a configuration for a CIFS file mount.
 
-```csharp
+```C# Snippet:virutal_file_mount_cifs
 using System;
 using System.Threading.Tasks;
 using Azure;
