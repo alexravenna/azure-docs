@@ -107,16 +107,16 @@ Example /22 CIDR network address block **10.31.0.0/22** is divided into the foll
 
 Azure VMware Solution Gen-2 NSX routes are integrated into Azure by using address-space and assigning them as secondary IPs on the "avs-network-infra-gw” system-created subnet, enabling smooth connectivity between Azure and AVS customer workloads. When NSX Tier-0 advertises a route based on user settings—such as creating segments, adding static routes, or using HCX MON virtual machines—the Azure VMware Solution control plane checks whether the route prefix exists in the virtual network address space. If it doesn't, it creates the address-space and adds the route prefix as secondary IPs on the "avs-network-infra-gw” subnet. For Tier-0 advertised /32 routes, like HCX MON routes, secondary IPs aren't set, but the data plane is internally configured to ensure connectivity to /32 destinations on Azure VMware Solution.
 
-Along with the address space and subnet update for NSX routes, there'sinternal programming that customers should be aware of, especially regarding supported scale when lower subnet masks are used. For more information on the scale aspect, see [Route architecture for Azure VMware Solution Gen 2](native-network-routing-architecture.md)
+Along with the address space and subnet update for NSX routes, there's internal programming that customers should be aware of, especially regarding supported scale when lower subnet masks are used. For more information on the scale aspect, see [Route architecture for Azure VMware Solution Gen 2](native-network-routing-architecture.md)
 
 ## Azure Route Table (UDR) Association consideration
 
-Azure VMware Solution Gen-2 includes two internal architectures, with slight variation. Some of the initial Gen-2 private clouds use the initial internal architecture. These are updated to the current architecture through scheduled maintenance, coordinated with the customer. However, there'schange in behavior with current architecture, compared to initial architecture, that may affect certain network design considerations, as described below.
+Azure VMware Solution Gen-2 includes two internal architectures, with slight variation. Some of the initial Gen-2 private clouds use the initial internal architecture. These are updated to the current architecture through scheduled maintenance, coordinated with the customer. However, there's change in behavior with current architecture, compared to initial architecture, that may affect certain network design considerations, as described below.
 
 **Initial Gen-2 private cloud's:**
 -	Azure VNET has two base gateway subnets named "avs-nsx-gw” and doesn't have the "avs-network-infra-gw” subnet as in the current architecture.
 -	All AVS NSX segment subnets are programmed under "avs-nsx-gw” subnet as additional IPv4 address for connecting Azure to NSX workloads.
--	The route table (UDR) or Azure NSG for traffic from AVS to Azure VNET and beyond (say on-prem) need to be applied to the "avs-nsx-gw” subnet.
+-	The route table (UDR) or Azure NSG for traffic from AVS to Azure VNET and beyond (say on-premises) need to be applied to the "avs-nsx-gw” subnet.
 
 **Current Gen-2 private cloud's:**
 
@@ -132,7 +132,7 @@ Be sure to take note of this change in behavior.
 
 -	Customers observe additional effective routes for AVS subnets within the peered VNET due to change in VNET peer sync behavior.
 -	If a customer uses an Azure route table (UDR) to send traffic from on‑premises to AVS through a firewall or network virtual appliance, they should update the UDR to use specific NSX subnet routes instead of the broad supernet address range used before. This is required to prevent traffic destined for AVS from taking more specific VNET subnet routes, bypassing intended firewall, due to longest prefix match [behavior of Azure routing](../virtual-network/virtual-networks-udr-overview.md#how-azure-selects-routes-for-traffic-routing). Otherwise, this can result in asymmetric routing, potentially causing connectivity problems.
--	However, the route table (UDR) or Azure NSG for traffic from AVS to Azure VNET and beyond (say on-prem) would continue to be applied to the "avs-nsx-gw” subnets, not "avs-network-infra-gw.” Customers shouldn't use the route table (UDR) on the "avs-network-infra-gw” subnet, even if NSX segment subnets are configured there as secondary IPs.
+-	However, the route table (UDR) or Azure NSG for traffic from AVS to Azure VNET and beyond (say on-premises) would continue to be applied to the "avs-nsx-gw” subnets, not "avs-network-infra-gw.” Customers shouldn't use the route table (UDR) on the "avs-network-infra-gw” subnet, even if NSX segment subnets are configured there as secondary IPs.
 
 ## Next steps
 
