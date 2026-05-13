@@ -72,7 +72,7 @@ Before assigning roles, make sure you [add a tenant as an associated billing ten
 
 > [!IMPORTANT]
 > User visibility across associated tenants - When Billing Management is enabled for an associated tenant, user visibility on the MCA-E billing account becomes cross-tenant. Specifically:
-  Any user with a billing role on the billing account can view all other users who hold a billing role at the same scope.
+  Any user with a billing role on the billing account can view all other users who hold a billing role at the billing account scope.
   Visible attributes include user name, email address, assigned role, and home tenant.
   This applies regardless of which associated tenant the viewer or the viewed user belongs to.
 
