@@ -1,5 +1,5 @@
 ---
-title: Deploy with infrastructure as code
+title: Deploy with infrastructure as code in Azure SRE Agent
 description: Deploy Azure SRE Agent using Bicep, Terraform, PowerShell, or Azure Developer CLI with pre-built templates.
 ms.topic: how-to
 ms.service: azure-sre-agent
@@ -11,15 +11,15 @@ ms.custom: iac, bicep, terraform, deployment, automation, ci-cd, templates
 #customer intent: As a DevOps engineer, I want to deploy Azure SRE Agent programmatically so I can version control and automate deployments.
 ---
 
-# Deploy with infrastructure as code
+# Deploy with infrastructure as code in Azure SRE Agent
 
-Deploy Azure SRE Agent programmatically using templates from the [microsoft/sre-agent](https://github.com/microsoft/sre-agent) repository.
+Deploy Azure SRE Agent programmatically by using templates from the [microsoft/sre-agent](https://github.com/microsoft/sre-agent) repository.
 
 > [!TIP]
 > - **Four deploy backends:** Bicep, Terraform, PowerShell, and Azure Developer CLI
-> - **Pre-built recipes** for common scenarios (Azure Monitor, PagerDuty, Dynatrace)
+> - **Prebuilt recipes** for common scenarios (Azure Monitor, PagerDuty, Dynatrace)
 > - **One command** to go from zero to a running agent: `./bin/deploy.sh my-agent/`
-> - **Day-2 operations:** export, clone, diff, and verify agents with the same CLI tools
+> - **Day-2 operations:** export, clone, diff, and verify agents by using the same CLI tools
 
 ## Overview
 
@@ -28,7 +28,7 @@ The [microsoft/sre-agent](https://github.com/microsoft/sre-agent) repository pro
 - **Automate deployments** in CI/CD pipelines
 - **Version-control** agent configuration in Git
 - **Replicate** agents across environments (dev to staging to prod)
-- **Standardize** setup with pre-built recipes
+- **Standardize** setup by using prebuilt recipes
 
 ## Prerequisites
 
@@ -81,11 +81,11 @@ Data plane:      https://my-agent.eastus2.azuresre.ai
   -o staging-agent/
 ```
 
-Exports the source agent's config and deploys to a new name and resource group — useful for replicating across environments.
+Exports the source agent's config and deploys to a new name and resource group. This is useful for replicating across environments.
 
 ## Recipes
 
-Pre-built starting points for common scenarios like Azure Monitor alert response, PagerDuty incident management, and Dynatrace integration. New recipes are added regularly.
+Prebuilt starting points for common scenarios like Azure Monitor alert response, PagerDuty incident management, and Dynatrace integration. Microsoft regularly adds new recipes.
 
 Browse available recipes in the [templates repository](https://github.com/microsoft/sre-agent/tree/main/sreagent-templates/recipes).
 
@@ -103,11 +103,11 @@ ls recipes/
 
 ## Deploy backends
 
-The templates support four deployment backends. Each uses the same config directory — pick the one that fits your environment:
+The templates support four deployment backends. Each uses the same config directory - pick the one that fits your environment:
 
 | Backend | Command | Use when |
 |---------|---------|----------|
-| **Bicep** | `./bin/deploy.sh my-agent/` | Default — uses `az deployment sub create` |
+| **Bicep** | `./bin/deploy.sh my-agent/` | Default - uses `az deployment sub create` |
 | **Terraform** | `./bin/deploy-tf.sh my-agent/` | Terraform-managed infrastructure |
 | **PowerShell** | `.\bin\ps\Deploy-Agent.ps1 -InputPath .\my-agent\` | Windows / PowerShell 7 environments |
 | **Azure Developer CLI** | `cd my-agent/ && azd up` | azd-based workflows |
@@ -172,7 +172,7 @@ Deployment happens in two phases.
 
 ## Key parameters
 
-When generating a config with `new-agent.sh --set`, you provide values like `agentName`, `resourceGroup`, `location`, and `targetRGs`. These are translated into deployment parameters for Bicep/Terraform.
+When you generate a config by using `new-agent.sh --set`, enter values such as `agentName`, `resourceGroup`, `location`, and `targetRGs`. The process translates these values into deployment parameters for Bicep or Terraform.
 
 For the full list of parameters, feature toggles, and their defaults, see the [repository README](https://github.com/microsoft/sre-agent/tree/main/sreagent-templates#parameters).
 
@@ -182,7 +182,7 @@ The templates include scripts for ongoing management:
 
 | Operation | What it does |
 |-----------|-------------|
-| **Export** | Create a config directory from a running agent — useful for backup or migration |
+| **Export** | Create a config directory from a running agent - useful for backup or migration |
 | **Clone** | Export a source agent and deploy to a new name and resource group |
 | **Diff** | Compare your local config against the live agent |
 | **Verify** | Run a 22-point check against the live agent (connectors, skills, subagents, hooks) |

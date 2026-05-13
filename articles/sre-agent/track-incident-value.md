@@ -29,7 +29,7 @@ Answering those questions today means querying telemetry, cross-referencing tick
 
 Navigate to **Monitor** > **Incident metrics** to see the dashboard.
 
-![Incident metrics dashboard showing five stat cards with sparkline trends and an incident summary line chart](media/incident-metrics-dashboard.png)
+![Incident metrics dashboard showing five stat cards with sparkline trends and an incident summary line chart](media/track-incident-value/incident-metrics-dashboard.png)
 
 ### Metric cards
 
@@ -78,7 +78,7 @@ Go to **Incidents** in the left sidebar for a real-time view of every incident y
 
 Your agent generates automated daily reports at **Daily reports** in the left sidebar.
 
-![Daily report showing security findings, incident summary, resource health metrics, and recommended actions](media/daily-reports.png)
+![Daily report showing security findings, incident summary, resource health metrics, and recommended actions](media/track-incident-value/daily-reports.png)
 
 Select a date to view that day's report. Each report covers:
 
@@ -103,7 +103,7 @@ Incident tracking is built-in — open **Monitor** > **Incident metrics** once y
 
 | Resource | What you'll learn |
 |----------|-------------------|
-| [Set up a response plan](../tutorials/agent-config/setup-response-plan.md) | Configure response plans that generate tracking data |
+| [Set up a response plan](response-plan.md) | Configure response plans that generate tracking data |
 
 ## Related capabilities
 

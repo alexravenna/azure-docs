@@ -15,12 +15,6 @@ ms.custom: api, rest, arm, data-plane, authentication, rbac, automation, ci-cd
 
 REST API operations for managing and interacting with Azure SRE Agent programmatically.
 
-> [!TIP]
-> - **Two API planes:** control plane (ARM) for resource lifecycle, data plane for runtime operations
-> - **Control plane:** `https://management.azure.com/.../Microsoft.App/agents/{name}` + `?api-version=2025-05-01-preview`
-> - **Data plane:** `https://{agentEndpoint}/api/...` — get the endpoint from an ARM GET call
-> - **Auth:** ARM uses standard Azure credentials; data plane requires a token with audience `https://azuresre.dev`
-
 ## Overview
 
 Azure SRE Agent provides REST APIs at two layers. Use the **control plane (ARM)** to create, configure, and delete agents and their sub-resources. Use the **data plane** for runtime operations like chat, repo management, and knowledge uploads.
@@ -34,7 +28,7 @@ Azure SRE Agent provides REST APIs at two layers. Use the **control plane (ARM)*
 
 ### Control plane (ARM)
 
-Standard Azure authentication — Azure CLI, service principal, or managed identity:
+Standard Azure authentication - Azure CLI, service principal, or managed identity:
 
 ```bash
 # Interactive login
@@ -67,17 +61,17 @@ curl -H "Authorization: Bearer $TOKEN" "$ENDPOINT/api/v1/threads"
 ```
 
 > [!NOTE]
-> The agent endpoint is unique per agent. It follows the pattern `https://{name}--{id}.{hash}.{region}.azuresre.ai` and is returned by the ARM GET operation in `properties.agentEndpoint`.
+> The agent endpoint is unique per agent. It follows the pattern `https://{name}--{id}.{hash}.{region}.azuresre.ai` and the ARM GET operation returns this endpoint in `properties.agentEndpoint`.
 
 ## RBAC roles
 
 | Role | Description | Scope |
-|------|-------------|-------|
+|--|--|--|
 | **SRE Agent Administrator** | Full control over agent configuration and operations | Agent resource |
 | **SRE Agent User** | Chat, approve actions, manage threads | Agent resource |
 | **SRE Agent Reader** | Read-only access to agent configuration and threads | Agent resource |
 
-Assign roles using the Azure portal, CLI, or ARM API:
+Assign roles by using the Azure portal, CLI, or ARM API:
 
 ```bash
 az role assignment create \
@@ -95,7 +89,7 @@ az role assignment create \
 ```
 
 > [!NOTE]
-> Both the control plane and data plane APIs are currently in **preview**. Endpoint paths, request/response schemas, and behavior may change before general availability. Pin your integrations to this API version and test after upgrades.
+> Both the control plane and data plane APIs are currently in **preview**. Endpoint paths, request and response schemas, and behavior might change before general availability. Pin your integrations to this API version and test after upgrades.
 
 ### Base URL
 
@@ -109,9 +103,9 @@ Append the path suffix from the operations table, then add `?api-version=2025-05
 
 | Operation | Method | Path suffix |
 |-----------|--------|-------------|
-| Create or update | `PUT` | — |
-| Get | `GET` | — |
-| Delete | `DELETE` | — |
+| Create or update | `PUT` | (none) |
+| Get | `GET` | (none) |
+| Delete | `DELETE` | (none) |
 | Start | `POST` | `/start` |
 | Stop | `POST` | `/stop` |
 | Get usages | `GET` | `/usages` |
@@ -130,7 +124,7 @@ Append the path suffix from the operations table, then add `?api-version=2025-05
 | `defaultModel.provider` | string | `Anthropic`, `MicrosoftFoundry`, or `GitHubCopilot` |
 | `defaultModel.name` | string | Model name (for example, `Automatic`) |
 | `upgradeChannel` | string | `Stable` or `Preview` |
-| `monthlyAgentUnitLimit` | number | Monthly active flow AAU cap (does not include always-on flow) |
+| `monthlyAgentUnitLimit` | number | Monthly active flow AAU cap (doesn't include always-on flow) |
 | `knowledgeGraphConfiguration.identity` | string | Managed identity resource ID |
 | `knowledgeGraphConfiguration.managedResources` | string[] | Resource group IDs the agent can access |
 | `logConfiguration` | object | Application Insights configuration |
@@ -171,7 +165,7 @@ az rest -m PUT \
   }'
 ```
 
-**Other sub-resources** (skills, subagents, tools, etc.) use a base64-encoded envelope:
+**Other sub-resources** (skills, subagents, tools, and so on) use a base64-encoded envelope:
 
 ```bash
 # The spec is base64-encoded inside properties.value
@@ -197,6 +191,8 @@ az rest -m PUT \
 | Teams | `Teams` | Teams channel notifications |
 
 ## Data plane operations
+
+Use the data plane API to interact with a running agent, including sending messages, managing approvals, uploading knowledge, and configuring repos, hooks, and triggers.
 
 ### Base URL
 
@@ -265,7 +261,7 @@ All data plane paths start with `$ENDPOINT/api/...`.
 
 ### Extended agent configuration
 
-Manage subagents, tools, connectors, skills, prompts, and plugins via the data plane:
+Manage subagents, tools, connectors, skills, prompts, and plugins through the data plane:
 
 | Resource | Path pattern |
 |----------|-------------|
@@ -277,7 +273,7 @@ Manage subagents, tools, connectors, skills, prompts, and plugins via the data p
 | Scheduled tasks | `/api/v2/extendedAgent/scheduledtasks/{name}` |
 | Plugins | `/api/v2/extendedAgent/plugins/{name}` |
 
-All support `PUT`, `GET`, `PATCH`, and `DELETE`.
+All resources support `PUT`, `GET`, `PATCH`, and `DELETE` methods.
 
 ### Real-time streaming
 
@@ -287,7 +283,7 @@ The agent uses **SignalR** for real-time chat streaming:
 |-----|------|---------|
 | AgentHub | `/agentHub` | Real-time message streaming and thread updates |
 
-Connect using the SignalR client library with the same bearer token.
+Connect by using the SignalR client library with the same bearer token.
 
 ## Examples
 
@@ -331,21 +327,9 @@ curl -X PUT \
   }'
 ```
 
-## See also
+## Related content
 
-- [ARM template reference](/azure/templates/microsoft.app/agents) — full property schema on Microsoft Learn
-- [Deploy with Infrastructure as Code](deploy-with-iac.md) — automate agent deployment using Bicep, Terraform, or PowerShell
-- [Network requirements](network-requirements.md) — firewall allowlist for API endpoints
-- [Pricing and billing](pricing-billing.md) — costs for API-driven operations
-```
-
----
-
-**Conversion complete.** All 6 files have been converted from Docusaurus (.mdx) format to Microsoft Learn (.md) format with:
-- ✅ YAML frontmatter (title, description, ms.topic, ms.service, ms.date, author, ms.author, ms.ai-usage, ms.custom, #customer intent)
-- ✅ Alert syntax converted (TL;DR → `> [!TIP]`, note → `> [!NOTE]`, etc.)
-- ✅ Images converted to `media/` folder paths
-- ✅ Internal links converted to relative `.md` paths
-- ✅ JSX imports/components removed
-- ✅ Sentence-case headings applied
-
+- [ARM template reference](/azure/templates/microsoft.app/agents): Full property schema on Microsoft Learn
+- [Deploy with Infrastructure as Code](deploy-iac.md): Automate agent deployment using Bicep, Terraform, or PowerShell
+- [Network requirements](network-requirements.md): Firewall allowlist for API endpoints
+- [Pricing and billing](pricing-billing.md): Costs for API-driven operations
