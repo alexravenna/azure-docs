@@ -61,7 +61,7 @@ To configure your SAP S/4 HANA source system with open mirroring, follow these s
 
 1. You can monitor the deployment status by using the refresh button to refresh the page.
 
-   :::image type="content" source="./media/configure-source-system-with-open-mirroring/monitor-sap-ecc-source-system-creation.png" alt-text="Screenshot that shows the deployment status monitoring view for sap ecc system." lightbox="./media/configure-source-system-with-open-mirroring/monitor-sap-ecc-source-system-creation.png":::
+   :::image type="content" source="./media/configure-source-system-with-open-mirroring/monitor-sap-source-system-creation.png" alt-text="Screenshot that shows the deployment status monitoring view for sap ecc system." lightbox="./media/configure-source-system-with-open-mirroring/monitor-sap-source-system-creation.png":::
 
 1. After the deployment is finished, you can see the resources that are deployed to your workspace.
 
