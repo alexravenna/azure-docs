@@ -1,4 +1,16 @@
+---
+title: CycleCloud API resources
+description: Reference for Azure CycleCloud REST API resource models, including cluster status, node arrays, and related objects returned by the API.
+ms.service: cyclecloud
+ms.topic: reference
+ms.date: 05/13/2026
+author: emilylo3
+# Customer intent: As a developer or operator, I want to use the CycleCloud REST API to manage clusters and nodes programmatically.
+---
 
+# CycleCloud API resources
+
+Azure CycleCloud defines a set of resource models that describe clusters, node arrays, nodes, and allocation state. These resources are returned by the REST API and provide details such as capacity limits, usage, and cluster state. Use this reference to understand the structure and properties of API responses when managing and monitoring CycleCloud clusters programmatically.
 
 <a name="clusterstatus"></a>
 ## ClusterStatus
