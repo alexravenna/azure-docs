@@ -66,8 +66,6 @@ To configure your source system, follow these steps:
 
 1. After the deployment is finished, you can see the resources deployed to your workspace.
 
-   :::image type="content" source="./media/configure-salesforce-source-system/deployed-resources.png" alt-text="Screenshot that shows the deployed resources in the workspace." lightbox="./media/configure-salesforce-source-system/deployed-resources.png":::
-
 ## Next step
 
 >[!div class="nextstepaction"]
