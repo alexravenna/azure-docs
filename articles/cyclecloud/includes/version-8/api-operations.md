@@ -1,11 +1,22 @@
+---
+title: CycleCloud API operations
+description: Reference for Azure CycleCloud REST API operations used to manage clusters, nodes, and related resources programmatically.
+ms.service: cyclecloud
+ms.topic: reference
+ms.date: 05/13/2026
+author: emilylo
+# Customer intent: As a developer or operator, I want to use the CycleCloud REST API to manage clusters and nodes programmatically.
+---
 
+# CycleCloud API operations
+
+Azure CycleCloud provides a REST API for managing clusters, nodes, and related resources programmatically. Use these API operations to query cluster state, create and manage nodes, and track long-running operations. This reference lists the available endpoints, parameters, and response formats to help you automate and integrate CycleCloud cluster management into your workflows.
 
 <a name="clusters_getnodes"></a>
 ## Get cluster nodes
 ```
 GET /clusters/{cluster}/nodes
 ```
-
 
 ### Parameters
 
