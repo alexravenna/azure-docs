@@ -23,7 +23,7 @@ When you host Azure Functions on [Azure Container Apps](overview.md), you can ac
 
 GPU-enabled functions require:
 
-- A [Container Apps environment](environments.md) with GPU workload profiles
+- A [Container Apps environment](environment.md) with GPU workload profiles
 - A custom container image that includes the Functions runtime and GPU libraries (CUDA, cuDNN, AI frameworks)
 - GPU quota approved for your Azure subscription
 
