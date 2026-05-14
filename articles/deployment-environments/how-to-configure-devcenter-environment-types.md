@@ -21,8 +21,6 @@ In this article, you learn how to:
 - Add a new environment type to a dev center.
 - Delete an environment type from a dev center.
 
-:::image type="content" source="media/configure-dev-center-environment-types/azure-deployment-environments-environment-types.png" alt-text="Screenshot of example environment types." lightbox="media/configure-dev-center-environment-types/azure-deployment-environments-environment-types.png":::
-
 ## Add a dev center environment type
 
 To add a new environment type to a dev center:
@@ -32,14 +30,17 @@ To add a new environment type to a dev center:
 1. On the **Dev centers** page, select your dev center. 
 1. In the left pane, under **Environment configuration**, select **Environment types**.
 1. Select **+ Create**.
+
+   :::image type="content" source="media/configure-dev-center-environment-types/azure-deployment-environments-environment-types.png" alt-text="Screenshot of example environment types." lightbox="media/configure-dev-center-environment-types/azure-deployment-environments-environment-types.png":::
+
 1. On the **Create environment type** page, add the following details:
    1. In the **Name** box, add a name for the environment type.
    1. Under **Tags**, add tags by entering **Name** and **Value** information (optional).
 1. Select **Add**.
 
-:::image type="content" source="media/configure-dev-center-environment-types/create-new-dev-center-environment-type.png" alt-text="Screenshot that shows the page for adding an environment type." lightbox="media/configure-dev-center-environment-types/create-new-dev-center-environment-type.png":::
+   :::image type="content" source="media/configure-dev-center-environment-types/create-new-dev-center-environment-type.png" alt-text="Screenshot that shows the page for adding an environment type." lightbox="media/configure-dev-center-environment-types/create-new-dev-center-environment-type.png":::
 
->[!NOTE]
+> [!NOTE]
 > A dev center environment type is available to a specific project only after you add an associated [project environment type](how-to-configure-project-environment-types.md).
 
 ## Delete a dev center environment type
