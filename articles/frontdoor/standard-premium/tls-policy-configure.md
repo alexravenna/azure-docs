@@ -14,7 +14,7 @@ ms.date: 05/14/2026
 
 Azure Front Door Standard and Premium offer two mechanisms for controlling TLS policy. You can use either a predefined policy or a custom policy based on your own needs. If you use Azure Front Door (classic) or Microsoft CDN (classic), you continue to use the minimum TLS 1.2 version.
 
-- Azure Front Door offers several predefined TLS policies. You can configure your AFD with any of these policies to get the appropriate level of security. The Microsoft Security team configures these predefined policies based on best practices and recommendations. Use the newest TLS policies to ensure the best TLS security.
+- Azure Front Door offers several predefined TLS policies. You can configure your Azure Front Door with any of these policies to get the appropriate level of security. The Microsoft Security team configures these predefined policies based on best practices and recommendations. Use the newest TLS policies to ensure the best TLS security.
 
 - If you need to configure a TLS policy for your own business and security requirements, use a custom TLS policy. By using a custom TLS policy, you have complete control over the minimum TLS protocol version to support, and the supported cipher suites.
 
