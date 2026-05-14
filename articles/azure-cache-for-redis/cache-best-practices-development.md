@@ -85,10 +85,8 @@ The IP address assigned to your cache can change as a result of a scale operatio
 |SKUs| Form |
 |----|----|
 | Basic, Standard, Premium | `<DNS name>.redis.cache.windows.net` |
-| Enterprise, Enterprise Flash | `<DNS name>.<Azure region>.redisenterprise.cache.azure.net.`  |
+| Enterprise, Enterprise Flash | `<DNS name>.<Azure region>.redisenterprise.cache.azure.net`  |
 | Azure Managed Redis | `<DNS name>.<Azure region>.redis.azure.net` |
-
- In these examples, `<DNS name>` refers to the cache instance's DNS host label. A trailing dot can be used to represent a fully qualified domain name (FQDN), but it isn't required.
 
 ## Choose an appropriate Redis version
 
