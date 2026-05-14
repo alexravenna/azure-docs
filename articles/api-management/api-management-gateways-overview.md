@@ -1,5 +1,5 @@
 ---
-title: API gateway overview | Azure API Management
+title: API Gateway Overview | Azure API Management
 description: Learn more about the features of the API gateway component of Azure API Management. API Management offers both Azure-managed and self-hosted gateways.
 services: api-management
 author: dlepow
@@ -8,7 +8,7 @@ ms.service: azure-api-management
 ms.custom:
   - build-2024
 ms.topic: concept-article
-ms.date: 05/07/2026
+ms.date: 05/14/2026
 ms.author: danlep
 ---
 
@@ -22,9 +22,7 @@ Related information:
 
 * For an overview of API Management scenarios, components, and concepts, see [What is Azure API Management?](api-management-key-concepts.md)
 
-* For more information about the API Management service tiers and features, see:
-    * [API Management tiers](api-management-key-concepts.md#api-management-tiers)
-    * [Feature-based comparison of the Azure API Management tiers](api-management-features.md).
+* For more information about the API Management service tiers and features, see [Feature-based comparison of the Azure API Management tiers](api-management-features.md).
 
 ## Role of the gateway
 
@@ -37,18 +35,19 @@ The API Management *gateway* (also called *data plane* or *runtime*) is the serv
 > All requests to the API Management gateway, including those rejected by policy configurations, count toward configured rate limits, quotas, and billing limits if the service tier applies them. 
 
 
-## Managed and self-hosted gateways
+## Managed and self-hosted gateways in API Management
 
 API Management offers both managed and self-hosted gateways:
 
-* **Managed** - The managed gateway is the default gateway component that Azure deploys for every API Management instance in every service tier. You can also associate a standalone managed gateway with a [workspace](workspaces-overview.md) in an API Management instance in select service tiers. By using the managed gateway, all API traffic flows through Azure regardless of where backends implementing the APIs are hosted.  
+* **Built-in managed gateway** - API Management provides a single, default built-in managed gateway for every API Management instance in every service tier. By using the managed gateway, all API traffic flows through Azure regardless of where backends implementing the APIs are hosted.  
 
     > [!NOTE]
     > Because of differences in the underlying service architecture, the gateways provided in the different API Management service tiers have some differences in capabilities. For details, see the section [Feature comparison: Managed versus self-hosted gateways](#feature-comparison-managed-versus-self-hosted-gateways).
     >    
  
+* **Managed workspace gateway** - In select service tiers that support [workspaces](workspaces-overview.md), you can also associate one or more separate, managed [workspace gateways](workspaces-overview.md#workspace-gateway) with each workspace. A workspace gateway is a standalone Azure resource with the same core functionality as the default managed gateway in each API Management instance.
 
-* **Self-hosted** - The [self-hosted gateway](self-hosted-gateway-overview.md) is an optional, containerized version of the default managed gateway that's available in select service tiers. It's useful for hybrid and multicloud scenarios where there's a requirement to run the gateways off of Azure in the same environments where API backends are hosted. The self-hosted gateway enables customers with hybrid IT infrastructure to manage APIs hosted on-premises and across clouds from a single API Management service in Azure. 
+* **Self-hosted gateway** - In select service tiers, the [self-hosted gateway](self-hosted-gateway-overview.md) is an optional, containerized version of the default managed gateway. Different tiers support different numbers of self-hosted gateways. It's useful for hybrid and multicloud scenarios where there's a requirement to run the gateways off of Azure in the same environments where API backends are hosted. The self-hosted gateway enables customers with hybrid IT infrastructure to manage APIs hosted on-premises and across clouds from a single API Management service in Azure. 
 
     * The self-hosted gateway is [packaged](self-hosted-gateway-overview.md#packaging) as a Linux-based Docker container and is commonly deployed to Kubernetes, including to [Azure Kubernetes Service](how-to-deploy-self-hosted-gateway-azure-kubernetes-service.md) and [Azure Arc-enabled Kubernetes](how-to-deploy-self-hosted-gateway-azure-arc.md).
 
