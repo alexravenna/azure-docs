@@ -28,6 +28,10 @@ You can use either the Azure portal or an Azure CLI extension to create and mana
 > [!NOTE]
 > For Public Trust certificates, Artifact Signing is currently available to organizations in the USA, Canada, the European Union, and the United Kingdom, as well as individual developers in the USA and Canada. This limitation is not applicable to Private Trust certificates.
 
+>[!Note]
+> For a Public Identity,the identity validation details for both individuals and organizations are automatically sourced from your Azure billing account under the subscription you are registering this resource provider. Before starting the identity validation process, ensure that all billing account information, including legal name, address, and organization details, exactly matches the information you intend to appear on your Artifact Signing Public Trust certificate profile types. Any discrepancies may result in incorrect information being reflected on the certificate.To review or update your billing account information, see Manage billing accounts.
+
+
 To complete this quickstart, you need:
 
 - A Microsoft Entra tenant ID.
@@ -277,11 +281,14 @@ To create an identity validation request for an Organization or a DBA:
 
    To learn how to manage, access by using role-based access control (RBAC), see [Tutorial: Assign roles in Artifact Signing](tutorial-assign-roles.md).
 1. On the Artifact Signing account **Overview** pane or on the resource menu under **Objects**, select **Identity validations**.
-1. Select **New identity**, and then select either **Public** or **Private**.
-
+1. Select **Organization**, select **New Identity**, and then select either **Public** or **Private**.
    - Public identity validation applies only to these certificate profile types: Public Trust, Public Trust Test, VBS Enclave.
    - Private identity validation applies only to these certificate profile types: Private Trust, Private Trust CI Policy.
-1. On **New identity validation**, provide the following information:
+1. On **New organization validation**,  select the billing account associated to the subscription.
+
+   :::image type="content" source="media/artifact-signing-billingaccount-organization.png" alt-text="Screenshot that shows the billing account dropdown for org." lightbox="media/artifact-signing-billingaccount-organization.png":::
+
+1. Once a billing account is selected, the form is automatically populated with the billing account information. These fields can be edited within the form. Before proceeding, ensure the populated details meet the required criteria.
 
     | Fields       | Details     |
     | :------------------- | :------------------- |
@@ -333,10 +340,14 @@ To create an identity validation request for an Organization or a DBA:
 
      To learn how to manage access by using role-based access control (RBAC), see [Tutorial: Assign roles in Artifact Signing](tutorial-assign-roles.md).
 1. On the Artifact Signing account **Overview** pane or on the resource menu under **Objects**, select **Identity validations**.
-1. Select **Organization**, in the dropdown select **Individual** and then select **Public**.
+1. Select **Organization**, in the dropdown select **Individual** and then select **New Identity**, underneath select **Public**.
     - Public identity validation applies to these certificate profile types: Public Trust, Public Trust Test, VBS Enclave.
     - Private identity validation is only for Organizations.
-1. On **New identity validation**, provide the following information:
+1. On **New identity validation**, select the billing account associated to the subscription. 
+   :::image type="content" source="media/artifact-signing-billingaccount-individual.png" alt-text="Screenshot that shows the billing account dropdown for indie." lightbox="media/artifact-signing-billingaccount-individual.png":::
+
+1. Once a billing account is selected, the form is automatically populated with the billing account information. These fields are read-only and cannot be edited within the form.
+Before proceeding, ensure the populated details meet the required criteria. If updates are needed, modify the information directly in the billing account.
 
    | Fields       | Details     |
    | :------------------- | :------------------- |
