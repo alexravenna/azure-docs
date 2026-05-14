@@ -314,7 +314,7 @@ You can enable [virtual network integration](functions-networking-options.md#vir
 
 ### Understand Flex Consumption IP multiplexing
 
-Flex Consumption instances don't each use a unique IP address. Instead, all instances within a Flex Consumption app share a pool of IP addresses that are managed by shared network gateways. This IP multiplexing architecture is fundamentally different from Premium plans, where each instance uses one IP address.
+Flex Consumption instances don't each use a unique IP address from the subnet you integrate the app with. Instead, IP addressess from the subnet are used by a pool of network gateways that serve all apps integrated with that subnet. This IP multiplexing architecture is fundamentally different from Premium plans, where each instance uses one IP address from the subnet.
 
 The key benefit of IP multiplexing is that a single Flex Consumption app can scale to 1,000+ instances while consuming far fewer than 1,000 IP addresses. All instances, even across multiple apps in the same subnet, share these gateway IPs.
 
