@@ -141,7 +141,7 @@ Managed and self-hosted gateways support all available [policies](api-management
 <sup>3</sup> [!INCLUDE [api-management-self-hosted-gateway-rate-limit](../../includes/api-management-self-hosted-gateway-rate-limit.md)] [Learn more](how-to-self-hosted-gateway-on-kubernetes-in-production.md#request-throttling)
 
 
-### Monitoring
+### API monitoring
 
 For details about monitoring options, see [Observability in Azure API Management](observability.md).
 
