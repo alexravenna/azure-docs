@@ -314,11 +314,9 @@ You can enable [virtual network integration](functions-networking-options.md#vir
 
 ### Understand Flex Consumption IP multiplexing
 
-Flex Consumption instances don't each use a unique IP address from the subnet you integrate the app with. Instead, IP addressess from the subnet are used by a pool of network gateways that serve all apps integrated with that subnet. This IP multiplexing architecture is fundamentally different from Premium plans, where each instance uses one IP address from the subnet.
+Flex Consumption instances don't each use a unique IP address from the subnet you integrate the app with. Instead, IP addresses from the subnet are used by a pool of network gateways that serve all apps integrated with that subnet. This IP multiplexing architecture is fundamentally different from Premium plans, where each instance uses one IP address from the subnet.
 
-The key benefit of IP multiplexing is that a single Flex Consumption app can scale to 1,000+ instances while consuming far fewer than 1,000 IP addresses. All instances, even across multiple apps in the same subnet, share these gateway IPs.
-
-The "40 IPs per app" guideline represents a planning buffer that accounts for gateway capacity and redundancy but it's not an enforced limit. Plan for this buffer when sizing your subnet, but understand that actual IP consumption is typically lower due to multiplexing. The platform dynamically allocates IPs from the shared gateway pool based on demand, so you don't need to pre-reserve IPs per instance.
+The "40 IPs per app" guideline ensures there are sufficient IP addresses for the pool of network gateways and other infrastructure components but it's not an enforced limit. Plan for this minimum when sizing your subnet, but understand that actual IP consumption is typically lower. The platform dynamically allocates IPs from the shared gateway pool as apps integrated with the subnet scale out.
 
 To enable virtual networking when you create your app:
 
@@ -414,8 +412,7 @@ Choose an appropriately sized subnet for your Flex Consumption apps. The followi
 | Scenario | Recommended CIDR | Usable IPs | Notes |
 |----------|------------------|-----------|-------|
 | Single Flex app | `/27` | 27 | Minimum supported subnet size for one app |
-| Multiple Flex apps in one subnet | `/26` | 59 | Recommended when hosting multiple apps; provides adequate gateway capacity |
-| High-scale workload (1,000+ instances) | `/26` or larger | 59+ | Use `/26` or larger subnets; each app maxes out at 1,000 instances |
+| Multiple Flex apps in one subnet | `/26` | 59 | Recommended when hosting multiple apps and for high-scale workloads (1,000+ instances); provides adequate gateway capacity |
 
 ### Subnet requirements and considerations
 
@@ -435,13 +432,13 @@ When you're choosing and configuring a subnet for Flex Consumption, keep these r
 - The subnet and app must be in the same region.
 
 **IP allocation and planning:**
-- Flex Consumption apps don't assign a unique IP address to each instance. Instead, instances share a pool of IPs managed by shared gateways. The "40 IPs per app" guideline is a planning buffer; actual usage is typically lower due to this multiplexing.
-- A `/27` subnet (27 usable IPs) is sufficient for a single app supporting up to 1,000 instances due to IP multiplexing. For multiple apps, use a `/26` or larger to provide adequate gateway capacity.
-- If too many apps share a small subnet, outbound network throughput can become a bottleneck rather than IP addresses being exhausted. Evaluate performance at your planned production scale.
+- Flex Consumption apps don't assign a unique IP address to each instance. Instead, IP addresses from the subnet are used by a pool of network gateways. The "40 IPs per app" guideline helps ensure there are sufficient IP addresses for the gateway pool and other infrastructure components, but actual usage is typically lower.
+- A `/27` subnet (27 usable IPs) is sufficient for a single app supporting up to 1,000 instances due to IP multiplexing. For multiple apps or high-scale workloads, use a `/26` subnet to provide adequate gateway capacity.
+- When many apps share a subnet and many scale out with significant outbound traffic, outbound network throughput can become a bottleneck rather than IP addresses being exhausted. Evaluate performance at your planned production scale.
 
 ### Troubleshoot network performance issues
 
-When a Flex Consumption app integrates with a small subnet, you may experience performance degradation as the app scales. Monitor for these symptoms, which indicate that outbound capacity rather than IP addresses is the limiting factor:
+When a Flex Consumption app integrates with a subnet smaller than the recommended size, you may experience performance degradation as the app scales. This can also happen if you integrate many apps with the same subnet when they scale out and have significant outbound traffic. Monitor for these symptoms, which indicate that outbound capacity rather than IP addresses is the limiting factor:
 
 **Symptoms of undersized subnets:**
 - Increased latency on outbound calls to dependencies
