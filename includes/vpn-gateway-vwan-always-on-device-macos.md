@@ -14,7 +14,7 @@
 > - Always On can only be enabled when the VPN connection is disconnected. It is grayed out in any other state.
 > - Disconnecting an Always On profile disables the Always On feature for that profile.
 
-1. Open the Azure VPN Client for Mac.
+1. Open the Azure VPN Client for macOS.
 1. Select the profile you want to configure for Always On. If there isn't a client profile downloaded, follow the steps in **[this document](../articles/vpn-gateway/vpn-gateway-howto-always-on-device-tunnel-macos.md)** to configure a profile for your VPN client.
 1. Ensure the connection is in disconnected mode.
 1. Select the checkbox for **Connect-Automatically**. 
