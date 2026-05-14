@@ -227,7 +227,7 @@ openclaw gateway restart
 ## Limitations
 
 - Currently, the Azure Managed Grafana MCP endpoint is included with Azure Managed Grafana for only Azure public cloud instances, not for sovereign clouds.
-- Connecting to Azure Managed Grafana through a private endpoint isn't supported for now.
+- Connecting to Azure Managed Grafana through a private endpoint isn't supported currently.
 
 ## Troubleshooting
 
