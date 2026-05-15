@@ -134,7 +134,7 @@ To upload a single file, specify a file pattern with no wildcards. For example, 
 
 ### Specify an upload condition
 
-The [OutputFileUploadConfig.UploadCondition](/dotnet/api/azure.compute.batch.outputfileuploadoptions.uploadcondition) property permits conditional uploading of output files. A common scenario is to upload one set of files if the task succeeds, and a different set of files if it fails. For example, you may want to upload verbose log files only when the task fails and exits with a nonzero exit code. Similarly, you may want to upload result files only if the task succeeds, as those files may be missing or incomplete if the task fails.
+The [OutputFileUploadConfig.UploadCondition](/dotnet/api/azure.compute.batch.outputfileuploadconfig.uploadcondition) property permits conditional uploading of output files. A common scenario is to upload one set of files if the task succeeds, and a different set of files if it fails. For example, you may want to upload verbose log files only when the task fails and exits with a nonzero exit code. Similarly, you may want to upload result files only if the task succeeds, as those files may be missing or incomplete if the task fails.
 
 The code sample above sets the **UploadCondition** property to **TaskCompletion**. This setting specifies that the file is to be uploaded after the tasks completes, regardless of the value of the exit code.
 
