@@ -22,7 +22,7 @@ In Azure API Management, API publishers can change API behavior through configur
 Policies are a collection of statements that are run sequentially on the request or response of an API. API Management provides more than 75 policies out of the box that you can configure to address common API scenarios like authentication, rate limiting, caching, and transformation of requests or responses. For a complete list, see [API Management policy reference](api-management-policies.md).
 
 > [!NOTE]
-> Although they are similar-sounding terms, API Management policies are different from [Azure Policy definitions](security-controls-policy.md). API Management policies are runtime rules executed inside the gateway to transform, validate, secure, and route API requests and responses. In contrast, Azure Policy is a governance service that evaluates and enforces compliance of Azure resources such as API Management instances with organizational or regulatory requirements. 
+> API Management policies are different from [Azure Policy definitions](security-controls-policy.md). API Management policies are runtime rules executed inside the gateway to transform, validate, secure, and route API requests and responses. In contrast, Azure Policy is a governance service that evaluates and enforces compliance of Azure resources such as API Management instances with organizational or regulatory requirements. 
 
 Popular policies include:
 

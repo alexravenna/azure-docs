@@ -15,7 +15,7 @@ ms.custom: subject-policy-compliancecontrols
 provides Microsoft created and managed initiative definitions, known as _built-ins_, for the **compliance domains** and **security controls** related to different compliance standards. This page lists the **compliance domains** and **security controls** for Azure API Management. You can assign the built-ins for a **security control** individually to help make your Azure resources compliant with the specific standard.
 
 > [!NOTE]
-> Although they are similar-sounding terms, Azure Policy definitions are different from [API Management policies](api-management-howto-policies.md). API Management policies are runtime rules executed inside the gateway to transform, validate, secure, and route API requests and responses. In contrast, Azure Policy is a governance service that evaluates and enforces compliance of Azure resources such as API Management instances with organizational or regulatory requirements. 
+> Azure Policy definitions are different from [API Management policies](api-management-howto-policies.md). API Management policies are runtime rules executed inside the gateway to transform, validate, secure, and route API requests and responses. In contrast, Azure Policy is a governance service that evaluates and enforces compliance of Azure resources such as API Management instances with organizational or regulatory requirements. 
 
 [!INCLUDE [azure-policy-compliancecontrols-introwarning](../../includes/policy/standards/intro-warning.md)]
 
@@ -25,4 +25,3 @@ provides Microsoft created and managed initiative definitions, known as _built-i
 
 - Learn more about [Azure Policy Regulatory Compliance](../governance/policy/concepts/regulatory-compliance.md).
 - See the built-ins on the [Azure Policy GitHub repo](https://github.com/Azure/azure-policy).
-- 
