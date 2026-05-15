@@ -58,15 +58,15 @@ To get your account information from the [Azure portal](https://portal.azure.com
 
 Navigate to your downloaded *batch-dotnet-quickstart* folder and edit the credential strings in *Program.cs* to provide the values you copied:
 
-```csharp
+```C# Snippet:quickrun_credentials
 // Batch account credentials
-private const string BatchAccountName = "<batch account>";
-private const string BatchAccountKey  = "<primary access key>";
-private const string BatchAccountUrl  = "<account endpoint>";
+const string BatchAccountName = "<batch account>";
+const string BatchAccountKey  = "<primary access key>";
+const string BatchAccountUrl  = "<account endpoint>";
 
 // Storage account credentials
-private const string StorageAccountName = "<storage account name>";
-private const string StorageAccountKey  = "<key1>
+const string StorageAccountName = "<storage account name>";
+const string StorageAccountKey  = "<key1>";
 ```
 
 >[!IMPORTANT]
@@ -129,7 +129,7 @@ Review the code to understand the steps in the [Azure Batch .NET Quickstart](htt
    return blobServiceClient;
    ```
 
-1. The app uses the `blobServiceClient` reference to create a container in the storage account and upload data files to the container. The files in storage are defined as Batch [ResourceFile](/dotnet/api/microsoft.azure.batch.resourcefile) objects that Batch can later download to the compute nodes.
+1. The app uses the `blobServiceClient` reference to create a container in the storage account and upload data files to the container. The files in storage are defined as Batch [ResourceFile](/dotnet/api/azure.compute.batch.resourcefile) objects that Batch can later download to the compute nodes.
 
    ```csharp
    List<string> inputFilePaths = new()
@@ -147,110 +147,92 @@ Review the code to understand the steps in the [Azure Batch .NET Quickstart](htt
    }
    ```
 
-1. The app creates a [BatchClient](/dotnet/api/microsoft.azure.batch.batchclient) object to create and manage Batch pools, jobs, and tasks. The Batch client uses shared key authentication. Batch also supports Microsoft Entra authentication.
+1. The app creates a [BatchClient](/dotnet/api/azure.compute.batch.batchclient) object to create and manage Batch pools, jobs, and tasks. The Batch client uses Microsoft Entra authentication.
 
    ```csharp
-   var cred = new BatchSharedKeyCredentials(BatchAccountUrl, BatchAccountName, BatchAccountKey);
-   
-    using BatchClient batchClient = BatchClient.Open(cred);
+   BatchClient batchClient = new BatchClient(new Uri(BatchAccountUrl), new DefaultAzureCredential());
    ...
    ```
 
 ### Create a pool of compute nodes
 
-To create a Batch pool, the app uses the [BatchClient.PoolOperations.CreatePool](/dotnet/api/microsoft.azure.batch.pooloperations.createpool) method to set the number of nodes, VM size, and pool configuration. The following [VirtualMachineConfiguration](/dotnet/api/microsoft.azure.batch.virtualmachineconfiguration) object specifies an [ImageReference](/dotnet/api/microsoft.azure.batch.imagereference) to a Windows Server Marketplace image. Batch supports a wide range of Windows Server and Linux Marketplace OS images, and also supports custom VM images.
+To create a Batch pool, the app uses the [BatchAccountPoolCollection.CreateOrUpdateAsync](/dotnet/api/azure.resourcemanager.batch.batchaccountpoolcollection.createorupdateasync) method to set the number of nodes, VM size, and pool configuration. The following [BatchVmConfiguration](/dotnet/api/azure.resourcemanager.batch.models.batchvmconfiguration) object specifies a [BatchImageReference](/dotnet/api/azure.resourcemanager.batch.models.batchimagereference) to a Windows Server Marketplace image. Batch supports a wide range of Windows Server and Linux Marketplace OS images, and also supports custom VM images.
 
 The `PoolNodeCount` and VM size `PoolVMSize` are defined constants. The app creates a pool of two Standard_A1_v2 nodes. This size offers a good balance of performance versus cost for this quickstart.
 
-The [Commit](/dotnet/api/microsoft.azure.batch.cloudpool.commit) method submits the pool to the Batch service.
-
-```csharp
-
-private static VirtualMachineConfiguration CreateVirtualMachineConfiguration(ImageReference imageReference)
+```C# Snippet:quickrun_create_pool
+BatchImageReference imageReference = new BatchImageReference()
 {
-    return new VirtualMachineConfiguration(
-        imageReference: imageReference,
-        nodeAgentSkuId: "batch.node.windows amd64");
-}
+    Publisher = "MicrosoftWindowsServer",
+    Offer = "WindowsServer",
+    Sku = "2016-datacenter-smalldisk",
+    Version = "latest"
+};
 
-private static ImageReference CreateImageReference()
-{
-    return new ImageReference(
-        publisher: "MicrosoftWindowsServer",
-        offer: "WindowsServer",
-        sku: "2016-datacenter-smalldisk",
-        version: "latest");
-}
+BatchVmConfiguration vmConfiguration = new BatchVmConfiguration(
+    imageReference: imageReference,
+    nodeAgentSkuId: "batch.node.windows amd64");
 
-private static void CreateBatchPool(BatchClient batchClient, VirtualMachineConfiguration vmConfiguration)
+BatchAccountPoolData poolData = new BatchAccountPoolData()
 {
-    try
+    VmSize = PoolVMSize,
+    DeploymentConfiguration = new BatchDeploymentConfiguration() { VmConfiguration = vmConfiguration },
+    ScaleSettings = new BatchAccountPoolScaleSettings()
     {
-        CloudPool pool = batchClient.PoolOperations.CreatePool(
-            poolId: PoolId,
-            targetDedicatedComputeNodes: PoolNodeCount,
-            virtualMachineSize: PoolVMSize,
-            virtualMachineConfiguration: vmConfiguration);
-
-        pool.Commit();
+        FixedScale = new BatchAccountFixedScaleSettings() { TargetDedicatedNodes = PoolNodeCount }
     }
-...
+};
 
+await batchAccount.GetBatchAccountPools().CreateOrUpdateAsync(WaitUntil.Completed, PoolId, poolData);
 ```
 
 ### Create a Batch job
 
 A Batch job is a logical grouping of one or more tasks. The job includes settings common to the tasks, such as priority and the pool to run tasks on.
 
-The app uses the [BatchClient.JobOperations.CreateJob](/dotnet/api/microsoft.azure.batch.joboperations.createjob) method to create a job on your pool. The [Commit](/dotnet/api/microsoft.azure.batch.cloudjob.commit) method submits the job to the Batch service. Initially the job has no tasks.
+The app uses [BatchClient.CreateJobAsync](/dotnet/api/azure.compute.batch.batchclient.createjobasync) to create a job on your pool. Initially the job has no tasks.
 
-```csharp
-try
-{
-    CloudJob job = batchClient.JobOperations.CreateJob();
-    job.Id = JobId;
-    job.PoolInformation = new PoolInformation { PoolId = PoolId };
-
-    job.Commit();
-}
-...
+```C# Snippet:quickrun_create_job
+BatchJobCreateOptions job = new BatchJobCreateOptions(JobId, new BatchPoolInfo() { PoolId = PoolId });
+await batchClient.CreateJobAsync(job);
 ```
 
 ### Create tasks
 
-Batch provides several ways to deploy apps and scripts to compute nodes. This app creates a list of [CloudTask](/dotnet/api/microsoft.azure.batch.cloudtask) input `ResourceFile` objects. Each task processes an input file by using a [CommandLine](/dotnet/api/microsoft.azure.batch.cloudtask.commandline) property. The Batch command line is where you specify your app or script.
+Batch provides several ways to deploy apps and scripts to compute nodes. This app creates a list of [BatchTaskCreateOptions](/dotnet/api/azure.compute.batch.batchtaskcreateoptions) input `ResourceFile` objects. Each task processes an input file by using a [CommandLine](/dotnet/api/azure.compute.batch.batchtaskcreateoptions.commandline) property. The Batch command line is where you specify your app or script.
 
-The command line in the following code runs the Windows `type` command to display the input files. Then, the app adds each task to the job with the [AddTask](/dotnet/api/microsoft.azure.batch.joboperations.addtask) method, which queues the task to run on the compute nodes.
+The command line in the following code runs the Windows `type` command to display the input files. Then, the app adds the tasks to the job with [BatchClient.CreateTasksAsync](/dotnet/api/azure.compute.batch.batchclient.createtasksasync), which queues the tasks to run on the compute nodes.
 
-```csharp
+```C# Snippet:quickrun_add_tasks
 for (int i = 0; i < inputFiles.Count; i++)
 {
     string taskId = String.Format("Task{0}", i);
     string inputFilename = inputFiles[i].FilePath;
     string taskCommandLine = String.Format("cmd /c type {0}", inputFilename);
 
-    var task = new CloudTask(taskId, taskCommandLine)
+    BatchTaskCreateOptions task = new BatchTaskCreateOptions(taskId, taskCommandLine)
     {
-        ResourceFiles = new List<ResourceFile> { inputFiles[i] }
+        ResourceFiles = { inputFiles[i] }
     };
     tasks.Add(task);
 }
 
-batchClient.JobOperations.AddTask(JobId, tasks);
+await batchClient.CreateTasksAsync(JobId, tasks);
 ```
 
 ### View task output
 
-The app creates a [TaskStateMonitor](/dotnet/api/microsoft.azure.batch.taskstatemonitor) to monitor the tasks and make sure they complete. When each task runs successfully, its output writes to *stdout.txt*. The app then uses the [CloudTask.ComputeNodeInformation](/dotnet/api/microsoft.azure.batch.cloudtask.computenodeinformation) property to display the *stdout.txt* file for each completed task.
+The app waits for the tasks to complete. When each task runs successfully, its output writes to *stdout.txt*. The app then uses the [BatchTask.NodeInfo](/dotnet/api/azure.compute.batch.batchtask.nodeinfo) property to display the *stdout.txt* file for each completed task.
 
-```csharp
-foreach (CloudTask task in completedtasks)
+```C# Snippet:quickrun_print_output
+await foreach (BatchTask task in batchClient.GetTasksAsync(JobId))
 {
-    string nodeId = String.Format(task.ComputeNodeInformation.ComputeNodeId);
+    string nodeId = task.NodeInfo?.NodeId ?? "<unknown>";
     Console.WriteLine("Task: {0}", task.Id);
     Console.WriteLine("Node: {0}", nodeId);
     Console.WriteLine("Standard out:");
-    Console.WriteLine(task.GetNodeFile(Constants.StandardOutFileName).ReadAsString());
+    BinaryData stdout = await batchClient.GetTaskFileAsync(JobId, task.Id, "stdout.txt");
+    Console.WriteLine(stdout.ToString());
 }
 ```
 
