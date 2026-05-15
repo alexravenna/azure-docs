@@ -2,7 +2,7 @@
 title: Use the Azure Batch client library for JavaScript
 description: Learn the basic concepts of Azure Batch and build a simple solution using JavaScript.
 ms.topic: how-to
-ms.date: 05/015/2026
+ms.date: 05/15/2026
 ms.devlang: javascript
 ms.custom: devx-track-js, linux-related-content
 # Customer intent: "As a JavaScript developer, I want to use the Azure Batch client library to create and manage a batch processing solution, so that I can efficiently run parallel tasks for data processing from Azure Blob storage."
@@ -315,7 +315,7 @@ for (const val of containerList) {
 
 The code adds multiple tasks to the pool. And each of the tasks is executed on a node in the pool of VMs created. If the number of tasks exceeds the number of VMs in a pool or the taskSlotsPerNode property, the tasks wait until a node is made available. This orchestration is handled by Azure Batch automatically.
 
-The portal has detailed views on the tasks and job statuses. You can also use the list and get functions in the Azure JavaScript SDK. Details are provided in the documentation [link](/javascript/api/@azure/batch/batchserviceclient).
+The portal has detailed views on the tasks and job statuses. You can also use the list and get functions in the Azure JavaScript SDK. Details are provided in the documentation [link](/javascript/api/@azure/batch/batchclient).
 
 ## Next steps
 
