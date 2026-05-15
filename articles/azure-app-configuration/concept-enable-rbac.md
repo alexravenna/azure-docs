@@ -398,7 +398,7 @@ az cloud update -n <bleu-cloud-name> --cloud-config "{\"endpoints\": {\"appconfi
 After configuring the cloud, set it as the active cloud before running any App Configuration commands:
 
 ```cmd
-az cloud set --name "{Cloud name}"
+az cloud set --name <bleu-cloud-name>
 ```
 
 ---
