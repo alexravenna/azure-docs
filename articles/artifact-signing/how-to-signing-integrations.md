@@ -235,7 +235,7 @@ extension is added to your Azure DevOps organization.
 > [SignTool](#set-up-signtool-to-use-artifact-signing) or one of the
 > [other supported integrations](#use-other-signing-integrations-with-artifact-signing)
 > instead. For more details, see the
-> [Artifact Signing FAQ](faq.yml#why-does-double-clicking-the-artifact-signing-vsix-fail-with-invalidsignature-or-a-nullreferenceexception).
+> [Artifact Signing FAQ](faq.yml#why-does-double-clicking-the-artifact-signing--vsix-fail-with--invalidsignature--or-a-nullreferenceexception).
 
 ### Install the extension into your Azure DevOps organization
 
