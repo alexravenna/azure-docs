@@ -29,7 +29,7 @@ You can use either the Azure portal or an Azure CLI extension to create and mana
 > For Public Trust certificates, Artifact Signing is currently available to organizations in the USA, Canada, the European Union, and the United Kingdom, as well as individual developers in the USA and Canada. This limitation is not applicable to Private Trust certificates.
 
 >[!Note]
-> For a Public Identity,the identity validation details for both individuals and organizations are automatically sourced from your Azure billing account under the subscription you are registering this resource provider. Before starting the identity validation process, ensure that all billing account information, including legal name, address, and organization details, exactly matches the information you intend to appear on your Artifact Signing Public Trust certificate profile types. Any discrepancies may result in incorrect information being reflected on the certificate.To review or update your billing account information, see Manage billing accounts.
+> For a Public Identity,the identity validation details for both individuals and organizations are automatically sourced from your Azure billing account under the subscription you are registering this resource provider. Before starting the identity validation process, ensure that all billing account information, including legal name, address, and organization details, exactly matches the information you intend to appear on your Artifact Signing Public Trust certificate profile types. Any discrepancies may result in incorrect information being reflected on the certificate.To review or update your billing account information, [follow this link](https://learn.microsoft.com/microsoft-365/commerce/manage-billing-accounts?view=o365-worldwide).
 
 
 To complete this quickstart, you need:
@@ -286,7 +286,7 @@ To create an identity validation request for an Organization or a DBA:
    - Private identity validation applies only to these certificate profile types: Private Trust, Private Trust CI Policy.
 1. On **New organization validation**,  select the billing account associated to the subscription.
 
-   :::image type="content" source="media/artifact-signing-billingaccount-organization.png" alt-text="Screenshot that shows the billing account dropdown for org." lightbox="media/artifact-signing-billingaccount-organization.png":::
+   :::image type="content" source="media/artifact-signing-billing-account-organization.png" alt-text="Screenshot that shows the billing account dropdown for org." lightbox="media/artifact-signing-billing-account-organization.png":::
 
 1. Once a billing account is selected, the form is automatically populated with the billing account information. These fields can be edited within the form. Before proceeding, ensure the populated details meet the required criteria.
 
@@ -344,7 +344,7 @@ To create an identity validation request for an Organization or a DBA:
     - Public identity validation applies to these certificate profile types: Public Trust, Public Trust Test, VBS Enclave.
     - Private identity validation is only for Organizations.
 1. On **New identity validation**, select the billing account associated to the subscription. 
-   :::image type="content" source="media/artifact-signing-billingaccount-individual.png" alt-text="Screenshot that shows the billing account dropdown for indie." lightbox="media/artifact-signing-billingaccount-individual.png":::
+   :::image type="content" source="media/artifact-signing-billing-account-individual.png" alt-text="Screenshot that shows the billing account dropdown for indie." lightbox="media/artifact-signing-billing-account-individual.png":::
 
 1. Once a billing account is selected, the form is automatically populated with the billing account information. These fields are read-only and cannot be edited within the form.
 Before proceeding, ensure the populated details meet the required criteria. If updates are needed, modify the information directly in the billing account.
