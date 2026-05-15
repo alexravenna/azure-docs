@@ -1,7 +1,6 @@
 ---
 title: Low Shuffle Merge optimization on Delta tables
 description: Low Shuffle Merge optimization on Delta tables for Apache Spark
-author: sezruby
 ms.service: azure-synapse-analytics
 ms.topic: reference
 ms.subservice: spark
