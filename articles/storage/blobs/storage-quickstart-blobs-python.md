@@ -27,14 +27,14 @@ ms.custom:
 > [!NOTE]
 > The **Build from scratch** option walks you step by step through the process of creating a new project, installing packages, writing the code, and running a basic console app. This approach is recommended if you want to understand all the details involved in creating an app that connects to Azure Blob Storage. If you prefer to automate deployment tasks and start with a completed project, choose [Start with a template](storage-quickstart-blobs-python.md?pivots=blob-storage-quickstart-template).
 
-::: zone-end :::
+::: zone-end
 
 ::: zone pivot="blob-storage-quickstart-template"
 
 > [!NOTE]
 > The **Start with a template** option uses the Azure Developer CLI to automate deployment tasks and starts you off with a completed project. This approach is recommended if you want to explore the code as quickly as possible without going through the setup tasks. If you prefer step by step instructions to build the app, choose [Build from scratch](storage-quickstart-blobs-python.md?pivots=blob-storage-quickstart-scratch).
 
-::: zone-end :::
+::: zone-end
 
 Get started with the Azure Blob Storage client library for Python to manage blobs and containers.
 
@@ -42,13 +42,13 @@ Get started with the Azure Blob Storage client library for Python to manage blob
 
 In this article, you follow steps to install the package and try out example code for basic tasks.
 
-::: zone-end :::
+::: zone-end
 
 ::: zone pivot="blob-storage-quickstart-template"
 
 In this article, you use the [Azure Developer CLI](/azure/developer/azure-developer-cli/overview) to deploy Azure resources and run a completed console app with just a few commands.
 
-::: zone-end :::
+::: zone-end
 
 [API reference documentation](/python/api/azure-storage-blob) | [Library source code](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/storage/azure-storage-blob) | [Package (PyPi)](https://pypi.org/project/azure-storage-blob/) | [Samples](../common/storage-samples-python.md?toc=/azure/storage/blobs/toc.json#blob-samples)
 
@@ -59,7 +59,7 @@ This video shows you how to start using the Azure Blob Storage client library fo
 
 The steps in the video are also described in the following sections.
 
-::: zone-end :::
+::: zone-end
 
 ## Prerequisites
 
@@ -69,7 +69,7 @@ The steps in the video are also described in the following sections.
 - Azure Storage account - [create a storage account](../common/storage-account-create.md)
 - [Python](https://www.python.org/downloads/) 3.8+
 
-::: zone-end :::
+::: zone-end
 
 ::: zone pivot="blob-storage-quickstart-template"
 
@@ -77,7 +77,7 @@ The steps in the video are also described in the following sections.
 - [Python](https://www.python.org/downloads/) 3.8+
 - [Azure Developer CLI](/azure/developer/azure-developer-cli/install-azd)
 
-::: zone-end :::
+::: zone-end
 
 ## Setting up
 
@@ -119,7 +119,7 @@ From the project directory, follow these steps to create the basic structure of 
 
 :::code language="python" source="~/azure-storage-snippets/blobs/quickstarts/python/app-framework-qs.py":::
 
-::: zone-end :::
+::: zone-end
 
 ::: zone pivot="blob-storage-quickstart-template"
 
@@ -170,7 +170,7 @@ To learn more about how the sample code works, see [Code examples](#code-example
 
 When you're finished testing the code, see the [Clean up resources](#clean-up-resources) section to delete the resources created by the `azd up` command.
 
-::: zone-end :::
+::: zone-end
 
 ## Object model
 
@@ -206,7 +206,7 @@ These example code snippets show you how to do the following tasks with the Azur
 > [!NOTE]
 > The Azure Developer CLI template includes a file with sample code already in place. The following examples provide detail for each part of the sample code. The template implements the recommended passwordless authentication method, as described in the [Authenticate to Azure](#authenticate-to-azure-and-authorize-access-to-blob-data) section. The connection string method is shown as an alternative, but isn't used in the template and isn't recommended for production code.
 
-::: zone-end :::
+::: zone-end
 
 ### Authenticate to Azure and authorize access to blob data
 
@@ -335,7 +335,7 @@ Create a new container in your storage account by calling the [create_container]
 
 Add this code to the end of the `try` block:
 
-::: zone-end :::
+::: zone-end
 
 :::code language="python" source="~/azure-storage-snippets/blobs/quickstarts/python/blob-quickstart.py" id="Snippet_CreateContainer":::
 
@@ -352,7 +352,7 @@ Upload a blob to a container by using [upload_blob](/python/api/azure-storage-bl
 
 Add this code to the end of the `try` block:
 
-::: zone-end :::
+::: zone-end
 
 :::code language="python" source="~/azure-storage-snippets/blobs/quickstarts/python/blob-quickstart.py" id="Snippet_UploadBlobs":::
 
@@ -366,7 +366,7 @@ List the blobs in the container by calling the [list_blobs](/python/api/azure-st
 
 Add this code to the end of the `try` block:
 
-::: zone-end :::
+::: zone-end
 
 :::code language="python" source="~/azure-storage-snippets/blobs/quickstarts/python/blob-quickstart.py" id="Snippet_ListBlobs":::
 
@@ -380,7 +380,7 @@ Download the previously created blob by calling the [download_blob](/python/api/
 
 Add this code to the end of the `try` block:
 
-::: zone-end :::
+::: zone-end
 
 :::code language="python" source="~/azure-storage-snippets/blobs/quickstarts/python/blob-quickstart.py" id="Snippet_DownloadBlobs":::
 
@@ -396,7 +396,7 @@ The app pauses for user input by calling `input()` before it deletes the blob, c
 
 Add this code to the end of the `try` block:
 
-::: zone-end :::
+::: zone-end
 
 :::code language="python" source="~/azure-storage-snippets/blobs/quickstarts/python/blob-quickstart.py" id="Snippet_CleanUp":::
 
@@ -437,7 +437,7 @@ Done
 
 Before you begin the cleanup process, check your *data* folder for the two files. You can compare them and see that they're identical.
 
-::: zone-end :::
+::: zone-end
 
 ## Clean up resources
 
@@ -445,7 +445,7 @@ Before you begin the cleanup process, check your *data* folder for the two files
 
 After you verify the files and finish testing, press **Enter** to delete the test files along with the container you created in the storage account. You can also use [Azure CLI](storage-quickstart-blobs-cli.md#clean-up-resources) to delete resources.
 
-::: zone-end :::
+::: zone-end
 
 ::: zone pivot="blob-storage-quickstart-template"
 
@@ -457,7 +457,7 @@ azd down
 
 You'll be prompted to confirm the deletion of the resources. Enter `y` to confirm.
 
-::: zone-end :::
+::: zone-end
 
 ## Next step
 

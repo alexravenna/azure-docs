@@ -26,7 +26,7 @@ Blob Storage offers three types of resources:
 
 The following diagram shows the relationship between these resources.
 
-:::image type="content" source="./media/storage-blobs-introduction/azure-blob-storage-resources-diagram.png" alt-text="Screenshot of the relationship between an Azure Blob Storage account, containers, and blobs.":::
+:::image type="content" source="./media/storage-blobs-introduction/blob1.png" alt-text="Screenshot of the relationship between an Azure Blob Storage account, containers, and blobs.":::
 
 ### Storage accounts
 
