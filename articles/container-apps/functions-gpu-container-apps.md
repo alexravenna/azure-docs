@@ -256,13 +256,13 @@ After deployment completes, test that your function is running:
 
 1. Get the function app URL:
 
-```bash
-az containerapp show \
-  --name $APP_NAME \
-  --resource-group $RESOURCE_GROUP \
-  --query "properties.configuration.ingress.fqdn" \
-  --output tsv
-```
+   ```bash
+   az containerapp show \
+     --name $APP_NAME \
+     --resource-group $RESOURCE_GROUP \
+     --query "properties.configuration.ingress.fqdn" \
+     --output tsv
+   ```
 
 1. Call your function:
 
