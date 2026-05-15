@@ -47,30 +47,27 @@ The app needs to use your Batch and Storage account names, account key values, a
 To get your account information from the [Azure portal](https://portal.azure.com):
   
   1. From the Azure Search bar, search for and select your Batch account name.
-  1. On your Batch account page, select **Keys** from the left navigation.
-  1. On the **Keys** page, copy the following values:
   
    - **Batch account**
    - **Account endpoint**
-   - **Primary access key**
    - **Storage account name**
-   - **Key1**
+   - **Subscription ID**
+   - **Resource group name**
 
 Navigate to your downloaded *batch-dotnet-quickstart* folder and edit the credential strings in *Program.cs* to provide the values you copied:
 
 ```C# Snippet:quickrun_credentials
 // Batch account credentials
 const string BatchAccountName = "<batch account>";
-const string BatchAccountKey  = "<primary access key>";
 const string BatchAccountUrl  = "<account endpoint>";
+
+// Azure Resource Manager credentials for the Batch account
+const string SubscriptionId    = "<subscription ID>";
+const string ResourceGroupName = "<resource group name>";
 
 // Storage account credentials
 const string StorageAccountName = "<storage account name>";
-const string StorageAccountKey  = "<key1>";
 ```
-
->[!IMPORTANT]
->Exposing account keys in the app source isn't recommended for Production usage. You should restrict access to credentials and refer to them in your code by using variables or a configuration file. It's best to store Batch and Storage account keys in Azure Key Vault.
 
 ### Build and run the app and view output
 
@@ -122,10 +119,9 @@ Review the code to understand the steps in the [Azure Batch .NET Quickstart](htt
 1. To interact with the storage account, the app uses the Azure Storage Blobs client library for .NET to create a [BlobServiceClient](/dotnet/api/azure.storage.blobs.blobserviceclient).
 
    ```csharp
-   var sharedKeyCredential = new StorageSharedKeyCredential(storageAccountName, storageAccountKey);
    string blobUri = "https://" + storageAccountName + ".blob.core.windows.net";
    
-   var blobServiceClient = new BlobServiceClient(new Uri(blobUri), sharedKeyCredential);
+   var blobServiceClient = new BlobServiceClient(new Uri(blobUri), new DefaultAzureCredential());
    return blobServiceClient;
    ```
 
@@ -147,11 +143,24 @@ Review the code to understand the steps in the [Azure Batch .NET Quickstart](htt
    }
    ```
 
-1. The app creates a [BatchClient](/dotnet/api/azure.compute.batch.batchclient) object to create and manage Batch pools, jobs, and tasks. The Batch client uses Microsoft Entra authentication.
+2. The app creates a [BatchClient](/dotnet/api/azure.compute.batch.batchclient) object from the [Azure.Compute.Batch](/dotnet/api/overview/azure/compute.batch-readme) library to create and manage Batch jobs and tasks. The Batch client uses Microsoft Entra authentication.
 
    ```csharp
    BatchClient batchClient = new BatchClient(new Uri(BatchAccountUrl), new DefaultAzureCredential());
    ...
+   ```
+
+3. The app also uses the [Azure.ResourceManager.Batch](/dotnet/api/overview/azure/resourcemanager.batch-readme) library to manage the Batch account and its pools. It creates an [ArmClient](/dotnet/api/azure.resourcemanager.armclient) and gets a [BatchAccountResource](/dotnet/api/azure.resourcemanager.batch.batchaccountresource) reference for the Batch account by using the subscription ID, resource group name, and Batch account name.
+
+   ```csharp
+   ArmClient armClient = new ArmClient(new DefaultAzureCredential());
+
+   ResourceIdentifier batchAccountIdentifier = BatchAccountResource.CreateResourceIdentifier(
+       SubscriptionId,
+       ResourceGroupName,
+       BatchAccountName);
+
+   BatchAccountResource batchAccount = armClient.GetBatchAccountResource(batchAccountIdentifier);
    ```
 
 ### Create a pool of compute nodes

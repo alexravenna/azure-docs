@@ -53,27 +53,18 @@ The Python app needs to use your Batch and Storage account names, account key va
 To get your account information from the [Azure portal](https://portal.azure.com):
   
   1. From the Azure Search bar, search for and select your Batch account name.
-  1. On your Batch account page, select **Keys** from the left navigation.
-  1. On the **Keys** page, copy the following values:
   
    - **Batch account**
    - **Account endpoint**
-   - **Primary access key**
    - **Storage account name**
-   - **Key1**
 
 In your downloaded Python app, edit the following strings in the *config.py* file to supply the values you copied.
 
 ```python Snippet:quickrun_python_config
 BATCH_ACCOUNT_NAME = '<batch account>'
-BATCH_ACCOUNT_KEY = '<primary access key>'
 BATCH_ACCOUNT_URL = '<account endpoint>'
 STORAGE_ACCOUNT_NAME = '<storage account name>'
-STORAGE_ACCOUNT_KEY = '<key1>'
 ```
-
->[!IMPORTANT]
->Exposing account keys in the app source isn't recommended for Production usage. You should restrict access to credentials and refer to them in your code by using variables or a configuration file. It's best to store Batch and Storage account keys in Azure Key Vault.
 
 ### Run the app and view output
 
@@ -122,7 +113,7 @@ Review the code to understand the steps in the [Azure Batch Python Quickstart](h
    ```python Snippet:quickrun_python_blob_client
    blob_service_client = BlobServiceClient(
            account_url=f"https://{config.STORAGE_ACCOUNT_NAME}.{config.STORAGE_ACCOUNT_DOMAIN}/",
-           credential=config.STORAGE_ACCOUNT_KEY
+           credential=DefaultAzureCredential()
        )
    ```
 
@@ -138,15 +129,13 @@ Review the code to understand the steps in the [Azure Batch Python Quickstart](h
        for file_path in input_file_paths]
    ```
 
-1. The app creates a [BatchClient](/python/api/azure-batch/azure.batch.batchclient) object to create and manage pools, jobs, and tasks in the Batch account. The Batch client uses shared key authentication. Batch also supports Microsoft Entra authentication.
+1. The app creates a [BatchClient](/python/api/azure-batch/azure.batch.batchclient) object to create and manage pools, jobs, and tasks in the Batch account. The Batch client uses Microsoft Entra authentication.
 
    ```python Snippet:quickrun_python_batch_client
-   credentials = AzureNamedKeyCredential(config.BATCH_ACCOUNT_NAME,
-           config.BATCH_ACCOUNT_KEY)
    
        batch_client = BatchClient(
            endpoint=config.BATCH_ACCOUNT_URL,
-           credential=credentials)
+           credential=DefaultAzureCredential())
    ```
 
 ### Create a pool of compute nodes
