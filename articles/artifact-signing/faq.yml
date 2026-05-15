@@ -7,7 +7,7 @@ metadata:
   ms.author: mesharm
   ms.service: trusted-signing
   ms.topic: faq
-  ms.date: 12/31/2025
+  ms.date: 05/14/2026
 title: Artifact Signing FAQ
 summary: |
   Get answers to common questions about the Artifact Signing service. 
@@ -104,6 +104,54 @@ sections:
           - No. OU is only available for Private Trust and Private Trust CI Policy certificates.
   - name: Signing
     questions:
+      - question: Why does double-clicking the Artifact Signing .vsix fail with "InvalidSignature" or a NullReferenceException?
+        answer: |
+          The **Artifact Signing** extension on the Visual Studio Marketplace
+          (`VisualStudioClient.ArtifactSigning`) is an **Azure DevOps pipeline
+          task extension**, not a Visual Studio IDE extension. Although both
+          ship as `.vsix` files, the two formats are different and aren't
+          interchangeable.
+
+          When you download the file and double-click it, Windows hands it to
+          `VSIXInstaller.exe` — the installer for Visual Studio IDE extensions.
+          That tool can't parse an Azure DevOps task manifest, so it reports a
+          misleading `SignatureState: InvalidSignature` followed by a
+          `System.NullReferenceException`. The Artifact Signing certificate
+          itself is valid; the failure is a side effect of using the wrong
+          installer.
+
+          > [!IMPORTANT]
+          > Don't run the Artifact Signing `.vsix` through `VSIXInstaller.exe`
+          > on a developer workstation or a self-hosted build agent — it isn't
+          > supported and there's no local-install workflow for this extension.
+          > Choose one of the two paths below instead.
+
+          **If you want to sign from an Azure DevOps pipeline**, install the
+          extension into your Azure DevOps organization from the Marketplace.
+          The task then runs on Microsoft-hosted **and** self-hosted build
+          agents in that organization — no local install on the agent is
+          required.
+
+          1. Sign in to your Azure DevOps organization with an account that has
+             the **Manage Extensions** permission.
+          1. Open the [Artifact Signing extension on the Marketplace](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.ArtifactSigning),
+             select **Get it free**, choose your organization, and select
+             **Install**.
+          1. Reference the `AzureArtifactSigning@<version>` task from your
+             pipeline.
+
+          For details, see [Install extensions](/azure/devops/marketplace/install-extension)
+          and [Set up Azure DevOps tasks to use Artifact Signing](how-to-signing-integrations.md#set-up-azure-devops-tasks-to-use-artifact-signing).
+
+          **If you aren't using Azure Pipelines** — for example, you're signing
+          from a self-hosted build agent, a developer workstation, or another
+          CI system — use one of the other supported integrations. Don't
+          attempt to install the Azure DevOps extension locally:
+
+          - [SignTool with the Artifact Signing dlib](how-to-signing-integrations.md#set-up-signtool-to-use-artifact-signing)
+          - [PowerShell for Authenticode](how-to-signing-integrations.md#use-other-signing-integrations-with-artifact-signing)
+          - [GitHub Actions](how-to-signing-integrations.md#use-other-signing-integrations-with-artifact-signing)
+          - [Artifact Signing SDK](how-to-signing-integrations.md#use-other-signing-integrations-with-artifact-signing)
       - question: What can I expect when I see SmartScreen prompts for signed files?
         answer: |
           SmartScreen reputation builds up automatically. The prompt stops appearing once the file hash has sufficient download history. For more information, see the: [SmartScreen reputation for Windows app developers](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation) documentation. If you continue to encounter SmartScreen prompts for your application, please consider submitting the signed file through [Microsoft Security Intelligence](https://www.microsoft.com/en-us/wdsi) for further review.
