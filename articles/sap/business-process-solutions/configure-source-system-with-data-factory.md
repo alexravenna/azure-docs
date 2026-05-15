@@ -113,7 +113,7 @@ The first step of configuration is to set up the source system. This step deploy
 
    :::image type="content" source="./media/configure-source-system-with-data-factory/create-data-factory-source-system.png" alt-text="Screenshot that shows how to create a new resource group for the data factory." lightbox="./media/configure-source-system-with-data-factory/create-data-factory-source-system.png":::
 
-   :::image type="content" source="./media/configure-source-system-with-data-factory/enter-azure-details.png" alt-text="Screenshot that shows how to create new azure resources for the data factory." lightbox="./media/configure-source-system-with-data-factory/enter-azure-details.png":::
+   :::image type="content" source="./media/configure-source-system-with-data-factory/enter-azure-details.png" alt-text="Screenshot that shows how to create new Azure resources for the data factory." lightbox="./media/configure-source-system-with-data-factory/enter-azure-details.png":::
 
 1. In the **System Connection** section, enter the connection details for your SAP system. Enter the service principal secret that you created in [Create a service principal](#create-a-service-principal).
 
