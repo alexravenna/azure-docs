@@ -106,26 +106,10 @@ sections:
     questions:
       - question: Why does double-clicking the Artifact Signing .vsix fail with "InvalidSignature" or a NullReferenceException?
         answer: |
-          The Artifact Signing extension (`VisualStudioClient.ArtifactSigning`)
-          is an **Azure DevOps task extension**, not a Visual Studio IDE
-          extension. Both ship as `.vsix` files but they aren't
-          interchangeable, and `VSIXInstaller.exe` only supports IDE
-          extensions — running it against the Artifact Signing package fails
-          with a misleading `SignatureState: InvalidSignature` and
-          `System.NullReferenceException`. The signing certificate is valid;
-          the installer is the wrong tool, and there is no local-install
-          workflow for this extension.
+          The Artifact Signing extension (`VisualStudioClient.ArtifactSigning`) is an **Azure DevOps task extension**, not a Visual Studio IDE extension. Both ship as `.vsix` files but they aren't interchangeable, and `VSIXInstaller.exe` only supports IDE extensions — running it against the Artifact Signing package fails with a misleading `SignatureState: InvalidSignature` and `System.NullReferenceException`. The signing certificate is valid; the installer is the wrong tool, and there is no local-install workflow for this extension.
 
-          - **From an Azure DevOps pipeline:** install the extension into
-            your organization from the
-            [Marketplace](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.ArtifactSigning),
-            then reference the `AzureArtifactSigning@<version>` task. See
-            [Install extensions for Azure DevOps](/azure/devops/marketplace/install-extension)
-            for the supported install paths (Marketplace UI and `az devops
-            extension`); both target an Azure DevOps organization.
-          - **Without Azure Pipelines** (workstation, self-hosted agent,
-            another CI system): use [SignTool, PowerShell, GitHub Actions,
-            or the Artifact Signing SDK](how-to-signing-integrations.md).
+          - **From an Azure DevOps pipeline:** install the extension into your organization from the [Marketplace](https://marketplace.visualstudio.com/items?itemName=VisualStudioClient.ArtifactSigning), then reference the `AzureArtifactSigning@<version>` task. See [Install extensions for Azure DevOps](/azure/devops/marketplace/install-extension) for the supported install paths (Marketplace UI and `az devops extension`); both target an Azure DevOps organization.
+          - **Without Azure Pipelines** (workstation, self-hosted agent, another CI system): use [SignTool, PowerShell, GitHub Actions, or the Artifact Signing SDK](how-to-signing-integrations.md).
       - question: What can I expect when I see SmartScreen prompts for signed files?
         answer: |
           SmartScreen reputation builds up automatically. The prompt stops appearing once the file hash has sufficient download history. For more information, see the: [SmartScreen reputation for Windows app developers](https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation) documentation. If you continue to encounter SmartScreen prompts for your application, please consider submitting the signed file through [Microsoft Security Intelligence](https://www.microsoft.com/en-us/wdsi) for further review.
